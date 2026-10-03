@@ -42,3 +42,16 @@ run.log
 
 # OS files
 ._*
+
+# 10xeng: build/audit artifacts from one-off verification runs
+va*.json
+vf*.json
+vt*.json
+c3*.json
+c3*.err
+acc*.json
+audit.json
+test.txt
+shots/
+pinkpages/
+mutant/

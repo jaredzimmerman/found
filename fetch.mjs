@@ -178,7 +178,7 @@ function timeRangeLabel(startMinutes, endMinutes) {
 
 const strip = (s, n = 240) => String(s || "").replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/gi, " ").replace(/\s+/g, " ").trim().slice(0, n);
 
-// Box-office prices resolved by resolve-prices.mjs, keyed by event id. The
+// Box-office prices resolved separately, keyed by event id. The
 // file is written by a separate, slower browser pass and is absent on a cold
 // checkout, so the read is guarded — the feed must still build without it.
 const PRICE_OVERRIDES = (() => {
@@ -514,7 +514,7 @@ function priceOf(e) {
     if (/\bfree\b/i.test(info)) return { label: "Free", tier: "free" };
   }
 
-  // A price resolved at the box office itself (resolve-prices.mjs), which
+  // A price resolved at the box office itself, which
   // beats anything scraped from the listing copy — see that file for why the
   // copy cannot be trusted on its own.
   if (PRICE_OVERRIDES[String(e.id)]?.label)

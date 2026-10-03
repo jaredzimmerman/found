@@ -5,9 +5,10 @@ dc-hoods.mjs shipped with two San Francisco rows copy-pasted into it
 tables are plain arrays of regexes and nothing compared them. This asserts the
 DC table contains no SF-only hood, and the SF table no DC-only hood.
 """
+import os
 import re, sys
 
-BASE = "/root/.hermes/profiles/indigo/cache/scratch/sf-events-v2/"
+BASE = os.path.dirname(os.path.abspath(__file__)) + "/"
 
 ROW = re.compile(r'\[\s*/.*?/[a-z]*\s*,\s*"([^"]+)"\s*\]')
 

@@ -615,7 +615,6 @@ const SCRAP_TEXT_RX = /^(?:[A-Za-z]|\d+\s*:)/;
 // that punctuates at all ends with "!" ("Visible Mending: Patch your jeans by
 // hand!"). Requiring a period AND a lowercase function word separates the two
 // populations cleanly: a title is Title Case and has neither. See
-// probes/scrap-titleshape.mjs for the measurement.
 const SCRAP_SENTENCE_RX = /\.\s*$/;
 const SCRAP_FUNCTION_WORD_RX =
   /\b(?:you|your|will|learn|the|and|with|this|that|from|for|are|can|we|our|provided|necessary|welcome|required|experience|all|no)\b/i;
@@ -640,7 +639,7 @@ function scrapIsTitle(s) {
   // of Visual Ideas" at 12 words, which a 10-word cap rejected — and because
   // the block then has only one surviving name above the date, the instructor
   // got filed as the title. A cap below the longest real title does not make
-  // the parse stricter, it makes it wrong. See probes/scrap-series.mjs.
+ 
   if (s.split(/\s+/).length > 12) return false;
   // A description that drifted into the title slot. Needs BOTH signals: the
   // real title "Visible Mending: Patch your jeans by hand!" ends in "!" and

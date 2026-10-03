@@ -1,7 +1,7 @@
 {
   "name": "sf-pink-pages",
   "version": "1.0.0",
-  "description": "SF Chronicle Pink Pages revival — curated SF events aggregator",
+  "description": "SF Chronicle Pink Pages revival \u2014 curated SF events aggregator",
   "type": "module",
   "scripts": {
     "scrape": "node scrape.mjs",
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "playwright": "^1.63.0",
+    "playwright-core": "^1.63.0",
     "xml2js": "^0.6.2"
   }
 }

@@ -11,7 +11,7 @@
 
 import fs from "node:fs";
 
-const SRC = "/root/.hermes/profiles/indigo/cache/scratch/sf-events-v2/fetch.mjs";
+const SRC = "./fetch.mjs";
 const src = fs.readFileSync(SRC, "utf8");
 
 // Pull out the SOLD_OUT_RE constant and the soldOut function verbatim.

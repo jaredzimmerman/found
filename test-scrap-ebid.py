@@ -29,7 +29,7 @@ def eventbrite_ids(html):
     The fix is to stop treating the encoded form as a shape to match. Unquote
     first, then match the one plain shape. A regex scored against all nine
     real cases (six positive, three that must not match) picks this over any
-    hand-built alternation; see probes/ebid-grid.py.
+    hand-built alternation.
 
     Only the trailing number is guaranteed, so the slug is optional and
     non-greedy. Requiring six or more digits keeps a 4-digit fragment out.

@@ -8,7 +8,7 @@ import { readFileSync, writeFileSync } from "fs";
 // Pull cityLights() and the two module-level names it closes over into a
 // runnable harness, rather than re-implementing the logic and testing that.
 const src = readFileSync(
-  "/root/.hermes/profiles/indigo/cache/scratch/sf-events-v2/fetch.mjs",
+  "./fetch.mjs",
   "utf8"
 );
 const start = src.indexOf("async function cityLights");
@@ -34,5 +34,5 @@ for (const e of out) {
 }
 console.log(\`\\n  total contributed: \${out.length}\`);
 `;
-writeFileSync("/root/.hermes/profiles/indigo/cache/scratch/sf-events-v2/.cl-harness.mjs", harness);
-await import("/root/.hermes/profiles/indigo/cache/scratch/sf-events-v2/.cl-harness.mjs");
+writeFileSync("./.cl-harness.mjs", harness);
+await import("./.cl-harness.mjs");

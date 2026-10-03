@@ -11,7 +11,7 @@
 import { readFileSync } from "node:fs";
 
 const FEED = process.argv[2] ||
-  "/root/.hermes/profiles/indigo/cache/scratch/sf-events-v2/events.json";
+  "./events.json";
 const { events } = JSON.parse(readFileSync(FEED, "utf8"));
 
 let fails = 0;

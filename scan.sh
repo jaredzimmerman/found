@@ -13,7 +13,7 @@
 #   5. SCRAP live parse                — the source just added, against the real page
 #   6. live verification               — the published URLs answer 200
 set -uo pipefail
-cd /root/.hermes/profiles/indigo/cache/scratch/sf-events-v2 || exit 99
+cd "$(dirname "$0")" || exit 99
 
 FAIL=0
 note() { printf '  %-46s %s\n' "$1" "$2"; }
