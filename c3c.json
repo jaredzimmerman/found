@@ -1,0 +1,74 @@
+{
+  "allTypeChips": [
+    {
+      "v": "Art & Exhibits",
+      "text": "Art & Exhibits8"
+    },
+    {
+      "v": "Books",
+      "text": "Books1"
+    },
+    {
+      "v": "Comedy",
+      "text": "Comedy7"
+    },
+    {
+      "v": "Community",
+      "text": "Community15"
+    },
+    {
+      "v": "Concerts & Music",
+      "text": "Concerts & Music40"
+    },
+    {
+      "v": "Family & Kids",
+      "text": "Family & Kids5"
+    },
+    {
+      "v": "Festivals & Fairs",
+      "text": "Festivals & Fairs3"
+    },
+    {
+      "v": "Film & Movies",
+      "text": "Film & Movies13"
+    },
+    {
+      "v": "Food & Drink",
+      "text": "Food & Drink19"
+    },
+    {
+      "v": "Sports & Fitness",
+      "text": "Sports & Fitness3"
+    },
+    {
+      "v": "Talks & Workshops",
+      "text": "Talks & Workshops4"
+    },
+    {
+      "v": "Theater & Dance",
+      "text": "Theater & Dance22"
+    }
+  ],
+  "rareType": {
+    "v": "Books",
+    "text": "Books1",
+    "n": 1
+  },
+  "rowsWithRareType": 1,
+  "deadChips": [],
+  "liveChips": 15,
+  "nonValueChips": [
+    {
+      "group": "f-day",
+      "text": "All1"
+    },
+    {
+      "group": "f-sold",
+      "text": "Hide sold out2"
+    }
+  ],
+  "desktopUntouched": {
+    "panelDisplay": "none",
+    "ariaExpanded": "false"
+  }
+}

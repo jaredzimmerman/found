@@ -1,0 +1,14 @@
+{
+  "name": "sf-pink-pages",
+  "version": "1.0.0",
+  "description": "SF Chronicle Pink Pages revival — curated SF events aggregator",
+  "type": "module",
+  "scripts": {
+    "scrape": "node scrape.mjs",
+    "serve": "python3 -m http.server 8000"
+  },
+  "dependencies": {
+    "playwright": "^1.63.0",
+    "xml2js": "^0.6.2"
+  }
+}

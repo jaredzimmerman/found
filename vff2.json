@@ -1,0 +1,156 @@
+{
+  "A": {
+    "before": 85,
+    "panelClosedByDefault": {
+      "before": {
+        "display": "none",
+        "h": 0
+      },
+      "after": {
+        "display": "flex",
+        "h": 368.34375
+      },
+      "ariaExpanded": "true"
+    },
+    "hoodChips": [
+      {
+        "v": "SoMa",
+        "text": "SoMa23",
+        "shown": true
+      },
+      {
+        "v": "Mission",
+        "text": "Mission20",
+        "shown": true
+      },
+      {
+        "v": "Financial District",
+        "text": "Financial District9",
+        "shown": true
+      },
+      {
+        "v": "North Beach",
+        "text": "North Beach6",
+        "shown": true
+      },
+      {
+        "v": "Nob Hill",
+        "text": "Nob Hill5",
+        "shown": true
+      },
+      {
+        "v": "San Francisco",
+        "text": "San Francisco6",
+        "shown": true
+      },
+      {
+        "v": "Bernal Heights",
+        "text": "Bernal Heights4",
+        "shown": true
+      },
+      {
+        "v": "Potrero Hill",
+        "text": "Potrero Hill3",
+        "shown": true
+      },
+      {
+        "v": "Haight-Ashbury",
+        "text": "Haight-Ashbury3",
+        "shown": true
+      },
+      {
+        "v": "Presidio",
+        "text": "Presidio2",
+        "shown": true
+      },
+      {
+        "v": "Western Addition",
+        "text": "Western Addition1",
+        "shown": true
+      },
+      {
+        "v": "Outer Sunset",
+        "text": "Outer Sunset1",
+        "shown": true
+      },
+      {
+        "v": "Richmond",
+        "text": "Richmond1",
+        "shown": true
+      },
+      {
+        "v": "Russian Hill",
+        "text": "Russian Hill1",
+        "shown": true
+      }
+    ],
+    "picked": {
+      "v": "SoMa",
+      "n": 23
+    },
+    "after": 23,
+    "matchesChipCount": 23,
+    "consistent": true,
+    "hoodLabelsShown": []
+  },
+  "B": {
+    "typesAvailableInHood": [
+      "Art & Exhibits6",
+      "Books1",
+      "Comedy2",
+      "Community3",
+      "Concerts & Music8",
+      "Family & Kids1",
+      "Festivals & Fairs2",
+      "Film & Movies5",
+      "Food & Drink4",
+      "Sports & Fitness2",
+      "Talks & Workshops1",
+      "Theater & Dance7"
+    ],
+    "hiddenTypeValues": [],
+    "afterBoth": 6,
+    "hoodsNowShown": [
+      "SoMa6",
+      "Nob Hill1",
+      "Haight-Ashbury1"
+    ],
+    "venueOptionsNow": [
+      "All venues",
+      "Museum of Craft and Design",
+      "Roxie Theater",
+      "Yerba Buena Center for the Arts"
+    ],
+    "rowsAfterReset": 85
+  },
+  "C": {
+    "desktopFresh": {
+      "panelDisplay": "flex",
+      "panelHeightPx": 368,
+      "barHeightPx": 431,
+      "toggleAriaExpanded": "true",
+      "chipsClickable": true
+    },
+    "phoneFresh": {
+      "panelDisplay": "none",
+      "panelHeightPx": 0,
+      "barHeightPx": 158,
+      "toggleAriaExpanded": "false",
+      "chipsClickable": true
+    },
+    "phoneRows": 85,
+    "desktopRows": 85,
+    "phoneOpened": {
+      "before": {
+        "display": "none",
+        "h": 0
+      },
+      "after": {
+        "display": "flex",
+        "h": 689.84375
+      },
+      "ariaExpanded": "true"
+    },
+    "phoneRowsAfterOpen": 85
+  }
+}

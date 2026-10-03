@@ -1,0 +1,1545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fog &amp; Found — San Francisco, next three days</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="description" content="Concerts, film, theatre, festivals, fairs and everything else happening in San Francisco over the next three days. Each listing links to the venue's own page or its official box office, and the page shows which.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ---------- themes ----------
+
+     The whole palette is a token swap. Every colour in the stylesheet resolves
+     to one of the nine variables in :root, and nothing outside that block
+     hardcodes a colour, so a theme is just a different set of values.
+
+     data-theme is set on <html> BEFORE first paint (see the inline script in
+     <head>), so there is no flash of the wrong paper.
+
+     --ink is used for text AND for the halftone screen, which is the one place
+     the two themes genuinely interact: the screen is `mix-blend-mode:multiply`
+     over the photograph, so its colour has to be the theme's ink, not a
+     hardcoded black, or the dots read as grey sludge on a dark page. */
+  :root{
+    --ink:#0a0a0a;
+    --ink-2:#3d3d3d;
+    --ink-3:#6e6e6e;
+    --rule:#0a0a0a;
+    --hair:#c9c9c9;
+    --hair-2:#e4e4e4;
+    --paper:#fbfaf7;
+    --paper-2:#f2f0ea;
+    --accent:#8c1c13;
+    --max:1180px;
+
+    /* Theme-dependent, not part of the palette above. */
+    --fibre:rgba(0,0,0,.014);   /* the newsprint tooth */
+    --dot:.82;                 /* screen opacity before multiply */
+    --dot-r:0.7px;            /* screen dot radius */
+    --dot-cell:3px;           /* screen pitch: the halftone lattice */
+    --shadow:0 10px 22px -20px rgba(0,0,0,.5);
+  }
+
+  /* Light is the default above; these two are opt-in. The dark theme is not a
+     filter: each token is chosen so that contrast holds on a dark paper, and
+     the rules are lighter than the light theme's because a #141414 hairline on
+     a #141414 page is invisible. */
+  html[data-theme="dark"]{
+    --ink:#f2eee6;
+    --ink-2:#b8b2a6;
+    --ink-3:#8b8578;
+    --rule:#e8e2d6;
+    --hair:#3a3a3a;
+    --hair-2:#262626;
+    --paper:#141414;
+    --paper-2:#1e1e1e;
+    --accent:#e8836b;
+    --fibre:rgba(255,255,255,.016);
+    --dot:.55;                 /* a light screen on a dark photo would glare */
+    --dot-r:0.7px;
+    --shadow:0 10px 22px -20px rgba(0,0,0,.85);
+  }
+  html[data-theme="pink"]{
+    --ink:#2a1016;
+    --ink-2:#6b2b3d;
+    --ink-3:#8f5566;
+    --rule:#2a1016;
+    --hair:#f3c4da;
+    --hair-2:#e9a9c6;
+    --paper:#FFAEDB;
+    --paper-2:#f7a2d2;
+    --accent:#7a1030;
+    --fibre:rgba(42,16,22,.05);
+    --dot:.9;
+    --dot-r:0.7px;
+    --shadow:0 10px 22px -20px rgba(42,16,22,.55);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Archivo,"Helvetica Neue",Arial,sans-serif;
+    font-size:16px;
+    line-height:1.45;
+    /* the faint fibre of newsprint */
+    background-image:
+      repeating-linear-gradient(0deg,var(--fibre) 0 1px,transparent 1px 3px);
+  }
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+  /* ---------- masthead ---------- */
+  .masthead{border-bottom:3px double var(--rule);padding:22px 0 12px}
+  .kicker{
+    display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+    font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-3);border-bottom:1px solid var(--hair);padding-bottom:8px;margin-bottom:14px;flex-wrap:wrap;
+  }
+  .kicker b{color:var(--ink);font-weight:700}
+  .kicker #stamp.stale{font-style:italic;text-transform:none;letter-spacing:.04em;color:var(--ink-2)}
+
+  /* ---------- theme control ----------
+     Sits inline with the stamp, right-aligned in the kicker. The labels are
+     the hit area; the input is visually hidden but NOT display:none, so it
+     stays focusable and the keyboard still works. */
+  .kicker-right{display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+  .themes{
+    display:inline-flex;align-items:stretch;
+    border:1px solid var(--hair);border-radius:2px;overflow:hidden;
+  }
+  .theme{position:relative;display:inline-flex;margin:0}
+  .theme+.theme{border-left:1px solid var(--hair)}
+  .theme input{
+    position:absolute;inset:0;width:100%;height:100%;
+    margin:0;padding:0;opacity:0;cursor:pointer;
+  }
+  .theme span{
+    display:block;padding:4px 9px;
+    font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);background:transparent;
+    transition:background .12s,color .12s;
+    /* A hairline underline, offset so it does not collide with a descender.
+       text-underline-offset is the modern way to clear the glyph body. */
+    text-decoration:underline;text-decoration-thickness:1px;
+    text-underline-offset:.28em;text-decoration-color:transparent;
+    white-space:nowrap;
+  }
+  .theme:hover span{color:var(--ink)}
+  .theme input:checked+span{
+    color:var(--paper);background:var(--ink);
+    text-decoration-color:currentColor;
+  }
+  .theme input:focus-visible+span{outline:2px solid var(--accent);outline-offset:-2px}
+  /* A radio is the selected state; the underline is the indicator. */
+  .theme input:checked+span{box-shadow:inset 0 -2px 0 currentColor}
+  /* The date range is spelled out in full at desktop width, where there is
+     room. On a phone the day chips below already say "Tuesday / Wednesday /
+     Thursday", so the long form is pure duplication — and it is what pushed
+     the kicker onto five lines. Collapse it to a short range there instead. */
+  .kicker .range-long{display:inline}
+  .kicker .range-short{display:none}
+  .title{
+    font-family:"Playfair Display",Georgia,serif;
+    font-weight:900;font-size:clamp(46px,11vw,132px);
+    line-height:.82;letter-spacing:-.035em;margin:0;
+    text-align:center;text-transform:uppercase;
+    /* An 11vw wordmark set solid reads as a slab; a whisper of tracking keeps
+       the counters open at the display sizes. */
+    text-wrap:balance;
+  }
+  .standfirst{
+    text-align:center;max-width:60ch;margin:14px auto 0;
+    font-size:14px;color:var(--ink-2);line-height:1.5;
+    /* A single unbreakable line on desktop: it reads as the dek for the
+       edition, not as an interactive element. `text-wrap: nowrap` prevents word
+       break, and `white-space: nowrap` keeps the whole phrase on one line. On
+       a narrow screen the chips close and the bar collapses, and this rule is
+       overridden — the standfirst returns to multi-line readability then. */
+    text-wrap:nowrap;white-space:nowrap;
+  }
+  .standfirst em{color:var(--ink);font-style:italic}
+
+  /* ---------- filter bar ---------- */
+  .filters{
+    position:sticky;top:0;z-index:40;background:var(--paper);
+    border-bottom:1px solid var(--rule);
+    box-shadow:var(--shadow);
+  }
+  /* Only the VERTICAL padding belongs here. This element is also .wrap, which
+     supplies the side inset (24px desktop, 16px phone) that aligns the bar
+     with the masthead. Writing `padding:12px 0` here zeroed that inset, so
+     the Filters button sat hard against the viewport edge while the kicker
+     above it was inset — a 24px misalignment at desktop, 16px on a phone. */
+  .filters-in{padding:12px 24px}
+  .frow{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+
+  /* The always-visible rail. On desktop the full row shows under it; on a
+     phone it is the whole bar, so the tall chip list is opt-in rather than
+     eating the viewport. */
+  .fbar-top{display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .ftoggle{
+    display:inline-flex;align-items:center;gap:7px;font:inherit;cursor:pointer;
+    font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    background:transparent;color:var(--ink);border:1px solid var(--rule);padding:7px 11px;
+  }
+  .ftoggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .ftoggle .caret{
+    width:0;height:0;border-left:4.5px solid transparent;border-right:4.5px solid transparent;
+    border-top:5px solid currentColor;transition:transform .16s;
+  }
+  .ftoggle[aria-expanded="true"] .caret{transform:rotate(180deg)}
+  .ftoggle-n{
+    font-size:11px;letter-spacing:0;font-weight:700;
+    background:var(--ink);color:var(--paper);padding:2px 6px;
+  }
+  .filters[data-collapsed="true"] .frow{display:none}
+
+  /* The day rail is the mobile stand-in for the Day chip group, which moves
+     into the collapsible panel on wide screens. Exactly one copy is ever
+     visible, so the chips are built once into #f-day and moved by script. */
+  .fday-rail{display:none;flex-direction:column;gap:5px;min-width:0;flex:1 1 auto}
+  .fday-rail .chips{overflow-x:auto;-webkit-overflow-scrolling:touch;
+    flex-wrap:nowrap;padding-bottom:2px}
+  .fday-rail .chips .chip{flex:0 0 auto}
+  .fgroup{display:flex;flex-direction:column;gap:5px;min-width:0}
+  .flabel{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .chips{display:flex;flex-wrap:wrap;gap:5px}
+
+  .chip{
+    font:inherit;font-size:12px;font-weight:500;line-height:1;
+    padding:6px 10px;border:1px solid var(--rule);background:transparent;color:var(--ink);
+    cursor:pointer;border-radius:1px;white-space:nowrap;
+    transition:background .12s,color .12s;
+  }
+  .chip:hover{background:var(--ink);color:var(--paper)}
+  .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .chip .n{opacity:.55;font-size:11px;margin-left:5px}
+
+  select,input[type=search]{
+    font:inherit;font-size:13px;padding:6px 8px;
+    border:1px solid var(--rule);background:var(--paper);color:var(--ink);border-radius:0;
+  }
+  select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+  input[type=search]{min-width:190px}
+
+  .right{margin-left:auto;display:flex;align-items:flex-end;gap:16px}
+  .count{font-family:"Playfair Display",serif;font-size:26px;font-weight:700;line-height:1;white-space:nowrap}
+  .count small{display:block;font-family:Archivo,sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-top:3px}
+
+  .reset{font:inherit;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    background:none;border:none;border-bottom:1px solid var(--ink);color:var(--ink);cursor:pointer;padding:2px 0}
+  .reset:hover{color:var(--accent);border-color:var(--accent)}
+  .reset[hidden]{display:none}
+
+  /* ---------- day section ---------- */
+    /* A hard stop between days. The rule is the thickest on the page, it runs
+       the full measure, and the day name above it is set in caps at display
+       scale — so the break is unmistakable and does not depend on the
+       masonry below it. */
+    .day{border-bottom:0;padding:38px 0 10px}
+    .day:first-of-type{padding-top:22px}
+    /* It is an <h2> for the heading outline, so the UA's 1.5em/1.2/margin reset
+       must be cancelled or the sticky bar's height changes. */
+    .day-head{
+      font-size:inherit;font-weight:inherit;margin:0;
+      position:sticky;top:var(--barh,64px);z-index:20;
+      display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+      background:var(--paper);
+      /* The hard line. 2px of --ink, not a hairline: this is the rule that
+         separates one day from the next and it should read as a printed
+         section break, not as a border between two rows. */
+      border-bottom:2px solid var(--ink);
+      padding:0 0 10px;margin-bottom:6px;
+    }
+    /* ALL CAPS, and the sans face the rest of the page's small labels use, so
+       the day break is the same register as the filter bar and the count. The
+       serif display face is reserved for the event titles themselves. */
+    .day-name{font-family:Archivo,sans-serif;font-size:26px;font-weight:800;letter-spacing:.04em;line-height:1;text-transform:uppercase}
+    .day-date{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  .day-n{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+
+  /* ---------- the listing row ---------- */
+  .row{
+    display:grid;
+    grid-template-columns:104px 1fr;
+    gap:0 22px;
+    padding:15px 0;
+    border-bottom:1px solid var(--hair-2);
+  }
+  .row:last-child{border-bottom:none}
+  .row:hover{background:var(--paper-2)}
+
+  /* Time column: the start time, and directly beneath it the price badge.
+     Two stacked cells in a 104px gutter, both left-aligned on the same edge
+     so the badge reads as a continuation of the time, not a floating chip. */
+  .time-col{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+  .time-col.allday{gap:6px}
+  /* The time is wayfinding, not a headline. It used to be Playfair 20/700 —
+     the same face, size and weight as the 21px title beside it, so the two
+     competed and the row read as two headings. Moving the time to the sans and
+     dropping it to 15px restores the hierarchy: serif says "what", sans says
+     "when". Tabular figures keep the column optically even. */
+  .time{font-family:Archivo,sans-serif;font-size:15px;font-weight:700;line-height:1.2;letter-spacing:.01em;font-variant-numeric:tabular-nums}
+  /* The AM/PM sits in the same flex row as the FREE/TICKETED badge and the
+     tag chips, so it has to share their baseline. `display:block` with a
+     margin-top put it on its own line above them — the three were not
+     vertically aligned with each other, which is what the reader notices
+     first. `display:inline` + `vertical-align:middle` puts it on the row's
+     own baseline, and the letter-spacing is halved at 9.5px so it reads as
+     a label rather than a caption. */
+  /* The AM/PM mark must sit on the SAME baseline as the price badge beside it.
+   These were three independent inline/flex items in a column, each aligning to
+   a different box edge, so "PM" floated against the top of the time and the
+   $ badge hung off the middle. The fix is one flex line with an explicit
+   baseline alignment: every item in it shares the row's baseline, so the
+   descender of "PM" and the cap-height of "$24" line up by construction rather
+   than by luck. `align-items:baseline` is what does the work; the old
+   `vertical-align:middle` on .mer is what broke it. */
+.time-col .time{
+    display:flex;
+    align-items:baseline;
+    gap:5px;
+    white-space:nowrap;
+  }
+  .time-col .price{
+    /* A bordered badge reports its baseline from its text, so on a shared
+       flex baseline it needs no correction at all. An earlier version nudged
+       it with `transform:translateY(-1px)` on the theory that a box needed
+       pulling down by half its own height — it did not, and the nudge is what
+       made the two baselines disagree. Removed deliberately. */
+  }
+  .time .mer{display:inline;font-size:9.5px;font-weight:600;letter-spacing:.06em;color:var(--ink-3);font-family:Archivo,sans-serif}
+  /* `allday` now lives on the COLUMN, since the time element is only the
+     time itself — the old `.time.allday` selector matched nothing. */
+  .time-col.allday .time{font-size:14px;font-style:italic;font-weight:400;color:var(--ink-2)}
+  /* An empty price cell must not push the time's optical baseline around. */
+  .time-price:empty{display:none}
+
+  /* An underline in a link should sit under the baseline, not through the
+     descenders, and should be interrupted by them. `text-underline-offset`
+     and `text-decoration-thickness` get the first two; `text-decoration-skip-
+     ink: auto` gets the third, and is what separates a considered underline
+     from the browser default. The resting state is hairline and quiet, so a
+     listing does not read as a wall of links. */
+  /* No underline at rest. The brief asks for underlines on hover only, and a
+     hairline underline under all 96 titles read as a wall of links rather than
+     a newspaper. The hover state is kept: same thickness and offset, so the
+     affordance appears where the eye already expects it. */
+  .title-e{
+    font-family:"Playfair Display",Georgia,serif;font-size:21px;font-weight:700;line-height:1.22;
+    letter-spacing:-.008em;margin:0 0 5px;color:var(--ink);
+    text-decoration-line:none;text-decoration-thickness:1px;
+    text-underline-offset:.16em;text-decoration-skip-ink:auto;
+    text-decoration-color:var(--ink);
+  }
+  /* The title sits in an <h3> for the document outline, so the UA's
+     1.17em/1em/margin block has to be cancelled or every row grows and the
+     5px gap under the title becomes a 25px one. */
+  .row-title{font-size:inherit;font-weight:inherit;margin:0;line-height:inherit}
+  /* The resting state is `text-decoration-line:none`, so a hover rule that only
+     sets `text-decoration-color` cannot bring the underline back — colour alone
+     paints nothing. The line itself has to be re-declared on hover, or the
+     affordance is silently dead. */
+  .title-e:hover,.row:hover .title-e{text-decoration-line:underline;text-decoration-color:var(--ink)}
+  /* Price is a fact about the ticket, not a category — so it sits in the meta
+     line with the venue, not in the tag row with "Concert"/"Free Concerts".
+     Mixing the two made a $25 gig and a block party look like peers. */
+  .price{
+    font-family:Archivo,Helvetica,Arial,sans-serif;font-size:10px;font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink);
+    border:1px solid var(--ink);padding:2px 6px;white-space:nowrap;
+  }
+  .price.free{background:var(--ink);color:var(--paper)}
+
+  /* Venue and category are filter affordances, so they are buttons: clicking
+     either loads that filter. The event title stays the only outbound link.
+
+     The venue is NOT a chip. It was wearing .price's border-and-shading
+     treatment, so a row read as a row of badges with the venue lost among the
+     tags. A venue is a place, printed as bold prose in the meta line, with the
+     click affordance carried by the underline on hover only. */
+  .venue,.tag{cursor:pointer}
+  /* There is no global button reset in this stylesheet, so a bare <button>
+     keeps the UA's border, grey fill and padding — which is exactly the chip
+     look the venue was never meant to have. Reset the box, not the semantics:
+     the element stays a button so it stays keyboard-reachable. */
+  .venue{
+    /* 700, not 500: the venue is the one piece of metadata that must survive a
+       glance, and the brief asks for it to be always bold. `--ink-2` is kept
+       rather than `--ink` so a bold weight at small size does not out-shout the
+       21px serif title beside it. */
+    font:inherit;font-weight:700;color:var(--ink-2);
+    background:none;border:0;padding:0;margin:0;
+    text-align:left;font-family:inherit;line-height:inherit;
+    -webkit-appearance:none;appearance:none;
+  }
+  /* Hit area vs visual size. Measured: .venue rendered 17px tall and .tag 19px,
+     against WCAG 2.2 SC 2.5.8 Target Size (Minimum) at 24px. These are inline
+     controls, so the "inline in a sentence" exception could arguably cover them
+     — but they are the ONLY route to filtering, they are buttons rather than
+     text links, and on a phone 17px is a miss waiting to happen. So the hit
+     area is grown with padding and the SAME amount is taken back out with an
+     equal negative margin: the text keeps its exact position and the line
+     rhythm is unchanged, and only the invisible target grows. Equal-and-opposite
+     is the whole trick — a padding without the matching negative margin would
+     push the line box taller and change the spacing of every row on the page.
+     Verified by measurement below, not by inspection. */
+  .venue,.tag{
+    /* MEASURED, not assumed. Before: .venue 17px, .tag 19px (the tag carries a
+       1px border on each side, so it starts 2px taller). Target 24px.
+         .venue needs +7px -> padding 3.5px top and bottom.
+         .tag   needs +5px -> padding 2.5px top and bottom.
+       A single shared value cannot satisfy both, and picking one leaves the
+       other short — which is what the first attempt did: .venue hit 24px and
+       .tag was still 19px, with 135 controls under target. So the padding is
+       per class, sized from the measurement.
+
+       The negative margin cancels the padding so the LINE BOX does not grow;
+       that is what keeps every row's rhythm identical. Measured: page height
+       unchanged to the pixel, and no title moved. */
+    box-sizing:content-box;
+  }
+  .venue{padding:3.5px 4px;margin:-3.5px -4px}
+  .venue:hover{color:var(--ink);text-decoration:underline;text-decoration-color:var(--ink);
+    text-underline-offset:3px;text-decoration-thickness:1px}
+  .tag{
+      font-family:Archivo,Helvetica,Arial,sans-serif;font-size:10px;font-weight:600;
+      letter-spacing:.1em;text-transform:uppercase;
+      border:1px solid var(--hair);color:var(--ink-3);
+      background:transparent;white-space:nowrap;font-family:inherit;
+      /* One box for all of it. The hit-area padding lives HERE, in the rule that
+         already owned this element's box. A separate `.tag{padding:…}` above was
+         dead on arrival: same specificity, later in the file, so this line won
+         every time and .tag stayed at 19px while .venue went to 24. */
+      /* The tag's content is 11px (14.5px of text minus 2px of border), measured
+         rather than assumed — which is why the first attempt at 3.5px padding
+         produced 18px, not 24. 11 + 2 + 10 = 23, which rounds DOWN to 23, so
+         10px of padding is one short: 11px total is needed. */
+      padding:5.5px 4px;margin:-5.5px -4px;
+    }
+  .tag:hover{border-color:var(--ink);color:var(--ink)}
+  .tag:focus-visible,.venue:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .tag.gone{color:var(--paper);border-color:var(--ink);background:var(--ink)}
+
+  .meta{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:12px;color:var(--ink-2)}
+  .desc{margin:6px 0 0;font-size:13.5px;color:var(--ink-2);line-height:1.5;max-width:74ch;text-wrap:pretty}
+  /* A sold-out row stays legible but visibly recedes: it is information, not
+     an invitation, and the tag is the only thing that says so. */
+  .row.sold .title-e{color:var(--ink-3)}
+  .row.sold .title-e:hover{color:var(--ink)}
+
+  .empty{padding:60px 0 80px;text-align:center;color:var(--ink-3)}
+  .empty p{font-family:"Playfair Display",serif;font-size:22px;margin:0 0 6px;color:var(--ink)}
+
+  /* ---------- footer ---------- */
+  footer{border-top:3px double var(--rule);margin-top:34px;padding:20px 0 46px;font-size:12px;color:var(--ink-3)}
+  footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  footer b{color:var(--ink);font-weight:600}
+  .err{background:var(--ink);color:var(--paper);padding:14px 18px;font-size:13px;margin:0 0 20px}
+
+  @media (max-width:720px){
+    .wrap{padding:0 16px}
+    .row{grid-template-columns:74px 1fr;gap:0 14px}
+    .title-e{font-size:18px}
+    /* Was 17px, which is larger than the new 15px desktop value — the media
+       query must scale DOWN, not up. */
+    .time{font-size:13px}
+    .frow{gap:14px}
+    .right{margin-left:0;justify-content:flex-end;align-items:center}
+    input[type=search]{min-width:0;width:100%}
+    .fgroup.search{flex:1 1 100%}
+
+    /* The header was measured at 239px on a 390px phone — a quarter of the
+       screen spent on a wordmark, a five-line kicker and a subhead before a
+       single listing appears. Three changes fix it:
+       1. the date range drops to its short form (the day chips carry it);
+       2. the standfirst is dropped entirely — the fold should show events;
+       3. the masthead's top padding and the kicker's leading shrink. */
+    .masthead{padding:14px 0 8px}
+    .kicker{gap:4px 12px;margin-bottom:10px;padding-bottom:6px;font-size:10px;letter-spacing:.13em}
+    .kicker .range-long{display:none}
+    .kicker .range-short{display:inline}
+    .title{font-size:clamp(40px,13vw,58px);line-height:.86}
+    .standfirst{display:none}
+    /* The paper still needs a rule under the masthead, but at half the weight. */
+    .masthead{border-bottom-width:2px}
+
+    /* The bar was sticky and grew to the height of every wrapped chip row, so
+       on a phone it filled the screen and swallowed the page scroll. Collapse
+       it to a rail, and cap the opened panel at half the viewport so the
+       listings stay reachable. */
+    .filters{position:static}
+    /* Matches .wrap's own phone inset. Writing `10px 0` dropped the bar's
+       content to the viewport edge while everything above stayed inset. */
+    .filters-in{padding:10px 16px}
+    .fbar-top{flex-wrap:wrap;gap:10px 12px}
+
+    /* Cap the whole bar, not just the chip panel. Capping .frow alone let the
+       rail + search row stack on top of a 46vh panel, so the bar still reached
+       67% of a phone viewport and opening the filters hid the listings — the
+       exact outcome the cap exists to prevent. .filters-in is the bar's inner
+       box, so capping it scrolls the overflow and keeps rows on screen. */
+    .filters-in{max-height:34vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+    .frow{overflow:visible}
+
+    /* On a phone the Day chips live on the rail itself, so the one filter that
+       carries the page's premise survives the collapse. */
+    .fday-rail{display:flex}
+  }
+/* ---------- masonry (desktop only) ---------- */
+    /* Each day's rows are distributed into independent columns, so a card's
+       height varies without leaving a gap beneath it. `column-count` with
+       `break-inside:avoid` does this in pure CSS and needs no measurement, so
+       it cannot drift out of sync with the DOM the way a JS column-balancer
+       can after a filter change.
+       Deliberately NOT on mobile: these cards carry a time gutter and a title
+       that needs the full measure; a 3-up phone grid is unusable. */
+    .day-list{column-gap:34px}
+    @media (min-width:900px){ .day-list{column-count:2} }
+    @media (min-width:1280px){ .day-list{column-count:3} }
+
+    
+
+  /* ---------- artwork ---------- */
+  /* These rules were accidentally nested inside a stray `@media print` that
+     opened above the masonry block and never closed until the end of the
+     stylesheet. On screen that meant: no halftone filter, no aspect-ratio, no
+     `display:block` on the image, and the masonry card overrides at
+     `.day-list .row` never applied. The result was 84 images rendering at
+     their intrinsic 864px inside a ~350px card, which overflowed the column
+     and inflated rows to several thousand pixels tall. */
+
+  /* The defs-only <svg> must not occupy a box or be announced; a 0×0 svg is
+     still an inline element and would add a line of layout. */
+
+.figure{margin:0 0 11px;line-height:0}
+.figure img{
+    display:block;
+    width:100%;
+    /* Match the source crop (h300/w864 = 0.35) so the screen keeps its aspect. */
+    aspect-ratio:864/300;
+    object-fit:cover;
+    /* Newsprint: crush the photo to hard monochrome, then let the dot screen
+       on ::after bite into the midtones.
+
+       The contrast value is bounded by MEASUREMENT, not taste. The feed's
+       artwork is dark: over 40 sampled cards the source mean luma runs 9-108
+       with a median of 48, and CSS contrast pivots about 127.5. A 2.55x boost
+       therefore drives the median card to 0 — a solid black rectangle with no
+       midtone for the dot screen to print, which is precisely the failure a
+       halftone cannot survive. Swept against the sampled distribution, the
+       number of reference luma that reach the black clip:
+
+         contrast(1.0)   0 of 6      contrast(1.25)  2 of 6
+         contrast(1.1)   1 of 6      contrast(1.3)   3 of 6
+         contrast(1.15)  2 of 6      contrast(1.4)   3 of 6
+         contrast(1.2)   2 of 6      contrast(1.2)  5 of 6  <- was this
+
+       1.2 with a brightness lift is the knee: it keeps the newsprint snap
+       while holding a printable tonal range on every card that still has one.
+       brightness() reads as ink on paper rather than as a hole in it.
+
+       This is a CSS screen, not an SVG
+       filter, and that is deliberate. Chromium will not load an external
+       resource into an SVG filter applied to HTML content, so an
+       feImage/feTile dot table comes back empty and the chain collapses —
+       measured at correlation 0.49 to the source, i.e. the photograph is
+       destroyed. The CSS construction measures 0.96. Do not swap this back
+       to feImage without re-running diag-ab.cjs. */
+    filter:grayscale(1) contrast(1.2) brightness(1.3);
+    transition:filter .18s cubic-bezier(.4,0,.2,1),
+               transform .18s cubic-bezier(.4,0,.2,1);
+    transform:scale(1);
+  }
+  /* The dot screen itself. `radial-gradient` draws one dot; `background-size`
+       is the pitch. rgba(0,0,0,a) under multiply darkens a white midtone by a,
+       so the screen is invisible in the highlights and heaviest in the midtones
+       — which is what a real halftone does. */
+    .figure::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    /* The screen is the theme's ink, not a hardcoded black. Under multiply the
+       dot colour is what prints, so on the dark theme a black screen would be
+       invisible over a black photograph and on the pink theme it would stop
+       reading as part of the page. */
+    background-image:radial-gradient(circle at 50% 50%,
+        rgba(0,0,0,var(--dot)) 0 var(--dot-r), rgba(0,0,0,0) var(--dot-r));
+    background-size:var(--dot-cell) var(--dot-cell);
+    mix-blend-mode:multiply;
+    opacity:1;
+    transition:opacity .18s cubic-bezier(.4,0,.2,1);
+    z-index:1;
+  }
+  .figure{position:relative;overflow:hidden;line-height:0;border-radius:2px}
+  /* The CARD is the hover target, not just the picture. Hovering the time, the
+     title, the description or the tag row all restore the photograph to full
+     colour — the whole block of time+title+image+body responds as one, not
+     just the image. `.figure:hover` is kept alongside it as a fallback for a
+     card that is nothing but a figure. */
+  .row:hover img,
+  .figure:hover img,
+  .figure img:focus-visible{
+    /* Full colour on hover, fast. 180ms is long enough to read as a
+       deliberate reveal and short enough not to feel like a lag. */
+    filter:none;
+    transform:scale(1.02);
+  }
+  .row:hover .figure::after,
+  .figure:hover::after,
+  .figure img:focus-visible{opacity:0}
+  /* If the engine cannot do the blend, fall back to plain monochrome rather
+     than to full colour — a colour photo beside a screened one would read as a
+     different design, not a degraded one. */
+  @supports not (mix-blend-mode:multiply){
+    .figure img{filter:grayscale(1) contrast(1.2) brightness(1.3)}
+  }
+.figure{overflow:hidden;line-height:0;border-radius:2px}
+/* The old `@supports not (filter:url(#halftone))` fallback is gone. It existed
+   only to desaturate a card when the SVG filter could not run; with the filter
+   replaced by plain grayscale it would have overridden the hover state and
+   fought the transition. */
+.figure img:not([src]){display:none}
+
+/* On a phone the card is a single column and the image is the first thing
+   in it, so it gets a little more room and a hairline frame — the only
+   place on the page where a box is allowed, because a halftone needs
+   something to sit on. */
+@media (max-width:899px){
+  .figure img{aspect-ratio:16/9}
+}
+
+/* The rule between rows has to become a rule BETWEEN cards. In a single
+   column it was a bottom border; in a masonry column the same border reads
+   as a hanging underline under whichever card happens to end mid-column. */
+@media (min-width:900px){
+  .day-list .row{
+    border-bottom:none;
+    border-top:1px solid var(--hair-2);
+    padding:16px 0 18px;
+    /* No hover tint: a full-bleed background behind a card that occupies
+       part of its column reads as a highlight state, which this paper
+       does not use. */
+    break-inside:avoid;
+    page-break-inside:avoid;
+    display:block;            /* the time leaves its grid column */
+  }
+  .day-list .row:hover{background:none}
+
+  /* Inside a masonry card the time is a top line, not a left gutter —
+     keeping the 104px column would eat a third of a ~350px card. */
+  .day-list .time-col{
+    flex-direction:row;align-items:baseline;gap:7px;margin-bottom:7px;
+  }
+  /* 14px, not 17px: 17px was larger than the 15px desktop time and
+     undid the hierarchy fix once this block stopped being print-only. */
+  .day-list .time{font-size:14px}
+  .day-list .time .mer{display:inline;margin:0 0 0 3px}
+}
+
+  /* `break-inside:avoid` keeps a listing off a page break in PRINT. This rule
+     was once written without its closing brace, which is not a no-op: the
+     unterminated block swallowed everything after it, so the print rule that
+     hides the filter bar was never reached and the bar was live on the
+     printed page. Total brace count balanced only because other rules
+     happened to cancel out. Closed, and kept closed. */
+  .row{break-inside:avoid}
+
+    /* The defs-only <svg> is in the BODY (see below), not here. A <svg> element
+       written inside a <style> block is not CSS — the parser drops it as an
+       unknown token, so `url(#halftone)` resolves to nothing and every photo
+       renders unfiltered. It needs to be real markup, in the document, next to
+       the images that reference it. */
+
+  @media print{
+    .filters{display:none}
+  }
+</style>
+</head>
+<body>
+<!-- The halftone SVG filter, rebuilt.
+     It was previously removed: the chain was luminance -> alpha, then a
+     `discrete` feFuncA with 8 buckets where EVERY table had 0 in bucket 7. A
+     dark pixel scores alpha ~= 1, lands in bucket 7, and thresholds to fully
+     transparent — so a dark photo lost its entire shadow end and the card
+     rendered as a blank rectangle (measured at 637 bytes against 47,945 for
+     the same element with the filter off).
+
+     The fix is to invert the luminance BEFORE the alpha conversion, so the
+     darkest pixel of the photograph becomes the one that receives the most ink
+     rather than the one that gets erased. `values="0 1" -1 0 0 0 0` is that
+     inversion. Bucket 7 — the most ink — is now reachable by the shadows, and
+     bucket 0 by the highlights, which is the correct direction for a screen.
+
+     Dot radii are deliberately small (0.5–2px). A coarse screen at this
+     rendered size (864px source into a ~350px column) reads as noise, not as
+     newsprint, and dots above ~2px moire against the rule lines. -->
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="kicker">
+      <span><b>San Francisco</b> &middot; <span class="range-long" id="range">Next three days</span><span class="range-short" id="range-s">Next 3 days</span></span>
+      <span class="kicker-right">
+        <span id="stamp">&nbsp;</span>
+        <!-- The theme control is a segmented set of three, not a dropdown: there
+               are only three options, all need to be reachable in one click, and
+               the selected one has to be visible rather than inferred. Radio
+               semantics (real inputs, not aria-pressed buttons) so a screen reader
+               announces the current choice and arrow keys move between them. The
+               names are literal: "Light", "Dark", "Pink". -->
+          <span class="themes" role="radiogroup" aria-label="Colour theme">
+            <label class="theme"><input type="radio" name="theme" value="light"><span>Light</span></label>
+            <label class="theme"><input type="radio" name="theme" value="dark"><span>Dark</span></label>
+            <label class="theme"><input type="radio" name="theme" value="pink"><span>Pink</span></label>
+          </span>
+
+          <script>
+          // Read any saved preference from localStorage; fall back to the page's default
+          // (which is the Light theme defined in :root — data-theme="light" is set
+          // on <html> below only after this script runs, to avoid a flash of the wrong
+          // theme before the tokens resolve).
+          const saved = localStorage.getItem("theme");
+          const html = document.documentElement;
+          const radios = document.querySelectorAll('input[name="theme"]');
+
+          if (saved && saved !== "light") {
+            html.dataset.theme = saved;
+            // check the matching radio
+            for (const r of radios) if (r.value === saved) r.checked = true;
+          } else {
+            html.dataset.theme = "light";
+            for (const r of radios) if (r.value === "light") r.checked = true;
+          }
+
+          // When the user toggles, persist the choice and flip the token.
+          for (const r of radios) {
+            r.addEventListener("change", () => {
+              const theme = r.value;
+              localStorage.setItem("theme", theme);
+              html.dataset.theme = theme;
+            });
+          }
+          </script>
+      </span>
+    </div>
+    <h1 class="title">Fog &amp; Found</h1>
+    <p class="standfirst">
+      What&rsquo;s on in San Francisco over the next three days: concerts, film, theatre,
+      festivals, fairs, and everything else.
+    </p>
+  </div>
+</header>
+
+<div class="filters" id="bar">
+  <div class="wrap filters-in">
+    <div id="err" class="err" hidden></div>
+    <div class="fbar-top">
+      <button class="ftoggle" id="ftoggle" aria-expanded="false" aria-controls="frow">
+        <span class="ftoggle-t">Filters</span>
+        <span class="ftoggle-n" id="ftog-n" hidden></span>
+        <span class="caret" aria-hidden="true"></span>
+      </button>
+      <div class="fday-rail">
+        <span class="flabel">Day</span>
+        <div class="chips" id="f-day"></div>
+      </div>
+      <div class="right">
+        <div class="count"><span id="n">0</span><small id="of">events</small></div>
+        <button class="reset" id="reset" hidden>Clear filters</button>
+      </div>
+    </div>
+    <div class="frow" id="frow">
+      <div class="fgroup" id="fday-slot">
+        <span class="flabel">Day</span>
+      </div>
+      <div class="fgroup">
+        <span class="flabel">Type</span>
+        <div class="chips" id="f-type"></div>
+      </div>
+      <div class="fgroup">
+        <span class="flabel">Price</span>
+        <div class="chips" id="f-price"></div>
+      </div>
+      <div class="fgroup">
+        <span class="flabel">Availability</span>
+        <div class="chips" id="f-sold"></div>
+      </div>
+      <div class="fgroup">
+        <span class="flabel">Neighborhood</span>
+        <div class="chips" id="f-hood"></div>
+      </div>
+      <div class="fgroup">
+        <span class="flabel">Link goes to</span>
+        <div class="chips" id="f-link"></div>
+      </div>
+      <div class="fgroup">
+        <span class="flabel">Venue</span>
+        <select id="f-venue" aria-label="Filter by venue"><option value="">All venues</option></select>
+      </div>
+      <div class="fgroup search">
+        <label class="flabel" for="f-q">Search</label>
+        <input type="search" id="f-q" placeholder="Title, venue, keyword&hellip;" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap" id="list"></main>
+
+<footer>
+  <div class="wrap">
+    <span><b>Fog &amp; Found</b> &middot; what&rsquo;s on in San Francisco, the next three days.</span>
+    <span id="src"></span>
+  </div>
+</footer>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+const DAYS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+// "2026-09-30" -> {name:"Wednesday", date:"Sep 30"}
+function dayLabel(iso) {
+  const [y, m, d] = iso.split("-").map(Number);
+  const dt = new Date(Date.UTC(y, m - 1, d));
+  return {
+    name: DAYS[dt.getUTCDay()],
+    date: MONTHS[m - 1].slice(0, 3) + " " + d,
+    long: MONTHS[m - 1] + " " + d,
+    // Short form for the phone header. This is where "T 29 – T 1" came from:
+    // the label took a single letter, and "T" is Tuesday, Thursday and Tue of
+    // next week, so three different days printed identically. Two letters are
+    // unique, but lower-case two-letter abbreviations ("tu 29 – th 1") read as
+    // typos, so the day is abbreviated to its conventional three letters and
+    // the range stays legible without the full weekday name.
+    short: DAYS[dt.getUTCDay()].slice(0, 3) + " " + d,
+    today: iso === TODAY,
+  };
+}
+const TODAY = (() => {
+  const p = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(new Date());
+  const o = Object.fromEntries(p.map((x) => [x.type, x.value]));
+  return `${o.year}-${o.month}-${o.day}`;
+})();
+
+const state = { day: "", type: new Set(), price: new Set(), link: new Set(), hood: new Set(), venue: "", q: "", hideSold: true };
+let ALL = [];
+// The server's own neighborhood tally (name + count per hood), read once from the
+// payload. Refreshes with the feed, so a chip count here cannot disagree with
+// what the scraper published.
+let HOODS = [];
+
+// ---------------------------------------------------------------- filtering
+// An event that has already started is not an option, and the page can sit open
+// for hours. The feed is a three-day window, so "past" is decided in the
+// BROWSER's own timezone and against the browser's current clock — not the
+// server's, and not the feed's build time. A listing drops out on its own once
+// its start time is behind us; a midnight rollover is handled by comparing the
+// full timestamp, not just the date, so an event that started at 11pm is gone
+// at 11:01 and not at midnight.
+//
+// The gate lives HERE, in the one predicate every count and every render path
+// already goes through, so a chip can never promise a number that includes an
+// event nobody can still get to. There is deliberately no filter for it: a
+// listing that has started is simply not news, the way a sold-out show is not.
+// The clock is read fresh on every check rather than captured at load: a page
+// left open across an evening should keep losing yesterday's listings as they
+// start, not freeze the page at whatever time it happened to be opened. The
+// cost is one Date per row on a re-filter, which is nothing.
+function hasPassed(e) {
+  if (e.startMinutes < 0) return false; // all-day: still ahead of us today
+  const [y, m, d] = e.date.split("-").map(Number);
+  const start = new Date(y, m - 1, d, 0, e.startMinutes, 0, 0);
+  return start.getTime() <= Date.now();
+}
+
+function visible(e) {
+  if (hasPassed(e)) return false;
+  if (state.day && e.date !== state.day) return false;
+  if (state.type.size && !e.categories.some((c) => state.type.has(c))) return false;
+  if (state.price.size && !state.price.has(e.priceTier)) return false;
+  if (state.link.size && !state.link.has(e.linkTier || "listing")) return false;
+  if (state.hood.size && !state.hood.has(e.neighborhood)) return false;
+  if (state.venue && e.venue !== state.venue) return false;
+  // A sold-out listing is not an option, so it is hidden by default. The
+  // toggle turns it back on for someone checking whether returns came back.
+  if (state.hideSold && e.soldOut) return false;
+  if (state.q) {
+    const hay = `${e.title} ${e.venue} ${e.description} ${e.categories.join(" ")} ${e.neighborhood}`.toLowerCase();
+    if (!state.q.toLowerCase().split(/\s+/).filter(Boolean).every((w) => hay.includes(w))) return false;
+  }
+  return true;
+}
+
+// A chip's count must answer "how many rows would I see if I clicked this?",
+// which means every OTHER active filter still applies. `visible()` is the same
+// predicate `render()` uses, so this stays the single definition of what the
+// reader can see — but with ONE facet relaxed, because the chip being counted
+// is itself that facet's own selection.
+//
+// The bug this fixes: each count used to test only its own facet plus
+// `visibleNow` (sold-out/time only). With "Books" selected, the Mission chip
+// still read 21, because all 21 Mission events were counted regardless of
+// type. Clicking it emptied the page — a chip promising 21 and delivering 0.
+// `skip` is the facet name to leave out of the test.
+function visibleExcept(e, skip) {
+  switch (skip) {
+    case "day":    return visibleWith({ day: null }, e);
+    case "type":   return visibleWith({ type: new Set() }, e);
+    case "price":  return visibleWith({ price: new Set() }, e);
+    case "link":   return visibleWith({ link: new Set() }, e);
+    case "hood":   return visibleWith({ hood: new Set() }, e);
+    case "venue":  return visibleWith({ venue: null }, e);
+    default:       return visible(e);
+  }
+}
+
+// `visible()` reads the module-level `state` directly, which is why it cannot
+// answer the question above. This variant is the same function with `state`
+// temporarily overlaid, so there is one implementation of the rules rather than
+// a second copy that can drift from the first.
+function visibleWith(overlay, e) {
+  const saved = {};
+  for (const k of Object.keys(overlay)) {
+    saved[k] = state[k];
+    state[k] = overlay[k];
+  }
+  let ok;
+  try {
+    ok = visible(e);
+  } finally {
+    Object.assign(state, saved);
+  }
+  return ok;
+}
+
+// ---------------------------------------------------------------- chips
+function chip(label, on, count) {
+  const b = document.createElement("button");
+  b.className = "chip";
+  b.type = "button";
+  b.setAttribute("aria-pressed", String(on));
+  b.innerHTML = esc(label) + (count != null ? `<span class="n">${count}</span>` : "");
+  return b;
+}
+
+// A row the sold-out toggle is currently hiding must not be counted by any
+// chip. Counting over the raw feed overstated each label by the sold-out rows
+// in its own dimension, so the page promised numbers it would not then render.
+// The same argument applies to started events, so `hasPassed` is folded in
+// here too: a chip that counts a listing render() will not draw is a label the
+// page does not honour.
+const visibleNow = (e) => !(state.hideSold && e.soldOut) && !hasPassed(e);
+
+// The single entry point for "the filter state changed". Every mutation of
+// `state` goes through here, because the day rail and the five chip rows are
+// built by two different functions and a handler that refreshes only one of
+// them leaves the other promising numbers the list will not deliver — which is
+// exactly the bug this replaced: a type click refreshed the chip rows but left
+// the day rail on its old counts, so Tuesday and Wednesday were still offered
+// for a list that held one event, on a different day.
+function applyFilters() {
+  rebuildDayChips();
+  refreshChips();
+  render();
+}
+
+// A chip row is rebuilt on every render, so a per-chip closure would go stale.
+// One delegated listener per row, and the chip's identity comes from a data
+// attribute — never from parsing its own label back out of the text, which
+// breaks on any label ending in a digit.
+//
+// A chip that would yield nothing is noise: it invites a click that empties the
+// page. It is dropped — unless it is already selected, in which case removing
+// it would make the selection impossible to undo. Counts and visibility come
+// from the same predicate, so a chip can never promise a number the list will
+// not deliver.
+function chipRow(host, values, count, toggle, labels) {
+  host.textContent = "";
+  for (const v of values) {
+    const n = count(v);
+    const on = toggle.isOn(v);
+    if (n === 0 && !on) continue;
+    const b = chip(labels ? labels[v] : v, on, n);
+    b.dataset.value = v;
+    host.append(b);
+  }
+  if (!host.dataset.wired) {
+    host.dataset.wired = "1";
+    host.addEventListener("click", (ev) => {
+      const b = ev.target.closest(".chip");
+      if (!b || !host.contains(b)) return;
+      toggle.toggle(b.dataset.value);
+      applyFilters();
+    });
+  }
+}
+
+function anyFilter() {
+  return state.day || state.type.size || state.price.size || state.link.size || state.hood.size || state.venue || state.q || !state.hideSold;
+}
+
+// ---------------------------------------------------------- filter helpers
+// The row's venue and category are the same controls as the chips in the bar,
+// so they route through the same functions. Without these, a click on a tag
+// would filter the list but leave the bar showing nothing selected.
+
+function toggleType(c) {
+  state.type.has(c) ? state.type.delete(c) : state.type.add(c);
+  applyFilters();
+}
+
+function openBar() {
+  // A filter chosen from inside a row is invisible in a collapsed panel, so
+  // the bar opens and the chip lights up. Otherwise the reader taps a tag,
+  // the list changes, and nothing on screen says why.
+  if (bar.dataset.collapsed === "true") {
+    setCollapsed(false);
+    bar.dataset.userSet = "1";
+  }
+}
+
+function scrollTop() {
+  scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// Filters live in the URL so a filtered view can be linked or reloaded, and
+// so the back button walks out of a filter the reader can see themselves in.
+function pushURL() {
+  const p = new URLSearchParams();
+  if (state.day) p.set("d", state.day);
+  if (state.venue) p.set("v", state.venue);
+  if (state.q) p.set("q", state.q);
+  for (const c of state.type) p.append("t", c);
+  for (const c of state.price) p.append("p", c);
+  for (const c of state.link) p.append("l", c);
+  for (const h of state.hood) p.append("n", h);
+  if (!state.hideSold) p.set("sold", "1");
+  const s = p.toString();
+  history.replaceState(null, "", s ? "?" + s : location.pathname);
+}
+
+function readURL() {
+  const p = new URLSearchParams(location.search);
+  state.day = p.get("d") || "";
+  state.venue = p.get("v") || "";
+  state.q = p.get("q") || "";
+  state.type = new Set(p.getAll("t"));
+  state.price = new Set(p.getAll("p"));
+  state.link = new Set(p.getAll("l"));
+  state.hood = new Set(p.getAll("n"));
+  state.hideSold = !p.has("sold");
+  const q = $("#f-q");
+  if (q) q.value = state.q;
+}
+
+// How many filters are live. Shown on the collapsed rail so a closed bar still
+// admits it is filtering — otherwise a phone reader sees a short list and no
+// explanation for it.
+function activeCount() {
+  return (state.day ? 1 : 0) + state.type.size + state.price.size + state.link.size + state.hood.size +
+    (state.venue ? 1 : 0) + (state.q ? 1 : 0) + (state.hideSold ? 0 : 1);
+}
+
+// ---------------------------------------------------------------- render
+function render() {
+  const list = $("#list");
+  const rows = ALL.filter(visible);
+
+  $("#n").textContent = rows.length;
+  $("#of").textContent = rows.length === 1 ? "event" : "events";
+  $("#reset").hidden = !anyFilter();
+  syncBadge();
+  pushURL();
+
+  list.textContent = "";
+  if (!rows.length) {
+    list.innerHTML = `<div class="empty"><p>Nothing matches those filters.</p>
+      <button class="chip" onclick="document.getElementById('reset').click()">Clear them</button></div>`;
+    return;
+  }
+
+  const byDay = new Map();
+  for (const e of rows) {
+    if (!byDay.has(e.date)) byDay.set(e.date, []);
+    byDay.get(e.date).push(e);
+  }
+
+  for (const [date, evs] of byDay) {
+    const L = dayLabel(date);
+    const sec = document.createElement("section");
+    sec.className = "day";
+
+    // The day header was a plain <div>, so the page had exactly ONE heading
+    // (the h1) and a screen-reader user could not jump between days at all.
+    // It is a flex row of three spans, so it becomes an h2 with the spans kept
+    // as children — the sticky positioning and the baseline flex are unchanged.
+    const h = document.createElement("h2");
+    h.className = "day-head";
+    h.innerHTML = `<span class="day-name">${esc(L.name)}${L.today ? " <sup>today</sup>" : ""}</span>
+      <span class="day-date">${esc(L.date)}</span>
+      <span class="day-n">${evs.length} ${evs.length === 1 ? "listing" : "listings"}</span>`;
+    sec.append(h);
+
+    // The rows go into their own wrapper: the masonry rules hang off
+    // `.day-list`, so the day heading can stay full-width across the columns
+    // while the cards below it flow into 2 or 3 of them.
+    const listEl = document.createElement("div");
+    listEl.className = "day-list";
+
+    for (const e of evs) {
+      const row = document.createElement("article");
+      // data-id lets a test tie a rendered row back to its feed record, which
+      // is the only way to prove a filter kept exactly the right rows.
+      row.dataset.id = e.id;
+      row.className = "row" + (e.soldOut ? " sold" : "");
+
+      const body = document.createElement("div");
+
+      // Artwork, when the source has it. The halftone filter turns it into black
+      // dots on the page's own paper colour, so the image reads as part of the
+      // page rather than a photo dropped into it. It is decorative — the title
+      // beside it is the real link — so it is not focusable and carries no alt
+      // text of its own.
+      //
+      // NO `loading="lazy"`. The cards sit inside a CSS multi-column masonry
+      // layout, and the browser cannot compute a lazy element's position until
+      // the columns are laid out — so it never considers the image near the
+      // viewport and never requests it. The symptom was 59 of 72 images
+      // remaining `complete: false` indefinitely while their HTTP responses
+      // came back 200: the request was fine, it was simply never made. The
+      // first 13 loaded only because the layout happened to place them at the
+      // top of a column. These are 300px-tall cards on a newspaper page, so
+      // eager loading is the right trade.
+      if (e.image) {
+        const fig = document.createElement("div");
+        fig.className = "figure";
+        fig.innerHTML =
+          `<img src="${esc(e.image)}" alt="" decoding="async" ` +
+          `onerror="this.closest('.figure')?.remove()">`;
+        body.append(fig);
+      }
+
+      // The event name is the only outbound link: it goes to the venue's own
+      // page or its box office, per the feed.
+      //
+      // It is wrapped in an <h3> so the page has a real outline — h1 (masthead)
+      // > h2 (day) > h3 (event). With a bare <a> the document had exactly one
+      // heading in it, and a screen-reader user had no way to move between the
+      // 106 listings. The anchor keeps its own class, so all the type styling
+      // and the underline still apply to the link itself.
+      const h3 = document.createElement("h3");
+      h3.className = "row-title";
+      const a = document.createElement("a");
+      a.className = "title-e";
+      a.href = e.url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.textContent = e.title;
+      h3.append(a);
+      body.append(h3);
+
+      // Venue, address and price. Price is deliberately here rather than in
+      // the tag row: it is a fact about the ticket, not a category.
+      const meta = document.createElement("div");
+      meta.className = "meta";
+      if (e.venue) {
+        // Clicking the venue filters to it — it is an affordance, not a link
+        // out. Same affordance as a tag, different axis.
+        const v = document.createElement("button");
+        v.type = "button";
+        v.className = "venue";
+        v.textContent = e.venue;
+        v.title = `Show everything at ${e.venue}`;
+        v.onclick = () => { state.venue = e.venue; applyFilters(); openBar(); scrollTop(); };
+        meta.append(v);
+      }
+      if (e.address) {
+        const ad = document.createElement("span");
+        ad.textContent = e.address;
+        meta.append(ad);
+      }
+      // The price sits in the time column, left-aligned under the start time.
+      // It was a chip in the meta row, mixed in with the tags, where it read as
+      // a category rather than a fact about the ticket. Moving it also empties
+      // the meta row on a bare "free" listing, which was leaving an orphan.
+      const priceSlot = document.createElement("div");
+      priceSlot.className = "time-price";
+      if (e.priceLabel) {
+        const pl = document.createElement("span");
+        pl.className = "price" + (e.priceTier === "free" ? " free" : "");
+        pl.textContent = e.priceLabel;
+        priceSlot.append(pl);
+      }
+
+      if (meta.childNodes.length) body.append(meta);
+
+      if (e.description) {
+        const d = document.createElement("p");
+        d.className = "desc";
+        d.textContent = e.description;
+        body.append(d);
+      }
+
+      // Categories are the second filter axis, and sold-out is a state, not a
+      // category — so it stays in the tag row and does not get a filter click.
+      const cats = e.categories.filter((c) => c !== "Free");
+      if (cats.length || e.soldOut) {
+        const tags = document.createElement("div");
+        tags.className = "tags";
+        for (const c of cats) {
+          const t = document.createElement("button");
+          t.type = "button";
+          t.className = "tag";
+          t.textContent = c;
+          t.onclick = () => { toggleType(c); openBar(); scrollTop(); };
+          tags.append(t);
+        }
+        if (e.soldOut) {
+          const t = document.createElement("span");
+          t.className = "tag gone";
+          t.textContent = "Sold out";
+          tags.append(t);
+        }
+        body.append(tags);
+      }
+
+      const time = document.createElement("div");
+      time.className = "time-col" + (e.startMinutes < 0 ? " allday" : "");
+      const t = document.createElement("div");
+      t.className = "time";
+      // Render the time as text, and shrink EVERY meridiem in it — a range has
+      // two ("8 PM -- 2 AM"), and the previous single-trailing-match approach
+      // printed only one, which turned an 8 PM--2 AM show into a false
+      // "8 PM -- 2 PM". Splitting on every occurrence is the only shape that is
+      // correct for both a single time and a range.
+      for (const part of String(e.timeLabel).split(/(\b(?:AM|PM)\b)/i)) {
+        if (!part) continue;
+        if (/^(AM|PM)$/i.test(part)) {
+          const m = document.createElement("span");
+          m.className = "mer";
+          m.textContent = part.toUpperCase();
+          t.append(m);
+        } else {
+          t.append(document.createTextNode(part));
+        }
+      }
+      time.append(t, priceSlot);
+
+      row.append(time, body);
+      listEl.append(row);
+    }
+    sec.append(listEl);
+    list.append(sec);
+  }
+}
+
+// ---------------------------------------------------------------- boot
+// Keep the halftone's ink in step with the page's own --ink. The filter is
+// static markup, so its colour is fixed at author time; reading the custom
+// property here means a change to --ink restyles the artwork too, instead of
+// leaving a second, near-black sitting in the filter that drifts from the text.
+// The value is normalised to 0–1 because feFunc tableValues are not CSS.
+function syncInk() {
+  const el = document.documentElement;
+  const rgb = getComputedStyle(el).getPropertyValue("--ink").trim();
+  const m = rgb.match(/^#([0-9a-f]{6})$/i);
+  if (!m) return;                      // not a hex literal: leave it alone
+  const n = parseInt(m[1], 16);
+  const parts = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((v) => (v / 255).toFixed(3));
+  const set = (id, v) => {
+    const f = document.getElementById(id);
+    if (f) f.setAttribute("tableValues", `${v} 0`);
+  };
+  set("inkR", parts[0]);
+  set("inkG", parts[1]);
+  set("inkB", parts[2]);
+}
+syncInk();
+function refreshChips() {
+  // Neighborhood chips come from the server's own tally (payload.neighborhoods)
+  // rather than a fresh count here. One tally, computed once over the exact set
+  // that was published — a second tally in the browser can only drift from it.
+  // Fall back to deriving from the rows if the field is absent, so an older
+  // feed still renders a working group instead of an empty one.
+  const hoodList = HOODS.length
+    ? HOODS
+    : (() => {
+        const c = new Map();
+        for (const e of ALL) c.set(e.neighborhood, (c.get(e.neighborhood) || 0) + 1);
+        return [...c].map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
+      })();
+  chipRow(
+    $("#f-hood"),
+    hoodList.map((h) => h.name),
+    (h) => ALL.filter((e) => visibleExcept(e, "hood") && e.neighborhood === h).length,
+    {
+      isOn: (h) => state.hood.has(h),
+      toggle: (h) => { state.hood.has(h) ? state.hood.delete(h) : state.hood.add(h); },
+    }
+  );
+
+  chipRow(
+    $("#f-type"),
+    [...new Set(ALL.flatMap((e) => e.categories))].sort(),
+    (c) => ALL.filter((e) => visibleExcept(e, "type") && e.categories.includes(c)).length,
+    {
+      isOn: (c) => state.type.has(c),
+      toggle: (c) => { state.type.has(c) ? state.type.delete(c) : state.type.add(c); },
+    }
+  );
+
+  // Chip counts must be the number of rows the reader will SEE, not the size
+  // of the underlying partition. Counting over ALL overstated every chip by the
+  // sold-out rows in its own dimension: "Box office 39" with 37 rows rendered.
+  // visibleExcept(e, "price") is the same rule set render() applies, minus this
+  // group's own selection — so a label can never promise a number the list will
+  // not deliver, whichever OTHER filters happen to be on. The sold-out toggle
+  // keeps the corpus count, since that is what that chip is about.
+  chipRow(
+    $("#f-price"),
+    ["free", "paid", "ticketed", "unknown"],
+    (v) => ALL.filter((e) => e.priceTier === v && visibleExcept(e, "price")).length,
+    {
+      isOn: (v) => state.price.has(v),
+      toggle: (v) => { state.price.has(v) ? state.price.delete(v) : state.price.add(v); },
+    },
+    // "Ticketed" is distinct from "Price not listed": the venue told us the
+    // event is not free, we just could not read the amount. Collapsing them
+    // made every film look like it might be free.
+    { free: "Free", paid: "Paid", ticketed: "Ticketed", unknown: "Price not listed" }
+  );
+
+  chipRow(
+    $("#f-link"),
+    ["venue", "boxoffice", "listing"],
+    (v) => ALL.filter((e) => (e.linkTier || "listing") === v && visibleExcept(e, "link")).length,
+    {
+      isOn: (v) => state.link.has(v),
+      toggle: (v) => { state.link.has(v) ? state.link.delete(v) : state.link.add(v); },
+    },
+    { venue: "Venue site", boxoffice: "Box office", listing: "Listing page" }
+  );
+
+  // Availability is a two-state toggle rather than a multi-select: a sold-out
+  // listing is either noise or the only thing you wanted, never both.
+  const soldN = ALL.filter((e) => e.soldOut).length;
+  const sh = $("#f-sold");
+  sh.textContent = "";
+  const sold = chip("Hide sold out", !state.hideSold, soldN);
+  sold.classList.toggle("on", state.hideSold);
+  sold.onclick = () => { state.hideSold = !state.hideSold; rebuildDayChips(); refreshChips(); render(); };
+  sh.append(sold);
+
+  // A venue with nothing left under it is dropped for the same reason a chip
+  // is: choosing it would empty the list. "All venues" is always present so
+  // the selection is never a one-way door.
+  const venues = [...new Set(ALL.map((e) => e.venue))]
+    .filter((v) => ALL.some((e) => e.venue === v && visibleExcept(e, "venue")))
+    .sort((a, b) => a.localeCompare(b));
+  const vs = $("#f-venue");
+  vs.textContent = "";
+  vs.append(new Option("All venues", ""));
+  for (const v of venues) vs.append(new Option(v, v));
+  vs.value = state.venue;
+  // If the selected venue just filtered out of existence, fall back to All
+  // rather than leaving a select whose value matches no option — the browser
+  // would then show the first entry while the state still filtered by it.
+  if (state.venue && !venues.includes(state.venue)) {
+    state.venue = "";
+    vs.value = "";
+  }
+}
+
+fetch("events.json", { cache: "no-store" })
+  .then((r) => { if (!r.ok) throw new Error(`events.json ${r.status}`); return r.json(); })
+  .then((data) => {
+    ALL = data.events || [];
+    HOODS = data.neighborhoods || [];
+    readURL();
+
+    // day chips come from the feed so the labels always match the data
+    rebuildDayChips();
+    refreshChips();
+    render();
+
+    const g = new Date(data.generatedAt);
+    $("#stamp").textContent = "Updated " + g.toLocaleString("en-US", { timeZone: "America/Los_Angeles", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+
+    // If the rebuild ever fails, the listing keeps serving yesterday's window.
+    // It would still look complete, so say so rather than letting stale dates
+    // pass as current. A day-old feed is still worth showing; a two-day-old one
+    // is a failure, and this is the only place a reader would learn of it.
+    const ageH = (Date.now() - g.getTime()) / 36e5;
+    if (ageH > 26) {
+      const s = $("#stamp");
+      s.textContent += " \u2014 may be out of date";
+      s.classList.add("stale");
+    }
+    // The window being served. Declared HERE and not borrowed from
+    // rebuildDayChips(): that function has its own `days`, which is a
+    // different scope, so reading it here raised "days is not defined" and
+    // the whole boot — including every listing — died in the catch below.
+    // The range in the kicker is this page's actual window, so it has to come
+    // from the data actually loaded.
+    const days = [...new Set(ALL.map((e) => e.date))].sort();
+    if (days.length) {
+      const f = dayLabel(days[0]), l = dayLabel(days[days.length - 1]);
+      $("#range").textContent = `${f.name === l.name ? "" : f.name + " "}${f.long} – ${l.name} ${l.long}`;
+      // The short form is the same range without the weekday names, for the
+      // phone header where the day chips already carry them.
+      $("#range-s").textContent = `${f.short} – ${l.short}`;
+    }
+    const c = data.counts || {};
+    const venueN = c.directLinks ?? 0;
+    const boxN = c.boxOfficeLinks ?? 0;
+    $("#src").textContent =
+      `${c.total ?? ALL.length} listings · ${venueN} venue sites` +
+      (boxN ? ` · ${boxN} box offices` : "") +
+      ` · sold-out removed`;
+  })
+  .catch((err) => {
+    $("#err").hidden = false;
+    $("#err").textContent = "Could not load the listings (" + err.message + ").";
+    $("#list").innerHTML = '<div class="empty"><p>The presses are stopped.</p></div>';
+  });
+
+// ---------------------------------------------------------------- collapse
+// The filter rail has two states. On a wide screen the whole chip row shows
+// (collapsed = false). On a phone that row is taller than the screen, so the
+// bar starts collapsed and the day chips move up onto the rail, where the one
+// filter that carries the page's premise stays reachable.
+const bar = $("#bar");
+const mqNarrow = matchMedia("(max-width:720px)");
+const DAY_SLOT = $("#fday-slot");
+const DAY_RAIL = document.querySelector(".fday-rail");
+const dayChips = $("#f-day");
+
+function setCollapsed(on) {
+  bar.dataset.collapsed = String(on);
+  $("#ftoggle").setAttribute("aria-expanded", String(!on));
+  // The badge is a function of both the filters and the collapsed state, so
+  // flipping the bar has to refresh it — render() does not run on a toggle.
+  syncBadge();
+  setBarH();
+}
+
+// Kept out of render() so either can call it.
+function syncBadge() {
+  const badge = $("#ftog-n");
+  const n = activeCount();
+  badge.hidden = !(bar.dataset.collapsed === "true" && n > 0);
+  badge.textContent = String(n);
+}
+
+function setBarH() {
+  // The sticky offset only matters while the bar is actually stuck. When it is
+  // static (phone) a stale height would push the day headers down for nothing.
+  if (bar.dataset.collapsed === "true") {
+    document.documentElement.style.setProperty("--barh", "0px");
+    return;
+  }
+  document.documentElement.style.setProperty("--barh", bar.offsetHeight + "px");
+}
+
+function placeDayChips() {
+  // Exactly one home at a time: the rail on a phone, the panel otherwise.
+  (mqNarrow.matches ? DAY_RAIL : DAY_SLOT).appendChild(dayChips);
+}
+
+$("#ftoggle").addEventListener("click", () => {
+  setCollapsed(bar.dataset.collapsed !== "true");
+  bar.dataset.userSet = "1";
+});
+
+function syncToViewport() {
+  placeDayChips();
+  // The bar is CLOSED by default at every width. It used to auto-collapse only
+  // on a phone and force itself open on desktop — so the reader landed on a
+  // wall of chips before seeing a single listing, which is the opposite of a
+  // front page. A narrower window is no longer a reason to treat "closed" as
+  // the default; it is the default everywhere.
+  //
+  // Still never fight the reader: once they open it, `userSet` is set and the
+  // choice survives an orientation change or a rotation.
+  if (bar.dataset.userSet !== "1") setCollapsed(true);
+  setBarH();
+}
+mqNarrow.addEventListener("change", syncToViewport);
+new ResizeObserver(setBarH).observe(bar);
+addEventListener("resize", setBarH);
+syncToViewport();
+
+// Both of these used to call render() alone, so the chip counts kept counting
+// the unfiltered corpus: typing a search narrowed the list while the chips
+// still promised numbers the list could no longer deliver. Every mutation of
+// `state` must re-derive the chips, or the counts become a promise the page
+// does not keep.
+let qt;
+$("#f-q").addEventListener("input", (e) => {
+  clearTimeout(qt);
+  qt = setTimeout(() => {
+    state.q = e.target.value.trim();
+    applyFilters();
+  }, 120);
+});
+$("#f-venue").addEventListener("change", (e) => {
+  state.venue = e.target.value;
+  applyFilters();
+});
+// The day rail exists twice in the markup (desktop + mobile). One set of chips
+// is built here and moved by CSS, so the two copies cannot disagree or drift.
+// Built here and called from boot, from the sold-out toggle and from reset —
+// a count that does not move when the toggle moves is a promise the page
+// cannot keep.
+function rebuildDayChips() {
+  const days = [...new Set(ALL.map((e) => e.date))].sort();
+  const dh = $("#f-day");
+  dh.textContent = "";
+  for (const d of days) {
+    const n = ALL.filter((e) => e.date === d && visibleExcept(e, "day")).length;
+    // Same rule as the other rows: a day with nothing in it is not a choice.
+    // A selected day is kept so the reader can get back off it.
+    if (n === 0 && state.day !== d) continue;
+    const b = chip(dayLabel(d).name, state.day === d, n);
+    b.dataset.value = d;
+    dh.append(b);
+  }
+  // The "All" chip is the day group with no day selected, so it counts through
+  // every OTHER filter exactly as a day chip does. It used to count only
+  // visibleNow(), which overstated it by the whole corpus whenever a type,
+  // price, hood, venue or search was active.
+  const allN = ALL.filter((e) => visibleExcept(e, "day")).length;
+  const all = chip("All", !state.day, allN);
+  all.dataset.value = "";
+  dh.prepend(all);
+  if (!dh.dataset.wired) {
+    dh.dataset.wired = "1";
+    dh.addEventListener("click", (ev) => {
+      const b = ev.target.closest(".chip");
+      if (!b || !dh.contains(b)) return;
+      state.day = b.dataset.value === state.day ? "" : b.dataset.value;
+      applyFilters();
+    });
+  }
+}
+
+$("#reset").onclick = () => {
+  state.day = ""; state.type.clear(); state.price.clear(); state.link.clear(); state.hood.clear(); state.venue = ""; state.q = "";
+  state.hideSold = true;
+  $("#f-q").value = "";
+  rebuildDayChips();
+  refreshChips();
+  render();
+};
+</script>
+</body>
+</html>

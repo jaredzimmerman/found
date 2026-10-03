@@ -1,0 +1,44 @@
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+.coverage
+*.pyc
+__pycache__/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+run.log
+
+# Image assets (large)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.webp
+
+# Data JSON (feeds) - we may want to keep but they are large; optional
+# events.json
+# dc-events.json
+# prices.json
+# prices-resolved.json
+
+# Misc
+.env
+.env.*
+!.env.example
+
+# OS files
+._*

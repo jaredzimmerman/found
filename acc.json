@@ -1,0 +1,195 @@
+{
+  "window": {
+    "dayHeaders": [
+      "Sep 30",
+      "Oct 1",
+      "Oct 2"
+    ],
+    "days": 3,
+    "allWithin3Days": true
+  },
+  "soldOut": {
+    "rows": 152,
+    "soldOutRowsRendered": 0,
+    "defaultHidesSoldOut": true
+  },
+  "links": {
+    "total": 152,
+    "sample": [
+      "https://www.japaneseteagardensf.com/vist",
+      "https://ybgfestival.org/event/dance-outdoors-with-rhythm-motion-093026/",
+      "https://ybca.org/education/?utm_medium=event-listing&utm_content=2026-workshops&utm_campaign=free-art-workshops#workshops",
+      "https://www.ferrybuildingmarketplace.com/events/mahjong-meetup-1/var/ri-5.l-L1",
+      "https://ybca.org/event/gallery-tour-sketching-activity-behind-the-curtain-9-30-26/?utm_medium=event-listing&utm_content=2026-09-30_gallery-tour-sketching-activity&utm_campaign=gahee-park"
+    ],
+    "allHaveRel": true,
+    "aggregatorHits": 0,
+    "ok": true
+  },
+  "filters": {
+    "groups": [
+      "f-q",
+      "f-day-rail",
+      "f-day",
+      "f-type",
+      "f-price",
+      "f-sold",
+      "f-hood",
+      "f-link",
+      "f-venue"
+    ],
+    "counts": {
+      "f-q": {
+        "chips": 0
+      },
+      "f-day-rail": {
+        "chips": 4
+      },
+      "f-day": {
+        "chips": 4
+      },
+      "f-type": {
+        "chips": 13
+      },
+      "f-price": {
+        "chips": 4
+      },
+      "f-sold": {
+        "chips": 1
+      },
+      "f-hood": {
+        "chips": 17
+      },
+      "f-link": {
+        "chips": 3
+      },
+      "f-venue": {
+        "chips": 0
+      }
+    },
+    "collapsedByDefault": true,
+    "hasType": true,
+    "hasPrice": true,
+    "hasVenue": true,
+    "hasNeighborhood": true,
+    "closedByDefault": true
+  },
+  "zeroChips": {
+    "visibleChips": 4,
+    "chipsShowingZero": 0,
+    "ok": true
+  },
+  "venues": {
+    "total": 94,
+    "wanted": {
+      "Center for the Book": 2,
+      "City Lights": 1,
+      "Omnivore": 1,
+      "Workshop SF": 2,
+      "SF Flower Market": 0,
+      "Clayroom": 0
+    },
+    "expectations": [
+      {
+        "venue": "Center for the Book",
+        "found": 2,
+        "expect": ">0",
+        "pass": true,
+        "why": "has recurring events; a 0 means the Squarespace scraper broke"
+      },
+      {
+        "venue": "City Lights",
+        "found": 1,
+        "expect": ">0",
+        "pass": true,
+        "why": "own event pages; a 0 means the City Lights scraper broke"
+      },
+      {
+        "venue": "Omnivore",
+        "found": 1,
+        "expect": ">0",
+        "pass": true,
+        "why": "Shopify events page; a 0 means that scraper broke"
+      },
+      {
+        "venue": "Workshop SF",
+        "found": 2,
+        "expect": ">0",
+        "pass": true,
+        "why": "Tribe feed holds 94 events; a 0 means the title-shape reader broke"
+      },
+      {
+        "venue": "SF Flower Market",
+        "found": 0,
+        "expect": "0",
+        "pass": true,
+        "why": "verified 2026-09-29: page says 'no events matched', market is a recurring Wed-Sat schedule"
+      },
+      {
+        "venue": "Clayroom",
+        "found": 0,
+        "expect": "0",
+        "pass": true,
+        "why": "verified 2026-09-29: Wix site, class grid is client-rendered, no dated listing exists"
+      }
+    ],
+    "ok": true
+  },
+  "categories": [
+    "Art & Exhibits",
+    "Books",
+    "Comedy",
+    "Community",
+    "Concerts & Music",
+    "Family & Kids",
+    "Festivals & Fairs",
+    "Film & Movies",
+    "Food & Drink",
+    "Sports & Fitness",
+    "Talks & Workshops",
+    "Theater & Dance",
+    "Workshop"
+  ],
+  "hasMovies": true,
+  "hasMusic": true,
+  "a11y": {
+    "h1": 1,
+    "outline": {
+      "H1": 1,
+      "H2": 3,
+      "H3": 152
+    },
+    "imgAltMissing": 0,
+    "imgCount": 129,
+    "unnamedButtons": 0,
+    "themeRadios": 3,
+    "skipLink": true
+  },
+  "themes": {
+    "radios": 3,
+    "checked": [
+      "light"
+    ]
+  },
+  "verdict": {
+    "events render (3-day window)": "PASS",
+    "sold-out removed by default": "PASS",
+    "links are venue pages, not aggregators": "PASS",
+    "filter by type": "PASS",
+    "filter by price": "PASS",
+    "filter by venue": "PASS",
+    "filter by neighborhood": "PASS",
+    "filter bar closed by default": "PASS",
+    "zero-result chips hidden": "PASS",
+    "non-standard venues present": "PASS",
+    "movies covered": "PASS",
+    "music/performance covered": "PASS",
+    "heading outline h1>h2>h3": "PASS",
+    "all images have alt": "PASS",
+    "all visible buttons named": "PASS",
+    "skip link present": "PASS",
+    "three themes": "PASS"
+  },
+  "passed": 17,
+  "total": 17
+}

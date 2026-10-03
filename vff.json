@@ -1,0 +1,86 @@
+{
+  "feedHttp": 200,
+  "feedEvents": 103,
+  "linkTiers": {
+    "venue": 60,
+    "boxoffice": 31,
+    "listing": 12
+  },
+  "topHosts": [
+    "103 ?"
+  ],
+  "mislabeledVenue": [
+    "Needle Felting 101: Tinned Fishies Proje -> https://etix.prf.hn/click/camref:1011l3GdWo/pubref:dostuff/destination",
+    "Easley / Duplantis Trio -> https://birdbeckett.com/",
+    "SLASHED: Return to Hellville -> https://www.terrorvault.com/"
+  ],
+  "soldOutKept": 2,
+  "hideSoldDefault": "no such control",
+  "soldRowsInDom": 0,
+  "eventsWithEndTime": 94,
+  "rangesShownInDom": 80,
+  "sampleRanges": [
+    "10\nPM\n-- 2\nAM",
+    "9\nAM\n-- 10\nAM",
+    "12\nPM\n-- 1\nPM",
+    "2:40\nPM\n-- 4\nPM",
+    "3\nPM\n-- 7\nPM",
+    "5\nPM\n-- 6\nPM"
+  ],
+  "titles": 85,
+  "underlinedTitlesAtRest": 0,
+  "underlinedVenuesAtRest": 0,
+  "nonBoldVenues": 0,
+  "venueCount": 85,
+  "hoverRestoresUnderline": {
+    "hasHoverRule": true
+  },
+  "hoverRuleInCss": true,
+  "headings": {
+    "H1": 1,
+    "H2": 3,
+    "H3": 85
+  },
+  "h1Text": "FOG & FOUND",
+  "chips": [
+    {
+      "group": "type",
+      "missing": true
+    },
+    {
+      "group": "price",
+      "missing": true
+    },
+    {
+      "group": "day",
+      "missing": true
+    },
+    {
+      "group": "venue",
+      "missing": true
+    },
+    {
+      "group": "hood",
+      "missing": true
+    },
+    {
+      "group": "neighborhood",
+      "missing": true
+    }
+  ],
+  "filterPanelCollapsed": "no panel found",
+  "filterToggle": null,
+  "a11y": {
+    "controls": 2,
+    "unlabelled": []
+  },
+  "images": {
+    "inDom": 73,
+    "withSrc": 73,
+    "naturalOk": 12
+  },
+  "net": {
+    "failed": 0,
+    "non200": []
+  }
+}

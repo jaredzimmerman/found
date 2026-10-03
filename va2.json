@@ -1,0 +1,312 @@
+{
+  "focusAudit": {
+    "focusableCount": 321,
+    "withVisibleOutlineAtFocus": 231,
+    "shapes": [
+      [
+        "solid/2px/rgb(140, 28, 19)/shadow:false",
+        231
+      ],
+      [
+        "auto/1px/rgb(16, 16, 16)/shadow:false",
+        90
+      ]
+    ],
+    "sample": [
+      {
+        "key": "ftoggle",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "title-e",
+        "outline": "auto/1px/rgb(16, 16, 16)/shadow:false"
+      },
+      {
+        "key": "venue",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "tag",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "title-e",
+        "outline": "auto/1px/rgb(16, 16, 16)/shadow:false"
+      },
+      {
+        "key": "venue",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "tag",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "title-e",
+        "outline": "auto/1px/rgb(16, 16, 16)/shadow:false"
+      },
+      {
+        "key": "venue",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "tag",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "title-e",
+        "outline": "auto/1px/rgb(16, 16, 16)/shadow:false"
+      },
+      {
+        "key": "venue",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "tag",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "title-e",
+        "outline": "auto/1px/rgb(16, 16, 16)/shadow:false"
+      },
+      {
+        "key": "venue",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "tag",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "title-e",
+        "outline": "auto/1px/rgb(16, 16, 16)/shadow:false"
+      },
+      {
+        "key": "venue",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "tag",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "title-e",
+        "outline": "auto/1px/rgb(16, 16, 16)/shadow:false"
+      },
+      {
+        "key": "venue",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "tag",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "title-e",
+        "outline": "auto/1px/rgb(16, 16, 16)/shadow:false"
+      },
+      {
+        "key": "venue",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "tag",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "tag",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "tag",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "title-e",
+        "outline": "auto/1px/rgb(16, 16, 16)/shadow:false"
+      },
+      {
+        "key": "venue",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "tag",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "tag",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "title-e",
+        "outline": "auto/1px/rgb(16, 16, 16)/shadow:false"
+      },
+      {
+        "key": "venue",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "tag",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "title-e",
+        "outline": "auto/1px/rgb(16, 16, 16)/shadow:false"
+      },
+      {
+        "key": "venue",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "tag",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "title-e",
+        "outline": "auto/1px/rgb(16, 16, 16)/shadow:false"
+      },
+      {
+        "key": "venue",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      },
+      {
+        "key": "tag",
+        "outline": "solid/2px/rgb(140, 28, 19)/shadow:false"
+      }
+    ]
+  },
+  "cssRules": [],
+  "spacing": {
+    "perCol": [
+      {
+        "x": 154,
+        "n": 31,
+        "gaps": [
+          0,
+          93
+        ]
+      },
+      {
+        "x": 543,
+        "n": 29,
+        "gaps": [
+          0,
+          185,
+          228
+        ]
+      },
+      {
+        "x": 931,
+        "n": 30,
+        "gaps": [
+          0,
+          184,
+          414
+        ]
+      }
+    ],
+    "rowHeights": [
+      150,
+      154,
+      160,
+      177,
+      181,
+      184,
+      264,
+      267,
+      290,
+      293,
+      294,
+      314,
+      317,
+      318,
+      321,
+      325,
+      334,
+      337,
+      374,
+      402,
+      405,
+      415,
+      418,
+      425,
+      435,
+      438,
+      442,
+      455,
+      456,
+      486,
+      496,
+      499,
+      516,
+      519,
+      526,
+      529,
+      536,
+      553,
+      557,
+      560,
+      564,
+      580,
+      600,
+      611,
+      618,
+      634,
+      665
+    ]
+  },
+  "targets": {
+    "total": 231,
+    "under24": 230,
+    "under24ByClass": {
+      "venue": 90,
+      "tag": 140
+    },
+    "sampleSmall": [
+      {
+        "cls": "venue",
+        "w": 66,
+        "h": 17,
+        "text": "August Hall"
+      },
+      {
+        "cls": "tag",
+        "w": 130,
+        "h": 19,
+        "text": "Concerts & Music"
+      },
+      {
+        "cls": "venue",
+        "w": 103,
+        "h": 17,
+        "text": "Bottom Of The Hill"
+      },
+      {
+        "cls": "tag",
+        "w": 130,
+        "h": 19,
+        "text": "Concerts & Music"
+      },
+      {
+        "cls": "venue",
+        "w": 85,
+        "h": 17,
+        "text": "Rickshaw Stop"
+      },
+      {
+        "cls": "tag",
+        "w": 130,
+        "h": 19,
+        "text": "Concerts & Music"
+      }
+    ],
+    "sampleOk": [
+      {
+        "cls": "ftoggle",
+        "w": 95,
+        "h": 32,
+        "text": "Filters\n        0"
+      }
+    ]
+  }
+}

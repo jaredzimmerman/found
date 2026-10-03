@@ -1,0 +1,2268 @@
+{
+  "generatedAt": "2026-09-30T02:13:21.633Z",
+  "days": [
+    "2026-09-29",
+    "2026-09-30",
+    "2026-10-01"
+  ],
+  "counts": {
+    "total": 103,
+    "free": 25,
+    "directLinks": 60,
+    "boxOfficeLinks": 31,
+    "aggregatorLinks": 12
+  },
+  "neighborhoods": [
+    {
+      "name": "SoMa",
+      "count": 27
+    },
+    {
+      "name": "Mission",
+      "count": 24
+    },
+    {
+      "name": "Financial District",
+      "count": 11
+    },
+    {
+      "name": "North Beach",
+      "count": 8
+    },
+    {
+      "name": "Nob Hill",
+      "count": 7
+    },
+    {
+      "name": "San Francisco",
+      "count": 7
+    },
+    {
+      "name": "Bernal Heights",
+      "count": 4
+    },
+    {
+      "name": "Potrero Hill",
+      "count": 4
+    },
+    {
+      "name": "Haight-Ashbury",
+      "count": 3
+    },
+    {
+      "name": "Presidio",
+      "count": 2
+    },
+    {
+      "name": "Western Addition",
+      "count": 2
+    },
+    {
+      "name": "Noe Valley",
+      "count": 1
+    },
+    {
+      "name": "Outer Sunset",
+      "count": 1
+    },
+    {
+      "name": "Richmond",
+      "count": 1
+    },
+    {
+      "name": "Russian Hill",
+      "count": 1
+    }
+  ],
+  "events": [
+    {
+      "id": "fc-44-2026-09-29",
+      "title": "SF’s Free Concerts & Food Trucks: “Civic Center Soundtrack”",
+      "venue": "Fulton Plaza",
+      "neighborhood": "San Francisco",
+      "address": "Fulton and Larkin, San Francisco, CA",
+      "description": "",
+      "date": "2026-09-29",
+      "startMinutes": 720,
+      "endMinutes": 900,
+      "timeLabel": "12 PM -- 3 PM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Concerts & Music",
+        "Food & Drink",
+        "Community"
+      ],
+      "url": "https://illuminate.org/venues/fulton-street-plaza/",
+      "linkTier": "venue"
+    },
+    {
+      "id": "fc-5-2026-09-29",
+      "title": "SF’s Noe Valley Night Market 2026",
+      "venue": "Noe Valley Town Square",
+      "neighborhood": "Noe Valley",
+      "address": "24th St. & Sanchez St, San Francisco, CA",
+      "description": "",
+      "date": "2026-09-29",
+      "startMinutes": 1020,
+      "endMinutes": 1200,
+      "timeLabel": "5 PM -- 8 PM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Festivals & Fairs"
+      ],
+      "url": "https://noevalleytownsquare.com/",
+      "linkTier": "venue"
+    },
+    {
+      "id": "17817847",
+      "title": "International Bottled Water Tasting Class - Taste and Rate 20 Waters",
+      "venue": "Alcademics",
+      "neighborhood": "SoMa",
+      "address": "57 Post Street, Suite 608, San Francisco, CA, 94104",
+      "description": "Think you can tell Fiji from Evian in a blind tasting? Know your Topo from your Pellegrino just from looking at the bubbles? Have you ever tried salty sparkling Spanish Vichy Catalan, or experienced the bizarre Borjomi from the Republic of Georgia? \n\nBottled waters differ dramatically in texture, minerality, carbonation, and finish. We’ll try lots of waters - some familiar and some super weird- and we’ll learn Why they taste the way they do in this alcohol-free experience. \n\nWe’ll start by blind tasting San Francisco tap to see if Hetch Hetchy is as heavenly as we’ve heard about. We’ll continue blind tasting bottled still waters from neutral to mineral-rich, then crack open a whole bunch of sparkling soda waters and go through them one-by-on",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34305723/4b94144c-51aa-4d15-974d-6c6489299a36.jpg",
+      "date": "2026-09-29",
+      "startMinutes": 1080,
+      "endMinutes": 1170,
+      "timeLabel": "6 PM -- 7:30 PM",
+      "priceLabel": "$55",
+      "priceTier": "paid",
+      "categories": [
+        "Food & Drink"
+      ],
+      "url": "https://classbento.com/international-bottled-water-tasting-class-san-francisco",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17829117",
+      "title": "Filipiñana",
+      "venue": "Roxie Theater",
+      "neighborhood": "SoMa",
+      "address": "3117 16th Street, San Francisco, CA, 94103",
+      "description": "Director Rafael Manuel in person for introduction and Q&A moderated by Ali El-Sadany, editor of FilmSlop, on Saturday, September 5 (at rush).\nPresented by FiliKula\nAmid stifling heat and pervasive drought, Isabel (Jorrybell Agoto), a 17-year-old Ilokana from the rural north, works at a posh country club outside Manila, lining up golf balls for powerful men to drive into the verdant horizon. New to the job, she wanders the immaculate grounds sampling its luxuries as members, including an industrialist and his expatriate niece, the club president and his pampered wife, and a slew of Chinese tourists, engage in a complex dance with the club’s doting and subservient staff. But something is rotting beneath the pristine fairways of the elite resor",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34359268/df705e29-66e7-477c-96c0-46cc790abb56.jpg",
+      "date": "2026-09-29",
+      "startMinutes": 1080,
+      "endMinutes": 120,
+      "timeLabel": "6 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Film & Movies",
+        "Theater & Dance",
+        "Festivals & Fairs"
+      ],
+      "url": "https://ticketing.uswest.veezi.com/purchase/22024?siteToken=4m48btf3yavn7xjk5yxk6nc40c",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "omni-toni-tipton-martin-author-talk-in-celebr-2026-09-29",
+      "title": "Toni Tipton-Martin Author Talk • In Celebration of The Taste of Country Cooking: 50th Anniversary Edition & When Southern Women Cook",
+      "venue": "Omnivore Books on Food",
+      "neighborhood": "Mission",
+      "address": "3198 Mission St, San Francisco, CA 94110",
+      "description": "& THEIR BOOK: Toni Tipton-Martin is a three-time James Beard Book Award winner, and recipient of its Lifetime Achievement Award. She recently wrote the forward to the new 50th Anniversary edition of Edna Lewis' A Taste o",
+      "date": "2026-09-29",
+      "startMinutes": 1110,
+      "endMinutes": -1,
+      "timeLabel": "6:30 PM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Food & Drink",
+        "Talks & Workshops"
+      ],
+      "url": "https://omnivorebooks.myshopify.com/collections/upcoming-events/products/toni-tipton-martin-author-talk-in-celebration-of-the-taste-of-country-cooking-50th-anniversary-edition",
+      "linkTier": "venue"
+    },
+    {
+      "id": "cl-will-boast-and-brittany-perham-2026-09-29",
+      "title": "Will Boast and Brittany Perham",
+      "venue": "City Lights Booksellers",
+      "neighborhood": "North Beach",
+      "address": "261 Columbus Ave, San Francisco, CA 94133",
+      "description": "City Lights celebrates two new books from University of Georgia Press: The Submerged - By Will Boast -and- Executrix - By Brittany Perham",
+      "date": "2026-09-29",
+      "startMinutes": 1140,
+      "endMinutes": -1,
+      "timeLabel": "7 PM",
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ],
+      "url": "https://citylights.com/events/will-boast-and-brittany-perham/",
+      "linkTier": "venue"
+    },
+    {
+      "id": "fc-98-2026-09-29",
+      "title": "SF History Night | Pacific Heights",
+      "venue": "Congregation Sherith Israel Newman Hall",
+      "neighborhood": "Western Addition",
+      "address": "2266 California St, San Francisco, CA 94115",
+      "description": "",
+      "date": "2026-09-29",
+      "startMinutes": 1140,
+      "endMinutes": -1,
+      "timeLabel": "7 PM",
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ],
+      "url": "https://sanfranciscohistory.org/meetings/",
+      "linkTier": "venue"
+    },
+    {
+      "id": "17481870",
+      "title": "Kal-El",
+      "venue": "DNA Lounge",
+      "neighborhood": "SoMa",
+      "address": "375 Eleventh Street, San Francisco, CA, 94103",
+      "description": "Kal-El's signature sound, characterized by bass-heavy grooves, downtuned guitars, and mind-expanding lyrics, is deeply rooted in the sci-fi narratives penned by vocalist \"The Captain\" himself.Having toured extensively across Europe and the United States, they continue to push genre boundaries while maintaining their commitment to vintage sci-fi aesthetics and thundering stoner metal\nGoya is a sludge and stoner doom metal trio based in Phoenix, Arizona. Known for their heavy fuzz-driven riffs and psychedelic elements, the band has become a staple of the heavy underground scene.\nVolume create heavy fuzzed out psychedelic rock from the desert of 29 Palms. Revolver magazine believes Volume puts out \"the best lo-fi mindfuck since Monster Magnet's",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34466626/98d7fc20-dda8-487a-8245-140ebb7b1490.jpg",
+      "date": "2026-09-29",
+      "startMinutes": 1140,
+      "endMinutes": 1170,
+      "timeLabel": "7 PM -- 7:30 PM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://www.dnalounge.com/calendar/2026/09-29d.html",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17749491",
+      "title": "Deathgasm 2: Goremageddon",
+      "venue": "Alamo Drafthouse Cinema",
+      "neighborhood": "Mission",
+      "address": "2550 Mission St, San Francisco, CA, 94110",
+      "description": "A few years after surviving the last demon apocalypse, Brodie is washed-up, broke, and stuck in small-town purgatory. The long-awaited sequel to Jason Lei Howden's 2015 cult classic promises more gore, more metal, and more head-banging chaos than the original.",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33985811/7e5c7f78-5c24-4a9e-bba9-2b95760f3508.jpg",
+      "date": "2026-09-29",
+      "startMinutes": 1170,
+      "endMinutes": 120,
+      "timeLabel": "7:30 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Film & Movies"
+      ],
+      "url": "https://drafthouse.com/sf/show/deathgasm-2-goremageddon?cinemaId=0802&sessionId=20546",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17792056",
+      "title": "House on Haunted Hill",
+      "venue": "Balboa Theater",
+      "neighborhood": "Potrero Hill",
+      "address": "3630 Balboa St, San Francisco, CA, 94121",
+      "description": "Rich oddball Frederick Loren has a proposal for five guests at a possibly haunted mansion: show up, survive a night filled with scares and receive $10,000 each. The guest of honor is Loren's estranged wife, Annabelle, who, with her secret lover, Dr. Trent, has concocted her own scheme to scare Loren's associate, Nora Manning, into shooting the potentially crazy millionaire. However, more spooks and shocks throw a wrench into the plan.\nPresented on 16mm by Odyssey Film Institute. Dedicated to the exhibition of cinema on celluloid film. Screenings, Projection Workshops, and Discussions. All exhibited in 16mm and 35mm film.\nThis film can be used with loyalty cards or our 2026 annual CinemaSFBay passes",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34186157/c8746301-f738-4611-b75c-f85519c66e30.jpg",
+      "date": "2026-09-29",
+      "startMinutes": 1170,
+      "endMinutes": 120,
+      "timeLabel": "7:30 PM -- 2 AM",
+      "priceLabel": "$10",
+      "priceTier": "paid",
+      "categories": [
+        "Theater & Dance",
+        "Film & Movies",
+        "Art & Exhibits",
+        "Talks & Workshops"
+      ],
+      "url": "https://ticketing.uswest.veezi.com/purchase/19772?siteToken=52wkfzmjpwjjfpz3ye7tz8wscg",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17581246",
+      "title": "Joe Klocek & Friends",
+      "venue": "Punch Line San Francisco",
+      "neighborhood": "Mission",
+      "address": "444 Battery St, San Francisco, CA, 94111",
+      "description": "Joe Klocek & Friends",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33196080/ffe491cf-2104-4999-87fc-e313799fcb01.png",
+      "date": "2026-09-29",
+      "startMinutes": 1170,
+      "endMinutes": 120,
+      "timeLabel": "7:30 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Comedy"
+      ],
+      "url": "https://www.ticketmaster.com/joe-klocek-friends-san-francisco-california-09-29-2026/event/1C0064E6D15A2310",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17443149",
+      "title": "Ethan Regan",
+      "venue": "August Hall",
+      "neighborhood": "Financial District",
+      "address": "420 Mason St, San Francisco, CA, 94102",
+      "description": "Ethan Regan",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32527476/d13d6b01-f78f-49a9-a20b-bb0164fde5ca.jpg",
+      "date": "2026-09-29",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://www.ticketmaster.com/ethan-regan-san-francisco-california-09-29-2026/event/1C0064BBC35EC4F2",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17391195",
+      "title": "The Quiet Men, Greg Hoy & the Boys, Fast & Vengefully",
+      "venue": "Bottom Of The Hill",
+      "neighborhood": "SoMa",
+      "address": "1233 17th Street, San Francisco, CA, 94107",
+      "description": "Tues\nday September 29\n 2026\n8:00PM\ndoors\n-- music at 8\n:30PM\n21 AND OVER\n$15\n$19.81 in advance [15 face value + 4.81 service fee]\nThe Quiet Men\nIrish-style folk rock\nGreg Hoy & the Boys\npunk/R&B/blues indie rock\nFast & Vengefully\nIrish tunes",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32278887/567fe0ab-623b-4224-9ccc-1fdeba262fb3.jpg",
+      "date": "2026-09-29",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "$15",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://www.bottomofthehill.com/stubmatic/event20260929.html",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17419910",
+      "title": "Chanel Beads",
+      "venue": "Great American Music Hall",
+      "neighborhood": "Nob Hill",
+      "address": "859 O'farrell Street, San Francisco, CA, 94109",
+      "description": "Goldenvoice Presents\nChanel Beads",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32569399/cb378966-8114-4626-91cc-dc8b4fe9529d.png",
+      "date": "2026-09-29",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "$23–$30",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://wl.seetickets.us/event/chanel-beads/692848?afflky=GreatAmericanMusicHall",
+      "linkTier": "boxoffice",
+      "soldOut": true
+    },
+    {
+      "id": "17509678",
+      "title": "Brian Fallon & The Painkillers",
+      "venue": "Rickshaw Stop",
+      "neighborhood": "Financial District",
+      "address": "155 Fell Street, San Francisco, CA, 94102",
+      "description": "+ Live Nation co-present\nBrian Fallon & The Painkillers",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32849660/5971a6d5-a503-4d10-9728-bda11f865a53.png",
+      "date": "2026-09-29",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "$40–$45",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://wl.seetickets.us/event/brian-fallon-and-the-painkillers/695727?afflky=RickshawStop",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17579774",
+      "title": "Sophie Truax",
+      "venue": "The Chapel",
+      "neighborhood": "Mission",
+      "address": "777 Valencia Street, San Francisco, CA, 94110",
+      "description": "",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33187464/0aff9cd0-5551-433f-b818-111fa547436c.png",
+      "date": "2026-09-29",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "$28–$32",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://wl.seetickets.us/event/sophie-truax/697003?afflky=TheChapel",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17688603",
+      "title": "CupcakKe",
+      "venue": "The Regency Ballroom",
+      "neighborhood": "Nob Hill",
+      "address": "1290 Sutter Street, San Francisco, CA, 94109",
+      "description": "Goldenvoice Presents\nThe BakKery Tour\nCupcakKe\nwith discnogirl",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33688252/4f6d6ea7-3023-400b-ac85-7ec2fbfd275d.png",
+      "date": "2026-09-29",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://shop.axs.com/?c=axs&e=30567424546612294",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17764562",
+      "title": "Dj Huffy",
+      "venue": "Make-Out Room",
+      "neighborhood": "Mission",
+      "address": "3225 22nd St., San Francisco, CA, 94110",
+      "description": "",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34057318/3e6fac97-22d0-4223-96e2-e9d2a5f4dc75.jpg",
+      "date": "2026-09-29",
+      "startMinutes": 1320,
+      "endMinutes": 120,
+      "timeLabel": "10 PM -- 2 AM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://makeoutroom.com/",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "fc-437-2026-09-30",
+      "title": "Japanese Tea Garden’s Free Admission Hour (Golden Gate Park)",
+      "venue": "Japanese Tea Garden",
+      "neighborhood": "San Francisco",
+      "address": "75 Hagiwara Tea Garden Dr, San Francisco, CA",
+      "description": "",
+      "date": "2026-09-30",
+      "startMinutes": 540,
+      "endMinutes": 600,
+      "timeLabel": "9 AM -- 10 AM",
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Food & Drink"
+      ],
+      "url": "https://www.japaneseteagardensf.com/vist",
+      "linkTier": "venue"
+    },
+    {
+      "id": "17734075",
+      "title": "Dance Outdoors with Rhythm & Motion",
+      "venue": "Yerba Buena Gardens",
+      "neighborhood": "SoMa",
+      "address": "Yerba Buena Gardens covers two square city blocks bounded by Mission, Folsom, Third and Fourth Streets., San Francisco, CA, 94103",
+      "description": "Wednesdays at Noon. Free RSVP encouraged, drop-ins are welcome.\nMore dates to be announced. Check back often for updates.\nNamed San Francisco’s favorite dance workout by the magazines San Francisco and 7X7, Rhythm & Motion is a low-pressure, full-bodied dance workout class that balances the euphoria of a good party with the challenge of learning choreography and movement techniques. The dance party happens every Wednesday at Yerba Buena Gardens, when Rhythm & Motion and YBG Festival invite you to weekly one-hour dance workout classes in a beautiful outdoor space. Wear comfortable clothing and supportive shoes suitable for grass. Bring water, layers for unpredictable weather, your sense of comfort and connection and your abundant joy.\nFree RS",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33910290/8c5f080d-2457-4b28-b824-d28f9ac64c08.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 720,
+      "endMinutes": 780,
+      "timeLabel": "12 PM -- 1 PM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Theater & Dance",
+        "Festivals & Fairs",
+        "Sports & Fitness"
+      ],
+      "url": "https://ybgfestival.org/event/dance-outdoors-with-rhythm-motion-093026/",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17747292",
+      "title": "Free Art Workshop: 3D Paper Flowers",
+      "venue": "Yerba Buena Center for the Arts",
+      "neighborhood": "SoMa",
+      "address": "701 Mission St, San Francisco, CA, 94103",
+      "description": "Create art inspired by our programming at this drop-in art workshop! All ages welcome, all materials provided.\n\nIncorporate dimensionality into your colorful flower creation. Participants will explore compositional elements such as line, shape, color, and form.",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33975503/c55a06d8-6635-49df-b475-23e95ffcf570.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 880,
+      "endMinutes": 960,
+      "timeLabel": "2:40 PM -- 4 PM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Talks & Workshops",
+        "Family & Kids"
+      ],
+      "url": "https://ybca.org/education/?utm_medium=event-listing&utm_content=2026-workshops&utm_campaign=free-art-workshops#workshops",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17764313",
+      "title": "Mahjong Meetup",
+      "venue": "Ferry Building",
+      "neighborhood": "Mission",
+      "address": "One Ferry Marketplace, San Francisco, CA, 94111",
+      "description": "Play Mahjong at the Ferry Building!\nJoin us for an afternoon Mahjong meetup every Wednesday from 3–7 PM.\nAll skill levels are welcome! If you have never played and are eager to learn, a quick guide and helpful tips on Chinese-style will be available. Sets will be provided, but feel free to bring your own if you have a favorite!\nSeating and Mahjong sets are available on a first come first served basis.",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34055829/931b1735-f4e6-4ec3-a9b8-a2209377a0d5.png",
+      "date": "2026-09-30",
+      "startMinutes": 900,
+      "endMinutes": 1140,
+      "timeLabel": "3 PM -- 7 PM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Theater & Dance"
+      ],
+      "url": "https://www.ferrybuildingmarketplace.com/events/mahjong-meetup-1/var/ri-5.l-L1",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17830430",
+      "title": "Gallery Tour & Sketching Activity: Behind the Curtain",
+      "venue": "Yerba Buena Center for the Arts",
+      "neighborhood": "SoMa",
+      "address": "701 Mission St, San Francisco, CA, 94103",
+      "description": "",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34366268/f42d856b-a01c-46e9-af81-70048fa1e3df.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1020,
+      "endMinutes": 1080,
+      "timeLabel": "5 PM -- 6 PM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Art & Exhibits"
+      ],
+      "url": "https://ybca.org/event/gallery-tour-sketching-activity-behind-the-curtain-9-30-26/?utm_medium=event-listing&utm_content=2026-09-30_gallery-tour-sketching-activity&utm_campaign=gahee-park",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17857156",
+      "title": "Join Holistic Spirits and Hotel Zelos at Dirty Habit as the Golden State Valkyries begin their WNBA playoff run. Settle in on th",
+      "venue": "Dirty Habit Z Hotel ",
+      "neighborhood": "SoMa",
+      "address": "12 Fourth Street, San Francisco , CA, 94103",
+      "description": "Join Holistic Spirits and Hotel Zelos at Dirty Habit as the Golden State Valkyries begin their WNBA playoff run. Settle in on the 5th-floor patio for an evening of playoff basketball, specialty cocktails, and sounds from a live DJ, with every moment of the game playing on the big screen.",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34640162/4be8ca18-533c-446b-a6bf-5277e9edb7d0.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1050,
+      "endMinutes": 120,
+      "timeLabel": "5:30 PM -- 2 AM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Concerts & Music",
+        "Food & Drink",
+        "Sports & Fitness"
+      ],
+      "url": "https://www.zhotelssf.com/hotels/dirty-habit/best-restaurants-in-san-francisco",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17831448",
+      "title": "San Francisco Chronicle presents: Critic to Critic: A conversation on food criticism and Bay Area restaurants with MacKenzie Chu",
+      "venue": "Gray Area",
+      "neighborhood": "Mission",
+      "address": "2665 Mission Street, San Francisco, CA, 94110",
+      "description": "Critic to Critic: A conversation on food criticism and Bay Area restaurants\nwith MacKenzie Chung Fegan and Michael Bauer\nWednesday, September 30, 2026\nDoors: 5:30 PM\nAll Ages\nSeated event\nView our FAQ page for more info, or contact us at [email protected] with any accommodation requests.\nThe job of a San Francisco Chronicle food critic sounds impossibly glamorous: Eat on someone else’s dime in one of the best culinary regions in the world and get paid to tell everyone what you think. The reality is a bit more complex—and less understood. After all, fewer people have served as Chronicle food critic than have been to space.\nOn September 30, join us live at Gray Area in the Mission District for an evening with",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34370754/8c727f9f-0183-4001-b3bf-e5abf2bcc0a6.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1050,
+      "endMinutes": 120,
+      "timeLabel": "5:30 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Food & Drink",
+        "Family & Kids"
+      ],
+      "url": "https://grayarea.org/",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "fc-14-2026-09-30",
+      "title": "Workout Wednesdays at SF’s Union Square (Sept. 23-Oct. 14)",
+      "venue": "Union Square Park",
+      "neighborhood": "Richmond",
+      "address": "Geary and Powell, San Francisco, CA",
+      "description": "",
+      "date": "2026-09-30",
+      "startMinutes": 1050,
+      "endMinutes": 1110,
+      "timeLabel": "5:30 PM -- 6:30 PM",
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Sports & Fitness"
+      ],
+      "url": "https://visitunionsquaresf.com/park-programs",
+      "linkTier": "venue"
+    },
+    {
+      "id": "17822095",
+      "title": "2026 Madrone Artist Grant Showcase",
+      "venue": "Madrone Art Bar",
+      "neighborhood": "Haight-Ashbury",
+      "address": "500 Divisadero St, San Francisco, CA, 94117",
+      "description": "2026 MADRONE ARTIST GRANT SHOWCASE Fall Exhibition \n\n \nJoin us as we celebrate the first group of 2026 Madrone Artist Grant recipients and the opening of their work at Madrone Art Bar! \n\nOn the Main Wall: \nHugo Kobayashi \nEvgeniya Korotchenko \n\nFront Window Installation: \nZoë Greenham \n\nCome meet the artists, see the new work, grab a drink, and celebrate Madrone’s inaugural year of supporting local artists through the Madrone Artist Grant.\n\nOpening Reception \nWednesday, September 30 • 6–9 PM \nMadrone Art Bar \n500 Divisadero St, San Francisco \n\nFree & open to the public • 21+\n\nRSVP via Partiful",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34326178/ce7a0350-66c6-4c96-90f8-9d5ac86f9003.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1080,
+      "endMinutes": 1260,
+      "timeLabel": "6 PM -- 9 PM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Art & Exhibits",
+        "Food & Drink"
+      ],
+      "url": "https://madroneartbar.com/2026-madrone-artist-grant-showcase/",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17706227",
+      "title": "D.E.B.S.",
+      "venue": "Roxie Theater",
+      "neighborhood": "SoMa",
+      "address": "3117 16th Street, San Francisco, CA, 94103",
+      "description": "Sapphic Cinema Social Club at The Roxie. A Quarterly Showcase of Classic + New Queer Cinema, Culture, and Community.\nSapphic Cinema Social Club is a high-energy, quarterly event series designed to bring the Bay’s vibrant queer community together at the intersection of cinema and socializing. This inclusive film club is a space to decompress, connect, and celebrate queer culture, while raising vital funds for local queer orgs.\nA percentage of ticket sales will benefit Queer Women of Color Media Arts Project.\nSultry crime boss Lucy Diamond (Jordana Brewster, The Fast and the Furious) is back in the states and the D.E.B.S.- an elite team of paramilitary college co-ed superspies- are hot on her trail. But when their top agent, gorgeous Amy Brads",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33775517/ec7c475e-9d9d-4712-b504-66db7b613de8.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1080,
+      "endMinutes": 120,
+      "timeLabel": "6 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Film & Movies",
+        "Food & Drink",
+        "Community"
+      ],
+      "url": "https://ticketing.uswest.veezi.com/purchase/21455?siteToken=4m48btf3yavn7xjk5yxk6nc40c",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "fc-229-2026-09-30",
+      "title": "“Wiener Wednesday” Free Hot Dog Night at Rye",
+      "venue": "Rye Bar",
+      "neighborhood": "San Francisco",
+      "address": null,
+      "description": "",
+      "date": "2026-09-30",
+      "startMinutes": 1080,
+      "endMinutes": 0,
+      "timeLabel": "6 PM -- 12 AM",
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ],
+      "url": "https://www.instagram.com/p/CZLoFlPrx8T/",
+      "linkTier": "listing"
+    },
+    {
+      "id": "17847229",
+      "title": "Perfect Pairing | Wine & Watch: The Many Adventures of Winnie the Pooh (1977) and Heidrun Meadery",
+      "venue": "The Walt Disney Family Museum",
+      "neighborhood": "Presidio",
+      "address": " 104 Montgomery Street, San Francisco, CA, 94129",
+      "description": "How about “a smackerel of honey?” In celebration of the 100th anniversary of A.A. Milne’s classic book, Winnie the Pooh, join us for a special screening of the “bee”-loved film that started an iconic franchise, Walt Disney Productions’ The Many Adventures of Winnie the Pooh (1977), paired with mead pours and honey samples from Heidrun Meadery.\n\nYour ticket includes admission to the film with one glass of mead or a non-alcoholic beverage and a selection of light snacks. Additional mead and food can be purchased. This is a 21+ only event.",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34442110/ef1ea661-df99-43d6-8b16-75c45590fa6b.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1080,
+      "endMinutes": 120,
+      "timeLabel": "6 PM -- 2 AM",
+      "priceLabel": "$15–$25",
+      "priceTier": "paid",
+      "categories": [
+        "Film & Movies",
+        "Food & Drink"
+      ],
+      "url": "https://www.waltdisney.org/education/films/perfect-pairing-wine-watch-many-adventures-winnie-pooh-1977-and-heidrun-meadery",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17740031",
+      "title": "Nacho Libre",
+      "venue": "Alamo Drafthouse Cinema",
+      "neighborhood": "Mission",
+      "address": "2550 Mission St, San Francisco, CA, 94110",
+      "description": "Jack Black is at his comic best as Ignacio, a disrespected cook at a Mexican monastery that can barely afford to feed the orphans who live there. Inspired by a local wrestling hero, he decides to moonlight as the not-so-famous Luchador \"Nacho Libre\" to earn money for the monastery – not to mention the admiration of beautiful nun Sister Encarnacion.",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33939181/fc4aeece-2ac7-406a-bc1c-702896803ea9.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1110,
+      "endMinutes": 120,
+      "timeLabel": "6:30 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Film & Movies",
+        "Food & Drink"
+      ],
+      "url": "https://drafthouse.com/sf/show/movie-party-nacho-libre?cinemaId=0802&sessionId=20547",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17462312",
+      "title": "Show Me the Body",
+      "venue": "August Hall",
+      "neighborhood": "Financial District",
+      "address": "420 Mason St, San Francisco, CA, 94102",
+      "description": "Show Me the Body\nwith Whispers, Lip Critic, Truck Violence",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32619111/e68dfc57-3a22-4f6d-b055-9637aa98a92d.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1110,
+      "endMinutes": 120,
+      "timeLabel": "6:30 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://www.ticketmaster.com/show-me-the-body-san-francisco-california-09-30-2026/event/1C0064C2F5444C1B",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17757721",
+      "title": "Mean Girls",
+      "venue": "Balboa Theater",
+      "neighborhood": "Potrero Hill",
+      "address": "3630 Balboa St, San Francisco, CA, 94121",
+      "description": "After living in Africa with her zoologist parents, Cady Heron (Lindsay Lohan) must brave the wilds of high school where she is taken under the wing of the popular girls, The Plastics, led by the cool and cruel Regina George (Rachel McAdams). What follows is a treasure trove of sharp, witty humor that defined a generation, inspired a hit Broadway musical, and popularized countless catchphrases. Co-Starring and written by Tina Fey, and featuring Amanda Seyfried, Lacey Chabert, Lizzy Caplan, Daniel Franzese, and Amy Poehler, Mean Girls is nothing short of a pop culture phenomenon and an iconic classic.\nPresented as part of Girlie Movie Club of Girlie Movie Club. Hosted by Dot Comme (with a live drag performance!).\nThis film can be used with loy",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34024721/1dec0fec-a561-4fa3-aba8-72f5ce4887e0.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1140,
+      "endMinutes": 120,
+      "timeLabel": "7 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Theater & Dance",
+        "Film & Movies"
+      ],
+      "url": "https://ticketing.uswest.veezi.com/purchase/19703?siteToken=52wkfzmjpwjjfpz3ye7tz8wscg",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "fc-139-2026-09-30",
+      "title": "Black Hammer’s Free “Hopped Up” Trivia Night",
+      "venue": "Black Hammer Brewing",
+      "neighborhood": "San Francisco",
+      "address": "544 Bryant St., San Francisco, CA",
+      "description": "",
+      "date": "2026-09-30",
+      "startMinutes": 1140,
+      "endMinutes": -1,
+      "timeLabel": "7 PM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Community"
+      ],
+      "url": "https://bhb.beer/trivia",
+      "linkTier": "venue"
+    },
+    {
+      "id": "17900774",
+      "title": "Takeover Wednesdays: Industry Night – DJ Mobando",
+      "venue": "Cigar Bar & Grill",
+      "neighborhood": "North Beach",
+      "address": "850 Montgomery St., San Francisco, CA, 94133",
+      "description": "Takeover Wednesdays welcomes back DJ Mobando to Bochica @ Cigar Bar.\n\nA staple of the San Francisco DJ scene, DJ Mobando brings an uplifting mix of global beats, soulful house, Latin grooves, and funky rhythms. Known for his crowd-pleasing sets and energetic style, Mobando’s open-format selections keep the courtyard moving and the vibes high, whether you’re relaxing with friends or finding your way to the dance floor.",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34699202/2b28e513-bba3-4727-b319-ea9f2a618835.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1140,
+      "endMinutes": 120,
+      "timeLabel": "7 PM -- 2 AM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Theater & Dance",
+        "Concerts & Music"
+      ],
+      "url": "https://www.cigarbarandgrill.com/index.php/monthly-calendar/cigar-bar-grill/industry-wednesday/takeover-wednesdays-industry-night-dj-mobando-september-30-2026",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17732802",
+      "title": "Cactus Lee (Full Band)",
+      "venue": "Kilowatt",
+      "neighborhood": "SoMa",
+      "address": "3160 16th St, San Francisco, CA, 94103",
+      "description": "Cactus Lee is Texas music at its core, a blend of Austin nightclub vibes, and dusty dancefloor energy. Led by prolific Austin songwriter Kevin Dehan, Cactus Lee reflects a deep love for Texas country songwriters, interwoven with the bold spirit of outlaw and outsider influences.With a sound that is at once childlike, dreamy, and sharply witty—reminiscent of icons like John Prine and Tom T. Hall—Cactus Lee has carved a distinctive niche in the music world since its inception in 2019. Over six albums, including two releases in 2023, a live album, and multiple EPs, Dehan’s songwriting and self-recorded efforts on a eight-track have been the foundation ofa constantly evolving project.\nOn the new self-titled album, Cactus Lee, the songs delve int",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33904651/04b99269-4556-44c1-9ad7-c47e312d6eb7.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1140,
+      "endMinutes": 120,
+      "timeLabel": "7 PM -- 2 AM",
+      "priceLabel": "$22.46",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://link.dice.fm/V692c8e21bb8?pid=717f1d8a",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17637967",
+      "title": "Twin Temple",
+      "venue": "The Castro",
+      "neighborhood": "Bernal Heights",
+      "address": "429 Castro St, San Francisco, CA, 94114",
+      "description": "Another Planet Entertainment presentsDoomed Lovers Tour\nTwin Temple\nPEACHES CHRIST presents Satanic Panic, a Drag Ritual",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33457969/286a6290-e8d6-4232-bcbb-a4bd3b137ec9.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1140,
+      "endMinutes": 120,
+      "timeLabel": "7 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://thecastro.com/events/twin-temple-260930",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17713132",
+      "title": "Needle Felting 101: Tinned Fishies Project",
+      "venue": "Workshop",
+      "neighborhood": "Western Addition",
+      "address": "1310 Haight St, San Francisco , CA, 94115",
+      "description": "- Class Time: 7:00PM - 9:00PM\nIn this beginner-friendly felting workshop, professional multimedia artist Risa Culbertson will teach you the fundamentals of needle felting and hard launch your adventure into the world of fiber arts!\nRisa will focus on two essential felting techniques: wool on wool and needle felting over a form. You’ll have a chance to practice both techniques as you create your own felted fish in the colors and style of your choosing. Risa will also show you how to assemble a paper “tin” using pre-cut pieces that you can mix and match to create a customized container for your finished fish. Each student will take home one completed felted fish and tin project, along with a starter kit of needles, wool, and other felting supp",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33805218/dc861cad-3e36-4cf3-935f-e299e8923fc8.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1140,
+      "endMinutes": 120,
+      "timeLabel": "7 PM -- 2 AM",
+      "priceLabel": "$55.75",
+      "priceTier": "paid",
+      "categories": [
+        "Food & Drink",
+        "Talks & Workshops"
+      ],
+      "url": "https://etix.prf.hn/click/camref:1011l3GdWo/pubref:dostuff/destination:https%3A%2F%2Fwww.etix.com%2Fticket%2Fp%2F30957877%2Fneedle-felting-101tinned-fishies-project-san-francisco-workshopsf",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17830558",
+      "title": "Easley / Duplantis Trio",
+      "venue": "Bird & Beckett Books & Records",
+      "neighborhood": "Bernal Heights",
+      "address": "653 Chenery St., San Francisco, CA, 94131",
+      "description": "Dave Easley, pedal steel guitar; TBA, bass; Kirk Duplantis, drums\n\nVirtuosic pedal steel player, Dave Easley has worked with artists as diverse as Brian Blade, Joni Mitchell, Peter Rowan (Dharma Blues), Ruthie Foster (the Grammy nominated Let it Burn), Chris Schlarb’s multifaceted Psychic Temple, and New Orleans blues legend Coco Robicheaux (Louisiana Medicine Man, Yeah You Rite).\n\nThe Bird & Beckett Cultural Legacy Project, a 501(c)3 non-profit organization presents live music at least 3 times a week at Bird & Beckett Books & Records in San Francisco's Glen Park village: 2 blocks from the Glen Park BART station, Muni lines J, 23, 35, 36, 44, and 52, and on- and off-ramps for I-580. \n\nSeating is limited, so call ahead to reserve: (415) 586-3",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34366973/3d43fcd1-9dca-4d0f-83cf-0773ae6e4535.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1170,
+      "endMinutes": 120,
+      "timeLabel": "7:30 PM -- 2 AM",
+      "priceLabel": "$20",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://birdbeckett.com/",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17476037",
+      "title": "Jerry Wayne Longmire",
+      "venue": "Cobb's Comedy Club",
+      "neighborhood": "North Beach",
+      "address": "915 Columbus Ave, San Francisco, CA, 94133",
+      "description": "Jerry Wayne Longmire",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32688283/4492acf2-2ade-4b6a-93d2-9d0321141539.png",
+      "date": "2026-09-30",
+      "startMinutes": 1170,
+      "endMinutes": 120,
+      "timeLabel": "7:30 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Comedy"
+      ],
+      "url": "https://www.ticketmaster.com/jerry-wayne-longmire-san-francisco-california-09-30-2026/event/1C0064C90D4A60FB",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17535765",
+      "title": "Eva Evans",
+      "venue": "Punch Line San Francisco",
+      "neighborhood": "Mission",
+      "address": "444 Battery St, San Francisco, CA, 94111",
+      "description": "Eva Evans",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32976411/4f2a0620-6611-4057-af09-89dd3257f9d1.png",
+      "date": "2026-09-30",
+      "startMinutes": 1170,
+      "endMinutes": 120,
+      "timeLabel": "7:30 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Comedy"
+      ],
+      "url": "https://www.ticketmaster.com/eva-evans-san-francisco-california-09-30-2026/event/1C0064D7D4F46C98",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17467078",
+      "title": "Chat Pile",
+      "venue": "The Regency Ballroom",
+      "neighborhood": "Nob Hill",
+      "address": "1290 Sutter Street, San Francisco, CA, 94109",
+      "description": "Goldenvoice PresentsWho Loves The Sun Tour 2026\nChat Pile",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32645123/7c63a9b8-4d65-485c-bce7-fabf4be78179.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1170,
+      "endMinutes": 120,
+      "timeLabel": "7:30 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://www.axs.com/events/1477938/chat-pile-tickets?cid=usaffdostuff",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17299651",
+      "title": "JPEGMAFIA",
+      "venue": "The Warfield",
+      "neighborhood": "Financial District",
+      "address": "982 Market St, San Francisco, CA, 94102",
+      "description": "Goldenvoice Presentsthe Experimental Rap Tour\nJPEGMAFIA",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/31847687/a3ce6b4e-aa3d-4199-a1a2-fd26a9075ac6.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1170,
+      "endMinutes": 120,
+      "timeLabel": "7:30 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://www.axs.com/events/1408127/jpegmafia-tickets?skin=warfield&src=AEGLIVE_WWRFLSFO022715VEN001?cid=usaffdostuff",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17266005",
+      "title": "Emei",
+      "venue": "Bimbo's 365 Club",
+      "neighborhood": "North Beach",
+      "address": "1025 Columbus Ave, San Francisco, CA, 94133",
+      "description": "Another Planet presentsNight at the Opera Tour\nEmei",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/31696601/cf7249f4-4eb4-4a4f-942a-73dba1b37106.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Concerts & Music",
+        "Theater & Dance"
+      ],
+      "url": "https://www.ticketweb.com/event/emei-bimbos-365-club-tickets/14871093",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17696854",
+      "title": "Cult Strange, Vague Lanes, The Ink Bats",
+      "venue": "Bottom Of The Hill",
+      "neighborhood": "SoMa",
+      "address": "1233 17th Street, San Francisco, CA, 94107",
+      "description": "Wednes\nday September 30\n 2026\n8:00PM\ndoors\n-- music at 8\n:30PM\n21 AND OVER\n$\n15\nin\n advance\n/\n $20\nat the door\n$19.81 in advance [15 face value +4.81 service fee]\nCult Strange\ndeathrock post-punk\nVague Lanes\npost-punk shoegaze\nThe Ink Bats\npost-punk psychedelic",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33731625/90b8ca05-e906-4a96-b03f-501514bab877.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "$15",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://www.bottomofthehill.com/dice/event20260930.html",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17559951",
+      "title": "Doom Gong",
+      "venue": "Brick & Mortar Music Hall",
+      "neighborhood": "SoMa",
+      "address": "1710 Mission Street, San Francisco, CA, 94103",
+      "description": "Doom Gong\nFormed in 2022 in Louisville, Kentucky by 7 music school nerds, DOOM GONG has made a name for themselves internationally with their own home-baked genre, Denim Psych - a hodgepodge of psychedelic rock, jazz fusion, prog rock, bedroom pop, lo-fi, contemporary classical music, as well as blood, sweat, and a lot of denim.\nHaving amassed a catalogue of 3 rock opera-esque LP’s, DOOM GONG, Dream Behemoth and MEGAGONG, and 1 Live album, Live at the Whirling Tiger, in only 3 years, DOOM GONG has quickly become a mainstay of the psych scene in the U.S. and abroad, having performed their enigmatic and seamless live shows alongside the likes of Amyl and the Sniffers, The Black Angels, BADBADNOTGOOD, Allah Las, King Buffalo, Bass Drum of Death",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33089337/b655baed-f094-4db7-ae0f-b30314d0edf4.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "$27.58",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music",
+        "Theater & Dance"
+      ],
+      "url": "https://www.ticketweb.com/event/doom-gong-brick-and-mortar-music-hall-tickets/14195504?pl=bnm&REFID=clientsitewp",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17523028",
+      "title": "Tobi Lou",
+      "venue": "Cafe du Nord",
+      "neighborhood": "Bernal Heights",
+      "address": "2170 Market St, San Francisco, CA, 94114",
+      "description": "Tobi lou is a genre-bending rap artist with a knack for blending deeper lyricism into light beats, putting his own spin on what emotional artistry looks like.\nARTIST PRESALE: Tuesday, June 23rd at 10AM\nONSALE: Friday, June 26th at 10AM\nCafe Du Nord's Preferred Viewing Available, General Admission Not Included\nFor any event that is listed as 18 or 21 and over, ANY ticket holder unable to present valid identification indicating that they are of age will not be admitted to this event, and will not be eligible for a refund. Any event listed as All Ages, means 6 years of age or older. ALL tickets are standing room only unless otherwise specified. If you need special accommodations, contact info@cafedunord.com.\nSupport acts are subject to change w",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32910887/296d6b52-13fd-433a-8cb1-b73ddcf03b23.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Concerts & Music",
+        "Family & Kids"
+      ],
+      "url": "https://www.ticketweb.com/event/tobi-lou-same-cafe-du-nord-tickets/14203234?pl=cafedunord&REFID=clientsitewp",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17255815",
+      "title": "Beth Orton",
+      "venue": "Great American Music Hall",
+      "neighborhood": "Nob Hill",
+      "address": "859 O'farrell Street, San Francisco, CA, 94109",
+      "description": "",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/31660262/6fb5795a-19d6-46bf-b80f-019a58d965ca.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "$39.50–$45",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://wl.seetickets.us/event/beth-orton/688269?afflky=GreatAmericanMusicHall",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17614941",
+      "title": "Porch Light",
+      "venue": "Rickshaw Stop",
+      "neighborhood": "Financial District",
+      "address": "155 Fell Street, San Francisco, CA, 94102",
+      "description": "Another Planet Entertainment PresentsHush Tour\nPorch Light",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33349336/1cc42ff1-6a54-4915-b2fd-b5eca02fe8df.png",
+      "date": "2026-09-30",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "$20–$25",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://www.ticketmaster.com/event/1C0064EAB3281ACF?camefrom=CFC_ANOTHERPLANET_artist&brand=anotherplanet",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17260461",
+      "title": "FAILURE: Rising Skyline 2026",
+      "venue": "The Chapel",
+      "neighborhood": "Mission",
+      "address": "777 Valencia Street, San Francisco, CA, 94110",
+      "description": "",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/31664519/6813626f-3fc4-46d9-be36-418f92c2f526.png",
+      "date": "2026-09-30",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "$35–$235",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://wl.seetickets.us/event/failure-rising-skyline-2026/688890?afflky=TheChapel",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17080668",
+      "title": "Chasing Abbey",
+      "venue": "The Independent",
+      "neighborhood": "Haight-Ashbury",
+      "address": "628 Divisadero Street, San Francisco, CA, 94117",
+      "description": "Please note - there is a delivery delay set for 2 weeks prior to show.",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/30820008/2a960533-eddc-423c-b588-5aad6a2d59c0.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://www.ticketweb.com/event/chasing-abbey-the-independent-tickets/14771993?REFERRAL_ID=tmfeedbuyat234705&wt.mc_id=aff_BUYAT_234705&camefrom=CFC_BUYAT_234705",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17792552",
+      "title": "Sf Party",
+      "venue": "Verdi Club",
+      "neighborhood": "Mission",
+      "address": "2424 Mariposa Street, San Francisco, CA, 94110",
+      "description": "Fall Line Dance Classes Start September → Sign Up for a Series\n$20 Single Ticket\nParty Pass — 5-pack & 10-pack discounts available\nPartner Dance Lesson: 8:00 PM\nLine Dance Lessons: 8:30 & 10:00 PM\nOpen floor requests all night\nGet Ready\nDress to dance — wear leather-soled shoes or sneakers\nNo partner needed — come as you are!\n21+\nPhoto: Andy Antezana Careaga",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34188435/e4f6c277-942b-44b4-a2b2-28a8a5d36da8.png",
+      "date": "2026-09-30",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "$20",
+      "priceTier": "paid",
+      "categories": [
+        "Theater & Dance"
+      ],
+      "url": "https://www.scuff.us/performances/furfijsy",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17602088",
+      "title": "Play X Land",
+      "venue": "Cat Club",
+      "neighborhood": "SoMa",
+      "address": "1190 Folsom Street, San Francisco, CA, 94103",
+      "description": "Hello Pervy Players!\nPlayXLand is a BDSM/Kink/Fetish night hosted by Cat Club in partnership with Wicked Grounds and the Leather Alliance in San Francisco.\n——\n Go-Go's live and onstage! Don't forget to bring your tip money\n One of a kind dungeon featuring guest hosts and performances, as well as furniture and suspension hooks, and toys that you are more than welcome to play with!\n——\n9pm-2am\n$10 in Fetishwear / $20 in Street Clothes\n——\nTHE CAT CLUB\n1190 Folsom, SF 21+\n(wednesdays)\n(more info)\nNO PHOTOS - No photos are allowed to be taken inside the club during this event. No photos may be taken of patrons at any time without consent.\nNO TOUCHING WITHOUT CONSENT - This is a general rule for all events at Cat Club and this event is no exception",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33280988/5c5d7768-69d0-4cec-8dbc-217fb49798e2.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1260,
+      "endMinutes": 120,
+      "timeLabel": "9 PM -- 2 AM",
+      "priceLabel": "$10",
+      "priceTier": "paid",
+      "categories": [
+        "Theater & Dance"
+      ],
+      "url": "https://www.sfcatclub.com/calendar/sgzbsw3ltzjngjx-8yj6x-hzsr2-8tx5a-bh2wx-jppm3-d23d2",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17758256",
+      "title": "CALITALO DISCO - DJ Nino Msk & Friends Afro, Italo, Funky, Nu, Tropical Disco & House On Wax",
+      "venue": "Make-Out Room",
+      "neighborhood": "Mission",
+      "address": "3225 22nd St., San Francisco, CA, 94110",
+      "description": "",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34027887/fe4cddee-5b80-409a-adb2-07f0eb2c116f.jpg",
+      "date": "2026-09-30",
+      "startMinutes": 1320,
+      "endMinutes": 120,
+      "timeLabel": "10 PM -- 2 AM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://makeoutroom.com/",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "sfcb-fromthebenchofbenblount-2026-10-01",
+      "title": "From the Bench of Ben Blount",
+      "venue": "Center for the Book",
+      "neighborhood": "SoMa",
+      "address": "375 Rhode Island St, San Francisco, CA 94103",
+      "description": "",
+      "date": "2026-10-01",
+      "startMinutes": -1,
+      "timeLabel": "Time TBA",
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Books"
+      ],
+      "url": "https://www.sfcb.org/calendar/fromthebenchofbenblount",
+      "linkTier": "venue"
+    },
+    {
+      "id": "fc-49-2026-10-01",
+      "title": "SF’s Free Concerts & Food Trucks: “Civic Center Soundtrack”",
+      "venue": "Fulton Plaza",
+      "neighborhood": "San Francisco",
+      "address": "Fulton and Larkin, San Francisco, CA",
+      "description": "",
+      "date": "2026-10-01",
+      "startMinutes": 720,
+      "endMinutes": 900,
+      "timeLabel": "12 PM -- 3 PM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Concerts & Music",
+        "Food & Drink",
+        "Community"
+      ],
+      "url": "https://illuminate.org/venues/fulton-street-plaza/",
+      "linkTier": "venue"
+    },
+    {
+      "id": "fc-16-2026-10-01",
+      "title": "Free First Thursdays at SF’s Museum of Craft and Design",
+      "venue": "Museum of Craft and Design",
+      "neighborhood": "SoMa",
+      "address": "2569 Third Street, San Francisco, CA 94107",
+      "description": "",
+      "date": "2026-10-01",
+      "startMinutes": 720,
+      "endMinutes": 1020,
+      "timeLabel": "12 PM -- 5 PM",
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Art & Exhibits"
+      ],
+      "url": "https://sfmcd.org/visit/",
+      "linkTier": "venue"
+    },
+    {
+      "id": "17183836",
+      "title": "Renée Fleming Sings Strauss",
+      "venue": "Davies Symphony Hall",
+      "neighborhood": "Financial District",
+      "address": "Grove Street & Van Ness Avenue, San Francisco, CA, 94102",
+      "description": "",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/31307563/4549ff3e-ba38-4842-b499-9b1af580601b.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 840,
+      "endMinutes": 120,
+      "timeLabel": "2 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://dothebay.com/events/2026/10/1/renee-fleming-sings-strauss-tickets",
+      "linkTier": "listing",
+      "soldOut": false
+    },
+    {
+      "id": "16869105",
+      "title": "El Grupo de Apoyo Latino",
+      "venue": "San Francisco AIDS Foundation",
+      "neighborhood": "Financial District",
+      "address": "San Francisco, CA, 94102",
+      "description": "El Grupo de Apoyo Latino de SFAF es un grupo social y educativo que ofrece un espacio abierto, seguro, y confidencial para apoyar a la comunidad Latina afectada por el VIH y SIDA. Es un grupo diverso, donde el respeto es la base para que todos los asistentes puedan expresar libremente sus experiencias, identidad, étnicidad, nacionalidad, sexualidad, y creencias religiosas.\nTodas las reuniones son en español y se llevan a cabo en un ambiente positivo, familiar, y confidencial. Ven a compartir con nosotros, estamos seguros que encontrarás apoyo y recibirás información para mejorar tu calidad de vida.\nSFAF ofrece servicios a cualquier persona sin importar su situación migratoria.\nPara mas información sobre El Grupo, llama al 415-632-9722.\n_____",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/29788682/30031702-2af3-4b15-8bfe-f52bfe501381.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 900,
+      "endMinutes": 1020,
+      "timeLabel": "3 PM -- 5 PM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Community"
+      ],
+      "url": "https://dothebay.com/events/2026/10/1/el-grupo-de-apoyo-latino-tickets",
+      "linkTier": "listing",
+      "soldOut": false
+    },
+    {
+      "id": "17616674",
+      "title": "Gender Youthphoria Support Group (For LGBTQ+ Youth Ages 16-24)",
+      "venue": "SF LGBT Center",
+      "neighborhood": "Financial District",
+      "address": "1800 Market St, San Francisco, CA, 94102",
+      "description": "Where: In-Person, SF LGBT Center\nHosted By: Youth Services Mental Health Specialists\nAbout: This weekly group is for trans, gender non-conforming, and questioning youth ages 16-24 looking for an affirming space to learn coping skills, discuss shared and individual challenges, and build community with each other. And did we mention we’ll have snacks?!",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33361706/00ccf577-34b1-412f-bfe9-2775bcaee872.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 960,
+      "endMinutes": 120,
+      "timeLabel": "4 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Community"
+      ],
+      "url": "https://sfcenter.org/",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17764314",
+      "title": "Music on the Plaza",
+      "venue": "Ferry Building",
+      "neighborhood": "Mission",
+      "address": "One Ferry Marketplace, San Francisco, CA, 94111",
+      "description": "Kick back and enjoy your Thursday afternoon, accompanied by live performances from our favorite Bay Area musicians.",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34055834/a26ebe2c-21a7-4e3c-9fe3-ffb7060303c4.png",
+      "date": "2026-10-01",
+      "startMinutes": 1020,
+      "endMinutes": 1140,
+      "timeLabel": "5 PM -- 7 PM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Theater & Dance"
+      ],
+      "url": "https://www.ferrybuildingmarketplace.com/events/music-on-the-plaza/var/ri-5.l-L1",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17861034",
+      "title": "Downtown First Thursdays w/ Mr. Carmack + DJ Umami",
+      "venue": "Market & 2nd",
+      "neighborhood": "Mission",
+      "address": "Market St. & 2nd St. , San Francisco, CA, 94111",
+      "description": "Into the Streets + Civic Joy Fund Present\nDowntown First Thursdays\nFeaturing special guest Mr. Carmack\n\nwith support from DJ Umami| 8-9PMwith support from DJ Umami | 7-8PMExplore three blocks of fun on 2nd St. between Market and Howard Streets.\n\nWe strongly recommend taking public transportation:The nearest public transit station is Montgomery Station (MUNI & BART)Howard Stage Happy HourHosted by PaletteJoin the Howard Stage happy hour every month from 5-7PM at Howard and 2nd St, featuring house-pa",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34511690/4d5c7531-f11e-485f-8e04-3a38d09aa178.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1020,
+      "endMinutes": 1320,
+      "timeLabel": "5 PM -- 10 PM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Theater & Dance",
+        "Concerts & Music",
+        "Festivals & Fairs",
+        "Family & Kids",
+        "Community"
+      ],
+      "url": "https://www.dftsf.com/",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17874798",
+      "title": "NOCTURNE — A Group Art Show Preview for SF First Thursday Art Walk",
+      "venue": "Punk Majesty",
+      "neighborhood": "Nob Hill",
+      "address": "1124 Sutter St., San Francisco, CA, 94109",
+      "description": "Join us for NOCTURNE, the latest underground group exhibition at the Punk Majesty Showroom + Gallery, opening during SF First Thurs Art Walk\n\n\n\nNOCTURNE brings together an eclectic group of local artists working across different styles and mediums. There’s no prescribed theme—just a carefully selected mix of original work, individual perspectives, and unexpected discoveries.\n\nCome explore the exhibition, meet some of the artists, have a drink, and experience one of San Francisco’s more unexpected independent art and fashion spaces.\n\nABOUT PUNK MAJESTY\nPunk Majesty is San Francisco’s only punk- and rock ’n’ roll-inspired fashion Showroom + underground art gallery.\n\nPunk Majesty combines one-of-a-kind upcycled fashion, curated rock ’n’ roll vi",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34578315/818ea0a4-caff-4f47-b810-aced37f5458f.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1020,
+      "endMinutes": 1260,
+      "timeLabel": "5 PM -- 9 PM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Art & Exhibits",
+        "Food & Drink"
+      ],
+      "url": "https://dothebay.com/events/2026/10/1/nocturne-a-group-art-show-preview-for-sf-first-thursday-art-walk-tickets",
+      "linkTier": "listing",
+      "soldOut": false
+    },
+    {
+      "id": "17873694",
+      "title": "NEW DATE: Garrison Lovely - Obsolete",
+      "venue": "Book Passage San Francisco",
+      "neighborhood": "San Francisco",
+      "address": "1 Ferry Building, San Francisco, CA, 94911",
+      "description": "Is AI a bubble or humanity's last invention? An existing harm or an existential threat? Obsolete cuts through the hype and false binaries to answer all the AI questions you have, while raising some you probably aren't prepared for.",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34573403/54dbd5db-00d5-4a38-85c7-43c57cb4e493.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1050,
+      "endMinutes": 120,
+      "timeLabel": "5:30 PM -- 2 AM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Community"
+      ],
+      "url": "https://bookpassage.com/event/garrison-lovely-obsolete",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17797854",
+      "title": "After Dark: Echoes",
+      "venue": "Exploratorium",
+      "neighborhood": "Mission",
+      "address": "Pier 15 , San Francisco, CA, 94111",
+      "description": "Do you hear that? Uncover surprising acoustic phenomena and immerse yourself in experimental music by saxophonist Cole Pulice and the TANK Center for Sonic Arts.",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34216016/f18b71e7-fef4-48c3-8c2c-43c21ec1544e.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1080,
+      "endMinutes": 1320,
+      "timeLabel": "6 PM -- 10 PM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Community"
+      ],
+      "url": "https://www.exploratorium.edu/visit/calendar/after-dark-echoes",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17636857",
+      "title": "Opening Night: Silent Auction Preview",
+      "venue": "Hunters Point Shipyard Artists",
+      "neighborhood": "Mission",
+      "address": "Innes/Donahue, San Francisco, CA, 94124",
+      "description": "Kick off Shipyard Open Studios with a first look at our silent auction. Browse and bid on original works by Shipyard artists, scope out the deals, and plan your Open Studios weekend — all over refreshments and a cash bar. Free admission; RSVP requested via Eventbrite.",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33452492/accb2f65-546e-49e6-bd74-fdf5f650fff3.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1080,
+      "endMinutes": 1200,
+      "timeLabel": "6 PM -- 8 PM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Community"
+      ],
+      "url": "https://dothebay.com/events/2026/10/1/opening-night-silent-auction-preview-tickets",
+      "linkTier": "listing",
+      "soldOut": false
+    },
+    {
+      "id": "17882922",
+      "title": "Future of Fashion Confrence",
+      "venue": "Little Raven Gallery",
+      "neighborhood": "SoMa",
+      "address": "1015 Howard Street, San Francisco, CA, 94103",
+      "description": "Join us at the opening evening of the Award winning Fashion Community Week. We are celebrating our 23rd season by kicking off with a Future of Fashion Conference.\n\n\nExperience industry leaders discussing sustainability and the Future of Fashion. Get ready to immerse yourself in the world of fashion, as the speakers share insights on the latest innovations, sustainability and cutting-edge technology in the industry. It is an opportunity to network and meet dignitaries of the fashion sustainability and tech industry.\nThe speakers are as follows:Katie Vanderdrift- Founder of GemjoyElizabeth Hwang- Strategy & Analytics at RetailRakesh Tondon- Founder of MettoJulian Prince Dash- Founder of Holy StitchKacie Barrett- Operations at Levi's StraussShi",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34615053/6d274422-c06f-4317-952d-f08ea41bf290.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1080,
+      "endMinutes": 1260,
+      "timeLabel": "6 PM -- 9 PM",
+      "priceLabel": "$17.85",
+      "priceTier": "paid",
+      "categories": [
+        "Theater & Dance",
+        "Community"
+      ],
+      "url": "https://dothebay.com/events/2026/10/1/future-of-fashion-confrence-tickets",
+      "linkTier": "listing",
+      "soldOut": false
+    },
+    {
+      "id": "fc-135-2026-10-01",
+      "title": "Lower Polk / TL Art Walk | Trendyloin",
+      "venue": "Lower Polk / Gulch Corridor",
+      "neighborhood": "Russian Hill",
+      "address": "Polk St. and Sutter St., San Francisco, CA",
+      "description": "",
+      "date": "2026-10-01",
+      "startMinutes": 1080,
+      "endMinutes": 1320,
+      "timeLabel": "6 PM -- 10 PM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Community"
+      ],
+      "url": "https://www.facebook.com/firstthursdayartwalk/",
+      "linkTier": "listing"
+    },
+    {
+      "id": "17859452",
+      "title": "Game Night!",
+      "venue": "Mission Bowling Club",
+      "neighborhood": "Mission",
+      "address": "3176 17th Street, San Francisco, CA, 94110",
+      "description": "Inviting all Magic the Gathering Commander players every Thursday from 6pm - 10pm for our weekly game night! Patio space will be reserved for MTG players, but other games welcome as well! No sign up or RSVP required, just come on down with your favorite games and have fun! Weekly attendees will earn free bowling every 5th visit!",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34503185/a2528f28-ae60-44ed-aa08-1d6b5d48878c.png",
+      "date": "2026-10-01",
+      "startMinutes": 1080,
+      "endMinutes": 1320,
+      "timeLabel": "6 PM -- 10 PM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Theater & Dance"
+      ],
+      "url": "https://www.missionbowlingclub.com/",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17723898",
+      "title": "SLASHED: Return to Hellville",
+      "venue": "The San Francisco Mint",
+      "neighborhood": "SoMa",
+      "address": "88 5th Street, San Francisco, CA, 94103",
+      "description": "Terror Vault Presents\n\nSLASHED: Return to Hellville\nOctober 1 - November 8 | The San Francisco Mint\n\n\n\n\n\n\n\nThirty-seven years after the infamous Hellville massacre, a terrifying new evil has awakened. Step inside Terror Vault's most ambitious immersive horror experience yet as you become trapped inside a living 1980s slasher movie. \n\nJourney through abandoned schools, haunted campgrounds, blood-soaked fraternity houses, forgotten video stores, and other iconic horror locations while confronting a masked killer, vengeful ghosts, and the terrifying legacy of Dr. Grieves' Fear Engine. \n\nFeaturing Hollywood-caliber sets, cinematic storytelling, live actors, and frightening scares, this show is more than a haunted attraction. It's a fully immersi",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33864063/1d993d7d-9b32-4f63-a781-2593a0a2d802.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1080,
+      "endMinutes": 120,
+      "timeLabel": "6 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Theater & Dance",
+        "Film & Movies"
+      ],
+      "url": "https://www.terrorvault.com/",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17805495",
+      "title": "Terminator 2: Judgment Day",
+      "venue": "Alamo Drafthouse Cinema",
+      "neighborhood": "Mission",
+      "address": "2550 Mission St, San Francisco, CA, 94110",
+      "description": "Sequels rarely surpass their predecessors. But when TERMINATOR 2: JUDGMENT DAY came roaring into theaters in 1991, audiences were treated to a film that took everything they loved about the first and launched it to a whole new level.\nSet years after THE TERMINATOR, Sarah Connor (Linda Hamilton) is now in a mental institution, and her son, John (Edward Furlong), the future leader of the human resistance in the war against the machines, is a rebellious teenager. But when the machines send the advanced T-1000 (Robert Patrick) back in time to kill John, Sarah will have to escape and fight for John's protection with the most unlikely ally: a T-800 (Arnold Schwarzenegger), the exact model that tried to kill her before John was born.\nAs if THE TERM",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34250329/17975c19-2cf6-4294-ba07-8f8cbdb316a2.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1095,
+      "endMinutes": 120,
+      "timeLabel": "6:15 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Film & Movies",
+        "Theater & Dance"
+      ],
+      "url": "https://drafthouse.com/sf/show/terminator-2-judgment-day?cinemaId=0802&sessionId=20520",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17489934",
+      "title": "Piper and the Hard Times",
+      "venue": "Biscuits and Blues",
+      "neighborhood": "Financial District",
+      "address": "401 Mason Street, San Francisco, CA, 94102",
+      "description": "EARLY SHOW · 6:30 PM · DOORS 5:15 PM\nLATE SHOW · 9:00 PM · DOORS 8:30 PM\nAdmission: $25 - $60\n\nPiper & The Hard Times are a Nashville-based blues and roots band led by vocalist Al “Piper” Green. Known for their high-energy live shows, the group blends blues, soul, R&B, rock, and gospel into a sound shaped by strong musicianship, improvisation, and tight chemistry. The core trio has played and written together for more than 20 years, and the band rose to wider attention after winning the International Blues Challenge in 2024. Their debut album, Revelation, debuted at No. 1 on the Billboard Blues Chart.",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32755070/700c49e1-be5e-4de7-9439-41a02cfbe55c.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1110,
+      "endMinutes": 1350,
+      "timeLabel": "6:30 PM -- 10:30 PM",
+      "priceLabel": "$25–$60",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music",
+        "Comedy"
+      ],
+      "url": "https://www.biscuitsandblues.com/find-a-show/20261001piperandthehardtimes",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17898134",
+      "title": "Broke-Ass Stuart Dinner Club",
+      "venue": "Inner Sunset",
+      "neighborhood": "Outer Sunset",
+      "address": "Golden Gate Park to Vicente St. & Stanyan Blvd. to 19th Ave., San Francisco, CA, 94122",
+      "description": "The Broke-Ass Stuart Diner Club has been absolutely fantastic so far. We’ve brought nearly 250 people out to over 40 local restaurants and had so much fun doing it. Plus there’s always a fun afterparty once the dinning is done.\n\nSo, we’re doing it again on THURSDAY, this time in the Inner Sunset. Get offline and meet some cool new friends!",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34687958/fe0b1eb6-5aa3-4f5d-8ee2-ee5a4db58158.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1110,
+      "endMinutes": 120,
+      "timeLabel": "6:30 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Food & Drink"
+      ],
+      "url": "https://broke-ass-stuart.dnnr.io/",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "omni-adrianna-adarme-author-talk-a-cozy-kitch-2026-10-01",
+      "title": "Adrianna Adarme Author Talk • A Cozy Kitchen Cookbook: 100 Easy, Comforting Recipes for Every Mood and Desire",
+      "venue": "Omnivore Books on Food",
+      "neighborhood": "Mission",
+      "address": "3198 Mission St, San Francisco, CA 94110",
+      "description": "& THEIR BOOK: Adrianna Adarme is the creator of A Cozy Kitchen, a beloved food platform with a community of over a million followers, and the bestselling author of The Year of Cozy. She’s also a contributor to New York T",
+      "date": "2026-10-01",
+      "startMinutes": 1110,
+      "endMinutes": -1,
+      "timeLabel": "6:30 PM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Food & Drink",
+        "Talks & Workshops"
+      ],
+      "url": "https://omnivorebooks.myshopify.com/collections/upcoming-events/products/adrianna-adarme-author-talk-a-cozy-kitchen-cookbook-100-easy-comforting-recipes-for-every-mood-and-desire",
+      "linkTier": "venue"
+    },
+    {
+      "id": "17772761",
+      "title": "Black Swan",
+      "venue": "Roxie Theater",
+      "neighborhood": "SoMa",
+      "address": "3117 16th Street, San Francisco, CA, 94103",
+      "description": "Nina (Natalie Portman) is a ballerina in a New York City ballet company whose life is completely consumed by dance. When artistic director Thomas Leroy (Vincent Cassel) casts her as the lead in Swan Lake, she must embody both the innocent, graceful White Swan and the sensual, dangerous Black Swan. As rivalry with a new dancer, Lily (Mila Kunis), develops into a twisted friendship, Nina begins to lose herself in the role, unleashing a darker side that threatens to destroy her.\nThis screening is part of a special Black Swan + Perfect Blue double feature presented by Spoke Art Gallery. See Black Swan at 6:30 PM on its own, or stay for Perfect Blue at 8:50 PM with a special $24 double-feature ticket.\nPresented by Spoke Art Gallery as part of the",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34095045/d966d2fe-660a-4701-9d05-a3f9ef1e8249.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1110,
+      "endMinutes": 120,
+      "timeLabel": "6:30 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Film & Movies",
+        "Theater & Dance",
+        "Art & Exhibits"
+      ],
+      "url": "https://ticketing.uswest.veezi.com/purchase/21942?siteToken=4m48btf3yavn7xjk5yxk6nc40c",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17772762",
+      "title": "Black Swan + Perfect Blue",
+      "venue": "Roxie Theater",
+      "neighborhood": "SoMa",
+      "address": "3117 16th Street, San Francisco, CA, 94103",
+      "description": "Presented by Spoke Art Gallery as part of their ongoing series of curated alternative film posters. Featuring two new limited edition screen prints by Vincent Aseo (Philippines) for Perfect Blue and Aleksander Walijewksi (Poland) for Black Swan. As an added bonus, all attendees at this event will receive a complimentary mini-print designed by Bekah Phillips-Nevin (Orange County, CA).\nTwo hypnotic psychological thrillers about ambition, identity, obsession, and the terrifying cost of perfection.\nBLACK SWAN  (6:30 PM)\nDarren Aronofsky’s feverish psychological thriller stars Natalie Portman as a driven ballerina whose pursuit of perfection sends her spiraling into paranoia, obsession, and a fractured sense of self.\nPERFECT BLUE  (8:50 PM)\nSatos",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34095046/7f230827-3d68-4105-99a6-791af3926560.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1110,
+      "endMinutes": 120,
+      "timeLabel": "6:30 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Film & Movies",
+        "Art & Exhibits"
+      ],
+      "url": "https://ticketing.uswest.veezi.com/purchase/21944?siteToken=4m48btf3yavn7xjk5yxk6nc40c",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17819009",
+      "title": "Bachata Party with JAS Latin Dance",
+      "venue": "Cigar Bar & Grill",
+      "neighborhood": "North Beach",
+      "address": "850 Montgomery St., San Francisco, CA, 94133",
+      "description": "Join us every Thursday night for a vibrant Bachata\nexperience. Whether you're brand new or a seasoned dancer, our welcoming\natmosphere is the perfect place to learn, connect, and have fun.\n7:00-8:00 PM - Bachata lessons. Mixed level; beginners\nwelcome and no partner needed.\n8:00-11:00 PM - Social dancing with top DJs spinning the\nhottest Bachata hits.\nEnjoy a night of great music, community, and movement - plus\ndelicious food, craft cocktails, wine, beer, and fine cigars available for\npurchase.\nPricing:Advance registration: $8\n\nWalk-ins at the door: $10\nWe recommend registering online to reserve your spot. Come\nearly, grab a bite, and make a night of it.\nAbout Jose Santamaria:\nJose Santamaria has been a professional dance instructor and\nchor",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34310930/a26c5679-2bfa-4ebb-a762-3ee9be17f7d5.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1140,
+      "endMinutes": 1380,
+      "timeLabel": "7 PM -- 11 PM",
+      "priceLabel": "$8",
+      "priceTier": "paid",
+      "categories": [
+        "Theater & Dance",
+        "Food & Drink",
+        "Community"
+      ],
+      "url": "https://www.cigarbarandgrill.com/index.php/entertainment",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "cl-js-tan-and-clarissa-redwine-with-gil-dur-n-against-tech-oligarchy-2026-10-01",
+      "title": "JS Tan and Clarissa Redwine with Gil Durán / Against Tech Oligarchy",
+      "venue": "City Lights Booksellers",
+      "neighborhood": "North Beach",
+      "address": "261 Columbus Ave, San Francisco, CA 94133",
+      "description": "City Lights and Haymarket Books celebrate the publication of Against Tech Oligarchy: Worker Resistance in the World’s Most Powerful Industry - by Clarissa Redwine and JS Tan - Published by Haymarket Books - Moderated by ",
+      "date": "2026-10-01",
+      "startMinutes": 1140,
+      "endMinutes": -1,
+      "timeLabel": "7 PM",
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Food & Drink"
+      ],
+      "url": "https://citylights.com/events/js-tan-and-clarissa-redwine-against-tech-oligarchy/",
+      "linkTier": "venue"
+    },
+    {
+      "id": "17688496",
+      "title": "Long Time Listener, First Time Caller",
+      "venue": "Endgames Improv Theater & Bar",
+      "neighborhood": "SoMa",
+      "address": "2965 Mission Street, San Francisco, CA, 94103",
+      "description": "Long Time Listener, First Time Caller\n@ ETC Prime - 2965 Mission St\nWhether intentionally or not, we are all listening to something every day: a podcast we can't get enough of, the latest album from our favorite artist, the juicy gossip we overheard on the bus... the list goes on! We are interested in knowing what you're listening to, and making a hilarious and fully improvised show based on that! Come by Endgames for an unforgettable night of improvised comedy!",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33700837/d58728df-70bc-4773-baa5-895a8ce98861.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1140,
+      "endMinutes": 120,
+      "timeLabel": "7 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Comedy"
+      ],
+      "url": "https://dothebay.com/events/2026/10/1/long-time-listener-first-time-caller-tickets",
+      "linkTier": "listing",
+      "soldOut": false
+    },
+    {
+      "id": "fc-58-2026-10-01",
+      "title": "Flight Club: Adult Flight Night for Ages 18+ at “House of Air” Trampoline Park",
+      "venue": "House of Air",
+      "neighborhood": "San Francisco",
+      "address": "926 Old Mason Street, San Francisco, CA",
+      "description": "",
+      "date": "2026-10-01",
+      "startMinutes": 1140,
+      "endMinutes": 1260,
+      "timeLabel": "7 PM -- 9 PM",
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ],
+      "url": "https://houseofair.com/san-francisco/programs/adults/",
+      "linkTier": "venue"
+    },
+    {
+      "id": "17431796",
+      "title": "Dj Foodcourt",
+      "venue": "Make-Out Room",
+      "neighborhood": "Mission",
+      "address": "3225 22nd St., San Francisco, CA, 94110",
+      "description": "",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32469975/95b8f337-d1f3-4044-8b2c-b0f269c06f39.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1140,
+      "endMinutes": 120,
+      "timeLabel": "7 PM -- 2 AM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Concerts & Music",
+        "Food & Drink"
+      ],
+      "url": "https://makeoutroom.com/",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17821634",
+      "title": "Mountains of the Moon — Live Film & Music Experience",
+      "venue": "Presidio Theatre Performing Arts Center",
+      "neighborhood": "Presidio",
+      "address": "99 Moraga Avenue, San Francisco, CA, 94129",
+      "description": "",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34323338/52c49f03-e366-4a02-8fc0-4417505660bc.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1140,
+      "endMinutes": 120,
+      "timeLabel": "7 PM -- 2 AM",
+      "priceLabel": "$44–$71.50",
+      "priceTier": "paid",
+      "categories": [
+        "Film & Movies"
+      ],
+      "url": "https://www.presidiotheatre.org/show-details/mountains-of-the-moon",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17884533",
+      "title": "The Clift Hotel’s Redwood Room Continues Free Live Jazz Programming",
+      "venue": "The Clift Royal Sonesta Hotel",
+      "neighborhood": "Financial District",
+      "address": " 495 Geary Street, San Francisco, CA, 94102",
+      "description": "Is extending its popular Redwood Room After Dark entertainment series with two evenings of live jazz each week through October.\nPresented every Thursday and Friday in the legendary Redwood Room, the expanded calendar will showcase an impressive roster of acclaimed musicians, including Sundra Manning, Grant Levin, Eamon Flynn, Glen Pearson, David Udolf, and other notable performers.\nCurated with artistic inspiration from Grammy-nominated singer, composer and cultural ambassador Sacha Boutros and founder of Hear Me Roar Entertainment*, the series brings together world-class musicianship, timeless cocktails and the unmistakable glamour of one of San Francisco’s most storied nightlife destinations. *Hear Me Roar Ent",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34622024/db03b82f-7fd1-470e-8a08-a78c7cdb6aba.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1140,
+      "endMinutes": 1260,
+      "timeLabel": "7 PM -- 9 PM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Concerts & Music",
+        "Food & Drink"
+      ],
+      "url": "https://www.redwoodroomsf.com/",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17470380",
+      "title": "An Evening Honoring Steve Earle",
+      "venue": "The Masonic",
+      "neighborhood": "North Beach",
+      "address": "1111 California St., San Francisco, CA, 94108",
+      "description": "Hardly Strictly Bluegrass presents\nAn Evening Honoring Steve Earle\nFeaturing Buddy Miller, Elizabeth Cook, Emmylou Harris, Gillian Welch & David Rawlings, Jackson Browne, Hot Tuna, Larry Campbell & Teresa Williams, Molly Tuttle, Shawn Camp, Stacey Earle, Steve Earle, Victoria Williams",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32661708/30c3fca3-8baf-4de1-8da6-c8ae7d0f639f.png",
+      "date": "2026-10-01",
+      "startMinutes": 1140,
+      "endMinutes": 120,
+      "timeLabel": "7 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Concerts & Music",
+        "Theater & Dance",
+        "Food & Drink",
+        "Community"
+      ],
+      "url": "https://www.ticketmaster.com/an-evening-honoring-steve-earle-san-francisco-california-10-01-2026/event/1C0064BAEF8EA235",
+      "linkTier": "boxoffice",
+      "soldOut": true
+    },
+    {
+      "id": "17857021",
+      "title": "Songs of Slow Burning Earth",
+      "venue": "4 Star Theater",
+      "neighborhood": "Potrero Hill",
+      "address": "2200 Clement St, San Francisco, CA, 94121",
+      "description": "Songs of Slow Burning Earth follows the lives of Ukrainians during the first two years of Russia’s fullscale invasion. The film captures the everyday resilience and deep personal losses of a country living through war. Through intimate scenes with civilians, children, and aid workers, it reveals how ordinary people endure extraordinary circumstances in the shadow of ongoing violence.\nQ&A with Director Olha Zhurba and Producer Darya Bassel to follow the film.\nFor our Annual Pass Members and Loyalty Card Holders:\nTickets for this film can be acquired in-person at the Box Office with loyalty cards or our Annual CinemaSF passes on the day of the show while supplies last.",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34492397/fe16e2dc-36a5-49a3-b5b7-8a3ac1c558f8.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1170,
+      "endMinutes": 120,
+      "timeLabel": "7:30 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Theater & Dance",
+        "Film & Movies",
+        "Family & Kids"
+      ],
+      "url": "https://ticketing.uswest.veezi.com/purchase/19868?siteToken=d2atbcege5knqsavntt91g1250",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17815241",
+      "title": "The History of Concrete",
+      "venue": "Balboa Theater",
+      "neighborhood": "Potrero Hill",
+      "address": "3630 Balboa St, San Francisco, CA, 94121",
+      "description": "Following the finale of his acclaimed HBO series “How To with John Wilson”, NYC documentarian John Wilson looks to the bedrock of his beloved New York City for inspiration and structure. Concrete, the world's most widely used building material, appears as an ever-present life force, and John sets out to make the definitive documentary on the matter. After attending a workshop on how to write and sell a Hallmark movie, he decides to use the industry-approved Hallmark formula to tell this seemingly drab story and increase his movie’s appeal. But his foundation soon begins to crumble—literally and figuratively—as he struggles to balance artistic freedom with the realities of the modern film industry.\nThis film can be used with loyalty cards or",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34295618/6fbb69a8-81aa-471b-a68d-926c8de0d89e.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1170,
+      "endMinutes": 120,
+      "timeLabel": "7:30 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Theater & Dance",
+        "Film & Movies",
+        "Talks & Workshops"
+      ],
+      "url": "https://ticketing.uswest.veezi.com/purchase/19807?siteToken=52wkfzmjpwjjfpz3ye7tz8wscg",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17714026",
+      "title": "of Montreal, Healing Potpourri",
+      "venue": "Bottom Of The Hill",
+      "neighborhood": "SoMa",
+      "address": "1233 17th Street, San Francisco, CA, 94107",
+      "description": "Thurs\nday October 1\n 2026\n7:30PM\ndoors\n-- music at 8\n:30PM\n21 AND OVER\n$\n30\nin\n advance\n/\n $35\nat the door\n$38.01 in advance [30 face value +8.01 service fee]\nof Montreal\npsychedelic pop, baroque pop\nHealing Potpourri\nPop",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33810144/d3b8c3fb-9841-4157-bf3b-acc227cc1373.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1170,
+      "endMinutes": 120,
+      "timeLabel": "7:30 PM -- 2 AM",
+      "priceLabel": "$30",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://www.bottomofthehill.com/dice/event20261001.html",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17810811",
+      "title": "ATA Open Screening",
+      "venue": "Artists' Television Access",
+      "neighborhood": "Mission",
+      "address": "992 Valencia St., San Francisco, CA, 94110",
+      "description": "Join us for a free program of short films and videos! Artists’ Television Access presents Open Screening, an ongoing series where independent filmmakers can share their work up on our big screen. We welcome short-format film and video (15 min. or less) from all genres, including music videos, animations, narrative short films, documentaries, and experimental work.\n\nOpen Screening is held on the first Thursday of each month. Show starts at 8:00, doors open at 7:30. To submit your work in advance, email openscreening@atasite.org.",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34276249/0f38c7e4-6413-40da-8065-24862c7b9213.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Film & Movies"
+      ],
+      "url": "https://www.atasite.org/",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17334232",
+      "title": "Carbon Leaf",
+      "venue": "Brick & Mortar Music Hall",
+      "neighborhood": "SoMa",
+      "address": "1710 Mission Street, San Francisco, CA, 94103",
+      "description": "Carbon Leaf\nGuitarist Terry Clark, vocalist Barry Privett, bassist Jordan Medas, guitarist Carter Gravatt, and drummer Scott Milstead built up a considerable following and were soon releasing albums through their own label. Meander appeared in 1996, with Shadows in the Banquet Hall and Ether-Electrified Porch Music following in quick succession. In 2001, Carbon Leaf debuted a more mature sound with the album Echo Echo and won a Coca-Cola-sponsored unsigned band contest that landed them a performance on the American Music Awards. By this point, Carbon Leaf was also regularly opening shows for adult alternative-friendly acts like DMB, John Mayer, Guster, and David Gray, and the band documented their frequent and vibrant live shows with the 200",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32007528/01fbb012-b48c-48ce-9ada-81492d2f5a19.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "$38.91",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music",
+        "Food & Drink"
+      ],
+      "url": "https://www.ticketweb.com/event/carbon-leaf-brick-and-mortar-music-hall-tickets/14910553?pl=bnm&REFID=clientsitewp",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17486149",
+      "title": "saint harison",
+      "venue": "Cafe du Nord",
+      "neighborhood": "Bernal Heights",
+      "address": "2170 Market St, San Francisco, CA, 94114",
+      "description": "Live Nation Presentsthe ghosted tour\nsaint harison",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32734606/8aa381d2-dcb3-490b-a4be-4f12e258a8f1.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "$28.30",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music",
+        "Comedy",
+        "Theater & Dance",
+        "Food & Drink"
+      ],
+      "url": "https://www.ticketweb.com/event/saint-harison-presents-the-ghosted-cafe-du-nord-tickets/14989063?pl=cafedunord&REFID=clientsitewp",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "10986676",
+      "title": "Coit Comedy",
+      "venue": "Columbus Cafe",
+      "neighborhood": "North Beach",
+      "address": "562 Green Street, San Francisco, CA, 94133",
+      "description": "Coit Comedy\nThursday, October 1st | Columbus Cafe\n\n\n\n\n\n\nCoit Comedy is a live stand-up comedy show every last Thursday of the month in the secret basement bar of historic Columbus Cafe in North Beach, featuring some of the best comics from the Bay and beyond.\n\nHosted by local comedians Stoyan Angelov and Sean Derum, Coit Comedy features the best comics in the bay and beyond including comedians from Cobbs, SF Punch Line, Vice Land, Comedy Central, Sketch Fest and Don't Tell. The comedy show is in the hidden speakeasy of Columbus Cafe and offers a warm intimate setting.   \n\n Doors open at 7:30PM and the comedy show starts at 8PM. Parking can be hard to come by in North Beach, so if you're driving, you may want to factor in a little extra time",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/9504871/4b88b430-4ba0-430f-a873-a42c277dbbd9.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1200,
+      "endMinutes": 1305,
+      "timeLabel": "8 PM -- 9:45 PM",
+      "priceLabel": "$12",
+      "priceTier": "paid",
+      "categories": [
+        "Comedy"
+      ],
+      "url": "https://dothebay.com/events/weekly/thu/coit-comedy",
+      "linkTier": "listing",
+      "soldOut": false
+    },
+    {
+      "id": "17688497",
+      "title": "Go Tech Yourself",
+      "venue": "Endgames Improv Theater & Bar",
+      "neighborhood": "SoMa",
+      "address": "2965 Mission Street, San Francisco, CA, 94103",
+      "description": "Go Tech Yourself\n@ ETC Prime - 2965 Mission St\nGet ready for a night of unscripted hilarity at “Go Tech Yourself\"! A team of comedians pitch the craziest, absurd, and most unnecessary app ideas provided by the audience that no sane person would ever productize, and show the audience through improv just why it should never hit the market! Join us for this one-of-a-kind improv comedy show where tech meets comedy in the most ridiculous way. Whether you're a tech geek or just love a good laugh, you won’t want to miss this night!",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33700835/341ae2f4-c2d0-41d3-be61-bd677597169f.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Comedy",
+        "Festivals & Fairs",
+        "Food & Drink"
+      ],
+      "url": "https://dothebay.com/events/2026/10/1/go-tech-yourself-tickets",
+      "linkTier": "listing",
+      "soldOut": false
+    },
+    {
+      "id": "17519327",
+      "title": "Los Thuthanaka",
+      "venue": "Great American Music Hall",
+      "neighborhood": "Nob Hill",
+      "address": "859 O'farrell Street, San Francisco, CA, 94109",
+      "description": "",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32896601/a7c8cd24-b12d-4eb5-ab71-cb459fa7fe7a.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "$27.50–$30",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://wl.seetickets.us/event/los-thuthanaka/695983?afflky=GreatAmericanMusicHall",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17869671",
+      "title": "Welcome to the Jungle",
+      "venue": "Monarch",
+      "neighborhood": "SoMa",
+      "address": "101 Sixth St., San Francisco, CA, 94103",
+      "description": "Welcome to the Jungle",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34551054/2574aea1-7b14-49d3-b8cf-38cc9d0f1223.png",
+      "date": "2026-10-01",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "$19.66",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://dothebay.com/events/2026/10/1/welcome-to-the-jungle-tickets",
+      "linkTier": "listing",
+      "soldOut": false
+    },
+    {
+      "id": "17761481",
+      "title": "Miss Hits / Litty Debungus (album release)",
+      "venue": "Rickshaw Stop",
+      "neighborhood": "Financial District",
+      "address": "155 Fell Street, San Francisco, CA, 94102",
+      "description": "",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34046745/c9bb7fde-8a6f-45fa-9aec-fa2d1a6ba16e.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "$15–$20",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://wl.seetickets.us/event/miss-hits-litty-debungus-album-release/702573?afflky=RickshawStop",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17007196",
+      "title": "Soda Blonde",
+      "venue": "The Chapel",
+      "neighborhood": "Mission",
+      "address": "777 Valencia Street, San Francisco, CA, 94110",
+      "description": "",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/30463312/b7528f65-39cf-47a0-940d-878832065ff6.png",
+      "date": "2026-10-01",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "$22–$25",
+      "priceTier": "paid",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://wl.seetickets.us/event/soda-blonde/681807?afflky=TheChapel",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17468851",
+      "title": "Mari Froes",
+      "venue": "The Independent",
+      "neighborhood": "Haight-Ashbury",
+      "address": "628 Divisadero Street, San Francisco, CA, 94117",
+      "description": "Please note - there is a delivery delay set for 2 weeks prior to show.",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32654148/8ff90700-cf3b-4239-847d-b9d5524d35bc.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://www.ticketweb.com/event/mari-froes-the-independent-tickets/14960073?REFERRAL_ID=tmfeedbuyat234705&wt.mc_id=aff_BUYAT_234705&camefrom=CFC_BUYAT_234705",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17536260",
+      "title": "POiSON GiRL FRiEND",
+      "venue": "The Regency Ballroom",
+      "neighborhood": "Nob Hill",
+      "address": "1290 Sutter Street, San Francisco, CA, 94109",
+      "description": "Goldenvoice PresentsUS / MX Tour Autumn 2026\nPOiSON GiRL FRiEND",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32979158/edd07c38-973e-498b-a260-4977662bd8f0.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Concerts & Music",
+        "Theater & Dance"
+      ],
+      "url": "https://www.axs.com/events/1497640/poison-girl-friend-tickets?cid=usaffdostuff",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17861908",
+      "title": "Nexus Party: Official Party of SF/Bay Area Black Art Week",
+      "venue": "Yerba Buena Center for the Arts",
+      "neighborhood": "SoMa",
+      "address": "701 Mission St, San Francisco, CA, 94103",
+      "description": "MoAD and YBCA present THE NEXUS PARTY - the official party of SF/Bay Area Black Art Week and one of the season's most anticipated nights. Join artists, cultural leaders, and art lovers from across the Bay Area for an unforgettable celebration with beats by DJ KREAM and DJ Jihaari. Come ready to dance, connect, and celebrate.\n\nThursday, October 1\n8:00 PM - 11:30 PM\nYerba Buena Center for the Arts\n\n25.\n\nPresented by Museum of the African Diaspora",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34517564/4f636060-763f-4a30-bd47-f9070fce7157.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1200,
+      "endMinutes": 120,
+      "timeLabel": "8 PM -- 2 AM",
+      "priceLabel": "$25",
+      "priceTier": "paid",
+      "categories": [
+        "Theater & Dance",
+        "Concerts & Music",
+        "Art & Exhibits"
+      ],
+      "url": "https://www.moadsf.org/event/moad-ybca-present-the-nexus-party-the-official-party-of-sf-bay-area-black-art-week",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "17772763",
+      "title": "Perfect Blue",
+      "venue": "Roxie Theater",
+      "neighborhood": "SoMa",
+      "address": "3117 16th Street, San Francisco, CA, 94103",
+      "description": "“Who are…you?”\nMima Kirigoe, a former pop idol, makes a bold transition into acting, but her reinvention begins to fracture her sense of identity. As a stalker shadows her and a series of murders unfolds around her, Mima finds herself increasingly unable to distinguish performance from reality—or determine whether another version of herself is taking over.\nSatoshi Kon’s groundbreaking psychological thriller blurs fiction and reality, dreams and delusions, and celebrity and identity into a dizzying hall of mirrors. A landmark of adult animation, Perfect Blue remains as unsettling and hypnotic as ever.\nThis screening is part of a special Black Swan + Perfect Blue double feature presented by Spoke Art Gallery. See Perfect Blue at 8:50 PM on its",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34095054/9ca8cdec-4fdf-4d2a-9815-040ec5d30d09.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1250,
+      "endMinutes": 120,
+      "timeLabel": "8:50 PM -- 2 AM",
+      "priceLabel": "Ticketed",
+      "priceTier": "ticketed",
+      "categories": [
+        "Film & Movies",
+        "Art & Exhibits"
+      ],
+      "url": "https://ticketing.uswest.veezi.com/purchase/21943?siteToken=4m48btf3yavn7xjk5yxk6nc40c",
+      "linkTier": "boxoffice",
+      "soldOut": false
+    },
+    {
+      "id": "17875637",
+      "title": "1984 Vs Fringe!",
+      "venue": "Cat Club",
+      "neighborhood": "SoMa",
+      "address": "1190 Folsom Street, San Francisco, CA, 94103",
+      "description": "Join us for 1st Thursdays at Cat Club!\n1984 Vs Fringe!\n2 Rooms of Music Videos all night long!\nFront Room: 80s + New Wave with DJs:\nDamon [Club Gossip] and Javy L [Mod 80s Disco]\nBack Room: 00s to Current Indie Sleaze/Pop/Rock with Fringe DJs:\nBlondie K + Sub0ctave + Starr Noir\nTempo SF + Djon\n9PM, 21+, Free before 9:30!\n1190 Folsom, San Francisco\nHosted by Randy Maupin\n——\n9pm-Afterhours\nNo Cover All Night!\n——\nTHE CAT CLUB\n1190 Folsom, SF 21+\n(thursdays)\n(more info)",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34581814/2fa7b849-320c-4334-a116-e4e7132dd2da.png",
+      "date": "2026-10-01",
+      "startMinutes": 1260,
+      "endMinutes": 120,
+      "timeLabel": "9 PM -- 2 AM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Community"
+      ],
+      "url": "https://www.sfcatclub.com/calendar/ymp4cekk5sb4y8x-chwt8-3rd9b-ztzra-abpta-7a9be-3m6a8-74c9n-sz9cw-jztgp-ntp9n-nlygf-6j7mm-gfrn9-bgknm-ysm82-fzhm2-krz5d-yzj7d-f4ysm-2d5kp-ebjy4-xazl6-nhzj3",
+      "linkTier": "venue",
+      "soldOut": false
+    },
+    {
+      "id": "fc-102-2026-10-01",
+      "title": "Sadderday: An Emo/Pop-Punk/Screamo Dance Party | SF",
+      "venue": "Pop’s Bar",
+      "neighborhood": "Mission",
+      "address": "2800 24th St, San Francisco, CA 94110",
+      "description": "",
+      "date": "2026-10-01",
+      "startMinutes": 1290,
+      "endMinutes": -1,
+      "timeLabel": "9:30 PM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Theater & Dance"
+      ],
+      "url": "https://www.facebook.com/SadderdaySF/",
+      "linkTier": "listing"
+    },
+    {
+      "id": "17431797",
+      "title": "DJ EARTH ANGEL and friends",
+      "venue": "Make-Out Room",
+      "neighborhood": "Mission",
+      "address": "3225 22nd St., San Francisco, CA, 94110",
+      "description": "",
+      "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32469970/7f2ec8f0-fa81-4022-b551-1ed8d849d46f.jpg",
+      "date": "2026-10-01",
+      "startMinutes": 1320,
+      "endMinutes": 120,
+      "timeLabel": "10 PM -- 2 AM",
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Concerts & Music"
+      ],
+      "url": "https://makeoutroom.com/",
+      "linkTier": "venue",
+      "soldOut": false
+    }
+  ]
+}

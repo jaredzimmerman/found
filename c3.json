@@ -1,0 +1,195 @@
+{
+  "allTypeChips": [
+    {
+      "v": "Art & Exhibits",
+      "text": "Art & Exhibits8"
+    },
+    {
+      "v": "Books",
+      "text": "Books1"
+    },
+    {
+      "v": "Comedy",
+      "text": "Comedy7"
+    },
+    {
+      "v": "Community",
+      "text": "Community15"
+    },
+    {
+      "v": "Concerts & Music",
+      "text": "Concerts & Music40"
+    },
+    {
+      "v": "Family & Kids",
+      "text": "Family & Kids5"
+    },
+    {
+      "v": "Festivals & Fairs",
+      "text": "Festivals & Fairs3"
+    },
+    {
+      "v": "Film & Movies",
+      "text": "Film & Movies13"
+    },
+    {
+      "v": "Food & Drink",
+      "text": "Food & Drink19"
+    },
+    {
+      "v": "Sports & Fitness",
+      "text": "Sports & Fitness3"
+    },
+    {
+      "v": "Talks & Workshops",
+      "text": "Talks & Workshops4"
+    },
+    {
+      "v": "Theater & Dance",
+      "text": "Theater & Dance22"
+    }
+  ],
+  "rareType": {
+    "v": "Books",
+    "text": "Books1",
+    "n": 1
+  },
+  "rowsWithRareType": 1,
+  "deadChips": [
+    {
+      "group": "f-day",
+      "v": "2026-09-29",
+      "text": "tuesday6",
+      "produced": 0
+    },
+    {
+      "group": "f-day",
+      "v": "2026-09-30",
+      "text": "wednesday36",
+      "produced": 0
+    },
+    {
+      "group": "f-price",
+      "v": "free",
+      "text": "Free22",
+      "produced": 0
+    },
+    {
+      "group": "f-price",
+      "v": "paid",
+      "text": "Paid27",
+      "produced": 0
+    },
+    {
+      "group": "f-price",
+      "v": "ticketed",
+      "text": "Ticketed34",
+      "produced": 0
+    },
+    {
+      "group": "f-hood",
+      "v": "Mission",
+      "text": "Mission21",
+      "produced": 0
+    },
+    {
+      "group": "f-hood",
+      "v": "Financial District",
+      "text": "Financial District11",
+      "produced": 0
+    },
+    {
+      "group": "f-hood",
+      "v": "North Beach",
+      "text": "North Beach6",
+      "produced": 0
+    },
+    {
+      "group": "f-hood",
+      "v": "Nob Hill",
+      "text": "Nob Hill6",
+      "produced": 0
+    },
+    {
+      "group": "f-hood",
+      "v": "San Francisco",
+      "text": "San Francisco6",
+      "produced": 0
+    },
+    {
+      "group": "f-hood",
+      "v": "Bernal Heights",
+      "text": "Bernal Heights4",
+      "produced": 0
+    },
+    {
+      "group": "f-hood",
+      "v": "Potrero Hill",
+      "text": "Potrero Hill3",
+      "produced": 0
+    },
+    {
+      "group": "f-hood",
+      "v": "Haight-Ashbury",
+      "text": "Haight-Ashbury3",
+      "produced": 0
+    },
+    {
+      "group": "f-hood",
+      "v": "Presidio",
+      "text": "Presidio2",
+      "produced": 0
+    },
+    {
+      "group": "f-hood",
+      "v": "Western Addition",
+      "text": "Western Addition1",
+      "produced": 0
+    },
+    {
+      "group": "f-hood",
+      "v": "Outer Sunset",
+      "text": "Outer Sunset1",
+      "produced": 0
+    },
+    {
+      "group": "f-hood",
+      "v": "Richmond",
+      "text": "Richmond1",
+      "produced": 0
+    },
+    {
+      "group": "f-hood",
+      "v": "Russian Hill",
+      "text": "Russian Hill1",
+      "produced": 0
+    },
+    {
+      "group": "f-link",
+      "v": "boxoffice",
+      "text": "Box office26",
+      "produced": 0
+    },
+    {
+      "group": "f-link",
+      "v": "listing",
+      "text": "Listing page12",
+      "produced": 0
+    }
+  ],
+  "liveChips": 15,
+  "nonValueChips": [
+    {
+      "group": "f-day",
+      "text": "All90"
+    },
+    {
+      "group": "f-sold",
+      "text": "Hide sold out2"
+    }
+  ],
+  "desktopUntouched": {
+    "panelDisplay": "none",
+    "ariaExpanded": "false"
+  }
+}

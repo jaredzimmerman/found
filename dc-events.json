@@ -1,0 +1,804 @@
+{
+  "generatedAt": "2026-10-03T00:36:48.954Z",
+  "city": "Washington",
+  "tz": "America/New_York",
+  "days": [
+    "2026-10-02",
+    "2026-10-03",
+    "2026-10-04"
+  ],
+  "counts": {
+    "total": 35,
+    "free": 4,
+    "directLinks": 30,
+    "boxOfficeLinks": 0,
+    "aggregatorLinks": 5
+  },
+  "neighborhoods": [
+    {
+      "name": "Downtown",
+      "count": 10
+    },
+    {
+      "name": "Dupont Circle",
+      "count": 9
+    },
+    {
+      "name": "Capitol Hill",
+      "count": 4
+    },
+    {
+      "name": "Columbia Heights",
+      "count": 4
+    },
+    {
+      "name": "Penn Quarter",
+      "count": 3
+    },
+    {
+      "name": "Anacostia",
+      "count": 1
+    },
+    {
+      "name": "Congress Heights",
+      "count": 1
+    },
+    {
+      "name": "H Street",
+      "count": 1
+    },
+    {
+      "name": "Washington",
+      "count": 1
+    },
+    {
+      "name": "Waterfront",
+      "count": 1
+    }
+  ],
+  "events": [
+    {
+      "id": "pop-350330",
+      "title": "Closing Reception and First Friday Open Studios at DC Arts Studios",
+      "description": "Join us",
+      "date": "2026-10-02",
+      "startMinutes": 1080,
+      "endMinutes": 1200,
+      "timeLabel": "6 PM -- 8 PM",
+      "venue": "DC Arts Studios",
+      "neighborhood": "Columbia Heights",
+      "address": "6925 Willow St NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-1c5436d0-3909-498b-b276-9fbf7d4d12a1.jpg",
+      "url": "https://www.dcartsstudios.org/gallery.html",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-350438",
+      "title": "Immigration Film Fest: “Melodies and Meals” Film Screening",
+      "description": "Now in the festival's 13th year, we are bringing you a hybrid film festival with virtual screenings for 29 films via Eventive, and four in-person screenings in Washington, DC the first and second weekends of October. Connect with your DMV community at our opening night screening! Enjoy delicious, locally-made food (included with ticket), and connect with organizations working right now in DC to support, protect, and champion our migrant communities. We'll be screening three films related to the theme of community building through food and music, and how they can transcend boundaries to make connections. Don't miss out on this incredible community event! After the screening, we'll hear from Kamal's filmmaker Nich Perez and local DMV filmmaker Amina Chaudary, along with Hurunnessa (Hurie) Fariad, the subject of Chaudary's short film Her Anthem.",
+      "date": "2026-10-02",
+      "startMinutes": 1080,
+      "endMinutes": 1290,
+      "timeLabel": "6 PM -- 9:30 PM",
+      "venue": "Festival Center",
+      "neighborhood": "Columbia Heights",
+      "address": "1640 Columbia Rd NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-761755f0-db07-4ef3-882a-b869b7d1aaf7.jpg",
+      "url": "https://immigrationfilmfest26.eventive.org/welcome",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Film & Movies"
+      ]
+    },
+    {
+      "id": "pop-348758",
+      "title": "Heart of the Matter",
+      "description": "For 25 years, BEST Kids has believed in the power of one caring adult to help change the course of a young person’s life. This year, we invite you to celebrate that incredible legacy at our 25th Anniversary Heart of the Matter Gala: Celebrating 25 Years of Transforming Lives Through Mentorship. Join us for an inspiring evening overlooking Washington, DC as we Honor the Past, Celebrate the Present, and Inspire the Future. Together, we’ll recognize the mentors, youth, families, partners, donors, and supporters who have helped BEST Kids provide consistent, long-lasting mentorship to young people throughout our community. Guests will enjoy an unforgettable evening featuring dinner, entertainment, a silent auction showcasing artwork created by BEST Kids youth, a live auction, inspiring stories, and opportunities to support our mission. But the Heart of the Matter Gala is more than a celebration—it’s an investment in what comes next. Every ticket purchased, sponsorship secured, and donation made helps BEST Kids continue providing youth with caring mentors, enriching experiences, college and career readiness opportunities, and the support they need to build confidence and thrive. Come celebrate 25 years of impact and help us make the next 25 even more powerful.",
+      "date": "2026-10-02",
+      "startMinutes": 1080,
+      "endMinutes": 1260,
+      "timeLabel": "6 PM -- 9 PM",
+      "venue": "Heart of the Matter Gala – 25th Anniversary Celebration",
+      "neighborhood": "Downtown",
+      "address": "Martin Luther King Jr. Memorial Library Rooftop, 901 G Street NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/08/event-6634457688311962584.jpg",
+      "url": "https://www.bestkids.org/heart-of-the-matter.html",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Family & Kids"
+      ]
+    },
+    {
+      "id": "pop-350526",
+      "title": "Longview Gallery 20th Anniversary Fall Preview",
+      "description": "Art Preview of the Fall 20th Anniversary of Longview Gallery featuring the artwork of Gary Honig – RememberXYZ Studio",
+      "date": "2026-10-02",
+      "startMinutes": 1080,
+      "endMinutes": 1200,
+      "timeLabel": "6 PM -- 8 PM",
+      "venue": "Longview Gallery",
+      "neighborhood": "Downtown",
+      "address": "1234 9th St., NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-7f4edacd-0849-4af4-b72b-8d19fc87fb72.jpg",
+      "url": "https://www.popville.com/events/longview-gallery-20th-anniversary-fall-preview-29059/",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-349578",
+      "title": "Author Talk: John Donnelly — Lifeline",
+      "description": "An inspiring account of how the US government built a start-up development program to fight AIDS called PEPFAR, which saved more than twenty-six million lives and created a new blueprint for results-oriented American foreign aid. In 2002, more than two million Africans died of AIDS. Militaries reported HIV infection rates of more than twenty-five percent. Nearly four in ten pregnant women in some countries were infected. But in 2003, to the surprise of the world, President George W. Bush created PEPFAR, the President’s Emergency Plan for AIDS Relief, which became his signature legacy for doing good in his eight years in office. PEPFAR has saved more than twenty-six million lives, prevented HIV from being transmitted to nearly eight million infants during birth, stabilized governments, and built back economies in Africa. It has been arguably America’s most successful foreign assistance program in history. How did it succeed? Lifeline tells the remarkable fast-paced story of how a small core of Americans and Africans built AIDS treatment programs from scratch in many countries—and how they faced down people who tried to stop them with grit and ingenuity. Based on interviews with more than 200 people—from President Bush and Dr. Anthony Fauci to local physicians and patients in small villages across Africa—Lifeline demonstrates indisputably the essence of American leadership and how America has, and still can, tackle the world’s greatest challenges and be a force for good in the world.w John Donnelly spent more than a decade covering the politics of AIDS and America’s response to the pandemic for The Boston Globe. He lived for several years in South Africa and traveled the continent of Africa for The Globe immediately following PEPFAR’s launch. After his career in journalism, he became an adviser to the President of the World Bank and received a Bellagio residency from the Rockefeller Foundation to write this book. He lives in Chevy Chase, Maryland. Donnelly will be joined in conversation with Sheryl Gay Stolberg, a Washington Correspondent for The New York Times, covering the intersection of health policy and politics. In nearly 30 years at The Times, she has also been a Congressional Correspondent, a White House Correspondent, a national political features writer, and a National Correspondent covering the mid-Atlantic region. Stolberg has written about HIV/ AIDS since the early 1990s, and covered PEPFAR since its creation. Stolberg is currently working on a history of public health and politics, to be published by Random House.",
+      "date": "2026-10-02",
+      "startMinutes": 1140,
+      "endMinutes": 1200,
+      "timeLabel": "7 PM -- 8 PM",
+      "venue": "Politics and Prose",
+      "neighborhood": "Dupont Circle",
+      "address": "5015 Connecticut Ave NW",
+      "image": null,
+      "url": "https://politics-prose.com/john-donnelly10226",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-349579",
+      "title": "Author Talk: Kevin Davies — Curved Air",
+      "description": "How sickle cell anemia led the quest to edit the human genome while patients endured decades of racial discrimination and medical neglect. In December 1904, Walter Clement Noel, a dental student from Grenada, was admitted to a Chicago hospital with fever, jaundiced eyes, and ulcers covering his legs. When doctors examined his blood under a microscope, they were puzzled by his sickle-shaped cells. His case became enshrined in the annals of medicine as the first report of sickle cell anemia, a fatal disease that starves the body’s organs of oxygen, causing excruciating pain. In Curved Air, Kevin Davies chronicles the story of sickle cell anemia from its ancient origins in Sub-Saharan Africa to its central role in the development of human genome editing, revealing how one of the world’s most famous genetic diseases became its most neglected. Sickle cell anemia was the first disease to be attributed to a molecular anomaly and the first to be diagnosed prenatally with DNA testing. Yet for decades, patients, many of whom are Black, were denied lifesaving care by health providers quick to dismiss them as drug seekers. It was only after a group of researchers in the US and Europe partnered with biotech companies, physicians, and their patients that hope arrived in the form of a revolutionary gene-editing therapy: CRISPR. A story of failure and breakthroughs, heartbreak and hope, Curved Air is a celebration of the scientists, physicians, and patients who are finally catching a glimpse of the cure they’ve waited generations to see. Kevin Davies is the Executive Editor of the CRISPR Journal and the founding editor of Nature Genetics. A recipient of the Guggenheim Fellowship, he is the author or coauthor of Editing Humanity, Cracking the Genome, The $1,000 Genome, and DNA.",
+      "date": "2026-10-02",
+      "startMinutes": 1140,
+      "endMinutes": 1200,
+      "timeLabel": "7 PM -- 8 PM",
+      "venue": "Politics and Prose: The Wharf",
+      "neighborhood": "Congress Heights",
+      "address": "610 Water St SW",
+      "image": null,
+      "url": "https://politics-prose.com/kevin-davies-100226",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-349567",
+      "title": "#OpenKingNight at PubKey DC – A Drag King Open Stage Night",
+      "description": "Open King Night returns to PubKey DC on",
+      "date": "2026-10-02",
+      "startMinutes": 1140,
+      "endMinutes": 1320,
+      "timeLabel": "7 PM -- 10 PM",
+      "venue": "Pubkey DC",
+      "neighborhood": "Penn Quarter",
+      "address": "406 7th St NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-6647883988523576441.jpg",
+      "url": "https://luma.com/9mz2lypr",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-350597",
+      "title": "20s & 30s Singles Happy Hour",
+      "description": "Join us for a a fun singles happy hour for young professionals in their 20's & 30's.",
+      "date": "2026-10-02",
+      "startMinutes": 1140,
+      "endMinutes": 1260,
+      "timeLabel": "7 PM -- 9 PM",
+      "venue": "Royal Sands Social Club",
+      "neighborhood": "Capitol Hill",
+      "address": "26 N St SE, Washington, DC 20003",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-9bdf4228-ce4a-4514-9079-cc6e37910349.jpg",
+      "url": "https://www.eventbrite.com/e/dc-20s-30s-singles-happy-hour-tickets-2000528997083?aff=ebdsoporgprofile",
+      "linkTier": "listing",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-349577",
+      "title": "Author Talk: Hernan Diaz — Ply",
+      "description": "Centuries from now, at the dawn of a historical epoch filled with both uncertainty and promise, an orphan is adrift in a city on the brink of a great transformation. The state has been dismantled, and humans are reinventing social bonds and learning new ways to coexist with nature. Following a childhood defined by loss, survival, and found family, the orphan grows up to become a “pincher,” someone who steals electricity from the grid to sell it on the black market. It’s a high-risk life, one that brings her into a rich art and music scene where she powers underground concerts. It also leads her to a colossal scientific invention that could change the very fabric of reality. After rewriting America’s past with his two previous novels, Hernan Diaz defies expectations with his third and gives us a breathtaking glimpse into the future. A major achievement from a major contemporary writer, Ply questions the place of technology in the American experiment with a plot that grabs both heart and mind. It is a novel of ideas built from a story of people. Combining Dickensian odyssey, family drama, and scientific thriller, Ply poignantly charts the tenuous boundaries of selfhood and the distance that inevitably stands between us and those we love. Hernan Diaz is the Pulitzer Prize–winning and New York Times bestselling author of Trust, one of The New York Times’s 100 Best Books of the Century. His previous novel, In the Distance, was a finalist for the Pulitzer Prize and the PEN/Faulkner Award. He has received the John Updike Award from the American Academy of Arts and Letters, a Guggenheim Fellowship, the Kirkus Prize, a Whiting Award, and a fellowship from the New York Public Library’s Cullman Center. His work has been translated into thirty-seven languages.",
+      "date": "2026-10-02",
+      "startMinutes": 1140,
+      "endMinutes": 1200,
+      "timeLabel": "7 PM -- 8 PM",
+      "venue": "St. Paul's Lutheran Church",
+      "neighborhood": "Dupont Circle",
+      "address": "4900 Connecticut Ave NW",
+      "image": null,
+      "url": "https://politics-prose.com/hernan-diaz-100226",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-350583",
+      "title": "Can I Kick It? featuring The Running Man",
+      "description": "THE GAME IS ON Join us this Fri, 10.3.26, for a special edition of CAN I KICK IT? featuring the ’80s OG sci-fi action classic THE RUNNING MAN, starring Arnold Schwarzenegger, at Union Station DJ 2-Tone Jones will be scoring the film live giving it a completely new soundtrack We’re teaming up with AMERICA THE GAME, a pop-up art exhibition, produced by @alldaymurals1 and @jab.arts, which examines how competition, play, and rivalry shape American culture—from sports and politics to fashion. Before the film explore works from over 30 regional and national artists whose work spans the genres of street art, photography, and sculpture So what better film to bring into the mix than THE RUNNING MAN—a dystopian game where spectacle, competition, media, and survival all collide Union Station 50 Massachusetts Ave NE Mezzanine Level",
+      "date": "2026-10-02",
+      "startMinutes": 1140,
+      "endMinutes": 1320,
+      "timeLabel": "7 PM -- 10 PM",
+      "venue": "Union Station DC",
+      "neighborhood": "Downtown",
+      "address": "50 Massachusetts Ave NE",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-220f463d-9a07-4e0b-94ab-eb2b9a253536.jpg",
+      "url": "https://www.eventbrite.com/e/can-i-kick-it-x-america-the-game-present-the-running-man-tickets-2002403419531?aff=oddtdtcreator",
+      "linkTier": "listing",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Sports & Fitness"
+      ]
+    },
+    {
+      "id": "pop-348421",
+      "title": "The Tumblers w/ Moongold",
+      "description": null,
+      "date": "2026-10-02",
+      "startMinutes": 1170,
+      "endMinutes": 1380,
+      "timeLabel": "7:30 PM -- 11 PM",
+      "venue": "The Pocket",
+      "neighborhood": "Capitol Hill",
+      "address": "1508 N Capitol St NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/08/event-6627975077919074536.jpg",
+      "url": "https://app.opendate.io/e/the-tumblers-w-moongold-october-02-2026-742893",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-347765",
+      "title": "The Sky Tonight; Live Planetarium Show",
+      "description": "Are you curious about the night sky? Come to the planetarium at the Museum in DC for a live, guided tour of what you can see after sunset. The facilitator will answer questions and customize the program based on audience interests. This planetarium show is free to attend and runs 25 minutes. Assistive listening devices are available upon request. The Sky Tonight generally takes place on the first and third Saturdays of each month. “The Sky Tonight” and Museum admission are free. Reserve Timed-entry passes at airandspace.si.edu.",
+      "date": "2026-10-03",
+      "startMinutes": 630,
+      "endMinutes": 660,
+      "timeLabel": "10:30 AM -- 11 AM",
+      "venue": "Smithsonian's National Air and Space Museum",
+      "neighborhood": "Washington",
+      "address": "650 Jefferson Drive SW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/07/event-6613494549022079917.jpg",
+      "url": "https://airandspace.si.edu/whats-on/events/sky-tonight-live-planetarium-show-78?utm_medium=cal&utm_source=pville&utm_campaign=liveplanet-100326",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-350086",
+      "title": "Fall Craft Circle",
+      "description": "Join us on the lawn or at the picnic tables to enjoy crafting outside with a community of creative folks. All crafts or even vaguely creative pursuits are welcome — knitting, crochet, journaling, drawing, tarot, whatever you’re into. If you’d like to learn how to knit, our own deputy farm manager will be doing a live demo to help you get started. We’ll have iced tea and snacks available, and you’re welcome to bring baked goods or drinks to share. We’ll also have common carpentry and other power tools out, plus drop cloths and related supplies if you want to work on something a little bigger or messier. Just come by, spread out, and make something outside with us.",
+      "date": "2026-10-03",
+      "startMinutes": 660,
+      "endMinutes": 840,
+      "timeLabel": "11 AM -- 2 PM",
+      "venue": "Edgewood Community Farm in Northeast D.C.",
+      "neighborhood": "Downtown",
+      "address": "2304 2nd Street NE",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-44fea9fe-3a70-4c32-8ae4-66fc1ebc8667.jpg",
+      "url": "https://www.zeffy.com/en-US/ticketing/fall-craft-circle",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Food & Drink",
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-350506",
+      "title": "Union Market Ace Grand Opening!",
+      "description": "Is officially open, and we’re celebrating! Join us",
+      "date": "2026-10-03",
+      "startMinutes": 660,
+      "endMinutes": 840,
+      "timeLabel": "11 AM -- 2 PM",
+      "venue": "Union Market Ace Hardware",
+      "neighborhood": "Downtown",
+      "address": "1234 3RD ST NE",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-a3350541-3a3a-4b9a-b2fc-103f5c91f9db.jpg",
+      "url": "https://www.eventbrite.com/e/union-market-ace-grand-opening-celebration-tickets-1999406026247?aff=oddtdtcreator",
+      "linkTier": "listing",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Festivals & Fairs"
+      ]
+    },
+    {
+      "id": "pop-349908",
+      "title": "Family Workshop: Haunted Learning Lab",
+      "description": "Witches and ghosts and fairies, oh my! In this family workshop, learn about supernatural characters in Shakespeare’s plays. Then, gather around a cauldron and create a spooky scene from Macbeth. Attendance is free with a recommended $10 donation. There are two sessions available with these recommended ages: 11:30am – 12:30pm | recommended",
+      "date": "2026-10-03",
+      "startMinutes": 690,
+      "endMinutes": 840,
+      "timeLabel": "11:30 AM -- 2 PM",
+      "venue": "Folger Shakespeare Library",
+      "neighborhood": "Capitol Hill",
+      "address": "201 East Capitol Street, SE",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-6653827434321320396.jpg",
+      "url": "https://www.folger.edu/whats-on/family-workshop-haunted-learning-lab/",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Family & Kids",
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-350773",
+      "title": "Observe the Sun",
+      "description": "Become an astronomer and observe the Sun safely with a filtered telescope. Join us outside the Museum at the corner of 7th Street and Independence Avenue, near the silver Delta Solar sculpture, to view a variety of features on the Sun. Knowledgeable staff will be there to answer questions and guide observing. No reservations are necessary to participate in solar observing outside. This program generally takes place on Fridays and Saturdays. If weather or other conditions do not permit observing (clouds, smoke, extreme temperatures), hands-on astronomy activities will be offered inside the Museum instead. Ask the Welcome Center staff where to find the astronomy activities. Note: Free timed-entry passes are required to enter the Museum in DC. Sponsored by: Thomas W. Haas Foundation, Otto Haas Charitable Trust, The Waterman Trust, and Wyncote Foundation",
+      "date": "2026-10-03",
+      "startMinutes": 720,
+      "endMinutes": 900,
+      "timeLabel": "12 PM -- 3 PM",
+      "venue": "National Air and Space Museum",
+      "neighborhood": "Penn Quarter",
+      "address": "7th Street and Independence Ave",
+      "image": "https://www.popville.com/wp-content/uploads/2026/10/event-4637b4fe-8cbf-4af7-b67f-07a18eee22d9.jpg",
+      "url": "https://airandspace.si.edu/whats-on/events/observe-sun-93?utm_medium=cal&utm_source=pville&utm_campaign=deltasolar-oct26",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Art & Exhibits",
+        "Comedy"
+      ]
+    },
+    {
+      "id": "pop-350131",
+      "title": "Tubman Elementary Homecoming",
+      "description": "After two long years away, Tubman Elementary is back in its home with a beautiful newly-renovated building, and is holding its first ever homecoming festival to celebrate! It will feature food, fun, games, tours of the new building, and deep look at the key role the school has played throughout DC's history. Open to all!",
+      "date": "2026-10-03",
+      "startMinutes": 720,
+      "endMinutes": 900,
+      "timeLabel": "12 PM -- 3 PM",
+      "venue": "Tubman Elementary School",
+      "neighborhood": "Dupont Circle",
+      "address": "3101 13th Street NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-024ba37b-f8ec-4c79-867d-c42d5831b0c3.jpg",
+      "url": "https://www.teamtubman.com/",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Festivals & Fairs",
+        "Food & Drink"
+      ]
+    },
+    {
+      "id": "pop-349580",
+      "title": "Author Talk: Ruth Margalit — In the Belly of the Whale",
+      "description": "10 portraits of Israelis from all backgrounds, depicting the war-torn landscape of recent Israeli history: complicated, polarized, lively, argumentative, and—increasingly—adrift. Renowned journalist Ruth Margalit revisits 10 profiles of Israeli politicians, cultural figures, and iconoclasts spanning a decade of her reporting for The New Yorker and The New York Times Magazine to create a powerful mosaic of the clashing forces that have led to Israel’s current state. To live in Israel today, Margalit writes, is to be either a whale or a Jonah—trying to make do in the belly of the whale. The profiles in this collection represent both: outsiders trying to make a life in a system designed against them, and insiders hatching plans and amassing power all while riding the twin waves of populism and jingoism. Returning to these profiles from her current reality as a writer and mother living in Tel Aviv at a time of war, Margalit reexamines the texts in light of a transformed society and self, adding new updates and insights to journalistic portraits she has created over the course of a dozen years. Incorporating perspectives of Israelis from all strata of society—Jews, Arabs, activists, artists, politicians, and academics alike—Margalit stitches an enlightening patchwork to help readers better understand the seemingly inscrutable politics of a nation in which so many have a deep and abiding interest. Ruth Margalit is a Tel Aviv-based journalist and a contributing writer for the New York Times Magazine. Her writing regularly appears in the pages of The New Yorker, where she was a member of the editorial staff, and her book reviews and essays are frequently featured in the New York Review of Books. She has also written for the New York Times Book Review, the New Republic, Slate, Bookforum, the Columbia Journalism Review, Haaretz, and elsewhere. She is a graduate of Tel Aviv University and has a master’s degree from Columbia University’s School of Journalism. Raised in Jerusalem, she lived in New York between 2010-2019, before moving back to Israel with her family. She is the author of a children’s book in Hebrew (2025). Margalit will be in conversation with Celeste Marcus, the executive editor of Liberties: A Journal of Culture and Politics, which she helped to found. Her biography of Chaim Soutine was published in October, 2025. She lives in Washington, DC.",
+      "date": "2026-10-03",
+      "startMinutes": 780,
+      "endMinutes": 840,
+      "timeLabel": "1 PM -- 2 PM",
+      "venue": "Politics and Prose",
+      "neighborhood": "Dupont Circle",
+      "address": "5015 Connecticut Ave NW",
+      "image": null,
+      "url": "https://politics-prose.com/ruth-margalit-100326",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-348348",
+      "title": "Élisabeth Pion presented by Washington Performing Arts",
+      "description": "Named the Gold Laureate and Audience Choice Award winner at the 2025 Honens International Piano Competition in Canada, 29-year-old pianist Élisabeth Pion has appeared on international stages as a recitalist, chamber musician, and guest artist. She continues to earn acclaim for her technical precision, expressive range, and deep engagement with her repertoire. In her Washington Performing Arts debut, Pion presents a program featuring works by Schubert arranged by Liszt, Brahams, and Chopin.",
+      "date": "2026-10-03",
+      "startMinutes": 840,
+      "endMinutes": 1020,
+      "timeLabel": "2 PM -- 5 PM",
+      "venue": "Hopkins Bloomberg Center Theatre",
+      "neighborhood": "Downtown",
+      "address": "555 Pennsylvania Ave NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/08/event-6625527246318854800.jpg",
+      "url": "https://www.washingtonperformingarts.org/event/elisabeth-pion/",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-349581",
+      "title": "Author Talk: Christopher Freeburg — Soul",
+      "description": "A passionate and illuminating account of soul, the hard-won wisdom shepherded by Black people throughout generations How did enslaved Africans turn America’s infamous failure into the greatest moral occasion of modern Western life? In this book, Christopher Freeburg answers that question with one word: soul. It was soul, Freeburg believes, which drove Black individuals and communities, grappling with horrific strife, to reimagine American life and equality in earnest. Black cultural life contains a central and significant theme—a soul, or form of life—expressed in a variety of musical, religious, and political forms. Through the work and words of figures ranging from the poet Phillis Wheatley to President Barack Obama and musician Nina Simone to disco owner Jewel Thais-Williams, Freeburg shows how Black communities leaned time and again on soul and its four pillars: resonance, revelation, resilience, and transcendence. It is soul, what Freeburg calls a beautiful transaction between individual and community across time and place, that has allowed Black people over generations to transform feelings of defeat and alienation into moral courage and shared belonging. Christopher Freeburg is the Presidential Humanities and Social Sciences Chair in English at the University of Illinois, Urbana-Champaign. His most recent book was Counterlife: Slavery after Resistance and Social Death. Freeburg will be in conversation with Tamika Smith.",
+      "date": "2026-10-03",
+      "startMinutes": 900,
+      "endMinutes": 960,
+      "timeLabel": "3 PM -- 4 PM",
+      "venue": "Politics and Prose",
+      "neighborhood": "Dupont Circle",
+      "address": "5015 Connecticut Ave NW",
+      "image": null,
+      "url": "https://politics-prose.com/christopher-freeburg-100326",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-350413",
+      "title": "Drop-In Chess at Chevy Chase Neigborhood Library",
+      "description": "Love chess or want to learn? Stop by the Chevy Chase Neigborhood Library for a relaxed afternoon of chess, conversation, and friendly competition. All ages and skill levels welcome! Come on your own or bring a friend. Chess boards provided. This program is sponsored by Friends of the Library of Chevy Chase, DC.",
+      "date": "2026-10-03",
+      "startMinutes": 960,
+      "endMinutes": 1020,
+      "timeLabel": "4 PM -- 5 PM",
+      "venue": "Chevy Chase Neighborhood Library, DCPL",
+      "neighborhood": "Dupont Circle",
+      "address": "5625 Connecticut Ave, NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-e9864c6e-b997-4d3c-9b7d-8f4aeb96e63e.jpg",
+      "url": "https://www.popville.com/events/drop-in-chess-at-chevy-chase-neigborhood-library-28964/",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-349582",
+      "title": "Author Talk: Sarah Ignatius — The Kaleidoscope of Destiny",
+      "description": "It’s 1915. War rages in Europe while Armenians in the Ottoman Empire find themselves unfairly blamed for a major military defeat. Cooped up at home, fourteen-year-old Arakel tries to ignore rumors of arrests and beatings of Armenians by focusing on the journey with his two best friends, one Turkish and the other Armenian, on the Silk Road to China in two years, after high school, certain war will be over by then. His life is torn apart when Turkish officials order nearly every Armenian into exile in the desert. Tormented by armed guards, Arakel doesn’t grasp what’s happening until they strip his family of food, water, and their meagre possessions and force them across the Euphrates River where bloated corpses float by. He has crossed into the land of the dead. In a desperate attempt to survive, he must reach out to people of different faiths and backgrounds–Bedouins, Kurds, Arab camel drivers, Turks, Germans, and even a wandering dervish, people he considers enemies, but can he trust them? In a barbaric world, he confronts what lies deep within the human heart. With an elegance reaffirming our collective humanity, The Kaleidoscope of Destiny reveals the courage, hope, and ingenuity to survive the darkest of times during an overlooked part of history and will resonate in today’s challenges. Before publishing her debut novel, The Kaleidoscope of Destiny, Sarah Ignatius worked for many years as a human rights lawyer and as a nonprofit executive director. She also taught immigration and asylum law at Boston College Law School for several years and is the co-author of Immigration Law and the Family. Previously, she authored a detailed report on the U.S. asylum system for Harvard Law School’s National Asylum Study Project, and her legal articles have appeared in the Harvard Human Rights Journal, Georgetown Immigration Law Journal, Benders Immigration Bulletin, and Immigration Briefings. She has received recognition from the New England Society of Children’s Books Writers & Illustrators and the National League of American Pen Women as well as Glimmer Train, and was selected as a Somerville Arts Council Literature Artist Fellow. She graduated from Stanford University and Georgetown University Law Center. She is half-Armenian and lives in Massachusetts with her family. Ignatius will be joined in conversation with David Ignatius, a prize-winning columnist for the Washington Post and has been covering the Middle East and the CIA for four decades. He has written several New York Times bestsellers. He lives in Washington, DC.",
+      "date": "2026-10-03",
+      "startMinutes": 1020,
+      "endMinutes": 1080,
+      "timeLabel": "5 PM -- 6 PM",
+      "venue": "Politics and Prose",
+      "neighborhood": "Dupont Circle",
+      "address": "5015 Connecticut Ave NW",
+      "image": null,
+      "url": "https://politics-prose.com/sarah-ignatius-100326",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-349583",
+      "title": "Author Talk: Shara McCallum — BEHOLD",
+      "description": "Born of the poet’s longstanding love of visual art, especially painting, Behold examines why we love what we love, and how we see (and are seen) by art. When we say we “saw” something, McCallum asks, what is it that we saw–outside of us, and within? Over two years spent working on this book, McCallum traveled to museums in the U.S. and abroad with the explicit goal of standing before works of art created by contemporary Caribbean, Black, and women artists. The resulting collection works to untangle what it means to locate oneself within the frame–to imagine belonging by entering the scene. Behold begins as a dialogue, a call and response traversing the territory McCallum is known for: history, interiority, identity, and the ways bodies present themselves in the world. These poems explore fulfillment and connection, the labor of seeking, the ache of loss, and the histories carried within the self. They are meditations on the existence of place within us, the way it is seeded within, and seeds us. From Jamaica and born to a Jamaican father and Venezuelan mother, Shara McCallum is the author of seven books of poetry, published in the US & UK, including Behold, forthcoming in 2026. Awards for her work include a Guggenheim Fellowship, Musgrave Medal, NEA Fellowship, Hurston/Wright Legacy Award for No Ruined Stone, OCM Bocas Caribbean Poetry Prize for Madwoman, Agnes Lynch Starrett Prize for The Water Between Us, among others. McCallum teaches at Penn State University and served as the Penn State Laureate from 2021-2022. McCallum will be in conversation with Chet’la Sebree, the author of the debut essay collection Turn (W)here: A Geography of Home, forthcoming from The Dial Press on May 5, 2026. She is also the author of three poetry collections: Blue Opening (Los Angeles Times Book Prize finalist, Lambda Literary Bisexual Poetry Award finalist, and longlisted for the PEN/Voelcker Award for Poetry Collection); Field Study (winner of the James Laughlin Award from the Academy of American Poets); and Mistress (New Issues Poetry Prize Winner and NAACP Image Award for Outstanding Literary Work-Poetry finalist). She is an assistant professor of English at the George Washington University and teaches in Randolph College’s Low-Residency MFA in Creative Writing Program.",
+      "date": "2026-10-03",
+      "startMinutes": 1080,
+      "endMinutes": 1140,
+      "timeLabel": "6 PM -- 7 PM",
+      "venue": "Politics and Prose: Union Market",
+      "neighborhood": "Downtown",
+      "address": "1324 4th St NE",
+      "image": null,
+      "url": "https://politics-prose.com/shara-mccallum100326",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-350264",
+      "title": "March On!: New Orleans’ National Impact",
+      "description": "Experience the sound, spirit, and enduring influence of New Orleans through live brass music, the tradition of the Second Line, and a remarkable conversation with three families that helped shape the city—and America. Marc Morial, Mary Landrieu, Mitch Landrieu, and Tim Francis come together for an intimate conversation about New Orleans’ often-overlooked influence on American democracy and their families’ civil rights leadership and legacy. Crush Funk Brass Band brings the sounds and spirit of New Orleans into the room through live music and a special presentation on the Second Line—a joyful tradition of resilience, remembrance, and community that reflects the same courage and collective action at the heart of these families’ legacies. Join us at the Atlas Performing Arts Center for an unforgettable evening celebrating the many ways New Orleans has moved America forward. This event is a part of March On! Festival 2026: 250 Years of Democracy, The Unfinished Story. Check out marchonfest.org to explore other festival events.",
+      "date": "2026-10-03",
+      "startMinutes": 1140,
+      "endMinutes": 1260,
+      "timeLabel": "7 PM -- 9 PM",
+      "venue": "Atlas Performing Arts Center",
+      "neighborhood": "H Street",
+      "address": "1333 H St NE",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-6660074992873595462.jpg",
+      "url": "https://www.atlasarts.org/events/march-on/",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Festivals & Fairs",
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-350440",
+      "title": "Immigration Film Fest: “The Families We Build” Screening",
+      "description": "Now in the festival's 13th year, we are bringing you a hybrid film festival with virtual screenings",
+      "date": "2026-10-03",
+      "startMinutes": 1140,
+      "endMinutes": 1290,
+      "timeLabel": "7 PM -- 9:30 PM",
+      "venue": "Festival Center",
+      "neighborhood": "Columbia Heights",
+      "address": "1640 Columbia Rd NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-288d662c-bed3-4e4a-a257-e532ef7a24ed.jpg",
+      "url": "https://immigrationfilmfest26.eventive.org/welcome",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Film & Movies"
+      ]
+    },
+    {
+      "id": "pop-349573",
+      "title": "Tinkerfest at National Children’s Museum",
+      "description": "A weekend made for curious hands and big ideas! On October 4 we’re hosting our first-ever Tinkerfest, a celebration of hands-on learning and discovery through trial-and-error, experimentation, and curiosity. Enjoy a full day of immersive programs, STEAM showcases, and activities across the Museum and out on Woodrow Wilson Plaza alongside partners like Spark!Lab, Spy Museum, National Building Museum, and General Motors. So get ready to get curious and learn more about Tinkerfest at our website! October 4th outdoor activations are free and open to the public. Programming inside of the Museum requires general Museum admission. Can’t make October 4? We’ll be hosting a special Tinkerfest preview on October 3 featuring many of our pop-up programs throughout the Museum floor.",
+      "date": "2026-10-04",
+      "startMinutes": 570,
+      "endMinutes": 990,
+      "timeLabel": "9:30 AM -- 4:30 PM",
+      "venue": "National Children's Museum",
+      "neighborhood": "Waterfront",
+      "address": "1300 Pennsylvania Ave NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-6647924794424923546.jpg",
+      "url": "https://nationalchildrensmuseum.org/explore/events/tinkerfest?utm_source=popville&utm_medium=referral&utm_campaign=tinkerfest&utm_id=listing",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Art & Exhibits",
+        "Family & Kids"
+      ]
+    },
+    {
+      "id": "pop-350657",
+      "title": "Patchwork DC Yoga Fundraiser!",
+      "description": "Join us for a Sunday morning yoga class generously hosted by @withfranyoga to raise funds for the new Patchwork makers' space. All levels welcome. Proceeds go to fund Patchwork's wish list and other community resources we offer. Located steps away from the Dupont Flea Market to enjoy before or afterwards.",
+      "date": "2026-10-04",
+      "startMinutes": 630,
+      "endMinutes": 690,
+      "timeLabel": "10:30 AM -- 11:30 AM",
+      "venue": "Patchwork DC",
+      "neighborhood": "Penn Quarter",
+      "address": "1506 19th St NW, 3rd Flr",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-7b5e086f-494d-4f7d-a3ed-aec982a5bf7a.jpg",
+      "url": "https://www.eventbrite.com/e/yoga-fundraiser-tickets-1999950620142",
+      "linkTier": "listing",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Sports & Fitness",
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-349255",
+      "title": "Let the Cards Lead You Inward: An Intuitive Art Experience",
+      "description": "Join this creative retreat where intuitive card reading, soothing sound, and the magic of collage weave together to help you reconnect with yourself. You’ll make a unique oracle card that serves as an empowering catalyst, full of witchy/Halloween vibes, guided by mixed-media artist Ariana R-G. Throughout the class, you’ll be guided through meditative activities, creative expression, and a restorative sound bath from my collaborator Phim Her (Tarot Girl Era), all designed to help you tune into your intuition and express your intentions in a tangible form.",
+      "date": "2026-10-04",
+      "startMinutes": 660,
+      "endMinutes": 810,
+      "timeLabel": "11 AM -- 1:30 PM",
+      "venue": "Merry Pin",
+      "neighborhood": "Columbia Heights",
+      "address": "7350 Georgia Ave NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-6642706312423424442.jpg",
+      "url": "https://www.merrypindc.com/product/crafted-dialogues-ornaments-trans-rights-with-rachel-campbell/UTMNV2YCO6S7IGM6WNFHJ42K",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-349964",
+      "title": "Yolks on You! Daytime Burlesque and Variety",
+      "description": "Join veteran Ringling Bros. and Barnum and Bailey clown Jim Dandy and award-winning burlesque performer Delilah Dentata for a daytime burlesque and variety party that celebrates the funniest, strangest, and most delightful performers they can find. Over the years, we’ve welcomed burlesque, clown, live music, flow arts, drag, mime, pole, puppets, and a few things we still don’t quite know how to describe… and we're bringing you another unique cast to kick off the beginning of October. Settle in with the DC Comedy Loft's rotating lineup of beers, mixed drinks, and menu while you marvel at the cast’s phenomenal (and occasionally baffling) talents.",
+      "date": "2026-10-04",
+      "startMinutes": 720,
+      "endMinutes": 930,
+      "timeLabel": "12 PM -- 3:30 PM",
+      "venue": "DC Comedy Loft",
+      "neighborhood": "Anacostia",
+      "address": "1523 22nd St NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-a53657bc-9da8-43a7-bfe6-2c78163037ac.jpg",
+      "url": "https://bit.ly/YolksOct2026_Popville",
+      "linkTier": "listing",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Comedy"
+      ]
+    },
+    {
+      "id": "pop-349973",
+      "title": "Kanpai to Sake Day in DC",
+      "description": "Join D.C. Sake cō in celebration of World Sake Day for",
+      "date": "2026-10-04",
+      "startMinutes": 720,
+      "endMinutes": 960,
+      "timeLabel": "12 PM -- 4 PM",
+      "venue": "Love, Makoto",
+      "neighborhood": "Downtown",
+      "address": "200 Massachusetts Ave NW Ste 150",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-fad24308-1117-4550-bdb1-bb2f87062b32.jpg",
+      "url": "https://dcsake.com/pages/5th-annual-kanpai-to-sake-day-in-dc",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-349584",
+      "title": "Author Talk:Sally Hayden — This Is Also a Love Story",
+      "description": "An acclaimed reporter takes us on an unforgettable journey, capturing the human capacity for love and connection against all odds. We live in an era defined by crisis—whether it be war and displacement, climate collapse, or growing inequality, and how the powerful profit from violence and exploitation. Celebrated foreign correspondent Sally Hayden has spent her career on the frontlines, uncovering some of the darkest moments of our time. Yet even in the face of unimaginable adversity, she’s witnessed the incredible goodness of regular people. In This Is Also a Love Story, Hayden reexamines catastrophe through the love stories she has come across. She introduces us to a mother in northeast Nigeria who risks everything to save her daughter from forced marriage to Boko Haram militants, and to a group of Syrian women who have tirelessly searched for their missing spouses and children, while launching a call for justice. We meet a couple separated by the Russian invasion of Ukraine and read letters from the bereaved to the dead, still being written over a decade after the tsunami that devastated Japan. Through these stories, which crisscross the globe, from Uganda to Lebanon, Ghana, Rwanda and Iraq, she challenges us to reconsider what it means to be alive on this planet today. What if news was recounted through the prism of the actions and decisions people take for those they love? Would it become harder to dehumanize those who seem different to us? This Is Also a Love Story dares us to recognize how innate generosity and self-sacrifice can be found in even the most difficult of times, and—as a result—to question what might be needed to create a better world. Sally Hayden is an Irish journalist focused on migration, conflict, and humanitarian crises. Sally’s work has been featured by The New York Times, the Irish Times, The Washington Post, Financial Times, The Guardian, CNN International, Al Jazeera, Time, BBC, and other outlets across the world. Sally’s first book My Fourth Time, We Drowned was the winner of the Orwell Prize and the Irish Book of the Year, and was a finalist for the Baillie Gifford Prize and the New York Public Library’s Helene Bernstein Book Award for excellence in journalism. Hayden will be in conversation with James Palmer. Palmer is a deputy editor at Foreign Policy and writes FP’s weekly China Brief newsletter. Palmer is the author of The Bloody White Baron: The Extraordinary Story of the Russian Nobleman Who Became the Last Khan of Mongolia and The Death of Mao: The Tangshan Earthquake and the Birth of the New China. He won the Shiva Naipaul prize for travel writing in 2003.",
+      "date": "2026-10-04",
+      "startMinutes": 900,
+      "endMinutes": 960,
+      "timeLabel": "3 PM -- 4 PM",
+      "venue": "Politics and Prose",
+      "neighborhood": "Dupont Circle",
+      "address": "5015 Connecticut Ave NW",
+      "image": null,
+      "url": "https://politics-prose.com/sally-hayden-100426",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-349836",
+      "title": "Vocal Arts Presents: An Evening of American Song",
+      "description": "The evening ranges freely across the American songbook, threading together the theater music of Sondheim, Rodgers and Hart, Bernstein, and Weill with the songs of Ives, Barber, and Liebermann, and the setting of poets as distinct as E. E. Cummings, Langston Hughes, and Allen Ginsberg. It’s a program that moves with ease between the bright patter of numbers like “The What-Cha-Ma-Call-It” and the aching intimacy of “Lonely House”—music that captures both the exuberance and the tenderness at the heart of the American voice. Bliss brings to this repertoire a voice of exceptional beauty — bright, focused, and capable of extraordinary refinement — along with a natural feel for the wit, swagger, and vulnerability this music demands, whether he’s channeling Sondheim’s restless “Being Alive,” or the sly nostalgia of “One for My Baby.” Expect an evening that is as much a portrait of a nation’s music as it is a showcase for one of the outstanding tenors of his generation. With Christopher Allen — a collaborative pianist and conductor of rare gifts and long experience at the highest levels of the art form — at his side, this is an opening night to savor and to celebrate.",
+      "date": "2026-10-04",
+      "startMinutes": 1020,
+      "endMinutes": 1140,
+      "timeLabel": "5 PM -- 7 PM",
+      "venue": "Live! At 10th & G",
+      "neighborhood": "Downtown",
+      "address": "945 G Street NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-6653033754229832792.jpg",
+      "url": "https://vocalartsdc.org/bliss-allen/",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-350195",
+      "title": "Tea Drying & Blending Workshop",
+      "description": "Join us for a laid-back tea-making workshop where we’ll walk you through how to harvest, dry, and blend herbs to create your own custom teas. We’ll head out to the farm to pick fresh herbs, talk through simple drying methods, and play around with different flavor combinations so you can make blends that fit your taste. Everyone will head home with a set of homemade tea sachets made from herbs you harvested right here at the farm.",
+      "date": "2026-10-04",
+      "startMinutes": 1050,
+      "endMinutes": 1170,
+      "timeLabel": "5:30 PM -- 7:30 PM",
+      "venue": "Edgewood Community Farm",
+      "neighborhood": "Downtown",
+      "address": "2304 2nd St NE",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-6659777406421500929.jpg",
+      "url": "https://www.zeffy.com/en-US/ticketing/tea-drying-and-blending-workshop",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Food & Drink",
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-349586",
+      "title": "Author Talk: Devon Rodriguez — Work in Progress",
+      "description": "As a child, Rodriguez wondered why he lived in a single cramped room with his family, where he was beaten often and never felt safe. But despite difficult circumstances, he always believed he was going to be a successful artist. When he was in the ninth grade, his art teacher invited him to ride the New York City subway, with one destination in mind: the development of his craft, by drawing the commuters sitting across from him. A blank page in his sketchbook was something Rodriguez could control in an otherwise chaotic life. In this astonishing memoir, he explains how his art, his grandmother, and his own relentless drive saved him from heart-wrenching circumstances and led him to redefine out-of-fashion realist portraiture as fresh and magical. Rodriguez writes with rhythm, verve, and an artist’s POV, painting a vivid picture of his native Bronx, the tattoos and rooftop graffiti that mesmerized him as a kid, and the teachers who saw his potential and nourished it. Painting regular people in all their complexity is Rodriguez’s gift and his offering to the world, an old-school act that has made him a new-school star. Work in Progress delivers Rodriguez’s most precise and moving portrait yet: of himself. Devon Rodriguez is a Bronx-born portrait artist of Puerto Rican and Honduran descent. He rose to notoriety for drawing realistic portraits of commuters on the New York City subway system. He has also portrayed such luminaries as former President Biden, Oprah, and more. The most-followed visual artist on TikTok, he was a finalist in the Outwin Boochever Portrait Competition. His work has been featured in The New Yorker and The New York Times. He was named a 2025 Time100 Creator and a Forbes Top Creator the same year. He lives in New York City.",
+      "date": "2026-10-04",
+      "startMinutes": 1080,
+      "endMinutes": 1140,
+      "timeLabel": "6 PM -- 7 PM",
+      "venue": "St. Paul's Lutheran Church",
+      "neighborhood": "Dupont Circle",
+      "address": "4900 Connecticut Ave NW",
+      "image": null,
+      "url": "https://politics-prose.com/devon-rodriguez-100426",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-349173",
+      "title": "ÊXSZA w/ Soncier + Cam Strife + Tafon + Rowbel Solomon",
+      "description": null,
+      "date": "2026-10-04",
+      "startMinutes": 1170,
+      "endMinutes": 1380,
+      "timeLabel": "7:30 PM -- 11 PM",
+      "venue": "The Pocket",
+      "neighborhood": "Capitol Hill",
+      "address": "1508 N Capitol St NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-6641836347916088278.jpg",
+      "url": "https://app.opendate.io/e/exsza-w-soncier-cam-strife-tafon-rowbel-solomon-october-04-2026-742873",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    }
+  ]
+}
