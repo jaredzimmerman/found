@@ -104,7 +104,55 @@ const plain = (v) =>
     .replace(/\s+/g, " ")
     .trim();
 
-const WINDOW_SFCB = new Set(["2026-09-29", "2026-09-30", "2026-10-01"]);
+// SFCB's own timezone. Every date this scraper publishes is a Pacific wall-clock
+// date, and the one number on the listing that LOOKS like a date is a UTC
+// instant — which is why it is not used for the date. See sfcbParts().
+const SFCB_TZ = "America/Los_Angeles";
+
+const pad2 = (n) => String(n).padStart(2, "0");
+
+// An instant, split into the venue's own calendar fields.
+//
+// This is the whole reason the listing's epoch is not the source of the date.
+// `data-upcoming-event-end` is a UTC instant and `.toISOString().slice(0,10)`
+// reads it in UTC, so an 8 PM Pacific event lands on the FOLLOWING day. Not
+// hypothetical: the listing's own epoch for the Betsy Davids opening reception
+// (Friday, October 2, 6:00-8:00 PM PDT) is 2026-10-03T01:00Z, and the naive
+// conversion published that Friday show under Saturday.
+function sfcbParts(instant) {
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: SFCB_TZ,
+    year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit",
+    hourCycle: "h23",
+  }).formatToParts(instant);
+  const o = Object.fromEntries(parts.map((p) => [p.type, p.value]));
+  return { y: +o.year, m: +o.month, d: +o.day, hour: +o.hour, minute: +o.minute };
+}
+
+// "12:30 PM", "6:00 PM"
+function sfcbClock(hour, minute) {
+  const mer = hour >= 12 ? "PM" : "AM";
+  const h = hour % 12 === 0 ? 12 : hour % 12;
+  return `${h}:${pad2(minute)} ${mer}`;
+}
+
+// The event's own JSON-LD, from its detail page.
+//
+// The detail page is the ONLY place SFCB states a year or a clock. The listing
+// carries a month/day badge, a title and a link and nothing else. Squarespace
+// emits the Event block there with offset-qualified startDate/endDate, which is
+// both a real date and a real time — the two facts the badge cannot give.
+function sfcbEventJsonLd(page) {
+  for (const m of page.matchAll(/<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi)) {
+    let j;
+    try { j = JSON.parse(m[1]); } catch { continue; }
+    for (const it of Array.isArray(j) ? j : [j]) {
+      if (it && it["@type"] === "Event" && it.startDate) return it;
+    }
+  }
+  return null;
+}
 
 // ---------------------------------------------------------------- SFCB
 async function centerForTheBook(days) {
@@ -121,38 +169,74 @@ async function centerForTheBook(days) {
   if (!starts.length) return console.log("  sfcb: 0 items found — the page changed shape");
 
   let added = 0;
+  let movedDays = 0;
+  let withClock = 0;
   for (let i = 0; i < starts.length; i++) {
     const blk = html.slice(Math.max(0, starts[i] - 500), starts[i + 1] || html.length);
     const href = (blk.match(/href="(\/calendar\/[^"]+)"/) || [])[1];
     const title = (blk.match(/data-title="([^"]*)"/) || [])[1];
     if (!href || !title) continue;
 
-    // Millisecond epoch. /1000 is not optional.
-    const endMs = (blk.match(/data-upcoming-event-end="(\d+)"/) || [])[1];
-    let iso = endMs
-      ? new Date(Number(endMs)).toISOString().slice(0, 10)
-      : null;
+    // The badge is the ONLY date the listing states, and it carries no year.
+    // The year — and the only clock SFCB publishes — live on the event's own
+    // page, so that page is fetched for every candidate and its JSON-LD is the
+    // authority on both. The badge is kept as the fallback for a page that does
+    // not answer, so a transient fetch failure drops a clock rather than a row.
+    const mon = (blk.match(/summary-thumbnail-event-date-month[^>]*>\s*([A-Za-z]{3,9})/) || [])[1];
+    const day = (blk.match(/summary-thumbnail-event-date-day[^>]*>\s*(\d{1,2})/) || [])[1];
+    if (!mon || !day) continue;
+    const mi = MONTHS[mon.trim().slice(0, 3).toLowerCase()];
+    if (mi == null) continue;
+    const badgeIso = `${days[0].slice(0, 4)}-${pad2(mi + 1)}-${pad2(parseInt(day, 10))}`;
 
-    // Fallback: the month/day badge, with the year taken from the window.
-    if (!iso) {
-      const mon = (blk.match(/summary-thumbnail-event-date-month[^>]*>\s*([A-Za-z]{3,9})/) || [])[1];
-      const day = (blk.match(/summary-thumbnail-event-date-day[^>]*>\s*(\d{1,2})/) || [])[1];
-      const mi = mon ? MONTHS[mon.trim().slice(0, 3).toLowerCase()] : null;
-      if (mi != null && day) iso = `${days[0].slice(0, 4)}-${String(mi + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    const page = await tSafe(`https://www.sfcb.org${href}`);
+    const ld = page ? sfcbEventJsonLd(page) : null;
+
+    let iso = badgeIso;
+    let timeLabel = "Time TBA";
+    let startMinutes = -1;
+    let endMinutes = -1;
+
+    if (ld && ld.startDate) {
+      const start = new Date(ld.startDate);
+      if (!Number.isNaN(start.getTime())) {
+        // The venue's own calendar fields, not UTC's: the JSON-LD carries an
+        // offset, and re-reading it as UTC would put an evening event on the
+        // following day.
+        const p = sfcbParts(start);
+        iso = `${p.y}-${pad2(p.m)}-${pad2(p.d)}`;
+        startMinutes = p.hour * 60 + p.minute;
+        timeLabel = sfcbClock(p.hour, p.minute);
+        withClock++;
+        if (iso !== badgeIso) movedDays++;
+        if (ld.endDate) {
+          const end = new Date(ld.endDate);
+          if (!Number.isNaN(end.getTime())) {
+            const q = sfcbParts(end);
+            endMinutes = q.hour * 60 + q.minute;
+          }
+        }
+      }
     }
-    if (!iso || !days.includes(iso)) continue;
+
+    if (!days.includes(iso)) continue;
 
     const id = `sfcb-${href.split("/").pop()}-${iso}`;
     const kept = register({
       id,
       title: title.replace(/&amp;/g, "&").trim(),
       venue: VENUE,
+      // A placeholder, exactly as every other source states it: hoodsOf() in
+      // fetch.mjs derives the real neighborhood from the address over the whole
+      // corpus just before the write, so a hand-guessed hood here would be
+      // fiction that happens to be right.
       neighborhood: "San Francisco",
       address: "375 Rhode Island St, San Francisco, CA 94103",
       description: "",
       date: iso,
-      startMinutes: -1,
-      timeLabel: "Time TBA",
+      startMinutes,
+      endMinutes,
+      timeLabel,
       priceLabel: null,
       priceTier: "unknown",
       categories: ["Talks & Workshops"],
@@ -161,7 +245,9 @@ async function centerForTheBook(days) {
     });
     if (kept) added++;
   }
-  console.log(`  sfcb: ${added} in-window events (${starts.length} items on the page)`);
+  console.log(
+    `  sfcb: ${added} in-window events (${starts.length} items on the page, ` +
+    `${withClock} with a published clock, ${movedDays} whose date the badge had wrong)`);
 }
 
 // ---------------------------------------------------------------- Workshop SF
