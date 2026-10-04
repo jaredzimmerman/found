@@ -12,7 +12,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-N382R0G2GH');
 </script>
 <!-- Schema.org structured data for Fog & Found -->
@@ -21,8 +20,7 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Fog & Found",
-  "url": "https://whattodo72.com/",
-  "description": "Concerts, film, theatre, festivals, fairs and everything else happening in San Francisco over the next three days. Each listing links to the venue's own page or its official box office.",
+  "description": "Concerts, film, theatre, festivals, fairs and everything else happening in San Francisco or Washington over the next three days. Each listing links to the venue's own page or its official box office.",
   "potentialAction": {
     "@type": "SearchAction",
     "target": "https://whattodo72.com/?q={search_term_string}",
@@ -30,42 +28,96 @@
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Fog & Found",
-    "url": "https://whattodo72.com/"
-  },
-  "license": {
-    "@id": "_:license"
+    "name": "Jared Zimmerman",
+    "url": "https://jaredzimmerman.com"
   },
   "creator": {
     "@type": "Person",
-    "name": "Indigo Karasu",
-    "url": "https://indigokarasu.com"
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://whattodo72.com/"
+    "name": "Jared Zimmerman",
+    "url": "https://jaredzimmerman.com"
   }
 }
 </script>
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://whattodo72.com/">
+<meta property="og:site_name" content="Fog & Found">
 <meta property="og:title" content="Fog & Found">
-<meta property="og:description" content="Concerts, film, theatre, festivals, fairs and everything else happening in San Francisco over the next three days. Each listing links to the venue's own page or its official box office.">
+<meta property="og:description" content="Concerts, film, theatre, festivals, fairs and everything else happening in San Francisco or Washington over the next three days. Each listing links to the venue's own page or its official box office.">
 <meta property="og:image" content="https://whattodo72.com/social-share.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_US">
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://whattodo72.com/">
-<meta property="twitter:title" content="Fog & Found">
-<meta property="twitter:description" content="Concerts, film, theatre, festivals, fairs and everything else happening in San Francisco over the next three days. Each listing links to the venue's own page or its official box office.">
-<meta property="twitter:image" content="https://whattodo72.com/social-share.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fog & Found">
+<meta name="twitter:description" content="Concerts, film, theatre, festivals, fairs and everything else happening in San Francisco or Washington over the next three days. Each listing links to the venue's own page or its official box office.">
+<meta name="twitter:image" content="https://whattodo72.com/social-share.png">
+<!-- The two files the first paint needs: the masthead and every card title are
+     Playfair, every label Archivo. `crossorigin` is required on a font preload
+     even from the same origin, or the preloaded copy is not reused. The italic
+     and the extended ranges load on demand from the @font-face rules below. -->
+<link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+  /* ---------- fonts ----------
+
+     Self-hosted, and declared HERE rather than pulled from Google's stylesheet.
+     The old <link> was render-blocking CSS from a third-party origin that only
+     NAMED the font files, so the browser found them after that stylesheet had
+     arrived and after layout had asked for them: every first visit painted
+     Georgia and Arial and then swapped. Now the files are discovered in the
+     first bytes of the document (see the <link rel=preload> in <head>) and come
+     from this origin, over the connection that is already open.
+
+     The latin faces are font-display:block, so if they are not in yet at first
+     paint the text is held back for a beat instead of flashing in a different
+     typeface; the extended ranges (rarely drawn) are swap. Both families are
+     variable fonts, so several weights share one file; the weights are declared
+     one by one, exactly as Google declared them, so a request for 800 still
+     snaps to 700/900 and nothing renders at a weight it did not before.
+
+     The two "Fallback" families re-metric Georgia and Arial to the web fonts'
+     advance widths and vertical metrics (size-adjust / ascent / descent
+     overrides, measured over this feed's own text), so in the case where a swap
+     can still happen, a slow connection or a failed file, the text does not
+     change size or move the lines around it. */
+  @font-face{font-family:"Archivo";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/archivo-vietnamese.woff2) format("woff2");unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+  @font-face{font-family:"Archivo";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/archivo-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+  @font-face{font-family:"Archivo";font-style:normal;font-weight:400;font-display:block;src:url(fonts/archivo-latin.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+  @font-face{font-family:"Archivo";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/archivo-vietnamese.woff2) format("woff2");unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+  @font-face{font-family:"Archivo";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/archivo-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+  @font-face{font-family:"Archivo";font-style:normal;font-weight:500;font-display:block;src:url(fonts/archivo-latin.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+  @font-face{font-family:"Archivo";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/archivo-vietnamese.woff2) format("woff2");unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+  @font-face{font-family:"Archivo";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/archivo-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+  @font-face{font-family:"Archivo";font-style:normal;font-weight:600;font-display:block;src:url(fonts/archivo-latin.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+  @font-face{font-family:"Archivo";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/archivo-vietnamese.woff2) format("woff2");unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+  @font-face{font-family:"Archivo";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/archivo-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+  @font-face{font-family:"Archivo";font-style:normal;font-weight:700;font-display:block;src:url(fonts/archivo-latin.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+  @font-face{font-family:"Playfair Display";font-style:italic;font-weight:400;font-display:swap;src:url(fonts/playfair-display-italic-cyrillic.woff2) format("woff2");unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+  @font-face{font-family:"Playfair Display";font-style:italic;font-weight:400;font-display:swap;src:url(fonts/playfair-display-italic-vietnamese.woff2) format("woff2");unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+  @font-face{font-family:"Playfair Display";font-style:italic;font-weight:400;font-display:swap;src:url(fonts/playfair-display-italic-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+  @font-face{font-family:"Playfair Display";font-style:italic;font-weight:400;font-display:block;src:url(fonts/playfair-display-italic-latin.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+  @font-face{font-family:"Playfair Display";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/playfair-display-cyrillic.woff2) format("woff2");unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+  @font-face{font-family:"Playfair Display";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/playfair-display-vietnamese.woff2) format("woff2");unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+  @font-face{font-family:"Playfair Display";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/playfair-display-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+  @font-face{font-family:"Playfair Display";font-style:normal;font-weight:400;font-display:block;src:url(fonts/playfair-display-latin.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+  @font-face{font-family:"Playfair Display";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/playfair-display-cyrillic.woff2) format("woff2");unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+  @font-face{font-family:"Playfair Display";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/playfair-display-vietnamese.woff2) format("woff2");unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+  @font-face{font-family:"Playfair Display";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/playfair-display-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+  @font-face{font-family:"Playfair Display";font-style:normal;font-weight:700;font-display:block;src:url(fonts/playfair-display-latin.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+  @font-face{font-family:"Playfair Display";font-style:normal;font-weight:900;font-display:swap;src:url(fonts/playfair-display-cyrillic.woff2) format("woff2");unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+  @font-face{font-family:"Playfair Display";font-style:normal;font-weight:900;font-display:swap;src:url(fonts/playfair-display-vietnamese.woff2) format("woff2");unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+  @font-face{font-family:"Playfair Display";font-style:normal;font-weight:900;font-display:swap;src:url(fonts/playfair-display-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+  @font-face{font-family:"Playfair Display";font-style:normal;font-weight:900;font-display:block;src:url(fonts/playfair-display-latin.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+  @font-face{font-family:"Playfair Display Fallback";font-style:normal;font-weight:400;src:local("Georgia");size-adjust:100.33%;ascent-override:107.85%;descent-override:25.02%;line-gap-override:0.00%}
+  @font-face{font-family:"Playfair Display Fallback";font-style:normal;font-weight:700;src:local("Georgia Bold"),local("Georgia-Bold");size-adjust:89.68%;ascent-override:120.65%;descent-override:27.99%;line-gap-override:0.00%}
+  @font-face{font-family:"Playfair Display Fallback";font-style:normal;font-weight:900;src:local("Georgia Bold"),local("Georgia-Bold");size-adjust:91.50%;ascent-override:118.25%;descent-override:27.43%;line-gap-override:0.00%}
+  @font-face{font-family:"Playfair Display Fallback";font-style:italic;font-weight:400;src:local("Georgia Italic"),local("Georgia-Italic");size-adjust:95.30%;ascent-override:113.54%;descent-override:26.34%;line-gap-override:0.00%}
+  @font-face{font-family:"Archivo Fallback";font-style:normal;font-weight:400;src:local("Arial"),local("ArialMT");size-adjust:98.46%;ascent-override:89.17%;descent-override:21.33%;line-gap-override:0.00%}
+  @font-face{font-family:"Archivo Fallback";font-style:normal;font-weight:500;src:local("Arial"),local("ArialMT");size-adjust:100.12%;ascent-override:87.69%;descent-override:20.97%;line-gap-override:0.00%}
+  @font-face{font-family:"Archivo Fallback";font-style:normal;font-weight:600;src:local("Arial Bold"),local("Arial-BoldMT");size-adjust:96.47%;ascent-override:91.01%;descent-override:21.77%;line-gap-override:0.00%}
+  @font-face{font-family:"Archivo Fallback";font-style:normal;font-weight:700;src:local("Arial Bold"),local("Arial-BoldMT");size-adjust:99.47%;ascent-override:88.27%;descent-override:21.11%;line-gap-override:0.00%}
+
   /* ---------- themes ----------
 
      The whole palette is a token swap. Every colour in the stylesheet resolves
@@ -93,50 +145,31 @@
 
     /* Theme-dependent, not part of the palette above. */
     --fibre:rgba(0,0,0,.014);   /* the newsprint tooth */
-    --dot:.82;                 /* screen opacity before multiply */
-    --dot-r:0.7px;            /* screen dot radius */
-    --dot-cell:3px;           /* screen pitch: the halftone lattice */
     --shadow:0 10px 22px -20px rgba(0,0,0,.5);
+    /* Halftone plate (see "artwork: a real halftone"). Geometry is shared by all
+       themes; polarity is not: ink-on-paper for light and pink, light ink on a
+       dark paper for dark. */
+    --ht-cell:4px;            /* dot pitch along the rotated grid */
+    --ht-cone:2.6px;          /* cone radius. The biggest dot is ~.85 of this (2.2px, ~89% ink),
+                                 so even pure black keeps a lattice of paper. At 2.9px every tone
+                                 below .5 printed 81-97% ink: the dots overlapped and the shadows
+                                 fused into one muddy black mass. */
+    --ht-k:.588;              /* brightness that puts the cut at tone .85 */
+    --ht-K:9;                 /* contrast: the hard threshold */
+    --ht-blur:.5px;           /* average the tone over a cell */
+    --ht-inv:0;
+    --ht-blend:multiply;
+    --ht-tint:lighten;
   }
 
-  /* Light is the default above; these two are opt-in. The dark theme is not a
-     filter: each token is chosen so that contrast holds on a dark paper, and
-     the rules are lighter than the light theme's because a #141414 hairline on
-     a #141414 page is invisible. */
-  html[data-theme="dark"]{
-    --ink:#fafafa;
-    --ink-2:#dadada;
-    --ink-3:#bababa;
-    --rule:#fafafa;
-    --hair:#4a4a4a;
-    --hair-2:#5a5a5a;
-    --paper:#141414;
-    --paper-2:#1e1e1e;
-    --accent:#8c1c13;
-    --max:1180px;
-    --fibre:rgba(1,1,1,.014);
-    --dot:.82;
-    --dot-r:0.7px;
-    --dot-cell:3px;
-    --shadow:0 10px 22px -20px rgba(0,0,0,.5);
-  }
-  html[data-theme="pink"]{
-    --ink:#5a0000;
-    --ink-2:#8a0000;
-    --ink-3:#aa0000;
-    --rule:#5a0000;
-    --hair:#d4a5a5;
-    --hair-2:#e8b8b8;
-    --paper:#FFAEDB;
-    --paper-2:#ffc2e4;
-    --accent:#8c1c13;
-    --max:1180px;
-    --fibre:rgba(0,0,0,.014);
-    --dot:.82;
-    --dot-r:0.7px;
-    --dot-cell:3px;
-    --shadow:0 10px 22px -20px rgba(0,0,0,.5);
-  }
+  /* Dead code removed 2026-09-30: an earlier, lower-contrast pair of dark/pink
+     blocks (--ink:#fafafa / #5a0000, etc.) used to sit here. Both were fully
+     shadowed by the pair below — same selector, later in the file always wins
+     a tie, so every property they shared with the pair below was already
+     dead; --dot-cell and --max were the only properties NOT repeated below,
+     and both matched :root's own value (2px, 1180px) anyway, so removing the
+     block changes nothing rendered. Editing this dead block was a trap: the
+     page would not react. See [[github rtk memory: fog-and-found-drift]]. */
 
   /* Light is the default above; these two are opt-in. The dark theme is not a
      filter: each token is chosen so that contrast holds on a dark paper, and
@@ -153,9 +186,10 @@
     --paper-2:#1e1e1e;
     --accent:#e8836b;
     --fibre:rgba(255,255,255,.016);
-    --dot:.55;                 /* a light screen on a dark photo would glare */
-    --dot-r:0.7px;
     --shadow:0 10px 22px -20px rgba(0,0,0,.85);
+    --ht-inv:1;               /* light dots on dark paper: invert the photo AND the plate */
+    --ht-blend:screen;
+    --ht-tint:darken;
   }
   html[data-theme="pink"]{
     --ink:#2a1016;
@@ -168,8 +202,6 @@
     --paper-2:#f7a2d2;
     --accent:#7a1030;
     --fibre:rgba(42,16,22,.05);
-    --dot:.9;
-    --dot-r:0.7px;
     --shadow:0 10px 22px -20px rgba(42,16,22,.55);
   }
   *{box-sizing:border-box}
@@ -178,7 +210,7 @@
     margin:0;
     background:var(--paper);
     color:var(--ink);
-    font-family:Archivo,"Helvetica Neue",Arial,sans-serif;
+    font-family:Archivo,"Archivo Fallback","Helvetica Neue",Arial,sans-serif;
     font-size:16px;
     line-height:1.45;
     /* the faint fibre of newsprint */
@@ -186,6 +218,22 @@
       repeating-linear-gradient(0deg,var(--fibre) 0 1px,transparent 1px 3px);
   }
   .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+  /* ---------- skip link ----------
+     A keyboard user arriving from a search result has to tab past the theme
+     radio group, the day rail and the search field before reaching a single
+     listing — the filter bar is deliberately open-looking furniture at the top
+     of the document. The link is the first focusable thing on the page and is
+     invisible until focused, so it costs a sighted reader nothing. */
+  .skip{
+    position:absolute;left:8px;top:8px;z-index:100;
+    transform:translateY(-160%);
+    background:var(--ink);color:var(--paper);
+    padding:10px 16px;font-size:12px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;
+    text-decoration:none;white-space:nowrap;
+  }
+  .skip:focus-visible{transform:translateY(0);outline:2px solid var(--accent);outline-offset:2px}
 
   /* ---------- masthead ---------- */
   .masthead{border-bottom:3px double var(--rule);padding:22px 0 12px}
@@ -196,6 +244,35 @@
   }
   .kicker b{color:var(--ink);font-weight:700}
   .kicker #stamp.stale{font-style:italic;text-transform:none;letter-spacing:.04em;color:var(--ink-2)}
+
+  /* ---------- city switch ----------
+     The trigger is a <button> only because a button is focusable and can carry
+     aria-expanded. Visually it must be indistinguishable from the <b> it
+     replaced: no underline, no border, no caret, no hover colour shift beyond
+     the faintest ink-3. A visible affordance here would turn "the city is a
+     label" into "the city is a control", which is what the reader asked to
+     avoid — so the only cue is the cursor. */
+  .place{position:relative;display:inline-flex;align-items:baseline;gap:0}
+  .place-btn{
+    font:inherit;letter-spacing:inherit;text-transform:inherit;color:var(--ink);
+    font-weight:700;background:none;border:0;padding:0;margin:0;cursor:pointer;
+  }
+  .place-btn:focus-visible{outline:1px dotted var(--ink-3);outline-offset:3px}
+  .place-menu{
+    position:absolute;top:calc(100% + 7px);left:0;z-index:60;
+    display:flex;flex-direction:column;min-width:100%;
+    background:var(--paper);border:1px solid var(--ink-3);border-radius:2px;
+    box-shadow:0 6px 20px rgba(0,0,0,.14);
+  }
+  .place-menu[hidden]{display:none}
+  .place-opt{
+    font:inherit;letter-spacing:inherit;text-transform:inherit;color:var(--ink-2);
+    background:none;border:0;text-align:left;padding:7px 14px 7px 12px;cursor:pointer;
+    white-space:nowrap;
+  }
+  .place-opt:hover{background:var(--ink);color:var(--paper)}
+  .place-opt[aria-checked="true"]{color:var(--ink);font-weight:700}
+  .place-opt[aria-checked="true"]::before{content:"\2014\00a0"}
 
   /* ---------- theme control ----------
      Sits inline with the stamp, right-aligned in the kicker. The labels are
@@ -217,16 +294,12 @@
     font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
     color:var(--ink-3);background:transparent;
     transition:background .12s,color .12s;
-    /* A hairline underline, offset so it does not collide with a descender.
-       text-underline-offset is the modern way to clear the glyph body. */
-    text-decoration:underline;text-decoration-thickness:1px;
-    text-underline-offset:.28em;text-decoration-color:transparent;
+    text-decoration:none;
     white-space:nowrap;
   }
   .theme:hover span{color:var(--ink)}
   .theme input:checked+span{
     color:var(--paper);background:var(--ink);
-    text-decoration-color:currentColor;
   }
   .theme input:focus-visible+span{outline:2px solid var(--accent);outline-offset:-2px}
   /* A radio is the selected state; the underline is the indicator. */
@@ -238,16 +311,27 @@
   .kicker .range-long{display:inline}
   .kicker .range-short{display:none}
   .title{
-    font-family:"Playfair Display",Georgia,serif;
+    font-family:"Playfair Display","Playfair Display Fallback",Georgia,serif;
     font-weight:900;font-size:clamp(46px,11vw,132px);
     line-height:.82;letter-spacing:-.035em;margin:0;
     text-align:center;text-transform:uppercase;
     /* An 11vw wordmark set solid reads as a slab; a whisper of tracking keeps
        the counters open at the display sizes. */
     text-wrap:balance;
+    /* The tracking is NEGATIVE, and letter-spacing is applied after every glyph
+       including the last, so the line box ends 0.035em short of the ink: the box
+       is centred, the letters are not (measured 1.7px right of centre at 132px).
+       Padding the trailing edge by the same amount moves the content box back so
+       the INK is what sits on the centre line. */
+    padding-right:.035em;
   }
   .standfirst{
-    text-align:center;max-width:60ch;margin:14px auto 0;
+    /* No max-width: this line is `nowrap`, and a 60ch cap made the BOX narrower
+       than its own text, so the box was centred but the text ran out of its
+       right edge — 99px right of the logotype's centre at 1440px. With the box
+       as wide as the column, text-align:center centres the text itself. The
+       wrapping layouts below <=980px set their own max-width. */
+    text-align:center;max-width:none;margin:14px auto 0;
     font-size:14px;color:var(--ink-2);line-height:1.5;
     /* A single unbreakable line on desktop: it reads as the dek for the
        edition, not as an interactive element. `text-wrap: nowrap` prevents word
@@ -270,7 +354,49 @@
      the Filters button sat hard against the viewport edge while the kicker
      above it was inset — a 24px misalignment at desktop, 16px on a phone. */
   .filters-in{padding:12px 24px}
-  .frow{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+  /* The panel OVERLAYS the page instead of pushing it down.
+
+     `position:sticky` on the bar does not take the bar out of flow — a sticky
+     box still occupies its original place, and everything after it flows below
+     that place. So a sticky bar with a 302px panel inside it added 302px to
+     the document height and shoved every listing down by 302px the moment the
+     reader opened Filters. Measured on the live site: the day heading a reader
+     had scrolled to moved from y=0 to y=359, and `scrollY` was silently
+     rewritten from 1200 to 1502. The controls in the bar itself did not move,
+     which is why this survived every check that only looked at the bar.
+
+     The panel is absolutely positioned against the bar (which is sticky, so it
+     is a containing block) and given a solid background, so it covers the
+     listings while it is open and costs the document nothing.
+
+     `top:100%` puts it flush under the bar's padding box; the bar's own bottom
+     border and shadow read as the panel's top edge, so the two read as one
+     panel rather than as a detached sheet. */
+  .frow{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-template-areas:
+      "type  type  type  type"
+      "hood  hood  hood  hood"
+      "price avail link  venue";
+    column-gap:24px;row-gap:16px;
+    position:absolute;left:0;right:0;top:100%;z-index:39;
+    background:var(--paper);
+    border-bottom:1px solid var(--rule);
+    box-shadow:0 10px 18px -8px var(--shadow);
+    /* The panel carries its OWN inset, matching `.wrap`. It used to inherit
+       the inset from being inside `.filters-in`, but taking it out of flow
+       means it is no longer inside that padded box — so without this the chips
+       sit hard against the viewport edge at x=0 and x=1440 while every other
+       line on the page is inset. The phone value is overridden below. */
+    padding:12px 24px;
+  }
+  .fgroup--type{grid-area:type}
+  .fgroup--price{grid-area:price}
+  .fgroup--avail{grid-area:avail}
+  .fgroup--hood{grid-area:hood}
+  .fgroup--link{grid-area:link}
+  .fgroup--venue{grid-area:venue}
 
   /* The always-visible rail. On desktop the full row shows under it; on a
      phone it is the whole bar, so the tall chip list is opt-in rather than
@@ -279,6 +405,73 @@
     display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
   }
   .fbar-top .brand{flex:0 0 auto}
+
+  /* ---- the scroll-in wordmark ------------------------------------------
+     At the top of the page the masthead above already reads "Fog & Found", so
+     printing it again in the bar is duplication. The bar therefore starts
+     with the wordmark collapsed to zero width: the search sits flush left in
+     the content margin, exactly where the reader expects the first control.
+
+     When the masthead scrolls out, the wordmark is needed — it is the only
+     thing on the page still saying which paper this is. So it animates in
+     FROM THE LEFT: it grows out of the left margin, and the search slides
+     right to make room. Nothing pops, and nothing overlaps the controls on
+     the right, because the growth is animated on both sides of the word.
+
+     `grid-template-columns` on the bar is what carries this: a column that is
+     0px at rest and auto once `.scrolled` is set, with the search in a second
+     column. The row is a flex container, so the brand is instead given a
+     max-width that transitions 0 -> its natural width; `flex:0 0 auto` with a
+     `max-width` is what lets a flex item shrink to nothing without the row
+     reflowing the other items. */
+  .fbar-top{
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  }
+  /* The wordmark's layout box is reserved at its full measured width from
+     the very start — not grown from 0 — so nothing downstream of it (the
+     search field, the day chips, Only Free, Filters) ever has a reason to
+     shift position. Only its OPACITY animates between "masthead visible"
+     and "scrolled past it"; the empty reserved slot at rest is the
+     deliberate trade for every other control staying exactly where it is,
+     always. `measureBrand()` writes --brand-w-full once the font has
+     loaded; 105px (measured at 1280px/22px Playfair) is the fallback
+     before that runs or if the name ever changes language.
+
+     This used to be position:absolute with an animated width, and
+     .search-wrap carried a matching margin-left that grew in step — so the
+     search box (and everything after it) visibly slid right on every
+     scroll across the masthead boundary. Taking the wordmark out of flow
+     didn't stop the row from moving; it just moved the motion into the
+     search box's own margin instead. */
+  .fbar-top .brand{
+    /* Centred on the row, not baseline-aligned: the wordmark is 22px serif caps
+       beside 11-13px sans controls, and a shared baseline puts its caps ~6px
+       ABOVE the row's middle. Measured optical centre (cap top to baseline)
+       vs the Filters button: -6.5px baseline-aligned, +1.2px centred (the
+       `top:-1px` on the <b> below closes the last of it). */
+    align-self:center;display:flex;align-items:center;line-height:1;
+    flex:0 0 auto;
+    width:var(--brand-w-full,105px);
+    overflow:hidden;
+    opacity:0;
+    pointer-events:none;
+    white-space:nowrap;
+    transition:opacity .2s linear;
+  }
+  .filters.scrolled .fbar-top .brand{
+    opacity:1;
+    pointer-events:auto;
+  }
+  /* Below this the bar has no room for the reserved wordmark slot AND the
+     search on one line — collapse the slot to 0 rather than let the row
+     wrap unpredictably. The masthead is a few hundred pixels up, so the
+     name is not lost, only not duplicated down here. */
+  @media (max-width:820px){
+    .fbar-top .brand{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .fbar-top .brand{transition:none}
+  }
   /* The wordmark is a serif at 15px, the rest of the row is 11px sans. Under
      `align-items:baseline` the browser aligns TEXT baselines, but each face
      puts its own descender below the same baseline by a different amount, so
@@ -287,8 +480,23 @@
      this size. Pulling the element up by it makes the printed bottoms agree
      without disturbing the baseline the browser actually computed. */
   .fbar-top .brand b{
-    font-family:"Playfair Display",Georgia,serif;font-size:15px;font-weight:900;
-    letter-spacing:-.02em;text-transform:uppercase;position:relative;top:-2.5px;
+    /* The wordmark is the one element in the bar that is allowed to be big.
+       It is the name of the paper, set in the display serif at a size that
+       reads as a masthead rather than as a label, and it is the thing that
+       appears when the masthead itself has scrolled away.
+
+       `line-height:1` is what makes the optical centring exact. The serif sits
+       on a baseline with more descent above the cap-height than the sans
+       controls have below their own baseline, so at the default `line-height`
+       the text's box is taller than the glyphs and the name reads as sitting
+       low in the bar. Collapsing the line box to the glyph height removes the
+       slack, and `top` centres the remaining box on the row. */
+    font-family:"Playfair Display","Playfair Display Fallback",Georgia,serif;
+    font-size:22px;font-weight:900;
+    letter-spacing:-.02em;text-transform:uppercase;
+    line-height:1;
+    display:block;
+    position:relative;top:-1px;
   }
 
   /* The search field is a line and a lens, not a box. A full border made it
@@ -333,6 +541,24 @@
     border-bottom:1px solid var(--rule);
     padding-bottom:3px;
   }
+  /* The focus indicator lives on the WRAPPER, not on the input.
+     `input[type=search]` is borderless by design (see the rule below), so the
+     browser's own focus ring is suppressed on it and the wrapper has to carry
+     the indicator instead — otherwise keyboard focus on the search field is
+     completely invisible.
+
+     This rule previously only re-declared `border-bottom-color:var(--ink)`,
+     which was a NO-OP: the wrapper's border is already `var(--ink)` at rest, so
+     nothing changed between focused and unfocused. Measured with focus held:
+     `outline` computed to `3px none`, `box-shadow` to `none`, and the bottom
+     border to the identical `rgb(10,10,10)` in both states — a WCAG 2.4.7
+     failure that a screenshot cannot reveal, because a focused search field and
+     an unfocused one are pixel-identical.
+
+     The 2px ring matches every other focusable on the page (`.chip`,
+     `.ftoggle`, `.skip`, `.only-free`), so keyboard focus reads the same
+     everywhere. */
+  .fbar-top .search-wrap:has(:focus-visible){outline:2px solid var(--accent);outline-offset:2px}
   .fbar-top .search-wrap:focus-within{border-bottom-color:var(--ink)}
   /* Bottom-anchored, not top-anchored. `top` on an absolutely positioned
      child is measured from the wrap's padding box, and that box's height
@@ -403,11 +629,11 @@
   .fbar-top .count{
     flex:0 0 auto;margin-left:auto;
     display:flex;flex-direction:column;align-items:flex-start;gap:2px;
-    font-family:"Playfair Display",serif;font-size:19px;font-weight:700;
+    font-family:"Playfair Display","Playfair Display Fallback",serif;font-size:19px;font-weight:700;
     line-height:1;white-space:nowrap;
   }
   .fbar-top .count small{
-    font-family:Archivo,sans-serif;font-size:9px;font-weight:600;
+    font-family:Archivo,"Archivo Fallback",sans-serif;font-size:9px;font-weight:600;
     letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-top:0;
   }
 
@@ -423,14 +649,31 @@
     text-transform:uppercase;color:var(--ink-2);
     background:transparent;border:1px solid var(--rule);padding:7px 11px;
   }
+  /* Above phone width Only Free is the LAST control, right of Filters; Clear
+     filters stays directly left of Filters. `order` rather than a markup move so
+     the phone layout (Only Free left, Filters right, own row) is untouched — the
+     <=720px block sets its own orders and wins by source order. */
+  .fbar-top .only-free{order:5}
   .fbar-top .only-free input{position:absolute;opacity:0;width:0;height:0}
   .fbar-top .only-free.on{color:var(--paper);background:var(--ink);border-color:var(--ink)}
-  .fbar-top .only-free:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+  .fbar-top .only-free:has(:focus-visible){outline:2px solid var(--accent);outline-offset:2px}
 
-  /* No auto margin here: the slack is already absorbed by `.count`, which is
-     upstream of this element. A second `margin-left:auto` would split the free
-     space between the two and pull ONLY FREE away from FILTERS. */
-  .fbar-top .right{flex:0 0 auto;display:flex;align-items:center;gap:10px}
+  /* The slack in the bar is absorbed BEFORE the right-hand cluster, and in ONE
+     place only.
+
+     `.count` used to be that element and it used to carry the `margin-left:auto`
+     here. It is gone from the markup — the "XXX Events" readout was removed from
+     the bar — but this rule was left behind, and with nothing left to carry it
+     the row's free space had no owner. The result was a 100px hole sitting
+     between ONLY FREE and FILTERS: the two controls that are supposed to read
+     as one cluster were pushed apart by dead space that nothing accounted for.
+
+     `.right` is now the element that takes the slack, because it is the last
+     item in the row and pushing it to the content edge is what puts FILTERS
+     against the right margin. Both it and `.count` must never carry an auto
+     margin at once: two of them split the free space between them and the
+     cluster drifts apart again. */
+  .fbar-top .right{flex:0 0 auto;display:flex;align-items:center;gap:10px;margin-left:auto}
   .fbar-top .ftoggle{margin-left:0}
   .ftoggle{
     display:inline-flex;align-items:center;gap:7px;font:inherit;cursor:pointer;
@@ -443,10 +686,22 @@
     border-top:5px solid currentColor;transition:transform .16s;
   }
   .ftoggle[aria-expanded="true"] .caret{transform:rotate(180deg)}
+  .ftoggle{position:relative}
+  /* The count rides the button's top-right corner instead of sitting inline:
+     an inline badge that is merely hidden still reserves its width, which left
+     a blank gap between the label and the caret on every state. Out of flow, the
+     button is exactly label + caret, and the count can appear without moving
+     anything. */
   .ftoggle-n{
-    font-size:11px;letter-spacing:0;font-weight:700;
-    background:var(--ink);color:var(--paper);padding:2px 6px;
+    position:absolute;top:-8px;right:-7px;
+    min-width:17px;height:17px;padding:0 4px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:10px;line-height:1;letter-spacing:0;font-weight:700;
+    background:var(--ink);color:var(--paper);
+    box-shadow:0 0 0 2px var(--paper);
+    visibility:hidden;
   }
+  .ftoggle-n.active{visibility:visible}
   .filters[data-collapsed="true"] .frow{display:none}
 
   /* The day rail is the mobile stand-in for the Day chip group, which moves
@@ -456,20 +711,25 @@
   .fday-rail .chips{overflow-x:auto;-webkit-overflow-scrolling:touch;
     flex-wrap:nowrap;padding-bottom:2px}
   .fday-rail .chips .chip{flex:0 0 auto}
-  .fgroup{display:flex;flex-direction:column;gap:5px;min-width:0}
+  .fgroup{display:flex;flex-direction:column;gap:5px;min-width:0;align-self:start}
   .flabel{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
   .chips{display:flex;flex-wrap:wrap;gap:5px}
 
   .chip{
     font:inherit;font-size:12px;font-weight:500;line-height:1;
     padding:6px 10px;border:1px solid var(--rule);background:transparent;color:var(--ink);
-    cursor:pointer;border-radius:1px;white-space:nowrap;
+    /* radius lives in the single ".chip, .tag { border-radius:2px }" rule
+       further down — this used to also declare 1px here, dead on arrival
+       since the later, same-specificity rule always won; one definition. */
+    cursor:pointer;white-space:nowrap;
     transition:background .12s,color .12s;
   }
-  .chip:hover{background:var(--ink);color:var(--paper)}
+  .chip:hover:not(:disabled){background:var(--ink);color:var(--paper)}
+  /* Empty, not gone: see chipRow(). Dimmed and inert, still occupying its slot. */
+  .chip:disabled{opacity:.38;cursor:default}
   .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   .chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-  .chip .n{opacity:.55;font-size:11px;margin-left:5px}
+  .chip .n{opacity:.55;font-size:11px;margin-left:5px;display:inline-block;text-align:right;font-variant-numeric:tabular-nums}
 
   select,input[type=search]{
     font:inherit;font-size:13px;padding:6px 8px;
@@ -479,21 +739,27 @@
   input[type=search]{min-width:190px}
 
   .right{margin-left:auto;display:flex;align-items:flex-end;gap:16px}
-  .count{font-family:"Playfair Display",serif;font-size:26px;font-weight:700;line-height:1;white-space:nowrap}
-  .count small{display:block;font-family:Archivo,sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-top:3px}
+  .count{font-family:"Playfair Display","Playfair Display Fallback",serif;font-size:26px;font-weight:700;line-height:1;white-space:nowrap}
+  .count small{display:block;font-family:Archivo,"Archivo Fallback",sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-top:3px}
 
   .reset{font:inherit;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-    background:none;border:none;border-bottom:1px solid var(--ink);color:var(--ink);cursor:pointer;padding:2px 0}
+    background:none;border:none;border-bottom:1px solid var(--ink);color:var(--ink);cursor:pointer;padding:2px 0;
+    visibility:hidden}
   .reset:hover{color:var(--accent);border-color:var(--accent)}
-  .reset[hidden]{display:none}
+  /* Reserved, not removed: [hidden]/display:none would let Filters (and
+     everything left of it) slide over to fill the gap the moment a filter
+     clears, which is exactly the kind of jump this whole pass is trying to
+     stop. visibility:hidden keeps the box — and the space directly left of
+     Filters — in the row at all times. */
+  .reset.active{visibility:visible}
 
   /* ---------- day section ---------- */
     /* A hard stop between days. The rule is the thickest on the page, it runs
        the full measure, and the day name above it is set in caps at display
        scale — so the break is unmistakable and does not depend on the
        masonry below it. */
-    .day{border-bottom:0;padding:38px 0 10px}
-    .day:first-of-type{padding-top:22px}
+    .day{border-bottom:0;padding:30px 0 10px}
+    .day:first-of-type{padding-top:14px}
     /* It is an <h2> for the heading outline, so the UA's 1.5em/1.2/margin reset
        must be cancelled or the sticky bar's height changes. */
     .day-head{
@@ -505,14 +771,27 @@
          separates one day from the next and it should read as a printed
          section break, not as a border between two rows. */
       border-bottom:2px solid var(--ink);
-      padding:0 0 10px;margin-bottom:6px;
+      padding:8px 0 10px;margin-bottom:6px;
     }
     /* ALL CAPS, and the sans face the rest of the page's small labels use, so
        the day break is the same register as the filter bar and the count. The
        serif display face is reserved for the event titles themselves. */
-    .day-name{font-family:Archivo,sans-serif;font-size:26px;font-weight:800;letter-spacing:.04em;line-height:1;text-transform:uppercase}
+    .day-name{position:relative;font-family:Archivo,"Archivo Fallback",sans-serif;font-size:26px;font-weight:800;letter-spacing:.04em;line-height:1;text-transform:uppercase}
+    /* "TODAY" is a small label stacked directly above the day name, left-aligned
+       to it. It is positioned out of flow (bottom:100% of the day name) so it can
+       never disturb the baseline the date and count align to; only the header's
+       top padding grows to make room, and only on the header that carries it.
+       On the pink paper --ink-3 is only 3.4:1 at this size, so that theme uses
+       --ink-2 (still visibly lighter than the --ink day name). */
+    .day-name .today{position:absolute;left:0;bottom:100%;margin-bottom:3px;font-size:10px;line-height:1;font-weight:700;letter-spacing:.16em;color:var(--ink-3);white-space:nowrap}
+    .day-head.has-today{padding-top:17px}
+    html[data-theme="pink"] .day-name .today{color:var(--ink-2)}
     .day-date{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
-  .day-n{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  .day-n{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  /* The F&F monogram: the masthead wordmark's own face (Playfair Display 900,
+     same ampersand) set small. Phone only — see the <=720px block. Decorative,
+     so it is hidden from assistive tech; the listing count it replaces stays. */
+  .day-logo{display:none}
 
   /* ---------- the listing row ---------- */
   /* The row is a 3-column grid: time gutter, price, then the body.
@@ -555,7 +834,8 @@
   .row>.price{grid-column:3;grid-row:1;justify-self:end;align-self:start;margin-left:0}
   .row>*:not(.time-col):not(.price){grid-column:2;grid-row:1}
   .row:last-child{border-bottom:none}
-  .row:hover{background:var(--paper-2)}
+  /* No background tint on hover: the card is not a highlight target. (The photo
+     reveal and title underline below are the hover affordances.) */
 
   /* Time column: the start time, on one line, left-aligned.
      It used to be a flex COLUMN holding the time and the price badge beneath
@@ -575,7 +855,7 @@
      competed and the row read as two headings. Moving the time to the sans and
      dropping it to 15px restores the hierarchy: serif says "what", sans says
      "when". Tabular figures keep the column optically even. */
-  .time{font-family:Archivo,sans-serif;font-size:15px;font-weight:700;line-height:1.2;letter-spacing:.01em;font-variant-numeric:tabular-nums}
+  .time{font-family:Archivo,"Archivo Fallback",sans-serif;font-size:15px;font-weight:700;line-height:1.2;letter-spacing:.01em;font-variant-numeric:tabular-nums}
   /* The AM/PM sits in the same flex row as the FREE/TICKETED badge and the
      tag chips, so it has to share their baseline. `display:block` with a
      margin-top put it on its own line above them — the three were not
@@ -594,7 +874,13 @@
 .time-col .time{
     display:flex;
     align-items:baseline;
-    gap:5px;
+    /* The gap is ZERO. The spaces in the text do the separating: "9 AM — 2 AM"
+       carries a real space either side of the em dash, and the meridiem is a
+       flex child so it needs no gap of its own. A `gap` here applied to EVERY
+       pair of children — number/meridiem, meridiem/dash, dash/next-number — and
+       combined with the literal spaces it pushed AM/PM too far from the number
+       it belongs to. One mechanism, not two. */
+    gap:0;
     white-space:nowrap;
   }
   .time-col .price{
@@ -609,7 +895,32 @@
      `.price` below. This rule used to carry that margin itself and fought the
      badge rule for it — one of the two always lost, depending on source
      order. */
-  .time .mer{display:inline;font-size:9.5px;font-weight:600;letter-spacing:.06em;color:var(--ink-3);font-family:Archivo,sans-serif}
+  /* The meridiem carries its own leading space as a margin, not as a space
+     character in a sibling text node.
+
+     `.time` is a flex container, and a text node is an anonymous flex item: its
+     trailing space is painted but its leading space is trimmed at the item
+     boundary, and the browser gives the anonymous box the whitespace-adjusted
+     width. So a literal "9 " followed by a <span>AM</span> produced a gap that
+     depended on how the flex engine measured that space — measured at 3px here,
+     but it is not a value that survives a font fallback or a zoom change, and
+     the space before the em dash collapsed to nothing for the same reason.
+
+     `margin-left` on the meridiem is the one mechanism that always works: it
+     is not whitespace, so nothing can trim it, and it sits in the same
+     transition-free, zoom-stable place the badge occupies. */
+  .time .mer{
+    display:inline;font-size:9.5px;font-weight:600;letter-spacing:.06em;
+    color:var(--ink-3);font-family:Archivo,"Archivo Fallback",sans-serif;
+    margin-left:.28em;
+  }
+  /* The range separator carries its air as margins, for the same reason the
+     meridiem does: `.time` is a flex container, and a literal space at the edge
+     of an anonymous flex item is trimmed away by layout. A margin is not
+     whitespace, so it cannot be trimmed. `aria-hidden` on the element in the
+     markup keeps a screen reader from announcing a dash as a character; the
+     range is already conveyed by the two times themselves. */
+  .time .dash{margin:0 .32em;font-weight:400;color:var(--ink-2)}
   /* `allday` now lives on the COLUMN, since the time element is only the
      time itself — the old `.time.allday` selector matched nothing. */
   .time-col.allday .time{font-size:14px;font-style:italic;font-weight:400;color:var(--ink-2)}
@@ -627,7 +938,7 @@
      a newspaper. The hover state is kept: same thickness and offset, so the
      affordance appears where the eye already expects it. */
   .title-e{
-    font-family:"Playfair Display",Georgia,serif;font-size:21px;font-weight:700;line-height:1.22;
+    font-family:"Playfair Display","Playfair Display Fallback",Georgia,serif;font-size:21px;font-weight:700;line-height:1.22;
     letter-spacing:-.008em;margin:0 0 5px;color:var(--ink);
     text-decoration-line:none;text-decoration-thickness:1px;
     text-underline-offset:.16em;text-decoration-skip-ink:auto;
@@ -661,7 +972,7 @@
      `justify-self:end` is what right-aligns it. */
   .price{
     margin-left:auto;
-    font-family:Archivo,Helvetica,Arial,sans-serif;font-size:10px;font-weight:700;
+    font-family:Archivo,"Archivo Fallback",Helvetica,Arial,sans-serif;font-size:10px;font-weight:700;
     letter-spacing:.1em;text-transform:uppercase;color:var(--ink);
     border:1px solid var(--ink);padding:2px 6px;white-space:nowrap;
     align-self:flex-start;
@@ -720,7 +1031,7 @@
   .venue:hover{color:var(--ink);text-decoration:underline;text-decoration-color:var(--ink);
     text-underline-offset:3px;text-decoration-thickness:1px}
   .tag{
-      font-family:Archivo,Helvetica,Arial,sans-serif;font-size:10px;font-weight:600;
+      font-family:Archivo,"Archivo Fallback",Helvetica,Arial,sans-serif;font-size:10px;font-weight:600;
       letter-spacing:.1em;text-transform:uppercase;
       border:1px solid var(--hair);color:var(--ink-3);
       background:transparent;white-space:nowrap;font-family:inherit;
@@ -731,14 +1042,34 @@
       /* The tag's content is 11px (14.5px of text minus 2px of border), measured
          rather than assumed — which is why the first attempt at 3.5px padding
          produced 18px, not 24. 11 + 2 + 10 = 23, which rounds DOWN to 23, so
-         10px of padding is one short: 11px total is needed. */
-      padding:5.5px 4px;margin:-5.5px -4px;
+         10px of padding is one short: 11px total is needed.
+
+         The NEGATIVE margin is a hit-area expansion: it grows the click target
+         past the visible border so the tag is not a 24px-tall strip of pixels.
+         But it was applied on all four sides, and the horizontal half is wrong:
+         it pulls the chip's BORDER 4px left of the text column, so every tag on
+         every card hangs outside the alignment the time and title set. That is a
+         4px optical offset applied to the thing the eye uses to judge the
+         margin, which is worse than a slightly small target.
+
+         So the margin is VERTICAL only. The click target keeps its extra height —
+         which is the side that needed it, since the padding is 5.5px top and
+         bottom against a 10px cap height — and the chip's left edge lands on the
+         same x as the time, the title and the description. */
+      padding:5.5px 4px;margin:-5.5px 0;
     }
   .tag:hover{border-color:var(--ink);color:var(--ink)}
   .tag:focus-visible,.venue:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .tag.gone{color:var(--paper);border-color:var(--ink);background:var(--ink)}
 
   .meta{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:12px;color:var(--ink-2)}
+  /* The per-card provenance word (.prov — "VENUE SITE" / "BOX OFFICE" /
+     "LISTING") has been removed at the reader's request; the rule that styled
+     it went with it. The three tiers are still fully represented and still
+     filterable — they live in the "Link goes to" chip row with live counts —
+     they are simply no longer printed beside every venue name. Kept here as a
+     one-line note so the next person to grep for `.prov` finds the decision and
+     its reasoning rather than assuming the class was never there. */
   .desc{margin:6px 0 0;font-size:13.5px;color:var(--ink-2);line-height:1.5;max-width:74ch;text-wrap:pretty}
   /* A sold-out row stays legible but visibly recedes: it is information, not
      an invitation, and the tag is the only thing that says so. */
@@ -746,7 +1077,7 @@
   .row.sold .title-e:hover{color:var(--ink)}
 
   .empty{padding:60px 0 80px;text-align:center;color:var(--ink-3)}
-  .empty p{font-family:"Playfair Display",serif;font-size:22px;margin:0 0 6px;color:var(--ink)}
+  .empty p{font-family:"Playfair Display","Playfair Display Fallback",serif;font-size:22px;margin:0 0 6px;color:var(--ink)}
 
   /* ---------- footer ---------- */
   footer{border-top:3px double var(--rule);margin-top:34px;padding:20px 0 46px;font-size:12px;color:var(--ink-3)}
@@ -783,12 +1114,16 @@
        which is the only arrangement that is legible on a phone. */
     .row>.time-col{grid-column:1;grid-row:1;font-size:13px}
     .row>.price{grid-column:3;grid-row:1}
-    .row>*:not(.time-col):not(.price){grid-column:2 / 4;grid-row:2}
+    .row>*:not(.time-col):not(.price){grid-column:1 / -1;grid-row:2}
     .title-e{font-size:18px}
     /* Was 17px, which is larger than the new 15px desktop value — the media
        query must scale DOWN, not up. */
     .time{font-size:13px}
-    .frow{gap:14px}
+    .frow{
+      grid-template-columns:1fr;
+      grid-template-areas:"type" "hood" "price" "avail" "link" "venue";
+      row-gap:14px;
+    }
     .right{margin-left:0;justify-content:flex-end;align-items:center}
     input[type=search]{min-width:0;width:100%}
     .fgroup.search{flex:1 1 100%}
@@ -816,6 +1151,13 @@
     /* Matches .wrap's own phone inset. Writing `10px 0` dropped the bar's
        content to the viewport edge while everything above stayed inset. */
     .filters-in{padding:10px 16px}
+    /* The panel is out of flow ON DESKTOP only, and it has to be back in flow
+       here. On a phone the bar is `position:static` — it scrolls away with the
+       page — so an absolutely-positioned panel would resolve against the
+       viewport, detach from the bar, and float over the listings with no way
+       to scroll it out of the way. A panel that belongs to a bar that is no
+       longer fixed has to be part of that bar's height again. */
+    .frow{position:static;padding:0;box-shadow:none;border-bottom:0;background:none}
     .fbar-top{flex-wrap:wrap;gap:10px 12px}
 
     /* Cap the whole bar, not just the chip panel. Capping .frow alone let the
@@ -844,124 +1186,149 @@
 
     
 
-  /* ---------- artwork ---------- */
-  /* These rules were accidentally nested inside a stray `@media print` that
-     opened above the masonry block and never closed until the end of the
-     stylesheet. On screen that meant: no halftone filter, no aspect-ratio, no
-     `display:block` on the image, and the masonry card overrides at
-     `.day-list .row` never applied. The result was 84 images rendering at
-     their intrinsic 864px inside a ~350px card, which overflowed the column
-     and inflated rows to several thousand pixels tall. */
+  /* ---------- artwork: a real halftone ----------
+     Amplitude-modulated, like newsprint: a 45-degree grid of round dots whose
+     SIZE follows the photograph's darkness, and which vanish entirely where the
+     photograph is white. (The previous screen was one fixed dot size laid over a
+     greyscale photo, so a white area still printed a uniform dot grid and the
+     page read as a texture, not a halftone.)
 
-  /* The defs-only <svg> must not occupy a box or be announced; a 0×0 svg is
-     still an inline element and would add a line of layout. */
-
-.figure{margin:0 0 11px;line-height:0;background:var(--paper)}
-.figure img{
-  display:block;
-  width:100%;
-  /* Match the source crop (h300/w864 = 0.35) so the screen keeps its aspect. */
-  aspect-ratio:864/300;
-  object-fit:cover;
-  border-radius:2px;
-  background:var(--paper);
-    /* Newsprint: crush the photo to hard monochrome, then let the dot screen
-       on ::after bite into the midtones.
-
-       The contrast value is bounded by MEASUREMENT, not taste. The feed's
-       artwork is dark: over 40 sampled cards the source mean luma runs 9-108
-       with a median of 48, and CSS contrast pivots about 127.5. A 2.55x boost
-       therefore drives the median card to 0 — a solid black rectangle with no
-       midtone for the dot screen to print, which is precisely the failure a
-       halftone cannot survive. Swept against the sampled distribution, the
-       number of reference luma that reach the black clip:
-
-         contrast(1.0)   0 of 6      contrast(1.25)  2 of 6
-         contrast(1.1)   1 of 6      contrast(1.3)   3 of 6
-         contrast(1.15)  2 of 6      contrast(1.4)   3 of 6
-         contrast(1.2)   2 of 6      contrast(1.2)  5 of 6  <- was this
-
-       1.2 with a brightness lift is the knee: it keeps the newsprint snap
-       while holding a printable tonal range on every card that still has one.
-       brightness() reads as ink on paper rather than as a hole in it.
-
-       This is a CSS screen, not an SVG
-       filter, and that is deliberate. Chromium will not load an external
-       resource into an SVG filter applied to HTML content, so an
-       feImage/feTile dot table comes back empty and the chain collapses —
-       measured at correlation 0.49 to the source, i.e. the photograph is
-       destroyed. The CSS construction measures 0.96. Do not swap this back
-       to feImage without re-running diag-ab.cjs. */
-    filter:grayscale(1) contrast(1.2) brightness(1.3);
-    transition:filter .18s cubic-bezier(.4,0,.2,1),
-               transform .18s cubic-bezier(.4,0,.2,1);
-    transform:scale(1);
+     It is built from compositing alone, because the artwork host sends no CORS
+     headers and so a <canvas> cannot read the pixels:
+       1. the photo, greyscale and very slightly blurred (so a dot's size answers
+          to the average tone of its cell, not to single pixels);
+       2. a rotated grid of cones — black at each dot centre rising to white —
+          SCREENED over it: result = 1 - (1-cone)(1-tone);
+       3. a hard threshold (brightness to set the cut, then a huge contrast).
+          A pixel is ink only where cone and tone are BOTH dark, so the ink dot
+          grows with darkness and no dot survives where tone >= the cut.
+     `.ht` is that whole stack on its own paper-coloured, isolated plate, laid
+     over the real colour photograph; revealing a card just fades the plate. */
+  .figure{margin:0 0 11px;position:relative;overflow:hidden;line-height:0;border-radius:2px;background:var(--paper)}
+  .figure img:not([src]){display:none}
+  /* The anchor is what the reader clicks, so it has to BE the picture area; it
+     wraps only images, so it needs the reset an anchor with text never does
+     (it was rendering link-blue with Times metrics). */
+  .figure-link{display:block;position:relative;line-height:0;cursor:pointer;color:inherit;text-decoration:none}
+  .figure .photo{
+    display:block;width:100%;
+    /* Match the source crop (h300/w864) so the halftone keeps its aspect. */
+    aspect-ratio:864/300;
+    object-fit:cover;object-position:50% 50%;   /* crop from the centre, never the top edge */
+    border-radius:2px;background:var(--paper);
+    transition:transform .18s cubic-bezier(.4,0,.2,1);
   }
-  /* The dot screen itself. `radial-gradient` draws one dot; `background-size`
-       is the pitch. rgba(0,0,0,a) under multiply darkens a white midtone by a,
-       so the screen is invisible in the highlights and heaviest in the midtones
-       — which is what a real halftone does. */
-    .figure::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-    /* The screen is the theme's ink, not a hardcoded black. Under multiply the
-       dot colour is what prints, so on the dark theme a black screen would be
-       invisible over a black photograph and on the pink theme it would stop
-       reading as part of the page. */
-    /* The gaps are the page's own paper, not white: a halftone sits on paper,
-       and on the pink theme that paper is pink. Without this the non-dot areas
-       render as the photograph's own pixels — a white cast under the light
-       theme and a hard white rectangle under pink. */
-    background-color:var(--paper);
-    background-image:radial-gradient(circle at 50% 50%,
-        rgba(0,0,0,var(--dot)) 0 var(--dot-r), rgba(0,0,0,0) var(--dot-r));
-    background-size:var(--dot-cell) var(--dot-cell);
-    mix-blend-mode:multiply;
-    opacity:1;
-    transition:opacity .18s cubic-bezier(.4,0,.2,1);
-    z-index:1;
+  .ht{
+    position:absolute;inset:0;isolation:isolate;background:var(--paper);
+    /* Coming BACK is instant-visible and fades in; see the revealed states for
+       the other direction. */
+    transition:opacity .18s cubic-bezier(.4,0,.2,1),visibility 0s;
   }
-  .figure{position:relative;overflow:hidden;line-height:0;border-radius:2px}
-  /* The CARD is the hover target, not just the picture. Hovering the time, the
-     title, the description or the tag row all restore the photograph to full
-     colour — the whole block of time+title+image+body responds as one, not
-     just the image. `.figure:hover` is kept alongside it as a fallback for a
-     card that is nothing but a figure. */
-  .row:hover img,
-  .figure:hover img,
-  .figure img:focus-visible{
-    /* Full colour on hover, fast. 180ms is long enough to read as a
-       deliberate reveal and short enough not to feel like a lag. */
-    filter:none;
-    transform:scale(1.02);
+  .ht .bw{
+    position:absolute;inset:0;background:#fff;
+    filter:brightness(var(--ht-k)) contrast(var(--ht-K)) invert(var(--ht-inv));
+    mix-blend-mode:var(--ht-blend);
   }
-  .row:hover .figure::after,
-  .figure:hover::after,
-  .figure img:focus-visible{opacity:0}
-  /* If the engine cannot do the blend, fall back to plain monochrome rather
-     than to full colour — a colour photo beside a screened one would read as a
-     different design, not a degraded one. */
-  .figure img{filter:grayscale(1) contrast(1.2) brightness(1.3)}
-  @supports not (mix-blend-mode:multiply){
-    /* The screen is gone, so the monochrome has to come from the filter
-       itself rather than from the dot overlay biting into it. */
-    .figure img{filter:grayscale(1) contrast(1.2) brightness(1.3)}
+  .ht .bw img{
+    position:absolute;inset:0;display:block;width:100%;height:100%;
+    object-fit:cover;object-position:50% 50%;
+    /* greyscale -> LEVELS -> (invert) -> blur. The levels pair is per image
+       (--lv-b / --lv-c, set from image-levels.json; 1 and 1 when an image has no
+       entry, which is the identity). It stretches the photograph so its darkest
+       real tone is black and its lightest real tone is white BEFORE the screen
+       sees it — otherwise a dark photograph prints as a few blobs of ink.
+       ORDER MATTERS: each filter function clamps to 0..1 before the next runs.
+       The pair is brightness THEN contrast because brightness(1/(hi+lo)) keeps
+       every tone up to the white point below 1. The reverse order (contrast first)
+       clipped every tone above 1-lo to white and then dimmed that white, so a
+       light image such as a pale map (black point .4) printed as solid black. */
+    filter:grayscale(1) brightness(var(--lv-b,1)) contrast(var(--lv-c,1)) invert(var(--ht-inv)) blur(var(--ht-blur));
   }
-.figure{overflow:hidden;line-height:0;border-radius:2px}
-/* The old `@supports not (filter:url(#halftone))` fallback is gone. It existed
-   only to desaturate a card when the SVG filter could not run; with the filter
-   replaced by plain grayscale it would have overridden the hover state and
-   fought the transition. */
-.figure img:not([src]){display:none}
+  /* The dot grid. Oversized and rotated 45deg about its centre; the figure's
+     overflow:hidden crops it. A cone runs from black (dot centre) to white at
+     --ht-cone, a little over the half-pitch, so the biggest dots just touch. */
+  .ht .bw::after{
+    content:"";position:absolute;inset:-150%;transform:rotate(45deg);
+    background:radial-gradient(circle at 50% 50%,#000 0,#fff var(--ht-cone));
+    background-size:var(--ht-cell) var(--ht-cell);
+    mix-blend-mode:screen;
+  }
+  /* Ink colour. The threshold gives pure black dots (white dots in dark mode);
+     this recolours them to the theme's ink without touching the paper. */
+  .ht::after{content:"";position:absolute;inset:0;background:var(--ink);mix-blend-mode:var(--ht-tint);pointer-events:none}
+  /* The colour halftone. A plain colour copy of the photo, blended over the plate
+     with the SAME mode as the ink tint (lighten on light paper, darken on dark),
+     so it replaces the ink and never touches the paper: black dots become the
+     photograph's own colours, the empty paper stays empty. It is the greyscale
+     coming off the halftone, which is why a reveal does it BEFORE the plate
+     fades: B&W dots -> colour dots -> colour photograph.
+     It must NOT be animated for long: it blends inside the isolated plate, so
+     every frame of its opacity re-composites the whole filtered, blended stack,
+     whereas the plate's own opacity is one cached texture. So the colour
+     switches on in a few frames and the ONLY long animation is the plate fade,
+     as it always was. Going back it is already off when the plate returns. */
+  .ht .cl{
+    position:absolute;inset:0;display:block;width:100%;height:100%;
+    object-fit:cover;object-position:50% 50%;
+    opacity:0;mix-blend-mode:var(--ht-tint);
+    transition:none;
+  }
 
-/* On a phone the card is a single column and the image is the first thing
-   in it, so it gets a little more room and a hairline frame — the only
-   place on the page where a box is allowed, because a halftone needs
-   something to sit on. */
+  /* The CARD is the hover target, not just the picture: hovering the time, the
+     title, the description or the tags all fade the plate away to the colour
+     photograph. */
+  .row:hover .ht .cl,
+  .figure:hover .ht .cl,
+  .figure-link:focus-visible .ht .cl{
+    opacity:1;transition:opacity .05s linear;
+  }
+  .row:hover .ht,
+  .figure:hover .ht,
+  .figure-link:focus-visible .ht{
+    opacity:0;
+    /* One fade, as before (.2s), starting a hair after the dots turn colour, so
+       what dissolves is already a COLOUR halftone. Once faded, stop painting
+       it: ~120 cards each carry a filtered, blended, isolated stack, and a
+       hidden one should cost nothing. The visibility flip waits for the fade
+       (.03s + .2s). */
+    visibility:hidden;transition:opacity .2s cubic-bezier(.4,0,.2,1) .03s,visibility 0s linear .23s;
+  }
+  .row:hover .photo,
+  .figure:hover .photo{transform:scale(1.02)}
+  /* The focus ring belongs to the link, drawn on the figure (the crop box) so it
+     traces the picture; the photograph itself is aria-hidden and out of the tab
+     order — a keyboard reader reaches the event through its title. */
+  .figure-link:focus-visible{outline:none}
+  .figure:has(.figure-link:focus-visible){outline:2px solid var(--accent);outline-offset:2px}
+
+  /* No blend support: show a plain greyscale photo rather than a broken plate. */
+  @supports not (mix-blend-mode:screen){
+    .ht{display:none}
+    .figure .photo{filter:grayscale(1) contrast(1.2) brightness(1.3)}
+    .row:hover .photo,.figure:hover .photo{filter:none}
+  }
+
 @media (max-width:899px){
-  .figure img{aspect-ratio:16/9}
+  .figure .photo{aspect-ratio:16/9}
+  /* A phone has no hover, so the plate would never fade and the card would stay
+     monochrome forever. Each card reveals to full colour as it enters the
+     viewport (`.revealed`, added once by the IntersectionObserver in
+     `watchFigures()`) and stays revealed. The 500ms timing is touch-only: on a
+     pointer device a half-second wash would turn a crisp hover into a lag. */
+  .ht{transition:opacity .5s cubic-bezier(.4,0,.2,1),visibility 0s}
+  .figure .photo{transition:transform .5s cubic-bezier(.4,0,.2,1)}
+  .figure.revealed .ht .cl{opacity:1;transition:opacity .08s linear}
+  .figure.revealed .ht{
+    opacity:0;
+    /* The dots turn colour, then the plate dissolves (.5s, from .04s). A
+       revealed card never goes back, so on a phone the plate is dropped from
+       painting once the wash ends — the biggest memory saving available where
+       it matters most. */
+    visibility:hidden;transition:opacity .5s cubic-bezier(.4,0,.2,1) .04s,visibility 0s linear .54s;
+  }
+}
+@media (max-width:899px) and (prefers-reduced-motion:reduce){
+  .ht,.ht .cl,.figure .photo,.figure.revealed .ht,.figure.revealed .ht .cl{transition:none}
 }
 
 /* The rule between rows has to become a rule BETWEEN cards. In a single
@@ -978,7 +1345,6 @@
     break-inside:avoid;
     page-break-inside:avoid;
   }
-  .day-list .row:hover{background:none}
 
   /* The card's TOP LINE holds the time and the price, and the body sits under
      both. Because this block makes `.row` a plain block (the time leaves its
@@ -1045,11 +1411,47 @@
   }
 }
 
-/* Category chips gap */
+/* Category chips: the flex row, and the air around it.
+   ---------------------------------------------------------------------------
+   Three separate spaces live here, and they are not the same value.
+
+   1. AIR ABOVE AND BELOW. `.tags` had a 5px `gap` and no margin at all, so the
+      chip row sat flush against the bottom of the description above it:
+      measured across six cards, the description's bottom edge and the chips'
+      top edge were the same pixel, every time — a real 0px, not a tight-looking
+      one. The chips' own negative margin pulled their boxes 5.5px up into that
+      boundary, so the visible border of the first chip overlapped the last line
+      of body text. That is the collision.
+
+      The margin is on `.tags` rather than on `.desc` so the space belongs to the
+      element that needs it, and so a card with no description still keeps its
+      chips off the title above.
+
+   2. BETWEEN CHIPS ON ONE LINE. 5px, left alone. The same expansions apply
+      horizontally, but each chip carries 4px of horizontal padding, so the
+      measured gap between two chips side by side is ~16px. Nothing to solve.
+
+   3. BETWEEN WRAPPED LINES. Not 5px, and this is the one that reads as a bug.
+
+      A flex `gap` is ONE value for both axes, so `gap:5px` gave wrapped chip
+      lines the same 5px as the gap between chips on one line. That looks right
+      in the stylesheet and is wrong on screen, because the chip's border is not
+      its flex item: every `.tag` carries `margin:-5.5px 0` as a hit-area
+      expansion, so its visible border sits 5.5px above and 5.5px below the item
+      the flex engine is spacing. Two wrapped lines were therefore
+      `5 - 5.5 - 5.5 = -6px` apart — their borders crossed by 6px, which is why
+      the two rows read as merged into one block.
+
+      Raising the row gap alone cannot fix that: the expansions are 5.5px deep
+      on each side, so any row gap under ~11px leaves the borders touching or
+      crossing. 14px clears both with a little paper left over, which is the
+      smallest value at which two wrapped rows read as separate objects. */
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  column-gap: 5px;
+  row-gap: 14px;
+  margin: 14px 0 2px;
 }
 
 /* Chip and tag corner radius */
@@ -1057,9 +1459,113 @@
   border-radius: 2px;
 }
 
+
+  /* ---------- compact filter bar + narrow header ----------
+     Two layouts below the full desktop row, chosen so every row is full and
+     aligned instead of wrapping wherever the widths happen to fall.
+
+     <=1140px (tablet / narrow window), two rows — 1140 because the one-row bar
+     needs ~1095px (measured: wordmark slot 157 + search 220 + days 310 + Only
+     free 99 + Clear/Filters 205 + gaps + margins); below that Filters wrapped
+     onto a row of its own:
+        [ search ............ | Only free | Clear | Filters ]
+        [ All | Wed | Thu | Fri  — full-width segmented row   ]
+     <=720px (phone, bar scrolls with the page), three rows:
+        [ search, full width ]
+        [ All | Wed | Thu | Fri — full-width segmented row ]
+        [ Only free ................ Clear | Filters ]
+     The controls keep one fixed order and the same sizes at every width; only
+     which row they sit on changes. */
+  @media (max-width:1140px){
+    .fbar-top{gap:10px 14px}
+    .fbar-top .search-wrap{max-width:none}
+    .fbar-top .day-pickers{order:10;flex:1 1 100%}
+    .fbar-top .day-pickers .chips{width:100%}
+    .fbar-top .day-pickers .chip{flex:1 1 auto;text-align:center}
+  }
+  @media (max-width:980px){
+
+    /* Masthead kicker: line 1 is the place and dates, line 2 is the edition stamp
+       on the left and the theme switch on the right — both edges aligned, instead
+       of the switch sitting loose beside the stamp. */
+    .kicker{gap:8px 12px}
+    .kicker>span:first-child{flex:1 1 100%}
+    .kicker-right{display:flex;flex:1 1 100%;justify-content:space-between;flex-wrap:nowrap;gap:10px}
+    #stamp{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .theme span{padding:6px 10px}
+    /* The dek is one unbreakable line only while the page is wide enough to hold
+       it; below this it ran off the right edge. */
+    .standfirst{white-space:normal;text-wrap:balance;max-width:48ch}
+  }
+  @media (max-width:720px){
+    .fbar-top{gap:10px 12px}
+    .fbar-top .search-wrap{flex:1 1 100%;min-width:0;
+      /* 16px, not 13px: iOS zooms the page on focus of any field under 16px, and
+         the zoom never undoes itself. The lens and underline are re-fitted to the
+         22px line this makes. */
+      --search-lh:22px;--search-desc:0px;--lens-centre:4.5px;padding-bottom:6px}
+    .fbar-top input[type=search]{font-size:16px}
+    .fbar-top .day-pickers{order:1}
+    .fbar-top .only-free{order:2}
+    .fbar-top .right{order:3}
+    .fbar-top .day-pickers .chip{padding:7px 9px}
+
+    #stamp{letter-spacing:.1em}
+    .day-name{font-size:22px}
+    /* On a phone the filter bar scrolls away with the page, so once the reader is
+       a screen down nothing on it says which paper this is. The sticky day header
+       is the one thing that stays, so the monogram rides it, right-aligned where
+       the listing count used to sit. The count is visually hidden, not removed:
+       "33 listings" is still announced by screen readers. */
+    .day-n{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+    .day-logo{
+      display:block;margin-left:auto;
+      font-family:"Playfair Display","Playfair Display Fallback",Georgia,serif;font-weight:900;
+      font-size:24px;line-height:1;letter-spacing:-.04em;color:var(--ink);
+    }
+    .day-logo .amp{letter-spacing:-.02em}
+
+    /* Theme switch: three colour swatches instead of three words. Each circle is
+       painted in the theme it selects (fixed values, not var()s — a swatch has to
+       look the same whichever theme is live). The words stay in the DOM at
+       font-size:0, so each radio keeps its accessible name ("Light", "Dark",
+       "Pink"). 24px circles meet the WCAG 2.2 minimum target size; the selected
+       one gets a ring offset from its edge. */
+    .themes{border:0;border-radius:0;overflow:visible;gap:10px;align-items:center}
+    .theme+.theme{border-left:0}
+    .theme span{
+      width:24px;height:24px;padding:0;border-radius:50%;
+      font-size:0;letter-spacing:0;
+      border:1.5px solid var(--ink-3);
+    }
+    .themes .theme:nth-child(1) input+span{background:#fbfaf7}
+    .themes .theme:nth-child(2) input+span{background:#141414}
+    .themes .theme:nth-child(3) input+span{background:#ffaedb}
+    .themes .theme input:checked+span{box-shadow:0 0 0 2px var(--paper),0 0 0 3.5px var(--ink)}
+    .themes .theme input:focus-visible+span{outline-offset:4px}
+  }
+
+  /* ---------- focus rings: keyboard navigation only ----------
+     :focus-visible alone is not enough. A TEXT field always matches it, even when
+     it was focused by a tap or a click (the spec treats "you are about to type"
+     as reason enough), so tapping the search box drew the red ring on every
+     phone. The ring is wanted only while someone is navigating by keyboard. The
+     script at the foot of the page sets data-input="pointer" on the first mouse,
+     touch or pen press and data-input="keyboard" on Tab; until either happens the
+     attribute is absent and the native :focus-visible rules above apply
+     unchanged, so a screen-reader or switch user who never presses a pointer
+     keeps every ring. Typing letters does NOT flip the mode back — only Tab —
+     so the ring does not appear mid-search. */
+  html[data-input="pointer"] :focus-visible,
+  html[data-input="pointer"] .search-wrap:has(:focus-visible),
+  html[data-input="pointer"] .only-free:has(:focus-visible),
+  html[data-input="pointer"] .figure:has(.figure-link:focus-visible),
+  html[data-input="pointer"] .theme input:focus-visible+span{outline:none !important}
 </style>
 </head>
 <body>
+<a class="skip" href="#list">Skip to listings</a>
+
 <!-- The halftone SVG filter, rebuilt.
      It was previously removed: the chain was luminance -> alpha, then a
      `discrete` feFuncA with 8 buckets where EVERY table had 0 in bucket 7. A
@@ -1081,7 +1587,18 @@
 <header class="masthead">
   <div class="wrap">
     <div class="kicker">
-      <span><b>San Francisco</b> &middot; <span class="range-long" id="range">Next three days</span><span class="range-short" id="range-s">Next 3 days</span></span>
+      <span class="place">
+        <!-- The city name is the ONLY visible control for switching cities. It
+             looks like ordinary kicker text; nothing else on the page hints that
+             a second city exists. Clicking it (or Enter/Space on it) opens a
+             two-item menu. -->
+        <button class="place-btn" id="place-btn" aria-haspopup="true" aria-expanded="false" aria-controls="place-menu"><b id="place-name">San Francisco</b></button>
+        <span class="place-menu" id="place-menu" role="menu" hidden>
+          <button class="place-opt" role="menuitemradio" data-city="sf" aria-checked="true">San Francisco</button>
+          <button class="place-opt" role="menuitemradio" data-city="dc" aria-checked="false">Washington</button>
+        </span>
+        &middot; <span class="range-long" id="range">Next three days</span><span class="range-short" id="range-s">Next 3 days</span>
+      </span>
       <span class="kicker-right">
         <span id="stamp">&nbsp;</span>
         <!-- The theme control is a segmented set of three, not a dropdown: there
@@ -1125,9 +1642,9 @@
           </script>
       </span>
     </div>
-    <h1 class="title">Fog &amp; Found</h1>
+    <h1 class="title"><span data-brand>Fog &amp; Found</span></h1>
     <p class="standfirst">
-      What&rsquo;s on in San Francisco over the next three days: concerts, film, theatre,
+      What&rsquo;s on in <span data-city-name>San Francisco</span> over the next three days: concerts, film, theatre,
       festivals, fairs, and everything else.
     </p>
   </div>
@@ -1137,7 +1654,7 @@
   <div class="wrap filters-in">
     <div id="err" class="err" hidden></div>
     <div class="fbar-top">
-      <span class="brand"><b>FOG &amp; FOUND</b></span>
+      <span class="brand"><b data-brand>FOG &amp; FOUND</b></span>
       <label class="search-wrap">
         <svg class="s-ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
           <circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.4"/>
@@ -1146,42 +1663,37 @@
         <input type="search" id="f-q" placeholder="Title, venue, keyword&hellip;" autocomplete="off" aria-label="Search events by title, venue or keyword">
       </label>
       <div class="day-pickers" id="f-day-rail"><div class="chips" id="f-day"></div></div>
-      <div class="count"><span id="n">0</span><small id="of">events</small></div>
       <label class="only-free" id="only-free">
         <input type="checkbox" id="only-free-input">
         <span>Only free</span>
       </label>
       <div class="right">
+        <button class="reset" id="reset">Clear filters</button>
         <button class="ftoggle" id="ftoggle" aria-expanded="false" aria-controls="frow">
           <span class="ftoggle-t">Filters</span>
-          <span class="ftoggle-n" id="ftog-n" hidden></span>
+          <span class="ftoggle-n" id="ftog-n"></span>
           <span class="caret" aria-hidden="true"></span>
         </button>
-        <button class="reset" id="reset" hidden>Clear filters</button>
       </div>
     </div>
     <div class="frow" id="frow">
-      <div class="fgroup">
+      <div class="fgroup fgroup--type">
         <span class="flabel">Type</span>
         <div class="chips" id="f-type"></div>
       </div>
-      <div class="fgroup">
-        <span class="flabel">Price</span>
-        <div class="chips" id="f-price"></div>
-      </div>
-      <div class="fgroup">
-        <span class="flabel">Availability</span>
-        <div class="chips" id="f-sold"></div>
-      </div>
-      <div class="fgroup">
+      <div class="fgroup fgroup--hood">
         <span class="flabel">Neighborhood</span>
         <div class="chips" id="f-hood"></div>
       </div>
-      <div class="fgroup">
-        <span class="flabel">Link goes to</span>
-        <div class="chips" id="f-link"></div>
+      <div class="fgroup fgroup--price">
+        <span class="flabel">Price</span>
+        <div class="chips" id="f-price"></div>
       </div>
-      <div class="fgroup">
+      <div class="fgroup fgroup--avail">
+        <span class="flabel">Availability</span>
+        <div class="chips" id="f-sold"></div>
+      </div>
+      <div class="fgroup fgroup--venue">
         <span class="flabel">Venue</span>
         <select id="f-venue" aria-label="Filter by venue"><option value="">All venues</option></select>
       </div>
@@ -1189,16 +1701,24 @@
   </div>
 </div>
 
-<main class="wrap" id="list"></main>
+  <main class="wrap" id="list"></main>
 
 <footer>
   <div class="wrap">
-    <span><b>Fog &amp; Found</b> &middot; what&rsquo;s on in San Francisco, the next three days.</span>
-    <span id="src"></span>
+    <span><b data-brand>Fog &amp; Found</b> &middot; what&rsquo;s on in <span data-city-name>San Francisco</span>, the next three days.</span>
   </div>
 </footer>
 
 <script>
+// Input modality, for the keyboard-only focus rings (see the CSS note above
+// "focus rings: keyboard navigation only"). Capture phase so nothing on the page
+// can swallow the event before the mode is set.
+(() => {
+  const root = document.documentElement;
+  addEventListener("pointerdown", () => { root.dataset.input = "pointer"; }, true);
+  addEventListener("keydown", (e) => { if (e.key === "Tab") root.dataset.input = "keyboard"; }, true);
+})();
+
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -1231,10 +1751,97 @@ const TODAY = (() => {
 
 const state = { day: "", type: new Set(), price: new Set(), link: new Set(), hood: new Set(), venue: "", q: "", hideSold: true, onlyFree: false };
 let ALL = [];
+// image URL -> [black point, white point], written by the server-side
+// pinkpages-levels job. Empty when the file is missing or malformed: every image
+// then renders with identity levels, i.e. exactly as before.
+let LEVELS = {};
 // The server's own neighborhood tally (name + count per hood), read once from the
 // payload. Refreshes with the feed, so a chip count here cannot disagree with
 // what the scraper published.
 let HOODS = [];
+
+  /* ---------- city ----------
+     Two cities, two feeds, one page. CITIES is the single place a city name,
+     its masthead name, its feed file and its timezone are stated; every other
+     string on the page that names a place or the paper is written from here, so
+     switching cannot leave "San Francisco" or "Fog & Found" behind.
+
+     `name` is the city. `brand` is the masthead — a different thing, because the
+     paper is named for what the city IS, not where it is: fog is a Pacific
+     coast fact, and Washington's version of this same page is "Federal &
+     Found". Keeping them as one value would have forced the DC masthead to say
+     "Fog" or the SF one to say "Federal"; they are genuinely independent.
+
+     The stored key is "sf" / "dc" and never the city name, so renaming a city
+     in CITIES cannot orphan a reader's saved choice. */
+  const CITIES = {
+    sf: {
+      name: "San Francisco",
+      brand: "Fog & Found",
+      feed: "events.json",
+      tz: "America/Los_Angeles",
+    },
+    dc: {
+      name: "Washington",
+      brand: "Federal & Found",
+      feed: "dc-events.json",
+      tz: "America/New_York",
+    },
+  };
+  const CITY_KEYS = Object.keys(CITIES);
+  const savedCity = (() => {
+    try {
+      const v = localStorage.getItem("city");
+      // Guard the shape, not just the presence: a hand-edited or ancient value
+      // must not select a key that CITIES has no feed for.
+      return v && Object.prototype.hasOwnProperty.call(CITIES, v) ? v : "sf";
+    } catch (_) {
+      return "sf";
+    }
+  })();
+  let CITY = savedCity;
+
+  // Every place-name and masthead the page states, resolved at load and on switch.
+  // data-city-name marks the place nodes, data-brand marks the masthead nodes;
+  // nothing else hard-codes either.
+  function applyCityStrings() {
+    const c = CITIES[CITY];
+    document.title = `${c.brand} — ${c.name}, next three days`;
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute(
+        "content",
+        `Concerts, film, theatre, festivals, fairs and everything else happening in ${c.name} over the next three days. Each listing links to the venue's own page or its official box office, and the page shows which.`
+      );
+    }
+    $("#place-name").textContent = c.name;
+    for (const el of document.querySelectorAll("[data-city-name]")) {
+      el.textContent = c.name;
+    }
+    for (const el of document.querySelectorAll("[data-brand]")) {
+      el.textContent = c.brand;
+    }
+    for (const opt of document.querySelectorAll(".place-opt")) {
+      opt.setAttribute("aria-checked", String(opt.dataset.city === CITY));
+    }
+    // The wordmark just changed width. measureBrand() runs at boot, on
+        // fonts.ready and on resize, but a city switch is none of those — so
+        // without this the clip slot keeps the OLD name's width. "FEDERAL & FOUND"
+        // is 208px against Fog & Found's 155px, and the slot is overflow:hidden, so
+        // DC clipped its own masthead to "FEDERAL & FO".
+        //
+        // It must be DEFERRED. applyCityStrings() also runs at boot, before `const
+        // bar` is initialized, and measureBrand() reads `bar` — calling it inline
+        // threw "Cannot access 'bar' before initialization" and left the variable
+        // empty. A microtask still runs after the module's top-level statements have
+        // finished, so `bar` is bound by then.
+        if (typeof measureBrand === "function") queueMicrotask(measureBrand);
+      }
+// The phone-only reveal observer. Held at module scope so `watchFigures()` can
+// disconnect the previous one — `render()` rebuilds every figure from scratch
+// on each filter change, so without this the old observer keeps observing
+// detached nodes and the reveal degrades over a browsing session.
+let figureObserver = null;
 
 // ---------------------------------------------------------------- filtering
 // An event that has already started is not an option, and the page can sit open
@@ -1253,15 +1860,243 @@ let HOODS = [];
 // left open across an evening should keep losing yesterday's listings as they
 // start, not freeze the page at whatever time it happened to be opened. The
 // cost is one Date per row on a re-filter, which is nothing.
+// e.date/e.startMinutes are PACIFIC wall-clock figures — fetch.mjs computes
+// them in America/Los_Angeles (see laTime() there). Comparing them with
+// `new Date(y, m-1, d, 0, startMinutes)` interprets those same numbers in
+// the VISITOR'S OWN local timezone instead, which is only correct for a
+// visitor who happens to be in Pacific time. For anyone east of the Bay a
+// Pacific show got marked "passed" hours before it actually started (three
+// hours early from the East Coast); for anyone west of it, a show stayed
+// listed for hours after it had already begun. laEpoch() below converts the
+// Pacific wall-clock fields to the real instant they name, so "has this
+// started?" means the same thing regardless of the reader's own clock.
+function laEpoch(y, m, d, hh, mm) {
+  // Guess the instant by treating the Pacific wall-clock fields as if they
+  // were UTC, then look up the real America/Los_Angeles UTC offset AT that
+  // guess (correct across the DST boundary because the guess is always
+  // within hours of the true instant, so it falls on the same side of any
+  // transition). longOffset gives "GMT-07:00" / "GMT-08:00".
+  const guess = Date.UTC(y, m - 1, d, hh, mm);
+  try {
+    const part = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Los_Angeles", timeZoneName: "longOffset",
+    }).formatToParts(new Date(guess)).find((p) => p.type === "timeZoneName").value;
+    const m2 = part.match(/GMT([+-])(\d{2}):(\d{2})/);
+    const offsetMin = (m2[1] === "-" ? -1 : 1) * (Number(m2[2]) * 60 + Number(m2[3]));
+    return guess - offsetMin * 60000;
+  } catch {
+    // longOffset is widely supported, but degrade rather than throw on a
+    // browser that lacks it: the old (locally-interpreted) instant is wrong
+    // for a non-Pacific visitor, but it is not nothing.
+    return new Date(y, m - 1, d, hh, mm, 0, 0).getTime();
+  }
+}
+
 function hasPassed(e) {
   if (e.startMinutes < 0) return false; // all-day: still ahead of us today
   const [y, m, d] = e.date.split("-").map(Number);
-  const start = new Date(y, m - 1, d, 0, e.startMinutes, 0, 0);
-  return start.getTime() <= Date.now();
+  const start = laEpoch(y, m, d, 0, e.startMinutes);
+  return start <= Date.now();
+}
+
+// A row whose TITLE says it is not happening is not a listing. This is
+// enforced HERE as well as in the scraper, and the duplication is deliberate:
+// the scraper is one of several sources and each can invent its own way to
+// publish a cancellation, but `visible()` is the single predicate every row
+// passes through to reach the page. Filtering in both places means a source
+// that starts marking cancellations this afternoon is handled this afternoon,
+// not on the next scraper change. The test is identical in both so the two
+// never disagree about what a cancellation is.
+const CANCELLED = /\b(cancell?ed|postponed|rescheduled)\b/i;
+function isCancelled(e) { return CANCELLED.test(e.title || ""); }
+
+// ---------------------------------------------------------------------------
+// Feed sanitiser — the last line of defence before anything is printed.
+//
+// Every field that reaches the page came from a scraped third-party page, and
+// a scraper is only ever as correct as the last regex someone wrote against
+// one site's markup. When one of them is wrong the failure is VISUAL: the
+// live listing had a funcheap card whose "address" was 10,256 characters of
+// the Yerba Buena Gardens festival programme, and it blew the card open,
+// because `.desc`/`.meta` bound the WIDTH of a line but nothing ever bounded
+// the LENGTH of the string, and a 10KB single-line string simply reflows
+// forever.
+//
+// A width bound is not a defence against a bad value — it is what the broken
+// value does TO the layout. So the value itself is bounded here, once, at the
+// boundary where the feed becomes page content. Fixing the one regex that
+// produced today's example fixes today's example; this fixes the next one,
+// whichever source it comes from, without needing the bug to be found first.
+//
+// Three classes are handled, and all three degrade to something readable
+// rather than to an empty card or a broken page:
+//
+//   1. Escaped source syntax that was never unescaped. Funcheap's listing
+//      copy is delivered as a JSON string with literal `\n` and `’`
+//      sequences, so an address arrived containing "May 14\nAireene & The
+//      Itch" — the reader sees `\n`. Decode those, because they are the
+//      SOURCE's escaping, not the reader's.
+//   2. HTML entities that survived (`&#8217;`, `&amp;`) — decode the ones
+//      that are unambiguous.
+//   3. A field that is simply too long for its slot. An address is a street
+//      address. Anything past a few lines is a scraper failure, so it is
+//      cut at a word boundary rather than printed in full.
+//
+// This is deliberately a total function over the feed: it runs on every row
+// and every field whether or not the current regexes are correct, because
+// the whole point is to not depend on them being correct.
+const FIELD_LIMITS = { title: 160, venue: 120, address: 160, description: 600, timeLabel: 60, priceLabel: 60 };
+
+// Emoji never reach the page.
+//
+// This is enforced in TWO places on purpose. The fetchers strip at ingest
+// (shared.mjs `deemoji`, called from `strip`), which keeps them out of the
+// published feed. This is the second gate, at the render boundary, because a
+// feed file can be written by something other than our own scraper — a hand
+// edit, an older deployment, a source that starts emitting emoji tomorrow. The
+// cost of catching it here is that one card shows a description without a pin
+// in front of it; the cost of NOT catching it is the paper's voice breaks.
+//
+// Arrows are excluded deliberately. "→" sits in a pictographic block but carries
+// meaning in prose ("U Street → Dupont"), and stripping it turns a route into
+// two unrelated place names. ZWJ and the keycap joiner DO go: they hold
+// multi-glyph emoji together, so removing the glyphs without them leaves
+// invisible characters floating mid-sentence.
+const EMOJI_RE =
+  /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{2B50}\u{3030}\u{303D}\u{203C}\u{2049}\u{2122}\u{2139}\u{24C2}\u{FE0F}\u{20E3}\u{200D}]/gu;
+
+// Text STYLING that arrived as markdown and would otherwise reach the reader as
+// literal punctuation — `**Steel Beans:**`, `*only*`. The scraper strips this,
+// but a hand-edited feed or a new source can reintroduce it, so the render
+// boundary repeats the same rule the pipeline applies.
+//
+// Paired markers only, and `_` is deliberately NOT a marker: it is far more
+// often a word character than an emphasis marker. See destyle() in shared.mjs
+// for why an orphaned closer is handled separately.
+const DECOR_RE =
+  /(?:\*\*|__)(?=\S)([\s\S]*?\S)(?:\*\*|__)|\*(\S(?:[^*]*?\S)?)\*|`([^`]*)`/g;
+
+function destyle(s) {
+  return s
+    .replace(DECOR_RE, (_, a, b, c) => a ?? b ?? c ?? "")
+    // A run of stars standing alone between two tokens — "] ** FREE" — is a
+    // separator, not an unpaired opener with content attached.
+    .replace(/(?<=[\s\]\)])[*]{1,3}(?=[\s\[])/g, " ")
+    .replace(/(?<=[\w)])[*]{1,2}(?=[\s,.;:!?]|$)/g, "")
+    .replace(/[*]{1,2}$/g, "")
+    .replace(/[*]{1,2}(?<=\s\()/g, "")
+    .replace(/`+/g, "")
+    .replace(/[ \t]{2,}/g, " ")
+    .trim();
+}
+
+// U+2605 (★ BLACK STAR) sits inside the 2600–27BF pictograph range but is
+// CONTENT, not decoration: it is a film rating and it appears in artist names
+// ("Deathgasm 2: Goremageddon (R) ★"). Stripping it because it shares a
+// codepoint block with a fire and a party popper loses information. The star is
+// pulled out first and put back afterwards, so the range can stay broad enough
+// to catch the actual pictographs.
+const STAR = "★";
+function deemoji(s) {
+  // Same shape as deemoji() in shared.mjs, and the separation between the GLYPH
+  // filter and the WHITESPACE tidy is load-bearing in both.
+  //
+  // An earlier version of this folded EMOJI_RE into tidyEmoji, so the outer call
+  // re-ran the glyph filter over the rejoined string and ate the star a second
+  // time — `deemoji("Deathgasm 2 (R) ★")` returned "Deathgasm 2 (R)" while
+  // `destyle()` on the same input kept it. Two filters, one job each:
+  // EMOJI_RE removes glyphs, tidyEmoji only tidies what removing them leaves.
+  //
+  // Segments are NOT trimmed individually: trimming "…(R) " to "…(R)" deletes
+  // the space and prints "(R)★". One trim, on the joined result.
+  if (!s.includes(STAR)) return tidyEmoji(s.replace(EMOJI_RE, ""));
+  return tidyEmoji(
+    s.split(STAR).map((part) => tidyEmoji(part.replace(EMOJI_RE, ""), false)).join(STAR)
+  );
+}
+
+function tidyEmoji(s, doTrim = true) {
+  const out = s
+    .replace(/[ \t]{2,}/g, " ")
+    // An emoji at the end of a clause orphans its punctuation: "believes 👨‍👩‍👧‍👦."
+    // becomes "believes ." and the row reads as damaged rather than cleaned.
+    .replace(/ +([.,;:!?…])/g, "$1")
+    .replace(/(^|\n)[ \t]*[·•—–|,;:]+[ \t]*(?=\n|$)/g, "$1");
+  return doTrim ? out.trim() : out;
+}
+
+// Undo the source's own escaping. A real newline becomes a real newline; a
+// literal backslash-n sequence (two characters in the JSON) becomes one too,
+// so the text reads as the prose it always was.
+function unsource(s) {
+  return String(s)
+    // &#8217; / &#x2019; first, so "&amp;#8217;" decodes to a quote rather
+    // than to a literal "&#8217;".
+    .replace(/&#(x[0-9a-f]+|\d+);/gi, (m, b) => {
+      const cp = b[0] === "x" || b[0] === "X" ? parseInt(b.slice(1), 16) : parseInt(b, 10);
+      if (!Number.isFinite(cp) || cp < 0x20 || cp > 0x10ffff || (cp >= 0xd800 && cp <= 0xdfff)) return m;
+      try { return String.fromCodePoint(cp); } catch { return m; }
+    })
+    .replace(/&nbsp;/gi, " ").replace(/&amp;/gi, "&").replace(/&quot;/gi, "\"")
+    .replace(/&apos;|&#39;/gi, "\\'").replace(/&lt;/gi, "<").replace(/&gt;/gi, ">")
+    // Literal \n, \t, \" as they appear after one JSON round-trip.
+    .replace(/\\n/g, "\n").replace(/\\t/g, "\t").replace(/\\r/g, "")
+    .replace(/\\u([0-9a-f]{4})/gi, (m, h) => {
+      const cp = parseInt(h, 16);
+      return cp >= 0xd800 && cp <= 0xdfff ? m : String.fromCharCode(cp);
+    })
+    .replace(/\\(["'\\])/g, "$1");
+}
+
+// One field: unescape, normalise whitespace, cap to this field's slot.
+//
+// Newlines are collapsed to a space in the short fields and KEPT in the
+// description, where a paragraph break is meaningful and the card's own
+// `white-space` handles it. A title is always one line — a title with a
+// newline in it is a malformed title, and letting it wrap makes the time
+// column and the title baseline disagree.
+function sanitizeField(v, field) {
+  if (v == null) return null;
+  let s = unsource(v);
+  // Unescaping runs FIRST so that an emoji which arrived as `&#128512;` is a
+  // real character by the time deemoji() sees it. Doing it the other way round
+  // would let a source dodge the filter simply by escaping.
+  //
+  // destyle() runs next, for the same reason: `**bold**` and `*em*` are
+  // literal punctuation on the page, and unescaping cannot fix them because
+  // they were never escaped.
+  s = deemoji(destyle(s));
+  const isProse = field === "description";
+  // A description may contain \n (the feed uses it for paragraph breaks) but
+  // no more than two in a row, and never a run of spaces.
+  s = isProse
+    ? s.replace(/[ \t]+/g, " ").replace(/\n{2,}/g, "\n\n").trim()
+    : s.replace(/\s+/g, " ").trim();
+  const cap = FIELD_LIMITS[field];
+  if (cap && s.length > cap) {
+    const cut = s.slice(0, cap);
+    const sp = cut.lastIndexOf(" ");
+    s = (sp > cap * 0.6 ? cut.slice(0, sp) : cut).trim() + "…";
+  }
+  return s;
+}
+
+function sanitizeEvent(e) {
+  if (!e || typeof e !== "object") return null;
+  for (const f of Object.keys(FIELD_LIMITS)) {
+    if (e[f] != null) e[f] = sanitizeField(e[f], f);
+  }
+  // Categories are chips, and a chip that is a sentence breaks the chip row
+  // the same way the address broke the meta row — so they get the same cap.
+  if (Array.isArray(e.categories)) {
+    e.categories = e.categories.map((c) => sanitizeField(c, "category")).filter(Boolean);
+  }
+  return e;
 }
 
 function visible(e) {
     if (hasPassed(e)) return false;
+    if (isCancelled(e)) return false;
     if (state.day && e.date !== state.day) return false;
     if (state.type.size && !e.categories.some((c) => state.type.has(c))) return false;
     if (state.price.size && !state.price.has(e.priceTier)) return false;
@@ -1322,14 +2157,25 @@ function visibleWith(overlay, e) {
 }
 
 // ---------------------------------------------------------------- chips
-function chip(label, on, count) {
+// `width` is the digit count of the chip's UNFILTERED total. The count badge is
+// pinned to that many `ch` (tabular figures, right-aligned) so "152" -> "7"
+// never resizes the chip — chip widths are a function of the data, not of the
+// current selection, which is what keeps every chip row (and the day chips and
+// search box beside them) exactly where it was as filters come and go.
+function chip(label, on, count, width) {
   const b = document.createElement("button");
   b.className = "chip";
   b.type = "button";
   b.setAttribute("aria-pressed", String(on));
-  b.innerHTML = esc(label) + (count != null ? `<span class="n">${count}</span>` : "");
+  b.innerHTML = esc(label) + (count != null
+    ? `<span class="n"${width ? ` style="min-width:${width}ch"` : ""}>${count}</span>` : "");
   return b;
 }
+
+// Every filter cleared: what a chip WOULD read with nothing else selected. Used
+// only to size chips (see chip()), never to label them.
+const NO_FILTERS = { day: "", type: new Set(), price: new Set(), link: new Set(), hood: new Set(), venue: "", q: "", onlyFree: false };
+const totalWhere = (pred) => String(ALL.filter((e) => pred(e) && visibleWith(NO_FILTERS, e)).length).length;
 
 // A row the sold-out toggle is currently hiding must not be counted by any
 // chip. Counting over the raw feed overstated each label by the sold-out rows
@@ -1362,14 +2208,18 @@ function applyFilters() {
 // it would make the selection impossible to undo. Counts and visibility come
 // from the same predicate, so a chip can never promise a number the list will
 // not deliver.
-function chipRow(host, values, count, toggle, labels) {
+function chipRow(host, values, count, toggle, labels, match) {
   host.textContent = "";
   for (const v of values) {
     const n = count(v);
     const on = toggle.isOn(v);
-    if (n === 0 && !on) continue;
-    const b = chip(labels ? labels[v] : v, on, n);
+    const b = chip(labels ? labels[v] : v, on, n, match ? totalWhere((e) => match(e, v)) : 0);
     b.dataset.value = v;
+    // A chip that would empty the page stays where it is, dimmed and inert,
+    // instead of being removed. Removing it re-flowed every row and the whole
+    // panel around whatever was just clicked; a selected chip is never
+    // disabled, so the selection can always be undone.
+    b.disabled = n === 0 && !on;
     host.append(b);
   }
   if (!host.dataset.wired) {
@@ -1459,9 +2309,13 @@ function render() {
   const list = $("#list");
   const rows = ALL.filter(visible);
 
-  $("#n").textContent = rows.length;
-  $("#of").textContent = rows.length === 1 ? "event" : "events";
-  $("#reset").hidden = !anyFilter();
+  // The "N events" readout used to be updated here. It is gone from the bar at
+  // the reader's request, and leaving the two writes behind was not a cosmetic
+  // leftover: `$("#n")` on a removed node is null, and `.textContent` on null
+  // throws, which killed the rest of render() — so the list, the chips and the
+  // day counts would all have stopped updating on the first filter change.
+  // Every write to an element the reader cannot see has to go with the element.
+  $("#reset").classList.toggle("active", anyFilter());
   syncBadge();
   pushURL();
 
@@ -1488,10 +2342,11 @@ function render() {
     // It is a flex row of three spans, so it becomes an h2 with the spans kept
     // as children — the sticky positioning and the baseline flex are unchanged.
     const h = document.createElement("h2");
-    h.className = "day-head";
-    h.innerHTML = `<span class="day-name">${esc(L.name)}${L.today ? " <sup>today</sup>" : ""}</span>
+    h.className = "day-head" + (L.today ? " has-today" : "");
+    h.innerHTML = `<span class="day-name">${L.today ? '<span class="today">today</span> ' : ""}${esc(L.name)}</span>
       <span class="day-date">${esc(L.date)}</span>
-      <span class="day-n">${evs.length} ${evs.length === 1 ? "listing" : "listings"}</span>`;
+      <span class="day-n">${evs.length} ${evs.length === 1 ? "listing" : "listings"}</span>
+      <span class="day-logo" aria-hidden="true">F<span class="amp">&amp;</span>F</span>`;
     sec.append(h);
 
     // The rows go into their own wrapper: the masonry rules hang off
@@ -1527,9 +2382,45 @@ function render() {
       if (e.image) {
         const fig = document.createElement("div");
         fig.className = "figure";
+        // Per-image levels from image-levels.json (see pinkpages-levels on the
+        // server). black point `lo`, white point `hi` -> CSS brightness B then
+        // contrast C such that lo maps to 0 and hi maps to 1:
+        //   brightness(B) then contrast(C) is  C*B*x + (.5 - .5*C)
+        //   want  C*B = 1/(hi-lo)  and  .5 - .5*C = -lo/(hi-lo)
+        //   =>    C = (hi+lo)/(hi-lo),   B = 1/(hi+lo)
+        // (B*hi = hi/(hi+lo) < 1, so nothing below the white point is clamped on
+        // the way through.)
+        const lv = LEVELS[e.image];
+        if (lv && lv.length === 2 && lv[1] > lv[0]) {
+          const [lo, hi] = lv;
+          fig.style.setProperty("--lv-b", (1 / (hi + lo)).toFixed(3));
+          fig.style.setProperty("--lv-c", ((hi + lo) / (hi - lo)).toFixed(3));
+        }
+        // The photograph is a LINK to the same place as the title, not a
+        // click handler. A real anchor is the whole point: it gets focus order,
+        // middle-click, cmd-click, the browser's link preview, and the
+        // "open in new tab" affordance for free, all of which a div with a
+        // click listener silently loses. The href is read from the same
+        // `e.url` the title uses, so the two cannot drift apart.
+        //
+        // The link is inside the figure, not around it: the figure is the crop
+        // box, and an anchor wrapping the box would have to carry the
+        // `overflow:hidden` and the radius, which puts focus and hover styling
+        // on the wrong element.
         fig.innerHTML =
-          `<img src="${esc(e.image)}" alt="" decoding="async" ` +
-          `onerror="this.closest('.figure')?.remove()">`;
+          `<a class="figure-link" href="${esc(e.url)}" target="_blank" rel="noopener noreferrer" ` +
+          `tabindex="-1" aria-hidden="true">` +
+          `<img class="photo" src="${esc(e.image)}" alt="" decoding="async" ` +
+          `onerror="this.closest('.figure')?.remove()">` +
+          // The halftone plate: the same URL again (one network fetch, the
+          // browser's cache serves the second), pure decoration, so it is
+          // hidden from assistive tech. See the CSS "artwork: a real halftone".
+          // It carries a third copy, `.cl`, for the colour-halftone beat of the
+          // reveal (greyscale comes off the dots before the plate fades).
+          `<span class="ht" aria-hidden="true"><span class="bw">` +
+          `<img src="${esc(e.image)}" alt="" decoding="async"></span>` +
+          `<img class="cl" src="${esc(e.image)}" alt="" decoding="async"></span>` +
+          `</a>`;
         body.append(fig);
       }
 
@@ -1551,6 +2442,28 @@ function render() {
       a.textContent = e.title;
       h3.append(a);
       body.append(h3);
+
+      // NOTE: the per-card provenance word ("VENUE SITE" / "BOX OFFICE" /
+      // "LISTING") that used to sit here beside the venue is GONE by request.
+      //
+      // It was not decoration. The feed has three honest tiers — `venue` is the
+      // venue or organizer, `boxoffice` their official seller, `listing` the
+      // calendar's own page — and the tier was once ONLY a filter facet, so a
+      // fallback row was set in exactly the same type as a venue's own site and
+      // a reader could not tell them apart (verified at the time: 0 of 40
+      // rendered cards mentioned a tier).
+      //
+      // It went too far the other way. Printed on all 156 cards it spent a
+      // third of the meta row saying something true of almost none of them —
+      // the large majority ARE venue sites — so the signal was the one thing on
+      // the card that could not be trusted to mean anything, and it crowded the
+      // venue name and address it sat between.
+      //
+      // The information is not lost, it is asked for instead: the "Link goes to"
+      // filter row still carries all three tiers with live counts, so a reader
+      // who cares can surface `listing` in one click and see every fallback at
+      // once. That is strictly better than a word on 152 cards that is silent
+      // about the 4 that matter.
 
       // Venue, address and price. Price is deliberately here rather than in
       // the tag row: it is a fact about the ticket, not a category.
@@ -1609,22 +2522,84 @@ function render() {
       const t = document.createElement("div");
       t.className = "time";
       // Render the time as text, and shrink EVERY meridiem in it — a range has
-      // two ("8 PM -- 2 AM"), and the previous single-trailing-match approach
-      // printed only one, which turned an 8 PM--2 AM show into a false
-      // "8 PM -- 2 PM". Splitting on every occurrence is the only shape that is
-      // correct for both a single time and a range.
-      // Remove spaces around em dash to reduce visual gap
-      const cleanTimeLabel = String(e.timeLabel).replace(/\s+--\s+/g, "--");
-      for (const part of cleanTimeLabel.split(/(\b(?:AM|PM)\b)/i)) {
+      // two ("8 PM — 2 AM"), and a single-trailing-match approach would print
+      // only one, turning an 8 PM–2 AM show into a false "8 PM – 2 PM".
+      // Splitting on every occurrence is the only shape that is correct for
+      // both a single time and a range.
+      //
+      // The source feed writes ranges with two ASCII hyphens ("9 AM -- 10 AM").
+      // They are normalised to a real em dash here, spaced, so the time reads
+      // the way a listing should. Two hyphens with no spaces is the feed's
+      // ASCII fallback, not a typographic choice, and printing it verbatim put
+      // "9AM--10AM" on the page.
+      // Two normalisations, in this order, and the order matters.
+      //
+      // 1. The feed writes ranges as "9 AM -- 10 AM" — two ASCII hyphens, the
+      //    feed's non-typographic fallback. They become a real em dash with a
+      //    space either side. Printing the hyphens verbatim put "9AM--10AM" on
+      //    the page, which is not a time anyone can read at a glance.
+      //
+      // 2. The split below finds a meridiem with `\b(?:AM|PM)\b`, a WORD
+      //    boundary. That boundary only exists because of the space in "9 AM" —
+      //    between "9" and "A" there is none, because both are word characters.
+      //    So the space must still be present when the split runs; it is
+      //    removed afterwards, once the meridiem is its own element and the
+      //    gap can be a margin in CSS where nothing can collapse it.
+      //
+      // Doing (2) before the split is the bug this replaces: with the space
+      // already gone the pattern matched nothing, every time collapsed to a
+      // single text node, and the meridiem silently stopped being smaller and
+      // greyer than the hour — a regression that no assertion in the suite
+      // was looking for, because "is there an em dash" still passed.
+      const rangeFixed = String(e.timeLabel).replace(/\s*-{1,2}\s*/g, " — ");
+      // Split on the meridiem, then render the range separator as its OWN
+      // element rather than as a space-dash-space run inside a text node.
+      //
+      // Why: `.time` is `display:flex`, so a bare text node becomes an
+      // anonymous flex item, and the browser TRIMS a leading space at that item
+      // boundary. "9 AM — 10 AM" therefore rendered as "9 AM— 10 AM": the
+      // space before the dash vanished while the space after it survived,
+      // because the second one is internal to the same text node rather than at
+      // its edge. No amount of fiddling with the string fixes that — the
+      // whitespace is being dropped by layout, not by the text.
+      //
+      // A <span class="dash"> with a margin on each side is whitespace-free, so
+      // nothing can trim it, and it survives a font fallback or a zoom the way
+      // a literal space does not.
+      const chunks = rangeFixed.split(/(\b(?:AM|PM)\b|—)/i);
+      for (let i = 0; i < chunks.length; i++) {
+        const part = chunks[i];
         if (!part) continue;
         if (/^(AM|PM)$/i.test(part)) {
           const m = document.createElement("span");
           m.className = "mer";
           m.textContent = part.toUpperCase();
           t.append(m);
-        } else {
-          t.append(document.createTextNode(part.trim()));
+          continue;
         }
+        if (part === "—") {
+          const d = document.createElement("span");
+          d.className = "dash";
+          d.setAttribute("aria-hidden", "true");
+          d.textContent = "—";
+          t.append(d);
+          continue;
+        }
+        // Collapse whitespace runs, then drop the trailing space if a meridiem
+        // or the dash follows — both carry their own margin, so a literal space
+        // there would double the gap.
+        const next = chunks[i + 1] || "";
+        const nextCarriesMargin = /^(AM|PM)$/i.test(next) || next === "—";
+        let s = part.replace(/\s+/g, " ");
+        // The space is removed on whichever side faces a margin-carrying
+        // element. A text chunk can be flanked by margins on both sides — the
+        // " " between the dash and "10" is exactly that — and then it is
+        // entirely whitespace and is dropped, which is why an empty text node
+        // must not be appended at all: an empty anonymous flex item still gets
+        // a line box and can nudge the baseline.
+        if (nextCarriesMargin) s = s.replace(/ $/, "");
+        s = s.replace(/^ /, "");
+        if (s) t.append(document.createTextNode(s));
       }
             time.append(t);
 
@@ -1672,6 +2647,76 @@ function render() {
     sec.append(listEl);
     list.append(sec);
   }
+
+  // The photographs are re-created from scratch on every render, so any
+  // previous observer was left pointing at detached nodes. Disconnect it before
+  // wiring a new one, or a long browsing session accumulates observers on DOM
+  // that is no longer in the document and the reveal silently stops working.
+  watchFigures();
+}
+
+// ---------------------------------------------------------------- reveal
+// On touch there is no hover, so `.row:hover img` never fires and the halftone
+// is the only state the photograph ever has — a phone reader sees a wall of
+// screened images with no route to the real picture. This restores it: each
+// figure reveals to full colour as it enters the viewport.
+function watchFigures() {
+  // Only phones are wired up. A pointer device gets the existing hover
+  // behaviour, and adding an observer there too would reveal images the
+  // pointer has not reached — taking the hover affordance away on desktop.
+  if (!matchMedia("(max-width:899px)").matches) return;
+  if (!("IntersectionObserver" in window)) return;
+
+  if (figureObserver) figureObserver.disconnect();
+
+  const figures = [...document.querySelectorAll(".figure")];
+
+  figureObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        // The class goes on the FIGURE, not the img: the reveal has to take the
+        // halftone `::after` with it, and that pseudo-element belongs to the
+        // figure. Setting it on the img would fade the colour in while the dot
+        // screen stayed put, and the card would resolve twice.
+        //
+        // `unobserve` makes this one-shot. Without it, scrolling back up fires
+        // the non-intersecting branch and the card would grey out again on the
+        // way up, which reads as a glitch rather than a reveal. The reader has
+        // seen the colour; there is nothing to take back.
+        entry.target.classList.add("revealed");
+        figureObserver.unobserve(entry.target);
+      }
+    },
+    {
+      // The trigger band is the viewport, pulled UP so the transition starts
+      // while the card is on screen — never before.
+      //
+      // `rootMargin` on the BOTTOM axis grows the observer's root DOWNWARD, so
+      // the old `0px 0px 15% 0px` began the 500ms wash while the card was still
+      // entirely off-screen and finished it before the reader had scrolled near
+      // it. The photo simply arrived already in colour, which is exactly what an
+      // instant swap looks like. Measured: the class was added with the card's
+      // top edge at 1129px in a 1125px viewport — 4px PAST the fold — and 0 of
+      // 129 figures were pre-revealed at load, so it was per-card.
+      //
+      // A NEGATIVE bottom margin pulls the band up instead. -4% of a 1125px
+      // viewport is ~45px of lead: the wash has begun but is only ~10% done by
+      // the time the card's top edge is genuinely on screen, so the reader is
+      // present for most of the 500ms.
+      //
+      // The value is deliberately small. -10% (~112px) was also on screen and
+      // also correct on the trigger check, but it finished so early relative to
+      // the fold that a card which stopped just short of the band never
+      // revealed at all during a slow scroll — a reveal the reader can scroll
+      // past without ever seeing. The band must be close enough to the fold that
+      // "entering the viewport" and "entering the band" are nearly the same
+      // moment.
+      rootMargin: "0px 0px -4% 0px",
+      threshold: 0.01,
+    }
+  );
+  figures.forEach((f) => figureObserver.observe(f));
 }
 
 // ---------------------------------------------------------------- boot
@@ -1716,7 +2761,9 @@ function refreshChips() {
     {
       isOn: (h) => state.hood.has(h),
       toggle: (h) => { state.hood.has(h) ? state.hood.delete(h) : state.hood.add(h); },
-    }
+    },
+    undefined,
+    (e, h) => e.neighborhood === h
   );
 
   chipRow(
@@ -1726,7 +2773,9 @@ function refreshChips() {
     {
       isOn: (c) => state.type.has(c),
       toggle: (c) => { state.type.has(c) ? state.type.delete(c) : state.type.add(c); },
-    }
+    },
+    undefined,
+    (e, c) => e.categories.includes(c)
   );
 
   // Chip counts must be the number of rows the reader will SEE, not the size
@@ -1747,19 +2796,10 @@ function refreshChips() {
     // "Ticketed" is distinct from "Price not listed": the venue told us the
     // event is not free, we just could not read the amount. Collapsing them
     // made every film look like it might be free.
-    { free: "Free", paid: "Paid", ticketed: "Ticketed", unknown: "Price not listed" }
+    { free: "Free", paid: "Paid", ticketed: "Ticketed", unknown: "Price not listed" },
+    (e, v) => e.priceTier === v
   );
 
-  chipRow(
-    $("#f-link"),
-    ["venue", "boxoffice", "listing"],
-    (v) => ALL.filter((e) => (e.linkTier || "listing") === v && visibleExcept(e, "link")).length,
-    {
-      isOn: (v) => state.link.has(v),
-      toggle: (v) => { state.link.has(v) ? state.link.delete(v) : state.link.add(v); },
-    },
-    { venue: "Venue site", boxoffice: "Box office", listing: "Listing page" }
-  );
 
   // Availability is a two-state toggle rather than a multi-select: a sold-out
   // listing is either noise or the only thing you wanted, never both.
@@ -1791,58 +2831,180 @@ function refreshChips() {
   }
 }
 
-fetch("events.json", { cache: "no-store" })
-  .then((r) => { if (!r.ok) throw new Error(`events.json ${r.status}`); return r.json(); })
-  .then((data) => {
-    ALL = data.events || [];
-    HOODS = data.neighborhoods || [];
-    readURL();
+/* ---------- city switching ----------
+   load() replaces the old one-shot boot fetch. It is a named function because
+   the switcher calls it again on every change: switching cities is not a
+   re-render of the events already in memory, it is a different document with a
+   different set of listings, its own day chips, its own neighborhood tally and
+   its own filters.
 
-    // day chips come from the feed so the labels always match the data
-    rebuildDayChips();
-    refreshChips();
-    render();
+   Filters are cleared on a switch rather than carried over. A hood selected in
+   SF ("Mission") does not exist in Washington, so carrying it across would land
+   the reader on an empty page that looks broken; and the day chips are rebuilt
+   from the new feed, so a carried day filter could point at a date the new feed
+   does not serve. The city itself is the state that persists. */
+let loadingCity = null;
 
-    const g = new Date(data.generatedAt);
-    $("#stamp").textContent = "Updated " + g.toLocaleString("en-US", { timeZone: "America/Los_Angeles", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+function loadCity(key) {
+  const feed = CITIES[key].feed;
+  // Guard against a double switch racing: the slower of two in-flight loads must
+  // not overwrite the newer one's listings.
+  const token = {};
+  loadingCity = token;
 
-    // If the rebuild ever fails, the listing keeps serving yesterday's window.
-    // It would still look complete, so say so rather than letting stale dates
-    // pass as current. A day-old feed is still worth showing; a two-day-old one
-    // is a failure, and this is the only place a reader would learn of it.
-    const ageH = (Date.now() - g.getTime()) / 36e5;
-    if (ageH > 26) {
-      const s = $("#stamp");
-      s.textContent += " \u2014 may be out of date";
-      s.classList.add("stale");
+  $("#err").hidden = true;
+  $("#list").setAttribute("aria-busy", "true");
+
+  return fetch(feed, { cache: "no-store" })
+    .then((r) => {
+      if (!r.ok) throw new Error(`${feed} ${r.status}`);
+      return r.json();
+    })
+    .then(async (data) => {
+      // A load that finished after the reader switched again is stale work.
+      if (loadingCity !== token) return;
+      // Levels ride along with the feed but must never block or break it, and
+      // they are keyed by image URL across both cities, so they load once.
+      if (!Object.keys(LEVELS).length) {
+        try {
+          const r = await fetch("image-levels.json", { cache: "no-store" });
+          if (r.ok) { const j = await r.json(); if (j && typeof j === "object") LEVELS = j; }
+          if (loadingCity !== token) return;
+        } catch (_) { /* identity levels */ }
+      }
+
+      applyCityStrings();
+
+      // Filters are per-city state, not per-visit state. See the note above.
+      state.day = "";
+      state.type.clear();
+      state.price.clear();
+      state.link.clear();
+      state.hood.clear();
+      state.venue = "";
+      state.q = "";
+      state.hideSold = true;
+      state.onlyFree = false;
+      $("#f-q").value = "";
+      $("#only-free-input").checked = false;
+
+      ALL = (data.events || []).map(sanitizeEvent);
+      HOODS = data.neighborhoods || [];
+      readURL();
+
+      // day chips come from the feed so the labels always match the data
+      rebuildDayChips();
+      refreshChips();
+      render();
+
+      const g = new Date(data.generatedAt);
+      $("#stamp").textContent =
+        "Updated " +
+        g.toLocaleString("en-US", {
+          timeZone: CITIES[key].tz,
+          month: "short",
+          day: "numeric",
+          hour: "numeric",
+          minute: "2-digit",
+        });
+
+      // If the rebuild ever fails, the listing keeps serving yesterday's window.
+      // It would still look complete, so say so rather than letting stale dates
+      // pass as current. A day-old feed is still worth showing; a two-day-old one
+      // is a failure, and this is the only place a reader would learn of it.
+      const ageH = (Date.now() - g.getTime()) / 36e5;
+      if (ageH > 26) {
+        const s = $("#stamp");
+        s.textContent += " — may be out of date";
+        s.classList.add("stale");
+      }
+      $("#list").removeAttribute("aria-busy");
+
+      // The window being served. Declared HERE and not borrowed from
+      // rebuildDayChips(): that function has its own `days`, which is a
+      // different scope, so reading it here raised "days is not defined" and
+      // the whole boot — including every listing — died in the catch below.
+      // The range in the kicker is this page's actual window, so it has to come
+      // from the data actually loaded.
+      const days = [...new Set(ALL.map((e) => e.date))].sort();
+      if (days.length) {
+        const f = dayLabel(days[0]), l = dayLabel(days[days.length - 1]);
+        $("#range").textContent = `${f.name === l.name ? "" : f.name + " "}${f.long} – ${l.name} ${l.long}`;
+        // The short form is the same range without the weekday names, for the
+        // phone header where the day chips already carry them.
+        $("#range-s").textContent = `${f.short} – ${l.short}`;
+      }
+    })
+    .catch((err) => {
+      if (loadingCity !== token) return;
+      loadingCity = null;
+      $("#list").removeAttribute("aria-busy");
+      $("#err").hidden = false;
+      $("#err").textContent = "Could not load the listings (" + err.message + ").";
+      $("#list").innerHTML = '<div class="empty"><p>The presses are stopped.</p></div>';
+    });
+}
+
+// The switcher. The trigger is the city name itself; the menu is the only other
+// thing on the page that exists because there is more than one city.
+(function citySwitcher() {
+  const btn = $("#place-btn");
+  const menu = $("#place-menu");
+
+  function setOpen(open) {
+    menu.hidden = !open;
+    btn.setAttribute("aria-expanded", String(open));
+  }
+
+  function choose(key) {
+    setOpen(false);
+    btn.focus();
+    if (key === CITY) return; // re-picking the current city is a no-op, not a reload
+    CITY = key;
+    try { localStorage.setItem("city", key); } catch (_) { /* private mode */ }
+    applyCityStrings();
+    loadCity(key);
+  }
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    setOpen(menu.hidden);
+    if (!menu.hidden) {
+      const cur = menu.querySelector('[aria-checked="true"]');
+      if (cur) cur.focus();
     }
-    // The window being served. Declared HERE and not borrowed from
-    // rebuildDayChips(): that function has its own `days`, which is a
-    // different scope, so reading it here raised "days is not defined" and
-    // the whole boot — including every listing — died in the catch below.
-    // The range in the kicker is this page's actual window, so it has to come
-    // from the data actually loaded.
-    const days = [...new Set(ALL.map((e) => e.date))].sort();
-    if (days.length) {
-      const f = dayLabel(days[0]), l = dayLabel(days[days.length - 1]);
-      $("#range").textContent = `${f.name === l.name ? "" : f.name + " "}${f.long} – ${l.name} ${l.long}`;
-      // The short form is the same range without the weekday names, for the
-      // phone header where the day chips already carry them.
-      $("#range-s").textContent = `${f.short} – ${l.short}`;
-    }
-    const c = data.counts || {};
-    const venueN = c.directLinks ?? 0;
-    const boxN = c.boxOfficeLinks ?? 0;
-    $("#src").textContent =
-      `${c.total ?? ALL.length} listings · ${venueN} venue sites` +
-      (boxN ? ` · ${boxN} box offices` : "") +
-      ` · sold-out removed`;
-  })
-  .catch((err) => {
-    $("#err").hidden = false;
-    $("#err").textContent = "Could not load the listings (" + err.message + ").";
-    $("#list").innerHTML = '<div class="empty"><p>The presses are stopped.</p></div>';
   });
+
+  menu.addEventListener("click", (e) => {
+    const opt = e.target.closest(".place-opt");
+    if (opt) choose(opt.dataset.city);
+  });
+
+  // A menu left open after the reader clicks the page is worse than no menu:
+  // it covers the first listing. Close on any outside click and on Escape.
+  document.addEventListener("click", (e) => {
+    if (menu.hidden) return;
+    if (!e.target.closest(".place")) setOpen(false);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (menu.hidden) return;
+    if (e.key === "Escape") {
+      setOpen(false);
+      btn.focus();
+    } else if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      const opts = [...menu.querySelectorAll(".place-opt")];
+      const at = opts.indexOf(document.activeElement);
+      const next = e.key === "ArrowDown" ? (at + 1) % opts.length : (at - 1 + opts.length) % opts.length;
+      e.preventDefault();
+      opts[next].focus();
+    }
+  });
+})();
+
+// The stored choice is applied before the first load so the page never flashes
+// "San Francisco" at a reader who last read Washington.
+applyCityStrings();
+loadCity(CITY);
 
 // ---------------------------------------------------------------- collapse
 // The filter rail has two states. On a wide screen the whole chip row shows
@@ -1874,18 +3036,20 @@ function setCollapsed(on) {
 function syncBadge() {
   const badge = $("#ftog-n");
   const n = activeCount();
-  badge.hidden = !(bar.dataset.collapsed === "true" && n > 0);
+  badge.classList.toggle("active", bar.dataset.collapsed === "true" && n > 0);
   badge.textContent = String(n);
 }
 
 function setBarH() {
-  // The sticky offset only matters while the bar is actually stuck. When it is
-  // static (phone) a stale height would push the day headers down for nothing.
-  if (bar.dataset.collapsed === "true") {
-    document.documentElement.style.setProperty("--barh", "0px");
-    return;
-  }
-  document.documentElement.style.setProperty("--barh", bar.offsetHeight + "px");
+  // The day headers stick at this offset, so it must be the bar's height
+  // whenever the bar ITSELF is sticky — regardless of whether its filter panel
+  // is open. It used to be 0 whenever the panel was closed (the default), so on
+  // desktop every day header stuck at top:0 directly BEHIND the bar (z-index 20
+  // vs 40) and was never visible. On a phone the bar is static, so 0 is right
+  // there: a stale height would push the headers down for nothing. The panel is
+  // absolutely positioned, so opening it does not change offsetHeight.
+  const stuck = getComputedStyle(bar).position === "sticky";
+  document.documentElement.style.setProperty("--barh", stuck ? bar.offsetHeight + "px" : "0px");
 }
 
 function placeDayChips() {
@@ -1925,6 +3089,134 @@ mqNarrow.addEventListener("change", syncToViewport);
 new ResizeObserver(setBarH).observe(bar);
 addEventListener("resize", setBarH);
 syncToViewport();
+
+// ---------------------------------------------------------------------------
+// The wordmark appears only once the masthead has scrolled away.
+// ---------------------------------------------------------------------------
+// The trigger is the MASTHEAD leaving the viewport, not an arbitrary pixel
+// count. Any threshold is a guess about how tall the masthead happens to be,
+// and it is wrong the moment the standfirst wraps to a second line or the
+// reader's font size differs from mine — the wordmark would appear while the
+// masthead was still on screen (duplication) or long after it had gone (the
+// bar looks broken on the way back up).
+//
+// An IntersectionObserver on the masthead measures the thing itself. With no
+// `rootMargin` it reports "not intersecting" the moment the masthead's bottom
+// edge passes the top of the viewport — which is exactly the boundary the
+// reader perceives as "the header is gone", and the first moment the bar
+// needs to be able to say which paper this is.
+//
+// The class is Toggled, not added. Scrolling back up has to remove the
+// wordmark again, and an `add` that is never undone would leave it there
+// permanently, contradicting the reason for hiding it in the first place.
+const masthead = document.querySelector(".masthead");
+
+// Measure the wordmark and hand its real width to CSS as `--brand-w-full`.
+//
+// Three things make this harder than it looks, and each one is a way the
+// measurement silently returns the wrong number:
+//
+//   1. It must be measured UNCLIPPED. Measuring the collapsed box returns 0.
+//   2. It must be measured AFTER the webfont lands. The fallback face is a
+//      different width from Playfair, so a measurement taken at boot bakes in
+//      the fallback and clips the real name.
+//   3. It must be re-taken on resize, because a narrower viewport can change
+//      the name's width if the font stack resolves differently.
+//
+// Rather than trying to time these perfectly, `measureBrand` is idempotent and
+// cheap, and it writes the property only when the value actually changed —
+// so it can be called from boot, from `fonts.ready`, and from `resize` without
+// ever causing a layout thrash or a redundant style write.
+function measureBrand() {
+  const b = bar.querySelector(".brand");
+  // The variable is READ on `.fbar-top` (the rule that sets `--brand-w`), so
+  // it must be WRITTEN there too. Custom properties inherit DOWNWARD only: an
+  // inline `--brand-w-full` on the .brand CHILD is invisible to the parent's
+  // own `var(--brand-w-full)` lookup, and the declaration silently falls back
+  // to the literal. That is the whole bug — the measurement was right and
+  // nobody could see it.
+  const host = bar.querySelector(".fbar-top") || bar;
+  if (!b) return;
+  // The width is measured on a Range over the LIVE text, not on a clone.
+  //
+  // The clone approach is wrong in a way that is invisible until you compare
+  // numbers. The wordmark's styling comes from the DESCENDANT selector
+  // `.fbar-top .brand b`. A clone appended to `document.body` is not inside a
+  // `.fbar-top`, so that selector does not match it, the clone inherits the
+  // body's default 16px Archivo instead of the intended 22px Playfair, and it
+  // measures 113px. The live element measures 155px. The clone was reporting a
+  // number that was confidently, repeatably wrong — and because the live box is
+  // `overflow:hidden`, that wrong number is not a cosmetic error: it CLIPS the
+  // wordmark to "FOG & FOI".
+  //
+  // A Range over the live node has none of those failure modes: it measures the
+  // text as it is actually painted, in the real cascade, in the real font. The
+  // element it wraps is the collapsed, clipped box; the Range is not, so it
+  // returns the untruncated advance width.
+  const text = b.querySelector("b") || b;
+  const range = document.createRange();
+  range.selectNodeContents(text);
+  const w = Math.ceil(range.getBoundingClientRect().width);
+  if (!w) return;   // slot is display:none at narrow widths — keep the last real measurement
+  // A hairline of slack so the last glyph's right side bearing is inside the
+  // clip rather than exactly flush with it, which reads as cut-off at 1x.
+  const padded = w + 2;
+  if (padded > 0 && host.style.getPropertyValue("--brand-w-full") !== padded + "px") {
+    host.style.setProperty("--brand-w-full", padded + "px");
+  }
+}
+measureBrand();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureBrand);
+// A resize can change the resolved font (and the name's width with it).
+addEventListener("resize", measureBrand);
+
+// Rotating a phone crosses the 900px line in both directions, and the reveal is
+// only wired up below it. Crossing UP must tear the observer down, or figures
+// keep getting `.revealed` on a layout where hover is available again — which
+// steals the pointer affordance on a tablet. Crossing DOWN must wire it up,
+// or a reader who rotated gets a page full of permanently screened images.
+//
+// `mqPhone.addEventListener("change")` fires only when the query actually flips,
+// so this is not a per-pixel resize handler. The debounce is not needed for
+// that reason alone; it guards the case of dragging a desktop window across
+// the breakpoint, where the flag flips repeatedly.
+const mqPhone = matchMedia("(max-width:899px)");
+let phoneCross = null;
+mqPhone.addEventListener("change", (e) => {
+  clearTimeout(phoneCross);
+  phoneCross = setTimeout(() => {
+    if (e.matches) {
+      watchFigures();
+    } else if (figureObserver) {
+      // Leaving phone width: drop the observer AND any class it already added,
+      // so the hover path starts from the same state a fresh load would give.
+      figureObserver.disconnect();
+      figureObserver = null;
+      document.querySelectorAll(".figure.revealed").forEach((f) => f.classList.remove("revealed"));
+    }
+  }, 120);
+});
+
+if (masthead && "IntersectionObserver" in window) {
+  new IntersectionObserver(
+    ([entry]) => {
+      // `!entry.isIntersecting` is the signal to SHOW the bar's wordmark: the
+      // masthead is off-screen (scrolled past, or above the viewport on the
+      // way back up). At the very top of the page the masthead is fully
+      // visible, so the bar correctly shows no wordmark of its own.
+      bar.classList.toggle("scrolled", !entry.isIntersecting);
+    },
+    // A 1px shrink on the TOP. Without it the observer would stop reporting
+    // while the masthead is still 1px on screen, which is the difference
+    // between "gone" and "almost gone" and is visible as a late flip on the
+    // way down and an early one on the way up.
+    { rootMargin: "-1px 0px 0px 0px", threshold: 0 }
+  ).observe(masthead);
+} else {
+  // No IntersectionObserver: degrade to "always show the wordmark", which is
+  // the pre-scroll state of the page and is never wrong, only duplicative.
+  bar.classList.add("scrolled");
+}
 
 // Both of these used to call render() alone, so the chip counts kept counting
 // the unfiltered corpus: typing a search narrowed the list while the chips
@@ -1968,10 +3260,10 @@ function rebuildDayChips() {
   dh.textContent = "";
   for (const d of days) {
     const n = ALL.filter((e) => e.date === d && visibleExcept(e, "day")).length;
-    // Same rule as the other rows: a day with nothing in it is not a choice.
-    // A selected day is kept so the reader can get back off it.
-    if (n === 0 && state.day !== d) continue;
-    const b = chip(dayLabel(d).name, state.day === d, n);
+    // A day with nothing left stays in the row, dimmed and inert, so the search
+    // box and chips beside it never move. A selected day is never disabled.
+    const b = chip(dayLabel(d).name, state.day === d, n, totalWhere((e) => e.date === d));
+    b.disabled = n === 0 && state.day !== d;
     b.dataset.value = d;
     dh.append(b);
   }
@@ -1980,7 +3272,7 @@ function rebuildDayChips() {
   // visibleNow(), which overstated it by the whole corpus whenever a type,
   // price, hood, venue or search was active.
   const allN = ALL.filter((e) => visibleExcept(e, "day")).length;
-  const all = chip("All", !state.day, allN);
+  const all = chip("All", !state.day, allN, totalWhere(() => true));
   all.dataset.value = "";
   dh.prepend(all);
   if (!dh.dataset.wired) {

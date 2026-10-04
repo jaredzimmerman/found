@@ -13,9 +13,10 @@ import { execFileSync } from "node:child_process";
 import { writeFile } from "node:fs/promises";
 import { readFileSync } from "node:fs";
 import * as CLEAN from "./title-clean.mjs";
-import { isCancelledTitle } from "./shared.mjs";
+import { isCancelledTitle, roundPriceLabel } from "./shared.mjs";
 import { hoodsOf } from "./hoods.mjs";
 import { centerForTheBook, workshopSF, clayroom, scrap } from "./manual-venues.mjs";
+import { sfStation } from "./sfstation.mjs";
 
 const TZ = "America/Los_Angeles";
 const DAYS = 3; // today + 2
@@ -83,6 +84,13 @@ const MONTHS = {
 // one, so anything it needs must be an explicit export or the import fails at
 // link time with "does not provide an export named ...".
 export { seen, out, MONTHS, parseTimeToMinutes, text, jSafe, tSafe };
+
+// priceOf is exported inline at its definition, and freeFromTitle alongside it,
+// for test-free-title.mjs. The pricing rules are the most regression-prone logic
+// in the file and every one is a pure function of a single row, so they are
+// testable in isolation — but only if they can be reached. Reaching them by
+// running a whole scrape and diffing the feed is how the last two pricing bugs
+// got shipped: the feed looked plausible either way.
 
 // "18:30" or "6:30 PM" -> minutes past local midnight, or -1 when unknown.
 function parseTimeToMinutes(t) {
@@ -487,7 +495,28 @@ const FREE_WORDS = /\b(free|no cover|free admission|complimentary|free entry)\b/
 // contains the word "free" somewhere took a different path. Reverted; the
 // duplicate stays, and the two range gates below are applied to it so this copy
 // no longer ships a table price as the door price.
-function priceOf(e) {
+// ONE definition of "this title claims free to attend", shared by priceOf() and
+// by the Funcheap reader below.
+//
+// It is a function rather than an inline regex because the rule is now needed at
+// TWO sites that do not otherwise share code: priceOf() handles the aggregator
+// rows, and funcheap() reads its own `<span class="cost">` markup and never
+// calls priceOf(). The first fix for this bug landed only in priceOf() and
+// changed nothing on the page, because all six affected rows were Funcheap.
+// Fixing it twice would guarantee the two copies drift.
+//
+// The bound that matters: an explicit $ anywhere in the title wins, and "free"
+// must modify ATTENDANCE. Two live rows contain "free" and are not free —
+// "Manny's ... w/ $1 Beer & Free Yoga" costs $1, and "8 Free Game Tokens" is not
+// admission. A bare /\bfree\b/ tags both as free.
+function freeFromTitle(title) {
+  const t = String(title || "");
+  if (!/\bfree\b/i.test(t)) return false;
+  if (/\$/.test(t)) return false;
+  return /\b(free\s+(admission|entry|monthly|class|classes|to\s+attend|tickets?)|no\s+cover|complimentary)\b/i.test(t);
+}
+
+export function priceOf(e) {
   if (e.is_free) return { label: "Free", tier: "free" };
 
   // Reject an unbelievable range: a VIP table minimum scraped out of the copy
@@ -536,6 +565,36 @@ function priceOf(e) {
   }
 
   if (FREE_WORDS.test(text)) return { label: "Free", tier: "free" };
+
+  // ---- free-to-attend, asserted by the TITLE -------------------------------
+  // Measured: 6 live rows had "free" in the title and only 1 was tagged free.
+  // The 5 that were not are venue-calendar listings — Asian Art Museum, Japanese
+  // Tea Garden, Yoga Garden SF, Emporium SF, Manny's — which arrive with NO
+  // description and NO `is_free` field. Everything above therefore had nothing to
+  // read and fell through to `unknown`, so the page showed a card titled "Free
+  // Admission Day" with no FREE tag on it.
+  //
+  // Placement: ABOVE every price branch, so an explicit $ always wins. "Free
+  // Admission Day - $25 special ticket" is a $25 ticket; a title scan that ran
+  // first would publish it as free. Every $ path above returns before this point,
+  // so reaching here means no price was found anywhere.
+  //
+  // Note what this does NOT decide: a row with `is_free: false` AND a
+  // free-admission title. Measured, that returns free today. Whether the venue's
+  // own field should override the title is a judgement call, not a measurement —
+  // so it is stated as behaviour and covered by a test rather than left implied.
+  // See test-free-title.mjs, which pins it in both directions.
+  //
+  // "free" alone is NOT enough, and this is the part a naive fix gets wrong. Two
+  // of the five live rows contain "free" and are NOT free:
+  //
+  //   "Manny's Neighborhood Trash Cleanup" w/ $1 Beer & Free Yoga  — costs $1
+  //   "Emporium SF 8 Free Game Tokens for Industry Night"        — not admission
+  //
+  // The rule itself lives in freeFromTitle() above, shared with the Funcheap
+  // reader. Placement here is ABOVE every price branch, so an explicit $ always
+  // wins: every $-returning branch above has already returned by this point.
+  if (freeFromTitle(e.title)) return { label: "Free", tier: "free" };
 
   // The API sets `is_free: false` on every ticketed listing, including the
   // cinema ones whose `ticket_info` is blank. That is real venue data: the
@@ -683,7 +742,7 @@ function decodeEntities(s) {
 // empty string for the other, and an empty title is then dropped by the
 // `if (!title) continue` guard below — a whole venue publishing nothing with no
 // error anywhere. That is exactly what happened to Workshop SF.
-export { decodeEntities, register };
+export { decodeEntities, register, cleanTitle };
 
 // Prefer https, but only where the host actually serves it. A blind scheme
 // rewrite would break every venue still on http-only, so each host is probed
@@ -1048,12 +1107,30 @@ function normalize(e, venue) {
   // reader clicks "box office" and gets a 404. Fall back to the source's own
   // listing, which is the aggregator tier the page already labels honestly.
   // Verified URLs are exempt — they were checked by hand, not by the probe.
-  const buyLive = buyOk && !DEAD_BOXOFFICE.has(buyOk.href) ? buyOk : null;
+  //
+  // The dead check is applied to BOTH candidates, not just buyLive. It used to
+  // guard buyLive alone while copyVenue — preferred ahead of it — skipped the
+  // check entirely, so a dead venue URL mined from the event's own copy was
+  // published with a live-looking "Venue site" badge. On 2026-10-03 that shipped
+  // two rows pointing at
+  // https://waitingroom.sfsymphony.org/Buy-Tickets/2026-27/Renee-Fleming-Strauss
+  // which returns 404, while the same path on www.sfsymphony.org returns 200.
+  // The guard living on only one of two paths that can both produce the URL is
+  // the whole bug: it looked correct because the one path that was checked did
+  // work. isLiveOutbound() is the single choke point so no fourth candidate
+  // source can be added later without the check.
+  const isLiveOutbound = (u) => (u ? !DEAD_BOXOFFICE.has(String(u)) : false);
+  const buyLive = isLiveOutbound(buyOk) ? buyOk : null;
+  const copyVenueLive = isLiveOutbound(copyVenue) ? copyVenue : null;
   // outbound must stay a URL object (or null), never a bare string: linkTier()
   // reads outbound.hostname. safeUrl() gives verifiedVenueUrl's plain string
   // the same shape as the other two candidates, so the hostname checks below
   // apply uniformly regardless of which source actually won.
-  const outbound = copyVenue || buyLive || safeUrl(verifiedVenueUrl(venueName)) || null;
+  // copyVenueLive rather than copyVenue: the dead-venue guard has to sit on
+  // this path too, or the one candidate that is checked ahead of it decides
+  // the link. verifiedVenueUrl stays exempt — those were confirmed by hand, so
+  // a probe miss must not silently demote a checked URL to the listing page.
+  const outbound = copyVenueLive || buyLive || safeUrl(verifiedVenueUrl(venueName)) || null;
   const url = outbound ? String(outbound) : `https://dothebay.com${e.permalink}`;
 
   // Computed ONCE. The card renders this and the tags are derived from this,
@@ -1182,13 +1259,67 @@ function richer(a, b) {
   return score(a) > score(b);
 }
 
+// DoTheBay publishes `tz_adjusted_end_date` set to 02:00 on nearly every
+// listing in the feed — 22 of 25 sampled, whatever the event's own start. That
+// is a listing-lifetime sentinel, not an end time, and it was shipping as one:
+// 68 of 155 published rows read "7:30 PM -- 2 AM +1" for a show whose page shows
+// no end at all.
+//
+// The source's own pages are the ground truth and they distinguish the two
+// cases structurally: a real end renders as TWO spans joined by a dash
+// ("9:00AM - 2:00PM"), a sentinel as ONE ("6:30PM (doors)"). The JSON simply
+// doesn't reflect it. So the field is untrustworthy, and the feed — not the
+// page — is what we have to decide on.
+//
+// Detected, never hardcoded: a sentinel is an end clock-time that repeats
+// across events whose STARTS are all over the place. A real end tracks its own
+// start (a 9 AM festival ends 2 PM); one constant 02:00 sitting under starts
+// spread across 09:00-21:15 is a column default. The extra start-diversity
+// guard is what keeps a genuinely late venue — three shows that really do run
+// to 2 AM — from being flattened; if those shows share a start hour the rule
+// does not fire. Should DoTheBay start publishing real end times the repetition
+// disappears and this stops firing on its own, with no edit here.
+//
+// Stripped at the boundary rather than filtered later, so normalize() and the
+// richer() dedupe score (+2 for having an end time) both see the row as it
+// really is. Leaving the fake field in place let those rows outrank truthful
+// duplicates of themselves.
+let sentinelEndsDropped = 0;
+function stripSentinelEnds(events) {
+  const withEnd = events.filter((e) => e && e.tz_adjusted_end_date);
+  if (withEnd.length < 4) return 0;
+  const byClock = new Map();
+  for (const e of withEnd) {
+    const hm = String(e.tz_adjusted_end_date).slice(11, 16);
+    if (!byClock.has(hm)) byClock.set(hm, []);
+    byClock.get(hm).push(e);
+  }
+  let stripped = 0;
+  for (const [hm, group] of byClock) {
+    if (group.length < 3) continue;                 // too few to be a pattern
+    if (group.length / withEnd.length < 0.6) continue; // a minority, so real
+    const startHours = new Set(group.map((e) =>
+      String(e.tz_adjusted_begin_date || e.begin_time || "").slice(11, 13)));
+    if (startHours.size < 3) continue;              // ends tracking starts = real
+    for (const e of group) {
+      e.tz_adjusted_end_date = null;
+      stripped++;
+    }
+  }
+  sentinelEndsDropped += stripped;
+  return stripped;
+}
+
 // The two citywide feeds cover today and tomorrow across the whole Bay Area.
 async function citywide() {
   for (const band of ["today", "tomorrow"]) {
     try {
       const d = await j(`https://dothebay.com/events/${band}.json?per_page=50`);
-      for (const e of d.events || []) add(e, e.venue);
-      console.log(`  ${band}: +${(d.events || []).length} raw`);
+      const raw = d.events || [];
+      const n = stripSentinelEnds(raw);
+      if (n) console.log(`  ${band}: dropped ${n} sentinel end time(s)`);
+      for (const e of raw) add(e, e.venue);
+      console.log(`  ${band}: +${raw.length} raw`);
     } catch (err) {
       console.log(`  ${band}: ${err.message}`);
     }
@@ -1262,6 +1393,7 @@ async function venues() {
   const CONCURRENCY = 6;
   let fetched = 0;
 
+  const pending = [];
   for (let i = 0; i < sf.length; i += CONCURRENCY) {
     const batch = sf.slice(i, i + CONCURRENCY);
     const results = await Promise.all(
@@ -1279,22 +1411,41 @@ async function venues() {
       fetched++;
       for (const group of d.event_groups || []) {
         if (!wanted.has(group.date)) continue;
-        for (const e of group.events || []) {
-          // Prefer the event's OWN inline venue over the index stub. The index
-          // record for a venue like Workshop carries neither `city` nor an
-          // address, so venueInSF() rejects it and the whole calendar is never
-          // read — the walk silently loses a venue that has in-window events.
-          // The calendar response carries the real address ("1310 Haight St,
-          // San Francisco"), so checking the event's own venue fixes the loss
-          // without widening the box: a Berkeley or Oakland event is still
-          // rejected, because its own venue record says so.
-          add(e, (e && e.venue) || d.venue);
-        }
+        // Buffer the event WITH its calendar's venue. add() needs the venue
+        // that came back with this event's calendar, so the pair has to travel
+        // together — flattening to events alone would leave the fallback
+        // pointing at an unrelated venue.
+        for (const e of group.events || []) pending.push([e, e && e.venue ? e.venue : d.venue]);
       }
     }
     process.stdout.write(`\r  venues ${Math.min(i + CONCURRENCY, sf.length)}/${sf.length}`);
   }
-  console.log(`\n  ${fetched} venue calendars read, ${out.length} events kept so far`);
+  console.log(`\n  ${fetched} venue calendars read, ${pending.length} in-window events`);
+
+  // Sentinel detection runs on the WALK'S AGGREGATE, not per calendar. A single
+  // venue calendar returns a handful of events, and a sentinel is only
+  // recognisable as one by its relationship to other events — a constant 02:00
+  // under starts spread across the evening. Judged one calendar at a time that
+  // evidence does not exist yet, so per-calendar filtering saw a legitimate
+  // "this venue's shows run to 2 AM" every time and stripped nothing.
+  //
+  // Events are buffered rather than added as they arrive so the whole in-window
+  // population is available at once. Only the in-window set matters: it is
+  // exactly what gets published, so the share the sentinel is measured against
+  // is the share the reader sees.
+  stripSentinelEnds(pending.map((p) => p[0]));
+  for (const [e, venue] of pending) {
+    // Prefer the event's OWN inline venue over the calendar's. The calendar
+    // record for a venue like Workshop carries neither `city` nor an
+    // address, so venueInSF() rejects it and the whole calendar is never
+    // read — the walk silently loses a venue that has in-window events.
+    // The event's own venue record carries the real address ("1310 Haight St,
+    // San Francisco"), so checking the event's own venue fixes the loss
+    // without widening the box: a Berkeley or Oakland event is still
+    // rejected, because its own venue record says so.
+    add(e, venue);
+  }
+  console.log(`  ${out.length} events kept so far`);
 }
 // ---------------------------------------------------------------------------
 // Dedupe across sources: same id, then same title+date+venue
@@ -1466,9 +1617,24 @@ async function funcheap(days) {
       // Cost: FREE</span> — not a "Cost:" label followed by a tooltip link,
       // which is what this read before, so every listing came out priceless
       // and dropped out of the price filter.
+      //
+      // Funcheap omits the span entirely on listings for free community events,
+      // which is why six live rows had "free" in the title and none carried a
+      // FREE tag — the fix in priceOf() could never reach them, because this
+      // source does not call priceOf(). Measured on 2026-10-03: Asian Art
+      // Museum "Free Admission Day", Japanese Tea Garden "Free Admission Hour",
+      // "Free Monthly Yoga Class", Manny's, and Emporium SF, all tier=unknown.
+      //
+      // So the same rule is applied here, but by CALLING the shared
+      // classification rather than copying the regex a fifth time. It is
+      // extracted below into `freeFromTitle` for exactly that reason: five
+      // hand-copied versions of "is this title a free-to-attend claim" is how
+      // the four existing copies drifted apart in the first place.
       const mc = html.match(/<span class="cost">([^<]*?Cost:\s*([^<]*?))\s*<\/span>/i);
       const cost = mc ? text(mc[2]) : null;
-      const free = cost ? /\bfree\b/i.test(cost) : false;
+      const free = cost ? /\bfree\b/i.test(cost) : freeFromTitle(title);
+      // A title-declared free event still needs a label; Funcheap printed none.
+      const priceLabel = free ? "Free" : (cost || null);
 
       // Start time. The listing's own page carries the authoritative one in
       // the #stats bar ("Tuesday, September 29, 2026 - 5:00 pm to 8:00 pm"),
@@ -1535,7 +1701,7 @@ async function funcheap(days) {
         startMinutes,
         endMinutes,
         timeLabel,
-        priceLabel: free ? "Free" : (cost || null),
+        priceLabel: priceLabel || null,
         priceTier: free ? "free" : (cost ? "paid" : "unknown"),
         categories: categorize(null, `${title} ${venue}`, blurb, venue),
         // Funcheap's own page is an aggregator, so it is only the last resort.
@@ -1563,141 +1729,118 @@ async function funcheap(days) {
 // source pays for one browser rather than one calendar.
 //
 // Do not try to make `get()` reach this page. It cannot.
+//
+// THE BROWSER IS NO LONGER ON THIS PATH, and that is the whole point of this
+// rewrite. The reader used to open Chromium and scrape the rendered DOM, which
+// meant this source silently contributed ZERO events on any host where Chrome
+// cannot start — and DreamHost, where the site is actually built, is exactly
+// such a host: the grsec-hardened shared kernel blocks the zygote fork and
+// chromium exits 133 with an empty DOM. The catch block below logged a tidy
+// "unavailable — skipped", which reads as a source outage rather than as the
+// real cause. A browser dependency wearing the costume of "no events".
+//
+// sucuri.mjs solves the JS interstitial in plain node and hands back the HTML,
+// so there is nothing left for a browser to do. Playwright stays only as a
+// fallback for when the challenge shape changes AND a browser happens to exist;
+// without one the source degrades loudly and costs the build nothing else.
 async function cityLights(days) {
   const VENUE = "City Lights Booksellers";
-  // The browser must stay open until BOTH evaluate() calls are done. Closing it
-  // in a finally around goto() — the obvious shape — leaves `page` dangling and
-  // the next evaluate throws "Target page, context or browser has been closed".
-  // The try/finally here wraps the whole read, not just the navigation.
-  let browser = null;
-  let page = null;
+  const URL = "https://citylights.com/events/";
+
+  // One reader, two possible transports. The PARSER is not duplicated: the
+  // browserless and headless paths differ only in where the HTML comes from, so
+  // a fix to date/title extraction cannot land in one and miss the other.
+  let html = null;
+  let via = null;
   try {
-    const { chromium } = await import("playwright");
-    browser = await chromium.launch({
-      executablePath: process.env.CHROME_BIN || "/usr/bin/google-chrome",
-      args: ["--no-sandbox", "--disable-dev-shm-usage"],
-    });
-    page = await browser.newPage();
-    await page.goto("https://citylights.com/events/", { waitUntil: "domcontentloaded", timeout: 45000 });
-
-  // Read the calendar out of the rendered DOM in one pass. The page is a flat
-  // sequence of "date line, time, title, blurb, type, View Details", so the
-  // listing blocks are cut on the date lines and each block is then read.
-  //
-  // NB: the local collection is named `raw`, not `out`. The module already has
-  // an `out` (the kept-events array this function pushes into), and shadowing
-  // it inside the evaluate callback would read as a bug and break silently if
-  // the callback were ever inlined.
-  const blocks = await page.evaluate(() => {
-    const DATE = /(?:Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day,?\s+((?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},\s*\d{4}),?\s*(\d{1,2}:\d{2}\s*[ap]m)\s*(?:[A-Z]{2,4})?/gi;
-    const t = document.body.innerText.replace(/ /g, " ");
-    const raw = [];
-    const rx = new RegExp(DATE.source, "gi");
-    let m;
-    while ((m = rx.exec(t))) {
-      const start = m.index;
-      const next = t.indexOf("View Details", start);
-      raw.push({
-        dateText: m[1],
-        time: m[2],
-        text: t.slice(start, next > 0 ? next + "View Details".length : start + 600),
-      });
+    const { fetchThroughSucuri } = await import("./sucuri.mjs");
+    const r = await fetchThroughSucuri(URL);
+    if (r.html) {
+      html = r.html;
+      via = "browserless (sucuri solved in node)";
+    } else {
+      console.log(`  city lights: ${r.skipped} — falling back to headless`);
     }
-    return raw;
-  });
-
-  const anchorOrder = await page.evaluate(() =>
-    Array.from(document.querySelectorAll('a[href*="/events/"]'))
-      .map((a) => (a.getAttribute("href") || "").trim())
-      .filter((h) => h && h !== "/events/")
-      .filter((v, i, arr) => arr.indexOf(v) === i)
-  );
-
-  const MONTH = { january: 0, february: 1, march: 2, april: 3, may: 4, june: 5, july: 6, august: 7, september: 8, october: 9, november: 10, december: 11 };
-  let added = 0;
-  for (const b of blocks) {
-    const dm = b.dateText.match(/([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})/);
-    if (!dm) continue;
-    const mo = MONTH[dm[1].toLowerCase()];
-    if (mo == null) continue;
-    const iso = `${dm[3]}-${String(mo + 1).padStart(2, "0")}-${String(dm[2]).padStart(2, "0")}`;
-    if (!days.includes(iso)) continue;
-
-    // The block text runs date line -> time -> title -> blurb -> type.
-    const lines = b.text.split("\n").map((s) => s.trim()).filter(Boolean);
-    const dateLine = lines[0] || "";
-    const title = (lines[1] || "").replace(dateLine, "").trim() || (lines[2] || "");
-    const blurb = (lines[2] || "").replace(dateLine, "").trim();
-    if (!title || /^view details$/i.test(title)) continue;
-    if (/event passed/i.test(dateLine)) continue;
-
-    // Order the permalinks by the slug the listing itself names, so the right
-    // URL lands on the right event rather than by position in a list.
-    const slug = title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "");
-    let url = null;
-    const exact = anchorOrder.find((h) => h === `https://citylights.com/events/${slug}/`);
-    if (exact) url = exact;
-    if (!url) {
-      const words = title.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length > 3);
-      const cand = anchorOrder.find((h) => words.filter((w) => h.includes(w)).length >= Math.max(1, words.length - 1));
-      if (cand) url = cand;
-    }
-    if (!url) continue;
-
-    const m12 = String(b.time || "").match(/(\d{1,2}):(\d{2})\s*(am|pm)/i);
-    const startMinutes = m12
-      ? (parseInt(m12[1], 10) % 12) * 60 + parseInt(m12[2], 10) + (/pm/i.test(m12[3]) ? 720 : 0)
-      : -1;
-    // The block's time field can be a single time or already read as a range
-    // ("7:00 pm to 9:00 pm"). Take the LAST time on the line as the end, so a
-    // range survives instead of being collapsed to its first half.
-    const allTimes = String(b.time || "").match(/\d{1,2}:\d{2}\s*(?:am|pm)/gi) || [];
-    const endMinutes = allTimes.length > 1
-      ? parseTimeToMinutes(allTimes[allTimes.length - 1])
-      : -1;
-    const timeLabel = startMinutes >= 0
-      ? timeRangeLabel(startMinutes, endMinutes)
-      : (b.time || "Time TBA");
-    const cost = /\bfree\b/i.test(b.text) ? "Free" : null;
-
-    const id = `cl-${slug}-${iso}`;
-    if (seen.has(id)) continue;
-    seen.add(id);
-    out.push({
-      id,
-      title,
-      venue: VENUE,
-      neighborhood: "North Beach",
-      address: "261 Columbus Ave, San Francisco, CA 94133",
-      description: blurb.slice(0, 220),
-      date: iso,
-      startMinutes,
-      endMinutes,
-      timeLabel,
-      priceLabel: cost,
-      // Was `cost ? "free" : "unknown"`, which is inverted: a KNOWN free
-      // event was tagged "free" only by accident (cost is "Free" or null, and
-      // the free row happened to exist), while a paid City Lights listing would
-      // have been tagged "free". Correct: a known cost means we know the tier.
-      priceTier: cost === "Free" ? "free" : (cost ? "paid" : "unknown"),
-      categories: categorize(null, `${title} ${VENUE}`, blurb, VENUE),
-      // City Lights' own event page IS the organiser page for a City Lights
-      // event, so this is a first-party link, not an aggregator fallback.
-      url,
-      linkTier: "venue",
-    });
-    added++;
-  }
-  console.log(`  city lights: ${added} in-window listings (${blocks.length} on the calendar)`);
   } catch (e) {
-    // One source failing must not take the whole build down. A missing browser
-    // or a Cloudflare change costs City Lights' listings and nothing else.
+    console.log(`  city lights: sucuri path failed (${String(e.message).split("\n")[0]})`);
+  }
+
+  if (!html) {
+    // The browser must stay open until the read is DONE. Closing it in a finally
+    // around goto() — the obvious shape — leaves `page` dangling and the next
+    // evaluate throws "Target page, context has been closed".
+    let browser = null;
+    let page = null;
+    try {
+      const { chromium } = await import("playwright");
+      browser = await chromium.launch({
+        executablePath: process.env.CHROME_BIN || "/usr/bin/google-chrome",
+        args: ["--no-sandbox", "--disable-dev-shm-usage"],
+      });
+      page = await browser.newPage();
+      await page.goto(URL, { waitUntil: "domcontentloaded", timeout: 45000 });
+      html = await page.content();
+      via = "headless chromium";
+    } catch (e) {
+      console.log(`  city lights: no browser (${String(e.message).split("\n")[0]})`);
+    } finally {
+      if (browser) await browser.close().catch(() => {});
+    }
+  }
+
+  try {
+    if (!html) throw new Error("no HTML from either reader");
+    const { parseCalendar } = await import("./citylights-parse.mjs");
+    const { rows, blockCount, undated } = parseCalendar(html);
+
+    let added = 0;
+    for (const r of rows) {
+      if (!days.includes(r.date)) continue;
+      if (r.passed) continue;
+
+      const cost = /\bfree\b/i.test(`${r.blurb} ${r.title}`) ? "Free" : null;
+      const id = `cl-${(r.url || r.title).replace(/[^a-z0-9]+/gi, "-").toLowerCase()}-${r.date}`;
+      if (seen.has(id)) continue;
+      seen.add(id);
+
+      out.push({
+        id,
+        title: cleanTitle(r.title),
+        venue: VENUE,
+        neighborhood: "North Beach",
+        address: "261 Columbus Ave, San Francisco, CA 94133",
+        description: (r.blurb || "").slice(0, 220),
+        date: r.date,
+        startMinutes: r.startMinutes,
+        // No end time is published per-event. -1 is "unknown", not "same as
+        // start" — the range formatter prints a single clock time for -1 and
+        // only invents a range when both ends are known.
+        endMinutes: -1,
+        timeLabel: r.startMinutes >= 0 ? timeRangeLabel(r.startMinutes, -1) : "Time TBA",
+        priceLabel: cost,
+        // Was `cost ? "free" : "unknown"`, which is inverted: a KNOWN free
+        // event was tagged "free" only by accident (cost is "Free" or null, and
+        // the free row happened to exist), while a paid City Lights listing
+        // would have been tagged "free". Correct: a known cost means we know
+        // the tier.
+        priceTier: cost === "Free" ? "free" : (cost ? "paid" : "unknown"),
+        categories: categorize(null, `${r.title} ${VENUE}`, r.blurb, VENUE),
+        // City Lights' own event page IS the organiser page for a City Lights
+        // event, so this is a first-party link, not an aggregator fallback.
+        url: r.url,
+        linkTier: "venue",
+      });
+      added++;
+    }
+
+    // Counts are printed even on success. "0 in-window" and "0 parsed because the
+    // challenge changed" look identical from the outside, and this source has
+    // spent three separate days reporting one of them as the other.
+    console.log(`  city lights: ${added} in-window (${rows.length}/${blockCount} blocks parsed, ${undated} undated, via ${via})`);
+  } catch (e) {
+    // One source failing must not take the whole build down. A challenge change
+    // costs City Lights' listings and nothing else.
     console.log(`  city lights: unavailable (${String(e.message).split("\n")[0]}) — skipped`);
-  } finally {
-    if (browser) await browser.close().catch(() => {});
   }
 }
 
@@ -1845,6 +1988,11 @@ async function main() {
   await cityLights(days);
   await omnivore(days);
 
+  // SF Station's own calendar. Parsed from its schema.org microdata, so it needs
+  // no browser — which is the only reason it is here rather than in the browser
+  // path: the DreamHost build cannot run Chrome at all.
+  await sfStation(days);
+
   // Hand-kept venues from the brief. Each is a different stack, so each has
   // its own source rather than a generic extractor pretending to cover them.
   await centerForTheBook(days);
@@ -1876,6 +2024,31 @@ async function main() {
   for (const e of dedupe().filter((r) => days.includes(r.date))) {
     if (isCancelledTitle(e.title)) { cancelledCount++; continue; }
     survivors.push(e);
+  }
+  // Price display rounding, applied ONCE here rather than in each source.
+  //
+  // This is the only point every row passes through — sources push straight to
+  // `out` and each builds its own label, so a rounding rule added per-source is
+  // a rule that gets missed by the next source added. Doing it after the sort
+  // and before publication means the published feed is the only place a label
+  // exists, so what rounds is exactly what ships.
+  //
+  // `$22.46` -> `$22`. Fractional cents are what the aggregators actually
+  // charge; they read as false precision on a listing tag, where the only
+  // comparison being made is against a budget. "Free" and "Ticketed" are left
+  // alone — they are not amounts. Ranges round each end independently
+  // ("$22.46–$27" -> "$22–$27"), which keeps the low end readable.
+  //
+  // Only `priceLabel` is touched. `priceTier` is the free/paid decision and is
+  // NOT derived from the number, so rounding cannot change an event's tier or
+  // the counts printed below.
+  for (const e of survivors) e.priceLabel = roundPriceLabel(e.priceLabel);
+  // Report the sentinel strip. A run that silently stops finding the pattern
+  // is indistinguishable from one that broke, so the count has to be visible
+  // in the build log every run — same reasoning as the neighborhood count
+  // below and the dupes collapsed earlier.
+  if (sentinelEndsDropped) {
+    console.log(`  sentinel end times stripped: ${sentinelEndsDropped} (placeholder, not published)`);
   }
   const events = survivors
     .sort((a, b) => a.date.localeCompare(b.date) || a.startMinutes - b.startMinutes || a.venue.localeCompare(b.venue));

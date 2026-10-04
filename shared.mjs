@@ -547,6 +547,39 @@ export function priceFrom({ structured, text, isFree, assertedPaid, overrides } 
   return { label: null, tier: "unknown" };
 }
 
+/**
+ * Round a price label to whole dollars, for DISPLAY only.
+ *
+ * The aggregators charge in cents — "$22.46", "$27.51" — and those figures get
+ * copied straight into the price tag, where they read as more precision than a
+ * listing actually carries. The tag answers "can I afford this", so whole
+ * dollars are the right resolution: $22.46 -> $22.
+ *
+ * Only the label is rounded. `priceTier` is decided by priceFrom() from free
+ * wording and structured fields, never from the rendered number, so rounding a
+ * display string cannot move an event between the free/paid counts.
+ *
+ * Left untouched, because they are not amounts:
+ *   - "Free" / "Ticketed"  — no number to round
+ *   - null / undefined     — nothing was published, which is real information
+ *   - anything with no "$"  — a label shape we do not recognise. Round nothing
+ *                            rather than guess at text we have never seen.
+ *
+ * Ranges round each end on its own, so "$22.46–$27" becomes "$22–$27". Rounding
+ * the whole range from its midpoint would be worse than either end: it would
+ * invent a low end the venue did not quote.
+ */
+export function roundPriceLabel(label) {
+  if (typeof label !== "string" || !label.includes("$")) return label;
+  return label.replace(/\$(\d+(?:\.\d+)?)/g, (whole, num) => {
+    const n = parseFloat(num);
+    if (!Number.isFinite(n)) return whole;
+    // Round half UP, so $22.50 is $23 rather than the banker's-rounding $22 that
+    // Math.round would give for some values and a reader would find surprising.
+    return `$${Math.round(n + 1e-9)}`;
+  });
+}
+
 // ---------------------------------------------------------------------------
 // Links
 // ---------------------------------------------------------------------------
