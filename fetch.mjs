@@ -17,6 +17,7 @@ import { isCancelledTitle, roundPriceLabel } from "./shared.mjs";
 import { hoodsOf } from "./hoods.mjs";
 import { centerForTheBook, workshopSF, clayroom, scrap } from "./manual-venues.mjs";
 import { sfStation } from "./sfstation.mjs";
+import { foopee } from "./foopee.mjs";
 
 const TZ = "America/Los_Angeles";
 const DAYS = 3; // today + 2
@@ -83,7 +84,7 @@ const MONTHS = {
 // NOT visible to importers unless named here — the file imports back into this
 // one, so anything it needs must be an explicit export or the import fails at
 // link time with "does not provide an export named ...".
-export { seen, out, MONTHS, parseTimeToMinutes, text, jSafe, tSafe };
+export { seen, out, MONTHS, parseTimeToMinutes, text, jSafe, tSafe, categorize, clock, foopee };
 
 // priceOf is exported inline at its definition, and freeFromTitle alongside it,
 // for test-free-title.mjs. The pricing rules are the most regression-prone logic
@@ -1987,6 +1988,7 @@ async function main() {
   await funcheap(days);
   await cityLights(days);
   await omnivore(days);
+  await foopee(days);
 
   // SF Station's own calendar. Parsed from its schema.org microdata, so it needs
   // no browser — which is the only reason it is here rather than in the browser
