@@ -187,6 +187,36 @@ async function fetchFuncheap() {
   return events;
 }
 
+async function fetchValkyries() {
+  const events = [];
+  // 2026 Golden State Valkyries home games (from WNBA schedule)
+  const games = [{"month": 5, "day": 10, "opponent": "Phoenix"}, {"month": 5, "day": 13, "opponent": "Chicago"}, {"month": 5, "day": 25, "opponent": "Connecticut"}, {"month": 5, "day": 28, "opponent": "Indiana"}, {"month": 5, "day": 31, "opponent": "Las Vegas"}, {"month": 6, "day": 2, "opponent": "Portland"}, {"month": 6, "day": 9, "opponent": "Phoenix"}, {"month": 6, "day": 15, "opponent": "Los Angeles"}, {"month": 6, "day": 17, "opponent": "Dallas"}, {"month": 6, "day": 19, "opponent": "Minnesota"}, {"month": 6, "day": 24, "opponent": "Atlanta"}, {"month": 6, "day": 26, "opponent": "Atlanta"}, {"month": 6, "day": 28, "opponent": "New York"}, {"month": 7, "day": 18, "opponent": "Washington"}, {"month": 7, "day": 20, "opponent": "Washington"}, {"month": 8, "day": 2, "opponent": "Toronto"}, {"month": 8, "day": 4, "opponent": "Toronto"}, {"month": 8, "day": 12, "opponent": "Chicago"}, {"month": 8, "day": 17, "opponent": "Dallas"}, {"month": 8, "day": 19, "opponent": "Minnesota"}, {"month": 8, "day": 24, "opponent": "Minnesota"}, {"month": 9, "day": 18, "opponent": "Portland"}, {"month": 9, "day": 19, "opponent": "Seattle"}];
+
+  for (const game of games) {
+    const dateStr = `2026-${String(game.month).padStart(2, "0")}-${String(game.day).padStart(2, "0")}`;
+    // Filter: only include games within the 3-day window
+    if (!isWithin3Days(dateStr)) continue;
+
+    events.push({
+      source: "WNBA",
+      venue: "Chase Center",
+      title: `Golden State Valkyries vs ${game.opponent}`,
+      description: `WNBA regular season game: Golden State Valkyries vs ${game.opponent}`,
+      date: dateStr,
+      startMinutes: 1140,  // 7:00 PM
+      timeLabel: "7:00 PM",
+      url: "https://valkyries.wnba.com/schedule",
+      free: false,
+      categories: ["Sports", "Basketball"],
+      alsoIn: ["WNBA"],
+    });
+  }
+  console.log(`  Valkyries: ${events.length} events`);
+  return events;
+}
+
+
+
 function parseTime(s) {
   const m = s.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)/i);
   if (!m) return -1;
@@ -230,8 +260,8 @@ function dedupe(events) {
 // ---------------------------------------------------------------------------
 async function main() {
   console.log("SF Pink Pages scraper — fetching events...");
-  const [dtb, fc] = await Promise.all([fetchDoTheBay(), fetchFuncheap()]);
-  let all = [...dtb, ...fc];
+  const [dtb, fc, vk] = await Promise.all([fetchDoTheBay(), fetchFuncheap(), fetchValkyries()]);
+  let all = [...dtb, ...fc, ...vk];
   all = dedupe(all);
   all.sort((a, b) => a.date.localeCompare(b.date) || a.startMinutes - b.startMinutes);
 
