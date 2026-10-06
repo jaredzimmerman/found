@@ -138,7 +138,64 @@ async function fetchFuncheap() {
     const res = await fetch("https://sf.funcheap.com/feed/", {
       headers: { "User-Agent": UA, "Accept": "application/rss+xml,application/xml" }
     });
-    if (!res.ok) { console.log(`  Funcheap: HTTP ${res.status}`); return events; }
+    if (!res.ok) { console.log(`  Funcheap: HTTP ${res.status}`); 
+
+async function fetchDecentered() {
+  const events = [];
+  try {
+    const res = await fetch("https://events.decentered.org/feeds/rss.xml", {
+      headers: { "User-Agent": UA, "Accept": "application/rss+xml,application/xml" }
+    });
+    if (!res.ok) { console.log(`  Decentered: HTTP ${res.status}`); return events; }
+    const xml = await res.text();
+    const parsed = await new Parser().parseStringPromise(xml);
+    const items = parsed.rss?.channel?.[0]?.item || [];
+
+    for (const item of items) {
+      const rawTitle = item.title?.[0] || "";
+      const link = item.link?.[0] || "";
+      const desc = (item.description?.[0] || "").replace(/<[^>]+>/g, " ").replace(/\\s+/g, " ").trim().slice(0, 200);
+      const cats = (item.category || []).map(c => c._ || c || "").join(" ");
+
+      // Parse date from title like "9/29/26: Event Name"
+      const m = rawTitle.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})[:\s—-]*\s*(.*)$/);
+      if (!m) continue;
+      const [, mm, dd, yy, rest] = m;
+      const year = yy.length === 2 ? 2000 + +yy : +yy;
+      const dateStr = `${year}-${String(+mm).padStart(2, "0")}-${String(+dd).padStart(2, "0")}`;
+      if (!isWithin3Days(dateStr)) continue;
+
+      // Strip the date prefix and trailing price tag for the display title
+      const title = rest.replace(/\s*[-—]\s*(FREE|\$[\d.]+.*)$/i, "").trim() || rest.trim();
+
+      // Parse time
+      const tm = rest.match(/\b(\d{1,2}(?::\d{2})?\s?(?:AM|PM|am|pm))\b/);
+      let timeLabel = "All day", startMinutes = -1;
+      if (tm) {
+        startMinutes = parseTime(tm[1]);
+        timeLabel = tm[1].toUpperCase().replace(/\\s+/g, " ");
+      }
+
+      events.push({
+        source: "Decentered",
+        venue: extractVenue(rest) || "San Francisco",
+        title,
+        description: desc,
+        date: dateStr,
+        startMinutes,
+        timeLabel,
+        url: link,
+        free: /\bFREE\b/i.test(rawTitle),
+        categories: categorize(title, desc, cats),
+        alsoIn: ["Decentered"],
+      });
+    }
+  } catch (e) { console.log(`  Decentered: ${e.message}`); }
+  console.log(`  Decentered: ${events.length} events`);
+  return events;
+}
+
+return events; }
     const xml = await res.text();
     const parsed = await new Parser().parseStringPromise(xml);
     const items = parsed.rss?.channel?.[0]?.item || [];
