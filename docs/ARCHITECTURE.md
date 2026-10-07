@@ -31,7 +31,7 @@ Verified against the header and stage comments in build-site.sh.
 - The Mac holds this repo. It cannot reach DreamHost directly.
 - Mac -> `ssh hermes` (VPS) -> `ssh dh-backup` (DreamHost).
 - Production is DreamHost, user `indigokarasu`, tree `~/whattodo72.com/`. The test tree is `~/whattodo72.com/test/`. build-site.sh sets BUILD to `$ROOT/test/build`, so the build directory on DreamHost is `~/whattodo72.com/test/build`.
-- Cron on DreamHost (per PLAN.md, read 2026-10-07): `12 0,7,13,19 * * *` in America/Los_Angeles, running `build-site.sh` and logging to `test/logs/build.log`.
+- Cron on DreamHost: `12 0,7,13,19 * * *`, running `build-site.sh` and logging to `test/logs/build.log`. The crontab line does not name a time zone. PLAN.md says America/Los_Angeles; that is not verified from the tree or the host.
 - The runtime is DreamHost's system node 18 (v18.19.1). Node 22 is not used there because it crashes with SIGTRAP on this kernel (see the header of build-site.sh).
 - Headless Chrome does not run on DreamHost. City Lights is fetched and parsed in plain node (sucuri.mjs, citylights-parse.mjs).
 - No GitHub is involved in the deploy loop.
@@ -49,14 +49,14 @@ Verified against the header and stage comments in build-site.sh.
 - dc-fetch.mjs: Washington, D.C. feed fetcher, writes dc-events.json.
 - foopee.mjs: The List (foopee.com) concert guide source.
 - sfstation.mjs: SF Station (Transbay Terminal) calendar source.
-- manual-venues.mjs: three hand-kept venues plus one more, each with its own parser.
+- manual-venues.mjs: hand-kept parsers for four venues, exported as centerForTheBook, workshopSF, clayroom and scrap (line 892).
 - citylights-parse.mjs: City Lights parser, reads structured attributes.
 - sucuri.mjs: solves the Sucuri JavaScript interstitial without a browser.
 - scrapers/registry.mjs: maps a site to a scraping configuration (`registerSource`, `getSources`, `scrapeSource`).
 - scrapers/api.mjs, dom.mjs, jsonld.mjs, rss.mjs: generic strategies (JSON API, HTML DOM, JSON-LD, RSS/Atom).
 - templates/index.mjs: per-site templates that map a site's data onto the event shape (Luma, Decentered, Workshop SF, Valkyries).
-- venue-catalog.json: venue catalog data. Its consumers were not checked for this document.
-- bats_parse.py: Python helper. Its role in the build was not checked for this document.
+- venue-catalog.json: venue catalog data. Read by build/fetch.mjs (line 34). No other .mjs or .sh file in the tree reads it.
+- bats_parse.py: Python helper with its own usage line. No .mjs or .sh file in the tree references it.
 - test-*.mjs: fixture tests for individual parsers. test-imports.mjs is the import-completeness gate.
 - index.html: the public page.
 - prices-resolved.json: price overrides read by fetch.mjs (path issue tracked in PLAN.md).

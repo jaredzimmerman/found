@@ -10,6 +10,6 @@ need docs/ARCHITECTURE.md
 need docs/AGENTS.md
 for s in 'build-site.sh' 'test/build' 'dh-backup' 'node 18'; do has docs/ARCHITECTURE.md "$s"; done
 has docs/AGENTS.md 'scrape.mjs'
-if ! grep -q 'not' docs/AGENTS.md 2>/dev/null; then echo "NOT FOUND in docs/AGENTS.md: word 'not'"; fail=1; fi
+if ! grep -F 'scrape.mjs' docs/AGENTS.md 2>/dev/null | grep -qw 'not'; then echo "NOT FOUND in docs/AGENTS.md: line with scrape.mjs must contain the word 'not'"; fail=1; fi
 if [ "$fail" -eq 0 ]; then echo "check-docs: ok"; fi
 exit "$fail"

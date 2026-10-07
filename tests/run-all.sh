@@ -49,7 +49,7 @@ while IFS= read -r f; do
   else
     FAILED=$((FAILED + 1)); echo "FAIL bash -n $f"; echo "$err" | sed 's/^/    /'
   fi
-done < <(find . \( -name .git -o -name node_modules -o -name .ladder -o -name fixtures \) -prune -o -name '*.sh' -type f -print | sort)
+done < <(find . \( -name .git -o -name node_modules -o -name .ladder -o -name fixtures \) -prune -o -name '*.sh' ! -name '._*' -type f -print | sort)
 echo "done  bash -n *.sh"
 
 # (c) run each offline test file
