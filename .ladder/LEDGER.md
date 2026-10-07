@@ -34,3 +34,4 @@
 2026-10-07T22:49:28Z | T06: review round 1
 2026-10-07T22:50:33Z | T06: citywide band failure uses ledger, tidy last line
 2026-10-07T22:51:46Z | T06: review round 2
+2026-10-07T22:52:15Z | T08: review round 1
