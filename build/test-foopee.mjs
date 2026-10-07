@@ -6,13 +6,18 @@
 // testing its own copy rather than the shipped rule. Same trap, so this suite
 // imports the module and only feeds it input.
 //
-// No network. The fixture is trimmed from by-date.0.html but every listing line
-// is byte-identical to the source, including the two malformed venue labels.
+// No network. The original /tmp/lvtest/fp0.html (week of Sep 28 - Oct 4) was lost,
+// so the fixture was RE-CAPTURED on 2026-10-07 from the live source
+// (http://www.foopee.com/punk/the-list/by-date.0.html via the DreamHost host),
+// byte-for-byte and untrimmed: week of Oct 5 - Oct 11. The two malformed venue
+// labels of the old capture are not in this week; their handling is covered by
+// the inline cityOf cases. Date-specific assertions below follow this capture.
 
 import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { parseListings, cityOf, isSF, toMinutes } from "./foopee.mjs";
 
-const FIXTURE = "/tmp/lvtest/fp0.html";
+const FIXTURE = fileURLToPath(new URL("../tests/fixtures/foopee-by-date.0.html", import.meta.url));
 let pass = 0, fail = 0;
 const ok = (name, cond, detail = "") => {
   if (cond) { pass++; return; }
@@ -115,10 +120,10 @@ const castro = sf.filter((r) => /^Castro$/i.test(r.venue));
 ok("Castro Theatre is NOT dropped (city displaced into metadata)", castro.length > 0, `found ${castro.length}`);
 
 // Spot-check a known line, byte-for-byte against the source page.
-// The Oct 4 Chapel listing is unique: "Chapel, S.F. Rum Jungle, Trestles"
-const chapel = sf.find((r) => /Chapel/i.test(r.venue) && /Rum Jungle/.test(r.artists));
-ok("Chapel listing parsed with its artists", !!chapel && /Rum Jungle/.test(chapel.artists), chapel ? chapel.artists : "not found");
-ok("Chapel date is Sun Oct 4", chapel && chapel.date.endsWith("-10-04"), chapel ? chapel.date : "n/a");
+// The Oct 7 Chapel listing is unique: "Chapel, S.F. Lloyd Cole (solo electric)"
+const chapel = sf.find((r) => /Chapel/i.test(r.venue) && /Lloyd Cole/.test(r.artists));
+ok("Chapel listing parsed with its artists", !!chapel && /Lloyd Cole/.test(chapel.artists), chapel ? chapel.artists : "not found");
+ok("Chapel date is Wed Oct 7", chapel && chapel.date.endsWith("-10-07"), chapel ? chapel.date : "n/a");
 
 const eld = sf.find((r) => /Knockout/i.test(r.venue) && /free/i.test(r.price || ""));
 ok("a free listing carries a real price token", !!eld, eld ? `${eld.venue} ${eld.price}` : "no free Knockout found");
@@ -131,7 +136,7 @@ ok("no listing lost its price text entirely", all.filter((r) => /\$|free|donatio
 // Window filtering.
 // ---------------------------------------------------------------------------
 console.log("\nwindow filtering\n");
-const three = ["2026-10-03", "2026-10-04", "2026-10-05"];
+const three = ["2026-10-07", "2026-10-08", "2026-10-09"];
 const win = parseListings(html, three);
 ok("window filter returns a subset", win.length <= all.length && win.length > 0, `${win.length} of ${all.length}`);
 ok("every windowed listing is inside the window", win.every((r) => three.includes(r.date)), JSON.stringify(win.slice(0, 4).map((r) => r.date)));
