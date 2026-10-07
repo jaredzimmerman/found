@@ -254,6 +254,49 @@ sh("--remove")
 tab = open(store).read()
 check("remove drops entry keeps others", "watchdog.py" not in tab and "echo hi" in tab)
 check("check after remove", "not installed" in sh("--check").stdout)
+open(store, "w").write("")
+sh()
+r = sh("--remove")
+check("remove only entry exits 0", r.returncode == 0 and "removed" in r.stdout and "watchdog.py" not in open(store).read())
+
+# 11b. flapping ssh must not reset cooldown of DH-derived conditions
+st = good_status(last_success={"ts": hrs(20), "run_id": "r0", "total": 1400})
+e = Env()
+e.run(st, good_feed())
+e.run(None, good_feed(), now="2026-10-07T20:30:00Z", status_missing=True)
+e.run(st, good_feed(), now="2026-10-07T21:00:00Z")
+e.run(None, good_feed(), now="2026-10-07T21:30:00Z", status_missing=True)
+e.run(st, good_feed(), now="2026-10-07T22:00:00Z")
+subs = [s for s, _ in e.sent]
+check("flap: stale sent once", sum("no new feed" in s for s in subs) == 1)
+check("flap: unreachable sent once", sum("cannot reach" in s for s in subs) == 1)
+
+# 11c. a cleared condition that returns within 6h keeps its cooldown; after 6h it is resent
+e = Env()
+e.run(good_status(last_success={"ts": hrs(20), "run_id": "r0", "total": 1400}), good_feed())
+e.run(good_status(), good_feed(), now="2026-10-07T20:30:00Z")
+check("return: recovery sent", any("back to normal" in s for s, _ in e.sent))
+n = len(e.sent)
+e.run(good_status(last_success={"ts": hrs(19), "run_id": "r0", "total": 1400}), good_feed(), now="2026-10-07T21:00:00Z")
+check("return within 6h not resent", len(e.sent) == n)
+e.run(good_status(), good_feed(), now="2026-10-07T21:30:00Z")
+e.run(good_status(last_success={"ts": hrs(10), "run_id": "r0", "total": 1400}), good_feed(), now="2026-10-08T06:00:00Z")
+check("return after 6h resent", sum("no new feed" in s for s, _ in e.sent) == 2)
+
+# 11d. failed recovery send does not start a cooldown for a never-reported return
+e = Env()
+e.run(good_status(last_success={"ts": hrs(20), "run_id": "r0", "total": 1400}), good_feed())
+e.ok = False
+e.run(good_status(), good_feed(), now="2026-10-07T20:30:00Z")
+e.ok = True
+state = json.load(open(e.state))
+check("failed recovery keeps key active", "stale" in state["active"] and "stale" not in state["recent"])
+
+# 11e. recovery message has 3-6 lines
+e = Env()
+e.run(None, good_feed(), status_missing=True)
+e.run(good_status(), good_feed(), now="2026-10-07T20:30:00Z")
+check("recovery line count 3-6", 3 <= len(e.sent[-1][1]) <= 6)
 
 print("%d passed, %d failed" % (PASS, FAIL))
 sys.exit(1 if FAIL else 0)

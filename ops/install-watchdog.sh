@@ -26,7 +26,7 @@ case "${1:-install}" in
     if ! installed; then echo "not installed; nothing to remove"; exit 0; fi
     backup
     cur=$(current)
-    printf '%s\n' "$cur" | grep -vF "$MARK" | "$CRONTAB_BIN" -
+    printf '%s\n' "$cur" | { grep -vF "$MARK" || true; } | "$CRONTAB_BIN" -
     echo "removed" ;;
   install|--install)
     if installed; then echo "already installed"; exit 0; fi

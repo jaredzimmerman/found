@@ -88,7 +88,7 @@ run_one() { # name script output golden
 [[ -z "$ONLY" || "$ONLY" == "dc" ]] && run_one dc-events dc-fetch.mjs dc-events.json dc-events.golden.json
 
 if [[ $status -eq 0 ]]; then
-  echo "replay OK (fixtures: $(node -e 'const m=require(process.argv[1]);console.log(m.count+" recorded "+m.recordedAt)' "$FIXTURES/meta.json")); outputs in $OUT"
+  where=""; [[ "$OUT" == "$WORK/out" ]] || where="; outputs in $OUT"
+  echo "replay OK (fixtures: $(node -e 'const m=require(process.argv[1]);console.log(m.count+" recorded "+m.recordedAt)' "$FIXTURES/meta.json"))$where"
 fi
-[[ "$OUT" == "$WORK/out" ]] || true
 exit $status

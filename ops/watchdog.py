@@ -162,7 +162,7 @@ def detect(status_kind, status, feed, feed_problem, now):
             conds.append({"key": "stale",
                           "subject": "whattodo72: no new feed in over %d hours" % STALE_HOURS,
                           "lines": ["The build has not published a new feed %s." % since,
-                                    "That is more than %d hours; builds should land every 6 hours." % STALE_HOURS,
+                                    "That is more than %d hours; builds normally land about four times a day." % STALE_HOURS,
                                     good_line, served]})
         la = status.get("last_attempt")
         if isinstance(la, dict) and la.get("outcome") in ("rejected", "fatal"):
@@ -211,10 +211,12 @@ def load_state(path):
             s = json.load(f)
         if isinstance(s, dict) and isinstance(s.get("active"), dict):
             s.setdefault("notified_runs", [])
+            if not isinstance(s.get("recent"), dict):
+                s["recent"] = {}
             return s
     except (OSError, ValueError):
         pass
-    return {"active": {}, "notified_runs": []}
+    return {"active": {}, "notified_runs": [], "recent": {}}
 
 
 def save_state(path, state):
@@ -278,11 +280,16 @@ def run(args, deliver=None):
     outgoing = []  # (subject, lines, apply_fn)
 
     present = {c["key"] for c in conds}
+    recent = state["recent"]  # last_sent of cleared keys, so a returning condition keeps its cooldown
+    for k in list(recent):
+        t = parse_ts(recent[k])
+        if t is None or (now - t) >= timedelta(hours=COOLDOWN_HOURS):
+            del recent[k]
     for c in conds:
         key = c["key"]
         prev = active.get(key)
         if prev is None:
-            first_seen, last_sent = iso(now), None
+            first_seen, last_sent = iso(now), parse_ts(recent.get(key))
         else:
             first_seen, last_sent = prev.get("first_seen", iso(now)), parse_ts(prev.get("last_sent"))
         run_id = c.get("run_id")
@@ -295,12 +302,14 @@ def run(args, deliver=None):
 
         def apply(key=key, first_seen=first_seen, run_id=run_id):
             active[key] = {"first_seen": first_seen, "last_sent": iso(now)}
+            recent.pop(key, None)
             if run_id is not None:
                 state["notified_runs"] = (state["notified_runs"] + [run_id])[-50:]
         if due:
             outgoing.append((c["subject"], lines, apply))
         elif prev is None:
-            active[key] = {"first_seen": first_seen, "last_sent": None}
+            active[key] = {"first_seen": first_seen, "last_sent": iso(last_sent) if last_sent else None}
+            recent.pop(key, None)
 
     for s, l, apply in outgoing:
         if args.dry_run:
@@ -311,19 +320,28 @@ def run(args, deliver=None):
         else:
             failed = True
 
-    cleared = [k for k in list(active) if k not in present]
-    for k in cleared:
-        del active[k]
+    def dh_derived(k):
+        return k in ("stale", "build_failed") or k.startswith("source_zero:")
+
+    # While the build server cannot be read, its conditions cannot be re-checked: keep them as they are.
+    cleared = [k for k in list(active)
+               if k not in present and not (kind != "ok" and dh_derived(k))]
+    saved = {k: active.pop(k) for k in cleared}
+    for k, v in saved.items():
+        if v.get("last_sent"):
+            recent[k] = v["last_sent"]
     if not present and cleared:
         subj = "whattodo72: back to normal"
         body = ["Everything is clear again: builds are fresh and the public site is up to date.",
+                "The earlier problem is resolved: %s." % ", ".join(sorted(k.split(":")[0].replace("_", " ") for k in cleared)),
                 served_line(feed, feed_problem, now)]
         if args.dry_run:
             print("SUBJECT: %s\n%s\n" % (subj, "\n".join(body)))
         elif not deliver(subj, body):
             failed = True
-            for k in cleared:  # keep so recovery retries
-                active[k] = {"first_seen": iso(now), "last_sent": iso(now)}
+            for k, v in saved.items():  # keep so recovery retries; cooldown untouched
+                active[k] = v
+                recent.pop(k, None)
 
     if not args.dry_run:
         # Failed sends never call apply(), so their cooldown is untouched and they retry.
