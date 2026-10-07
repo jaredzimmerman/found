@@ -21,3 +21,4 @@
 2026-10-07T22:23:07Z | T10: review round 2
 2026-10-07T22:27:30Z | T04: replay harness, frozen time, golden (613 fixtures, run x2 identical)
 2026-10-07T22:30:42Z | T04: review round 1
+2026-10-07T22:32:19Z | Phase 1 done (T04,T07,T10,T11); briefs T05 T06 T08 T09 written; Phase 2 starting
