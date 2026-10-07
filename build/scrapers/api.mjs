@@ -8,14 +8,14 @@
 // Per-site templates decide which path to read and how to map.
 // This module only knows how to fetch and locate the event array.
 
+import { getJson } from "../http.mjs";
+
 export async function fetchJson(url, options = {}) {
   const headers = {
     "User-Agent": options.userAgent || "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     Accept: "application/json",
   };
-  const r = await fetch(url, { headers, signal: AbortSignal.timeout(options.timeout || 30000) });
-  if (!r.ok) throw new Error(`HTTP ${r.status}`);
-  return r.json();
+  return getJson(url, { headers, timeoutMs: options.timeout || 30000 });
 }
 
 // Find the array of events in a JSON response.

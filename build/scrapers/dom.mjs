@@ -8,14 +8,14 @@
 // Per-site templates decide which patterns to match and how to
 // clean the results. This module only knows how to fetch HTML.
 
+import { getText } from "../http.mjs";
+
 export async function fetchHtml(url, options = {}) {
   const headers = {
     "User-Agent": options.userAgent || "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     Accept: "text/html,application/xhtml+xml",
   };
-  const r = await fetch(url, { headers, signal: AbortSignal.timeout(options.timeout || 30000) });
-  if (!r.ok) throw new Error(`HTTP ${r.status}`);
-  return r.text();
+  return getText(url, { headers, timeoutMs: options.timeout || 30000 });
 }
 
 // Extract all matches of a pattern from HTML.

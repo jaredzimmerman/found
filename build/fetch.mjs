@@ -18,6 +18,7 @@ import { hoodsOf } from "./hoods.mjs";
 import { centerForTheBook, workshopSF, clayroom, scrap } from "./manual-venues.mjs";
 import { sfStation } from "./sfstation.mjs";
 import { foopee } from "./foopee.mjs";
+import { getJson, getText, startDeadline, stopDeadline, retryReport } from "./http.mjs";
 import { registerSource, getSources, scrapeSource } from "./scrapers/registry.mjs";
 import { lumaTemplate, decenteredTemplate, workshopSfTemplate, valkyriesTemplate } from "./templates/index.mjs";
 
@@ -110,23 +111,15 @@ const OUT = new URL("./events.json", import.meta.url);
 const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
 const H = { "User-Agent": UA, Accept: "application/json" };
 
-const j = async (url) => {
-  const r = await fetch(url, { headers: H });
-  if (!r.ok) throw new Error(`HTTP ${r.status}`);
-  return r.json();
-};
+// Both go through http.mjs (timeouts, retries, the global deadline); the
+// headers are exactly the ones these used to send.
+const j = (url) => getJson(url, { headers: H });
 
 // Text variant, for the hand-kept venue pages in manual-venues.mjs. One
 // fetcher per content type rather than a `j()` that guesses: a JSON parser
 // pointed at an HTML page throws a SyntaxError that reads like a broken site.
-const text = async (url) => {
-  const r = await fetch(url, {
-    headers: { "User-Agent": UA, Accept: "text/html,application/xhtml+xml" },
-    signal: AbortSignal.timeout(30000),
-  });
-  if (!r.ok) throw new Error(`HTTP ${r.status}`);
-  return r.text();
-};
+const text = (url) =>
+  getText(url, { headers: { "User-Agent": UA, Accept: "text/html,application/xhtml+xml" }, timeoutMs: 30000 });
 
 // A source that fails must say so. Before this, jSafe/tSafe returned null on
 // any error and the run logged nothing — which is how a venue-index change can
@@ -147,7 +140,7 @@ export function fetchFailureReport() {
   const rows = [...fetchFailures.entries()]
     .sort((a, b) => b[1].n - a[1].n)
     .map(([url, { n, why }]) => `    ${String(n).padStart(2)}x  ${why.padEnd(26)} ${url.slice(0, 88)}`);
-  return `\n  ${fetchFailures.size} source fetch(es) failed — the run is NOT clean:\n${rows.join("\n")}\n`;
+  return `\n  ${fetchFailures.size} source request(s) failed — the run is NOT clean:\n${rows.join("\n")}\n`;
 }
 
 const jSafe = async (url) => {
@@ -1629,11 +1622,7 @@ function timeFor(html, url) {
 async function funcheap(days) {
   const UA =
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36";
-  const get = async (u) => {
-    const r = await fetch(u, { headers: { "User-Agent": UA }, signal: AbortSignal.timeout(25000) });
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    return r.text();
-  };
+  const get = (u) => getText(u, { headers: { "User-Agent": UA }, timeoutMs: 25000 });
   const text = (s) =>
     s.replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ")
      .replace(/<[^>]+>/g, " ")
@@ -1845,7 +1834,7 @@ async function funcheap(days) {
 // has TWO events inside the window (Sept 29 and Oct 1) and the site showed
 // neither.
 //
-// It also cannot be fetched with `fetch()`. A plain request returns a
+// It also cannot be read with a plain `fetch`. A plain request returns a
 // Cloudflare 307 with no body, so the calendar is invisible to an HTTP client
 // no matter how the headers are set — the same wall that makes a venue look
 // "unavailable" when it is simply gated. Headless Chrome renders it, so this
@@ -2107,11 +2096,11 @@ async function omnivore(days) {
 // ---------------------------------------------------------------------------
 async function decentered(days) {
   try {
-    const res = await fetch("https://events.decentered.org/feeds/rss.xml", {
+    // A non-2xx throws HttpError("HTTP <status>"), logged by the catch below
+    // as "decentered: HTTP <status>", the same line as before.
+    const xml = await getText("https://events.decentered.org/feeds/rss.xml", {
       headers: { "User-Agent": UA, Accept: "application/rss+xml,application/xml" }
     });
-    if (!res.ok) { console.log(`  decentered: HTTP ${res.status}`); return; }
-    const xml = await res.text();
     // Simple regex-based XML parsing - no external dependencies
     const items = [];
     const itemRegex = /<item>([\s\S]*?)<\/item>/g;
@@ -2232,9 +2221,7 @@ async function decentered(days) {
 // for its description.
 async function luma(days) {
   try {
-    const res = await fetch("https://luma.com/sf", { headers: { "User-Agent": UA } });
-    if (!res.ok) { console.log("  luma: HTTP " + res.status); return; }
-    const html = await res.text();
+    const html = await getText("https://luma.com/sf", { headers: { "User-Agent": UA } });
     const ldMatch = html.match(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i);
     if (!ldMatch) { console.log("  luma: no JSON-LD found"); return; }
     let ldData;
@@ -2315,9 +2302,8 @@ async function luma(days) {
       // description; the per-event page's JSON-LD does.
       let description = "";
       try {
-        const evRes = await fetch(url, { headers: { "User-Agent": UA } });
-        if (evRes.ok) {
-          const evHtml = await evRes.text();
+        {
+          const evHtml = await getText(url, { headers: { "User-Agent": UA } });
           const evLdMatch = evHtml.match(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i);
           if (evLdMatch) {
             const evLd = JSON.parse(evLdMatch[1]);
@@ -2444,6 +2430,7 @@ async function valkyries(days) {
   if (added) console.log(`  valkyries: ${added} home game(s) in the window`);
 }
 async function main() {
+  startDeadline(Number(process.env.FETCH_DEADLINE_MS || 720000));
   const days = windowDays();
   console.log(`SF Pink Pages — ${days[0]} through ${days[days.length - 1]}`);
 
@@ -2556,6 +2543,8 @@ async function main() {
     events,
   };
 
+  // Every fetch is done; the deadline must not be able to cut the write short.
+  stopDeadline();
   await writeFile(OUT, JSON.stringify(payload, null, 2));
   const c = payload.counts;
   console.log(`\nWrote ${events.length} events to events.json`);
@@ -2573,6 +2562,8 @@ async function main() {
   // null silently is how a broken venue index produced a clean-looking log and
   // a feed 130 events short, so a non-empty report means the counts above are
   // not trustworthy as a health signal.
+  const retries = retryReport();
+  if (retries) console.log(retries);
   const fails = fetchFailureReport();
   if (fails) console.log(fails);
   else console.log(`  every source fetch succeeded`);

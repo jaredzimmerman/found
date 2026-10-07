@@ -20,6 +20,7 @@ import { writeFile } from "node:fs/promises";
 import * as SHARED from "./shared.mjs";
 import * as HOODS from "./dc-hoods.mjs";
 import { cleanTitle, cleanDescription } from "./dc-title-clean.mjs";
+import { getJson, HttpError, startDeadline, stopDeadline, retryReport } from "./http.mjs";
 
 const TZ = "America/New_York";
 const DAYS = 3; // today + 2 days, matching the SF window
@@ -164,9 +165,14 @@ function popvilleEvent(raw) {
 async function popville() {
   const base = "https://www.popville.com/wp-json/wp/v2/events";
   let totalPages = 1;
-  const first = await fetch(`${base}?per_page=100&_embed`, { headers: H });
-  if (!first.ok) throw new Error(`popville HTTP ${first.status}`);
-  const raw1 = await first.json();
+  let first;
+  try {
+    first = await getJson(`${base}?per_page=100&_embed`, { headers: H, withMeta: true });
+  } catch (e) {
+    if (e instanceof HttpError) throw new Error(`popville HTTP ${e.status}`);
+    throw e;
+  }
+  const raw1 = first.data;
   totalPages = Math.min(parseInt(first.headers.get("x-wp-totalpages") || "1", 10), 12);
   return { raw1, totalPages, base };
 }
@@ -218,6 +224,7 @@ function normalize(raw) {
 // Main
 // ---------------------------------------------------------------------------
 async function main() {
+  startDeadline(Number(process.env.FETCH_DEADLINE_MS || 720000));
   const days = windowDays();
   console.log(`DC Pink Pages — ${days[0]} through ${days[days.length - 1]} (${TZ})`);
 
@@ -227,9 +234,9 @@ async function main() {
   let pageFails = 0;
   for (let p = 2; p <= totalPages; p++) {
     try {
-      const r = await fetch(`${base}?per_page=100&_embed&page=${p}`, { headers: H });
-      if (!r.ok) { pageFails++; break; }
-      pages.push(await r.json());
+      // A non-2xx now throws HttpError and is reported by the catch below
+      // (it used to stop the walk without a word).
+      pages.push(await getJson(`${base}?per_page=100&_embed&page=${p}`, { headers: H }));
     } catch (e) {
       // Stopping early is correct; doing so silently is not. A truncated
       // page walk publishes a short feed that reads exactly like a quiet week.
@@ -338,8 +345,11 @@ async function main() {
     events: deduped,
   };
 
+  stopDeadline(); // all fetching is done; never let the deadline cut the write
   await writeFile(OUT, JSON.stringify(payload, null, 2));
   console.log(`\nWrote ${deduped.length} events to dc-events.json`);
+  const retries = retryReport();
+  if (retries) console.log(retries);
 }
 
 main().catch((e) => {

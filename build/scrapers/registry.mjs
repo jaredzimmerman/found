@@ -18,6 +18,7 @@ import { findEvents, flattenAddress, applyTemplate as applyJsonLd } from "./json
 import { extractRssItems, extractCustom, applyTemplate as applyRss } from "./rss.mjs";
 import { fetchHtml } from "./dom.mjs";
 import { fetchJson, findEventArray, applyTemplate as applyApi } from "./api.mjs";
+import { getText } from "../http.mjs";
 
 const registry = [];
 
@@ -62,9 +63,7 @@ export async function scrapeSource(source) {
       break;
     }
     case "rss": {
-      const r = await fetch(url);
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      const xml = await r.text();
+      const xml = await getText(url); // no headers, as before
       items = extractRssItems(xml);
       break;
     }
