@@ -70,6 +70,23 @@ run_one() { # name script output golden
     status=3; return
   fi
   node "$HERE/compare.mjs" --normalize "$WORK/build/$produced" "$OUT/$name.normalized.json" || { status=2; return; }
+  if [[ "$script" == "fetch.mjs" ]]; then  # C2: the source report must exist and validate
+    if [[ ! -f "$WORK/build/.source-report.json" ]]; then
+      echo "[$name] FAIL: fetch.mjs wrote no .source-report.json"; status=3; return
+    fi
+    cp "$WORK/build/.source-report.json" "$OUT/.source-report.json"
+    if [[ $UPDATE -eq 0 ]]; then
+      # Not gating: the golden feed has 10 sfstation rows with categories: [] that
+      # validate-feed (C4) rejects. Output must stay byte-identical here, so that
+      # is reported, not failed; fix sfstation categorization, then make it gate.
+      if ! node "$REPO/build/validate-feed.mjs" --events "$WORK/build/$produced" --report "$OUT/.source-report.json" \
+        --floors "$REPO/build/source-floors.json" --out "$OUT/.validate-report.json" > "$OUT/validate.log" 2>&1; then
+        echo "[$name] NOTE: validate-feed rejects the golden feed ($(grep -c '^FATAL' "$OUT/validate.log") fatal); see $OUT/validate.log"
+      fi
+      node -e 'const r=JSON.parse(require("fs").readFileSync(process.argv[1]));const e=JSON.parse(require("fs").readFileSync(process.argv[2])).events.length;const k=Object.values(r.sources).reduce((s,x)=>s+x.kept,0);if(k!==r.totals.kept||k!==e){console.log("kept mismatch: sum="+k+" totals="+r.totals.kept+" events="+e);process.exit(1)}' \
+        "$OUT/.source-report.json" "$WORK/build/$produced" || { echo "[$name] FAIL: source report kept does not equal events.length"; status=3; return; }
+    fi
+  fi
   if [[ $UPDATE -eq 1 ]]; then
     mkdir -p "$GOLDEN_DIR"
     cp "$OUT/$name.normalized.json" "$golden"
