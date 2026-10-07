@@ -28,7 +28,9 @@ scraper crashed or requested a URL that was never recorded.
 
 ## Fixtures
 
-`tests/replay/fixtures/` (gitignored). One file per request,
+`tests/replay/fixtures/` (ignored by `tests/replay/.gitignore`; `tests/.gitignore`
+re-includes every other `fixtures/` under `tests/`). The 2026-10-07 recording:
+613 request fixtures, 118 MB on disk, 27 MB tarball. One file per request,
 `<sha1(key)>.json`, where key is `"<METHOD> <url>"` for `fetch` and
 `"CURL <JSON of curl args>"` for curl (an `-o <file>` path is normalized to
 `<OUTFILE>`; the file's bytes are stored in `outFileBase64`). A fetch fixture is
@@ -72,9 +74,9 @@ unchanged code before it can judge a change.
 - **Timing/ordering of the live network**: the golden is the replay order, not
   whatever order concurrent responses arrived in on the host. Event content is
   the same; ties in the final sort are broken by insertion order.
-- **Node version**: the golden was produced on node 22 on the Mac. ICU/Intl
-  differences between node 18 (DreamHost) and 22 could in principle change a
-  formatted value; the recording run's own output (`_recorded-events.json`,
-  node 18, live network) is kept for that check.
+- **Node version**: the golden was produced on node 22 on the Mac. It was
+  checked byte-for-byte against the recording run's own normalized output
+  (`_recorded-events.json` / `_recorded-dc-events.json`, node 18, live network
+  on DreamHost): identical for both feeds, so the replay reproduces prod.
 - Any request whose response differs on a second fetch of the same URL in one
   run is replayed with the first response.

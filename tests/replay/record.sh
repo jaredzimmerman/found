@@ -51,7 +51,7 @@ DH() { ssh -o BatchMode=yes hermes "ssh -o BatchMode=yes dh-backup $(printf '%q'
 echo "== shipping build/ sources + tests/replay to dh:~/$RDIR"
 # Source only: generated state (C1) stays out, so the recording runs the code
 # in this tree, not whatever is lying around on the host.
-COPYFILE_DISABLE=1 tar -C "$REPO" -cz \
+COPYFILE_DISABLE=1 tar --no-xattrs -C "$REPO" -cz \
   --exclude='build/events.json' --exclude='build/dc-events.json' \
   --exclude='build/image-levels.json' --exclude='build/.*' \
   --exclude='tests/replay/fixtures' --exclude='tests/replay/out' \

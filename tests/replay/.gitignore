@@ -1,0 +1,4 @@
+# HTTP recordings: ~120 MB, tarball kept at hermes:/root/backups/whattodo72-fixtures-<date>.tgz.
+# Needed here because tests/.gitignore re-includes every "fixtures/" below tests/.
+fixtures/
+fixtures.new/

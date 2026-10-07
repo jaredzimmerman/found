@@ -1,0 +1,615 @@
+{
+  "city": "Washington",
+  "tz": "America/New_York",
+  "days": [
+    "2026-10-07",
+    "2026-10-08",
+    "2026-10-09"
+  ],
+  "counts": {
+    "total": 26,
+    "free": 5,
+    "directLinks": 22,
+    "boxOfficeLinks": 0,
+    "aggregatorLinks": 4
+  },
+  "neighborhoods": [
+    {
+      "name": "Dupont Circle",
+      "count": 10
+    },
+    {
+      "name": "Capitol Hill",
+      "count": 3
+    },
+    {
+      "name": "Downtown",
+      "count": 3
+    },
+    {
+      "name": "Congress Heights",
+      "count": 2
+    },
+    {
+      "name": "Penn Quarter",
+      "count": 2
+    },
+    {
+      "name": "Adams Morgan",
+      "count": 1
+    },
+    {
+      "name": "Anacostia",
+      "count": 1
+    },
+    {
+      "name": "Georgetown",
+      "count": 1
+    },
+    {
+      "name": "H Street",
+      "count": 1
+    },
+    {
+      "name": "U Street",
+      "count": 1
+    },
+    {
+      "name": "Washington",
+      "count": 1
+    }
+  ],
+  "events": [
+    {
+      "id": "pop-350720",
+      "title": "Ohana reset/relaxation",
+      "description": "Looking for something fun, relaxing, and family-friendly in DC? Come experience Ohana’s House — a local business bringing wellness, family activities, classes, and unique handmade products together in one welcoming space! Family classes & activities Ohana Reset relaxation sessions Organic body butters & scrubs Fresh-pressed juices & seasonal drinks Community-centered events Everyone is welcomed. Everyone is family. Washington, DC Ohanashouse002@gmail.com",
+      "date": "2026-10-07",
+      "startMinutes": 630,
+      "endMinutes": 720,
+      "timeLabel": "10:30 AM -- 12 PM",
+      "venue": "Local community/apartment center",
+      "neighborhood": "Adams Morgan",
+      "address": null,
+      "image": "https://www.popville.com/wp-content/uploads/2026/10/event-9dae1274-5080-4349-91ac-ad315129555f.jpg",
+      "url": "https://ohanas-house.square.site/",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Family & Kids"
+      ]
+    },
+    {
+      "id": "pop-350049",
+      "title": "Children’s Author Talk: Sy Montgomery",
+      "description": "About the Event: Come and meet the scientific team behind Sy Montgomery’s exciting newest book! Hear from the author, the scientist, and the photographer to learn about underwater explorations and the Oceanic Manta Ray. About the Author: Sy Montgomery is an American naturalist, scriptwriter, and bestselling author who writes for children as well as adults. She has been awarded the Children’s Book Guild of Washington, D.C.’s Nonfiction Award for her distinguished body of work. She is a graduate of Syracuse University, with degrees in journalism, French, and psychology. She lives in Hancock New Hampshire with her husband, and of course, lots of animal friends.",
+      "date": "2026-10-07",
+      "startMinutes": 1080,
+      "endMinutes": 1140,
+      "timeLabel": "6 PM -- 7 PM",
+      "venue": "Politics and Prose",
+      "neighborhood": "Dupont Circle",
+      "address": "5015 Connecticut Ave NW",
+      "image": null,
+      "url": "https://politics-prose.com/event/2026-10-07/sy-montgomery-scientist-michel-guerrero-and-photographer-patrick-joyce-conn-ave",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Talks & Workshops",
+        "Family & Kids"
+      ]
+    },
+    {
+      "id": "pop-350595",
+      "title": "Powerpoint Party in Mt. Pleasant",
+      "description": "We are back! We present on funny and interesting topics. This month we have Missed Connections, Baseball is not Boring, and Police Ridealongs, and many more topics.",
+      "date": "2026-10-07",
+      "startMinutes": 1140,
+      "endMinutes": 1260,
+      "timeLabel": "7 PM -- 9 PM",
+      "venue": "Marx Cafe",
+      "neighborhood": "Dupont Circle",
+      "address": "3203 Mt. Pleasant St. NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-3c34e317-3f44-4b58-98e2-ae8fe210e241.jpg",
+      "url": "https://www.popville.com/events/powerpoint-party-in-mt-pleasant-29088/",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-350048",
+      "title": "Author Talk: Marcia Chatelain — How Bright the Path Grows",
+      "description": "From the Pulitzer Prize-winning author of Franchise comes the untold story of the pioneering Black women artists and activists who were seen, but barely heard, at the 1963 March on Washington “Chatelain teaches us how to tell fuller, truer stories. This is the model for recovering what we have been quick to forget.”—Caleb Gayle, author of Black Moses There is no shortage of footage immortalizing the men who spoke at the 1963 March on Washington for Jobs and Freedom, when 250,000 Americans gathered beneath the Lincoln Memorial to call for an end to segregation. There were reverends and rabbis, activists and Rat-Pack icons—and of course the day’s headliner, whose prophetic dream of a post-Jim Crow world has forever defined the Civil Rights Movement. But there is no “class photo” of the Black women who helped organize the march, performed on its main stage, or were honored during its Tribute to Negro Women Fighters for Freedom. In How Bright the Path Grows, Marcia Chatelain weaves a gleaming group portrait of these singular women. Among this cohort were several household names: vaudeville icon Josephine Baker, civil rights activist Rosa Parks, gospel legend Mahalia Jackson, and Daisy Bates, champion of the Little Rock Nine. But many were relative unknowns, including Eva Jessye, the choir director who designed the day’s musical program; and Anna Hedgeman, the coordinator who pushed in the eleventh hour for a tribute to Black women’s work. How Bright the Path Grows is a scintillating group biography, rendering the lives of thirteen Black women visionaries—some famous, others soon to be—in novelistic detail and like never seen before. Marcia Chatelain is a Professor of Africana Studies at the University of Pennsylvania. She is the author of South Side Girls (Duke University Press, 2015) and Franchise (Liveright, 2020), which won the 2021 Pulitzer Prize in History, the James Beard Foundation Book Award, the Hagley Medal for Business History, and the Lawrence Levine Award from the Organization of American Historians. An active public speaker and educational consultant, Chatelain has received awards and honors from the Ford Foundation, the American Association of University Women, and the German Marshall Fund of the United States. Chatelain will be in conversation with Ashley Preston, an author and tenured Associate Professor of History at Howard University. Her past positions include serving as director of the Mary McLeod Bethune Foundation-National Historic Landmark at Bethune-Cookman University while she also was an archives technician for the National Archives for Black Women’s History at the Mary McLeod Bethune Council House-National Historic Site. She is the author of Mary McLeod Bethune in Florida: Bringing Social Justice to the Sunshine State and Mary McLeod Bethune the Pan-Africanist. Dr. Preston’s research interests focus on the activism of Black women during the early twentieth century and the ways in which they uplifted their communities, created institutions, and stood against systemic racism.",
+      "date": "2026-10-07",
+      "startMinutes": 1140,
+      "endMinutes": 1200,
+      "timeLabel": "7 PM -- 8 PM",
+      "venue": "Politics and Prose",
+      "neighborhood": "Dupont Circle",
+      "address": "5015 Connecticut Ave NW",
+      "image": null,
+      "url": "https://politics-prose.com/marcia-chatelain-100726",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-350047",
+      "title": "Author Talk: Bryant Simon — For Customers Only",
+      "description": "Public toilets determine who gets everyday dignity, freedom of movement, and civic belonging—and who doesn’t. Americans have nowhere to go. Nationwide, countless public spaces lack one crucial thing: bathrooms, never mind ones that are safe and functional. Yet in the past, political leaders celebrated the opening of public bathrooms with boisterous press conferences and showy ribbon-cutting ceremonies. For Customers Only is the first book to tell the larger history of public bathrooms in the United States, a fascinating story characterized by persistent discrimination, squeamishness about unknown bodies, and disinvestment in public amenities. Acclaimed writer and historian Bryant Simon argues that restrooms aren’t only an architectural feature, but an emblem of control and inequality. In the late nineteenth century, cities vied for the newest and biggest comfort stations to meet the demands of their bustling economies and accommodate a broad and growing public. They built restrooms with gold-domed entrances and ornamented stall doors to inspire cleanliness and order. But officials soon grew anxious about who might take advantage of this privacy: gay men, the unhoused, and eventually drug users. And as the civil rights movement challenged segregation, officials in the north and south closed public toilets rather than integrate them. By the end of the twentieth century, only people with means could use private bathrooms while out and about—provided they made a purchase at a business. Today, as the fights over trans rights reveal, bathroom access remains a flash point across the country. Meanwhile, some municipalities are again calling for widely available public toilets, but as a tool for economic revitalization, not a public necessity. The political and cultural history of a squirm-inducing subject, For Customers Only reveals the real and symbolic power of the most ordinary of things. Bathrooms, Simon shows, have always reflected our fragmented national values. Whether these spaces will ever become more accessible and inclusive is ultimately up to us. Bryant Simon is the Laura H. Carnell Professor of History and the academic chair of the honors program at Temple University. He is the author most recently of The Hamlet Fire: The Tragic Story of Cheap Food, Cheap Government, and Cheap Lives, as well as Everything but the Coffee: Learning about America from Starbucks. He is a regular guest on the History Channel and a contributor to outlets like the New York Daily News, Washington Post, and Philadelphia Inquirer. Simon splits his time between Philadelphia and the Jersey Shore. Simon will be in conversation with Benjamin Talton, the executive director of the Moorland-Spingarn Research Center and Professor in the Department of History at Howard University. He is the author of The Politics of Social Change in Ghana: The Konkomba Struggle for Political Equality and In This Land of Plenty: Mickey Leland and Africa in American Politics, which won the 2020 Wesley-Logan Prize from the American Historical Association. He is the coeditor of Black Subjects in Africa and Its Diasporas: Race and Gender in Research and Writing.",
+      "date": "2026-10-07",
+      "startMinutes": 1140,
+      "endMinutes": 1200,
+      "timeLabel": "7 PM -- 8 PM",
+      "venue": "Politics and Prose: The Wharf",
+      "neighborhood": "Congress Heights",
+      "address": "610 Water St SW",
+      "image": null,
+      "url": "https://politics-prose.com/bryant-simon-100726",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-350847",
+      "title": "Open Piano DC",
+      "description": "Hello, Our next Open Piano will take place on",
+      "date": "2026-10-07",
+      "startMinutes": 1140,
+      "endMinutes": 1435,
+      "timeLabel": "7 PM -- 11:55 PM",
+      "venue": "The Saloon",
+      "neighborhood": "U Street",
+      "address": "1207 U Street NW",
+      "image": null,
+      "url": "https://www.openpianodc.org/",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-350747",
+      "title": "Story Time: Space Spinners",
+      "description": "Listen to a funny story about two tiny spiders who stowed away on a Space Shuttle. Find out more about the experience of space travel. Learn about the real experiments of sending spiders to space to see whether they can spin webs in microgravity.",
+      "date": "2026-10-08",
+      "startMinutes": 660,
+      "endMinutes": 690,
+      "timeLabel": "11 AM -- 11:30 AM",
+      "venue": "National Air and Space Museum",
+      "neighborhood": "Washington",
+      "address": "650 Jefferson Drive SW.",
+      "image": "https://www.popville.com/wp-content/uploads/2026/10/event-528aac12-46e7-4ccc-b52e-fe7cab5ae7c6.jpg",
+      "url": "https://airandspace.si.edu/whats-on/events/story-time-space-spinners-2?utm_medium=cal&utm_source=pville&utm_campaign=nmbstory-oct26",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-350429",
+      "title": "Coffee and Conversation. Just Coffee, Tea and Conversation.",
+      "description": "Join us at the Chevy Chase Neighborhood Library for a relaxed afternoon with neighbors and library visitors. Enjoy a cup of free coffee or tea, meet someone new, and take part in friendly, naturally flowing conversations about everyday life, books, hobbies, travel or any interests. No agenda, no preparation. Just a good company. Free and open to everyone. Start October 8th. Every Thursday at 2PM. Location: DCPL Chevy Chase Library, 5625 Connecticut Ave, NW, Washington DC, 20015.",
+      "date": "2026-10-08",
+      "startMinutes": 840,
+      "endMinutes": 900,
+      "timeLabel": "2 PM -- 3 PM",
+      "venue": "Chevy Chase Neighborhood Public Library",
+      "neighborhood": "Dupont Circle",
+      "address": "5625 Connecticut Ave, NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-f66f7cab-200a-4c2a-94db-8b48e8a04cd3.jpg",
+      "url": "https://www.popville.com/events/coffee-and-conversation-just-coffee-tea-and-conversation-28983/",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Food & Drink"
+      ]
+    },
+    {
+      "id": "pop-350039",
+      "title": "Kids Can Sew-Free program for Tweens",
+      "description": "Join us for a fun program learning the basics of hand sewing. Progress along in each lesson. Age 8-12. Registration is required. Dates: October 8,15,22,29. November 5,12. Please see www.dclibrary.org for the registration or check the attached information.",
+      "date": "2026-10-08",
+      "startMinutes": 990,
+      "endMinutes": 1050,
+      "timeLabel": "4:30 PM -- 5:30 PM",
+      "venue": "Chevy Chase Neighborhood Library, DCPL",
+      "neighborhood": "Dupont Circle",
+      "address": "5625 Connecticut Ave, NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-209f5522-fe31-4e92-93ea-c37e3f3d13b7.jpg",
+      "url": "https://www.popville.com/events/kids-can-sew-free-program-for-tweens-28728/",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Family & Kids"
+      ]
+    },
+    {
+      "id": "pop-349910",
+      "title": "Shared Stages: To Hear Her Speak",
+      "description": "Join us for a conversation that highlights the abundance of Black women directing, acting, and engaging with Shakespeare in theater today. This event takes place before the October 8 performance of Folger Theatre’s Measure for Measure and draws on the themes of To Hear Her Speak: Black Women and Shakespeare, a new exhibition that opens October 16. Moderated by Fatima Quander, the conversation features Manna-Symone Middlebrooks, Nikkole Salter, and Tamilla Woodard, all of whom have worked with Folger Theatre as an actor, director, or assistant director.",
+      "date": "2026-10-08",
+      "startMinutes": 1110,
+      "endMinutes": 1170,
+      "timeLabel": "6:30 PM -- 7:30 PM",
+      "venue": "Folger Shakespeare Library",
+      "neighborhood": "Capitol Hill",
+      "address": "201 East Capitol Street, SE",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-6653935204323963305.jpg",
+      "url": "https://www.folger.edu/whats-on/shared-stages-to-hear-her-speak/",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Theater & Dance",
+        "Art & Exhibits"
+      ]
+    },
+    {
+      "id": "pop-350166",
+      "title": "Havel 90: Rolling Barrels & Banter",
+      "description": "The Embassy of the Czech Republic invites you to Václav Havel’s 90th",
+      "date": "2026-10-08",
+      "startMinutes": 1110,
+      "endMinutes": 1200,
+      "timeLabel": "6:30 PM -- 8 PM",
+      "venue": "Lost Generation Brewing Company",
+      "neighborhood": "Downtown",
+      "address": "327 S St NE",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-882f02d3-417e-40e6-bd8a-a62c12472e32.jpg",
+      "url": "https://havel90.eventbrite.com/",
+      "linkTier": "listing",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-350498",
+      "title": "Fall Back Concert Series at The Yards",
+      "description": "Throw it back at The Yards with three nights of 90’s, 2000’s and 2010’s hits, local DC bands and waterfront vibes, Free to Attend! Turn back the time as we turn back the clocks this fall! Missing the ’90s, 2000s, and 2010s? Look no further. This fall, The Yards is throwing it back with a three-part concert series celebrating the songs that defined three unforgettable decades. For three Thursday nights, the waterfront will become a time capsule of throwback hits, with each evening dedicated to a different decade. From the songs you blasted on your Walkman to the ones that took over your iPod playlists, local DC cover bands will bring the nostalgia — and all the songs you somehow still know every word to. So grab your friends, grab dinner to-go from a Yards restaurant, find a spot by the boardwalk, and get ready for two hours of singing along to the soundtrack of your past. Lineup September 24th: Collective October 1st: Uncle Jesse October 8th: Junkfood music Whether you join us for one decade or make it all three, this is fall in DC at its best It’s free to attend, but reserve your spot for one night — or all three — before they fill up. Get ready to party like it’s 1999… and 2009… and 2019.",
+      "date": "2026-10-08",
+      "startMinutes": 1110,
+      "endMinutes": 1230,
+      "timeLabel": "6:30 PM -- 8:30 PM",
+      "venue": "The Yards",
+      "neighborhood": "Capitol Hill",
+      "address": "355 Water Street SE",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-6664193201715294113.jpg",
+      "url": "https://www.eventbrite.com/e/fall-back-concert-series-tickets-1999528123443",
+      "linkTier": "listing",
+      "soldOut": false,
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Concerts & Music"
+      ]
+    },
+    {
+      "id": "pop-350050",
+      "title": "Author Talk: Kenneth R. Feinberg — What is Life Worth?",
+      "description": "The story that inspired the acclaimed motion picture Worth, told by the man behind the 9/11 Victim Compensation Fund—a moving saga of national tragedy and healing. Now with the author’s reflections on how today’s hyper-partisan America needs to unite to face our greatest challenges. Just days after September 11, 2001, attorney Kenneth Feinberg was appointed by Congress to administer the federal 9/11 Victim Compensation Fund—a unique effort to compensate families victimized in the terror attacks. He was given an unlimited budget and total authority over how to spend it. Feinberg soon found himself under attack and mired in controversy. Traumatized and angry, some families threatened to sue over awards they considered skimpy; others were insulted by the very idea that a dollar value could be placed on the lives of their loved ones. Feinberg spent three years meeting 9/11 survivors and families, hearing their stories and absorbing their grief. Gradually, Feinberg earned the respect and support of the 9/11 families, over 97 percent of whom chose to participate in the fund rather than sue. What Is Life Worth? shares the lessons Feinberg learned about the power of compassion and the limits of any effort to place a value on human life. Kenneth R. Feinberg has played a key role in resolving many of our nation’s most challenging and widely known disputes. He is best known for serving as the Special Master of the Federal September 11th Victim Compensation Fund of 2001, in which he reached out to all who qualified to file a claim, evaluated applications, determined appropriate compensation, and disseminated awards. Mr. Feinberg shared his extraordinary experience in his book What Is Life Worth?, first published in 2005 by PublicAffairs, and in his follow-up book Who Gets What, published by PublicAffairs in 2012. Mr. Feinberg has been appointed to two presidential-level commissions because of his experience and expertise, and has had a distinguished teaching career as an Adjunct Professor of Law at Harvard Law School, Georgetown University Law Center, the University of Pennsylvania Law School, Columbia University Law School, New York University Law School, and the University of Virginia Law School. Feinberg will be in conversation with Peter L.W. Osnos, the author of An Especially Good View: Watching History Happen, the coauthor of Would You Believe... The Helsinki Accords Changed the World? and the editor of George Soros: A Life in Full. His most recent book is LBJ and McNamara: The Vietnam Partnership Destined to Fail. He is the founder of the publishing house PublicAffairs and a former publisher of the Times Books imprint at Random House, where he was previously a senior editor and associate publisher. Prior to his career in book publishing, he spent eighteen years at The Washington Post, where he was a correspondent in Saigon, Moscow, and London and served as foreign editor and national editor. He is a graduate of Brandeis University and the Columbia School of Journalism, and his writing has appeared in The Atlantic, Foreign Affairs, and Columbia Journalism Review, among other publications. He lives in Bethesda, MD.",
+      "date": "2026-10-08",
+      "startMinutes": 1140,
+      "endMinutes": 1200,
+      "timeLabel": "7 PM -- 8 PM",
+      "venue": "Politics and Prose",
+      "neighborhood": "Dupont Circle",
+      "address": "5015 Connecticut Ave NW",
+      "image": null,
+      "url": "https://politics-prose.com/kenneth-r-feinberg-100826",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-350051",
+      "title": "Author Talk: Lindsay Merbaum — Witches of the Wheel",
+      "description": "In her metaphysical mystery Witches of the Wheel, Lindsay Merbaum weaves a spellbinding tale of mythology, bartending, and queer belonging. Gold grows up knowing only a few things about herself: something lets her see ghosts and read her neighbors’ secrets, and her mother seems to hate her. But when she strikes out on her own, she stumbles into a job at The Wheel, a literally-underground lesbian bar where a coven gathers every Thursday and each entrance requires a painful sacrifice. It feels like the first place she’s belonged. But the bar, its patrons, and its history are more complicated, and more dangerous, than Gold ever realized. As she entangles herself in her new community, she learns more about herself than she wanted to know–and attracts an ancient goddess’s deadly attention. Lindsay Merbaum is a queer feminist author and high priestess of home mixology. Her award-nominated short fiction has appeared in PANK, Anomalous Press, The Collagist, Epiphany, Gargoyle, Day One, Harpur Palate, and Hobart, among others. Essays and interviews can also be found in Electric Literature, Bustle, Bitch Media, The Huffington Post, The Rumpus, and more. A 2021 Foreword Indies Finalist, The Gold Persimmon was her first novel with Creature Publishing. Her second book, a smutty horror-comedy novella called Vampires at Sea, was a LibraryReads Bonus Pick. Lindsay lives in Flint, Michigan with her partner and cats.",
+      "date": "2026-10-08",
+      "startMinutes": 1140,
+      "endMinutes": 1200,
+      "timeLabel": "7 PM -- 8 PM",
+      "venue": "Politics and Prose: Union Market",
+      "neighborhood": "Downtown",
+      "address": "1324 4th St NE",
+      "image": null,
+      "url": "https://politics-prose.com/lindsay-merbaum-100826",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-350054",
+      "title": "Author Talk: Michael Lewis and Jacob Weisberg",
+      "description": "Join us for an evening in conversation with Michael Lewis and Jacob Weisberg for the release of their new books, Blockers and Profiles in Cowardice. Blockers. It wasn’t a compliment. In the new Washington, it was the worst thing you could be—especially if you worked in the federal government and wanted to keep your job. A Blocker was a holdover, an impediment, someone who didn’t get the message—and, most of all, someone who didn’t belong. Michael Lewis found seven of them. Blockers is the story of people who believed they had a calling, who were convinced they were doing something the country couldn’t do without, and then discovered they were no longer wanted. One kept Americans’ most sensitive tax data out of the wrong hands and another made sure that politicians and civil servants played by the rules. One figured out how to stop wildfires from destroying suburban neighborhoods, another helped uncover the mysteries of cystic fibrosis. There was also a security guard. It should come as no surprise that the writer who made subprime mortgages gripping (The Big Short) and who turned baseball statistics into poetry (Moneyball) could transform the first two years of the second Trump administration into a thriller about federal employees. But he does. And he does something else. He puts before us a clear question: If these public servants can’t survive in government today, then what does that say about us? New York Times best-selling author Michael Lewis has published many books on subjects ranging from politics to Wall Street to sports. Lewis’s most recent book, the #1 New York Times bestseller Going Infinite, told the story of FTX’s collapse and the enigmatic founder at its center, Sam Bankman-Fried. More recently, Lewis edited Who Is Government?, an anthology by an all-star team of writers exploring the consequential work of government workers. Lewis is the creator and host of Apple’s #1-rated podcast Against the Rules, a searing look at what’s happened to fairness in American life through the lens of people who depend on public trust. He grew up in New Orleans and lives in Berkeley, California, with his family. It may be scant solace, but history will be particularly harsh to a subset of Trump enablers with a few key things in common: They have money and power. They represent intuitions that are central in determining whether America remains a free, functioning democracy or not. And they absolutely know better. History starts now. In Profiles in Cowardice, Jacob Weisberg has written one of the first defining books of the Trump Era—how this pitch-black political moment happened, why so few resisted, and what it reveals about the character of American leadership. Jeff Bezos, Amazon, and Big Tech. Stephen Schwarzman, Blackstone, and Wall Street. Brad Karp, Paul, Weiss, and Big Law. Mitch McConnell and the United States Senate. Eight individuals in all, together forming an entwined network of power in America, and a new way to understand how authoritarianism can take root in an open society—not by overthrowing institutions, but by bending and bullying them into submission. The book is a masterful study of the ways people create rationalizations to justify basic human instincts such as greed, vanity and fear—above all fear. Fear is the great enemy of democracy, and the book illuminates how it operates, how it disguises itself, and how it spreads. The book is timeless: its profiles are case studies, but they are also mirrors. They ask readers to examine their own instincts, their own silences, their own thresholds for action. This is not a morality tale with easy villains. It is an attempt to describe the moral mechanics of democratic failure. By studying that failure up close, we may better understand what courage truly requires—and why it is so rarely summoned when it matters most. Jacob Weisberg is the author of books including Ronald Reagan (2016), The Bush Tragedy (2008), and In an Uncertain World (2003), co-written with former Treasury Secretary Robert E. Rubin. A native of Chicago, he is the former longtime editor of Slate and the co-founder of the podcast company Pushkin Industries. He serves as Chair of The Committee to Protect Journalists and is a regular contributor to the New York Review of Books. Lewis and Weisberg will be in conversation with Andrew Sullivan. Sullivan is the founder and editor of The Weekly Dish, a site launched in 2000, and former editor of both Michael Lewis and Jacob Weisberg at The New Republic.",
+      "date": "2026-10-08",
+      "startMinutes": 1140,
+      "endMinutes": 1200,
+      "timeLabel": "7 PM -- 8 PM",
+      "venue": "St. Paul's Lutheran Church",
+      "neighborhood": "Dupont Circle",
+      "address": "4900 Connecticut Ave NW",
+      "image": null,
+      "url": "https://politics-prose.com/lewis-weisberg-100826",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-350819",
+      "title": "$10 Thank Me Later Comedy Showcase",
+      "description": "The Thank Me Later Comedy Showcase is a Stand-Up Comedy Showcase that provides high quality entertainment & highlights the DMV's rising stars! Join us every other Thursday for the $10 showcase hosted by Bahlya Yansane and Dom Grayer at the Cottage House in their chic upstairs speakeasy. Happy hour is all night long! $5 beers, $8 wings and wines and more! Our next show is October 8th at 7:30pm, see you there!",
+      "date": "2026-10-08",
+      "startMinutes": 1170,
+      "endMinutes": 1290,
+      "timeLabel": "7:30 PM -- 9:30 PM",
+      "venue": "The Cottage House",
+      "neighborhood": "Georgetown",
+      "address": "1529 Wisconsin Avenue NW",
+      "image": null,
+      "url": "https://www.eventbrite.com/e/thank-me-later-thursday-comedy-showcase-tickets-2002848193863?aff=oddtdtcreator",
+      "linkTier": "listing",
+      "soldOut": false,
+      "priceLabel": "$10",
+      "priceTier": "paid",
+      "categories": [
+        "Comedy"
+      ]
+    },
+    {
+      "id": "pop-350787",
+      "title": "Bluebeat DC Ska Night wsg Lady Hatchet & Dunia + Aram",
+      "description": "Lady Hatchet x Dunia & Aram Soundclash! Traditionally, a sound clash involves DJs going head-to-head, trading song for song in a battle to “kill” your opponent and be named the best. However, in this updated, live version, instead of competing, Lady Hatchet of Lady Hatchet Quartet (formerly The Scotch Bonnets) teams up with veteran duo Dunia & Aram (Agent 99, Dubistry) to form a musical super crew, melding their material and trading song for song across each other’s catalogs, to create seamless sets of reggae, soul, jazz and punk. Backed by DC ska stalwart James McDonald (Eastern Standard Time) on drums, this all-star band always delivers a great time with big tunes, spontaneous versions, out there improvisation, and cool vibrations… everyone wins!",
+      "date": "2026-10-08",
+      "startMinutes": 1230,
+      "endMinutes": 1380,
+      "timeLabel": "8:30 PM -- 11 PM",
+      "venue": "Wonderland Ballroom",
+      "neighborhood": "Dupont Circle",
+      "address": "1101 Kenyon St NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/10/event-88b737c5-ce3c-494e-a721-4d7ff91eb821.jpg",
+      "url": "https://www.popville.com/events/bluebeat-dc-ska-night-wsg-lady-hatchet-dunia-aram-29185/",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Concerts & Music",
+        "Theater & Dance"
+      ]
+    },
+    {
+      "id": "pop-350775",
+      "title": "Observe the Sun",
+      "description": "Become an astronomer and observe the Sun safely with a filtered telescope. Join us outside the Museum at the corner of 7th Street and Independence Avenue, near the silver Delta Solar sculpture, to view a variety of features on the Sun. Knowledgeable staff will be there to answer questions and guide observing. No reservations are necessary to participate in solar observing outside. This program generally takes place on Fridays and Saturdays. If weather or other conditions do not permit observing (clouds, smoke, extreme temperatures), hands-on astronomy activities will be offered inside the Museum instead. Ask the Welcome Center staff where to find the astronomy activities. Note: Free timed-entry passes are required to enter the Museum in DC. Sponsored by: Thomas W. Haas Foundation, Otto Haas Charitable Trust, The, Waterman Trust, and Wyncote Foundation",
+      "date": "2026-10-09",
+      "startMinutes": 720,
+      "endMinutes": 900,
+      "timeLabel": "12 PM -- 3 PM",
+      "venue": "National Air and Space Museum",
+      "neighborhood": "Penn Quarter",
+      "address": "7th Street and Independence Ave",
+      "image": "https://www.popville.com/wp-content/uploads/2026/10/event-bf78cf09-7d6f-40d3-bb74-c30113e0eafc.jpg",
+      "url": "https://airandspace.si.edu/whats-on/events/observe-sun-93?utm_medium=cal&utm_source=pville&utm_campaign=deltasolar-oct26",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Art & Exhibits",
+        "Comedy"
+      ]
+    },
+    {
+      "id": "pop-350182",
+      "title": "The Japan Behind the Story of Shōgun: History, Culture and Power",
+      "description": "Join us for a free talk with Justin Wheeler exploring the real history, culture, and Japanese perspective behind the world portrayed in Shōgun. Discover what the story gets right, what it simplifies, and the historical context behind the people and events that inspired it. Shōgun is a 1975 novel by author James Clavell that chronicles the end of Japan's Azuchi-Momoyama period (1568–1600) and the dawn of the Edo period (1603–1868). Loosely based on actual events and figures, Shōgun narrates how European interests and internal conflicts within Japan brought about the Shogunate restoration. Justin Wheeler studied Asian Studies at Curry College, with a particular focus on Japanese culture and history. He received the college's Award for Excellence in Asian Studies and was actively involved in developing Asian Studies programming and cultural events. This is a free event.",
+      "date": "2026-10-09",
+      "startMinutes": 1020,
+      "endMinutes": 1080,
+      "timeLabel": "5 PM -- 6 PM",
+      "venue": "Chevy Chase Neighborhood Library, DCPL",
+      "neighborhood": "Dupont Circle",
+      "address": "5625 Connecticut Ave, NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-954a3792-e3be-4b6c-8821-147f5073d7ef.jpg",
+      "url": "https://www.popville.com/events/the-japan-behind-the-story-of-shgun-history-culture-and-power-28828/",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": "Free",
+      "priceTier": "free",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-350511",
+      "title": "The Listening Room Presents: Colors of the Wind",
+      "description": "Flutist Conor Nelson and oboist Stephen Key take center stage for a special evening of classical and contemporary music, highlighting the virtuosity, unique colors and musical subtleties the flute and oboe have to offer.",
+      "date": "2026-10-09",
+      "startMinutes": 1080,
+      "endMinutes": 1200,
+      "timeLabel": "6 PM -- 8 PM",
+      "venue": "Evermay",
+      "neighborhood": "Penn Quarter",
+      "address": "1623 28th Street NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/09/event-a5bef132-70d9-441d-b936-8717f59376a3.jpg",
+      "url": "https://evermay.org/listening-room/event/colors-of-the-wind/",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-350055",
+      "title": "Author Talk: Barbara Kingsolver — Partita",
+      "description": "Livia Cable has made her peace with her marriage and modest livelihood in the farm country where she grew up, until a shocking phone call from an old lover shakes her to the core. Decades earlier, this man knew her as Livia Bohusz, a music conservatory student estranged from her home and family, uncertain of anything except her passion for music and promise as an extraordinary pianist. His request, now, to see her again stirs up ghosts she’s kept at bay for a lifetime. Shifting between past and present, Livia’s decision to meet or reject the reunion means confronting step by step, in memories framed as musical dances, the experiences of childhood loss, abandonment, self-immolating passion, and perilous attachment to a man who broke her belief in love and ruptured the course of her life. With razor-sharp acuity and deep affection, Pulitzer Prize winner Barbara Kingsolver’s unforgettable new novel reflects on class barriers, the risks of ambition, and the timeless, life-changing power of art. Barbara Kingsolver is the author of ten bestselling works of fiction, including the novels Unsheltered, The Bean Trees, and The Poisonwood Bible, as well as books of poetry, essays, creative nonfiction, and Coyote’s Wild Home, a children’s book co-authored with Lily Kingsolver. She also collaborated with family members on the influential Animal, Vegetable, Miracle: A Year of Food Life. Kingsolver’s work has been translated into more than thirty languages and has earned a devoted readership at home and abroad. She is a member of the American Academy of Arts and Letters, and has received numerous awards and honors including the 2023 Pulitzer Prize for Fiction for her novel, Demon Copperhead, the National Humanities Medal, and most recently, the National Book Foundation’s Medal for Distinguished Contribution to American Letters. She lives with her husband on a farm in southern Appalachia.",
+      "date": "2026-10-09",
+      "startMinutes": 1140,
+      "endMinutes": 1200,
+      "timeLabel": "7 PM -- 8 PM",
+      "venue": "Lisner Auditorium",
+      "neighborhood": "Anacostia",
+      "address": "730 21st St NW",
+      "image": null,
+      "url": "https://politics-prose.com/barbara-kingsolver-100926",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-350270",
+      "title": "Hill Family Biking: T(w)een Monuments Ride",
+      "description": "The monuments at night are truly stunning—and what better way to see them by bike with friends? Parents welcome, but not required. This 8.8-mile ride is for adventurous t(w)eens, 6th grade and up, who agree to follow organizer instructions. Lights, water bottles, and helmets required. HFB will supply reflective vests, snacks, and adult guides (parents of Eliot-Hine 8th graders). This is a no-drop ride, meaning no one gets left behind. Have questions? Contact hillfamilybiking@gmail.com.",
+      "date": "2026-10-09",
+      "startMinutes": 1140,
+      "endMinutes": 1260,
+      "timeLabel": "7 PM -- 9 PM",
+      "venue": "Maury Elementary Parking Lot on 12th Pl NE",
+      "neighborhood": "Downtown",
+      "address": "12th Place Northeast",
+      "image": null,
+      "url": "https://www.eventbrite.com/e/hill-family-biking-tween-monuments-ride-tickets-1977807658949",
+      "linkTier": "listing",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Family & Kids"
+      ]
+    },
+    {
+      "id": "pop-350056",
+      "title": "Author Talk: David Treuer — The Savage Mind",
+      "description": "A searing exploration of American violence, interweaving memoir, history, and reportage to reveal the wound at the heart of our nation—and to offer hope that the country, and we, might be healed. In the wake of George Floyd’s murder and the January 6 insurrection, as America seemed to be falling apart, David Treuer decided to hold himself and his family together the only way he knew how: he sat down to write a letter. What resulted is The Savage Mind, the most personal and powerful work of his storied literary career. How do we understand America, ourselves, and the impulses that seem intent on destroying both? Ranging from Treuer’s upbringing on the Leech Lake reservation in Minnesota to the experiences of his parents, a Jewish Holocaust refugee and the first American Indigenous woman judge, The Savage Mind reveals the terrifying essence of our nation: frontier violence, which has defined our country, our culture, and our very selves. The frontier, Treuer shows, was a site of epic, phantasmagoric bloodshed, initiated by white settlers but perpetuated by all of us. And after the geographic frontier closed in the late 19th century, it did not vanish—quite the opposite. Today, Treuer explains, America’s frontier—and all its violent pathologies—has migrated overseas and into our hearts and minds. The atrocities in Gaza and the school shootings in the American heartland are bound together by this invisible filament—one that Treuer makes visible in The Savage Mind, and which he offers hope for weaving, once and for all, into a better cloth. New York Times bestselling author David Treuer is Ojibwe from Leech Lake Reservation in northern Minnesota. His most recent book, The Heartbeat of Wounded Knee: Native America from 1890 to the Present, was a New York Times bestseller, a National Book Award finalist, a Minnesota Book Prize winner, a California Book Prize winner, a Los Angeles Times Book Prize finalist, and was a finalist for the Carnegie Medal. His work has appeared in The New York Times, the Los Angeles Times, The Washington Post, Atlantic Monthly, and Harper’s. He divides his time between his home on the Leech Lake Reservation and Los Angeles, where he is a professor of English at USC.",
+      "date": "2026-10-09",
+      "startMinutes": 1140,
+      "endMinutes": 1200,
+      "timeLabel": "7 PM -- 8 PM",
+      "venue": "Politics and Prose",
+      "neighborhood": "Dupont Circle",
+      "address": "5015 Connecticut Ave NW",
+      "image": null,
+      "url": "https://politics-prose.com/david-treuer-100926",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Talks & Workshops"
+      ]
+    },
+    {
+      "id": "pop-350057",
+      "title": "Author Talk: JS Tan & Clarissa Redwine — Against Tech Oligarchy",
+      "description": "As tech bosses fall in line with fascism, tech workers are fighting back. This is the rousing inside story of their movement—and how it spawned the right-wing, anti-worker backlash now reshaping the industry. After Donald Trump’s election in 2016, the tech industry sprang into action to oppose his right-wing agenda, with workers staging walkouts against ICE contracts and CEOs joining mass mobilizations against the so-called Muslim ban. But it wasn’t long before the tech bosses started to fall in line with the new administration. Using the autonomy afforded to them by the industry’s progressive and mission-driven culture, tens of thousands of tech workers began speaking out against their own executives. This burgeoning resistance included organizing against military contracts, walkouts to protest sexism, agitation about tech’s role in the climate crisis, and even a wave of union drives. By the early 2020s, tech workers had sparked an exciting movement that seemed to hold the potential to check the industry’s rapid growth and reactionary drift. But as their struggle grew, so did the employers’ backlash. A new class consciousness took root among the billionaire owners. Hellbent on stamping out any and all dissent, tech executives embraced Trumpism, fired organizers, and began lashing out against the “woke” ideology they blamed for turning their once loyal employees against them. Against Tech Oligarchy provides a gripping account of this inspiring movement’s development and offers a balance sheet of its successes and failures that will prove crucial for anyone looking to challenge right-wing billionaires anywhere. JS Tan is getting his PhD at MIT and formerly worked in tech. His work has been featured in The New York Times, MIT Technology Review, Dissent, Jacobin, Foreign Policy, The Baffler, and The Guardian, among other outlets. Clarissa Redwine helped organize the Kickstarter union and cofounded the tech organizing conference Circuit Breakers. Her organizing work has been featured in The New York Times, the BBC, The Guardian, The Verge, TechCrunch, and elsewhere. Moderating this event will be Dave Karpf, an Associate Professor in the School of Media and Public Affairs at George Washington University and author of The MoveOn Effect: The Unexpected Transformation of American Political Advocacy. His research explores the internet’s impact on political associations — both in the formation of novel organizational structures seen in MoveOn and DailyKos, and also tracing implications for more traditional advocacy organizations.",
+      "date": "2026-10-09",
+      "startMinutes": 1140,
+      "endMinutes": 1200,
+      "timeLabel": "7 PM -- 8 PM",
+      "venue": "Politics and Prose: The Wharf",
+      "neighborhood": "Congress Heights",
+      "address": "610 Water St SW",
+      "image": null,
+      "url": "https://politics-prose.com/tan-redwine-100926",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Talks & Workshops",
+        "Food & Drink"
+      ]
+    },
+    {
+      "id": "pop-346504",
+      "title": "Eliza Tebo w/ Integriti Reeves + Melanie McDowell",
+      "description": null,
+      "date": "2026-10-09",
+      "startMinutes": 1170,
+      "endMinutes": 1380,
+      "timeLabel": "7:30 PM -- 11 PM",
+      "venue": "The Pocket",
+      "neighborhood": "Capitol Hill",
+      "address": "1508 N Capitol St NW",
+      "image": "https://www.popville.com/wp-content/uploads/2026/07/event-6587419983319954995.jpg",
+      "url": "https://app.opendate.io/e/eliza-tebo-w-integriti-reeves-melanie-mcdowell-october-09-2026-718762",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    },
+    {
+      "id": "pop-350904",
+      "title": "Ninth Realm “Damnation’s Veil” Release Show",
+      "description": "DC sword swingers Ninth Realm release their second album Damnation's Veil on Transcending Obscurity Records. With Face First (MA) Concrete Caveman (PA) and Gorgar",
+      "date": "2026-10-09",
+      "startMinutes": 1200,
+      "endMinutes": 1410,
+      "timeLabel": "8 PM -- 11:30 PM",
+      "venue": "Pie Shop",
+      "neighborhood": "H Street",
+      "address": "1339 H St NE",
+      "image": "https://www.popville.com/wp-content/uploads/2026/10/event-4430c62f-b63c-4670-b6f7-b49b2b3152eb.jpg",
+      "url": "https://www.popville.com/events/ninth-realm-damnations-veil-release-show-100000/",
+      "linkTier": "venue",
+      "soldOut": false,
+      "priceLabel": null,
+      "priceTier": "unknown",
+      "categories": [
+        "Community"
+      ]
+    }
+  ]
+}

@@ -39,15 +39,17 @@ FIXTURES="$(cd "$FIXTURES" && pwd)"
 
 WORK="$(mktemp -d "${TMPDIR:-/tmp}/wtd-replay.XXXXXX")"
 trap 'rm -rf "$WORK"' EXIT
-if [[ -z "$OUT" ]]; then OUT="$WORK/out"; fi
+KEEP=1; if [[ -z "$OUT" ]]; then OUT="$WORK/out"; KEEP=0; fi
 mkdir -p "$OUT"; OUT="$(cd "$OUT" && pwd)"
 
 # Source only: the copy must not see events.json / dc-events.json /
 # image-levels.json / dotfiles (PLAN C1), which differ per machine.
 mkdir -p "$WORK/build"
-( cd "$REPO/build" && tar -cf - --exclude='./events.json' --exclude='./dc-events.json' \
-    --exclude='./image-levels.json' --exclude='./.*' . ) | tar -xf - -C "$WORK/build"
+rsync -a --exclude='/events.json' --exclude='/dc-events.json' --exclude='/image-levels.json' \
+  --exclude='/.*' "$REPO/build/" "$WORK/build/" || { echo "run.sh: copying build/ failed" >&2; exit 2; }
 rm -f "$WORK/build/events.json" "$WORK/build/dc-events.json" "$WORK/build/image-levels.json"
+
+logref() { if [[ $KEEP -eq 0 ]]; then echo "rerun with --out DIR to keep the log"; else echo "log: $OUT/$1.log"; fi; }
 
 status=0
 run_one() { # name script output golden
@@ -59,7 +61,7 @@ run_one() { # name script output golden
   local rc=$?
   if [[ -s "$misses" ]]; then
     echo "[$name] FAIL: $(wc -l < "$misses" | tr -d ' ') request(s) not in the fixtures (first: $(head -1 "$misses"))"
-    echo "        re-record (tests/replay/record.sh) if the code now asks for new URLs; log: $OUT/$name.log"
+    echo "        re-record (tests/replay/record.sh) if the code now asks for new URLs; $(logref "$name")"
     status=3; return
   fi
   if [[ $rc -ne 0 || ! -f "$WORK/build/$produced" ]]; then
@@ -88,7 +90,7 @@ run_one() { # name script output golden
 [[ -z "$ONLY" || "$ONLY" == "dc" ]] && run_one dc-events dc-fetch.mjs dc-events.json dc-events.golden.json
 
 if [[ $status -eq 0 ]]; then
-  where=""; [[ "$OUT" == "$WORK/out" ]] || where="; outputs in $OUT"
+  where=""; [[ $KEEP -eq 0 ]] || where="; outputs in $OUT"
   echo "replay OK (fixtures: $(node -e 'const m=require(process.argv[1]);console.log(m.count+" recorded "+m.recordedAt)' "$FIXTURES/meta.json"))$where"
 fi
 exit $status
