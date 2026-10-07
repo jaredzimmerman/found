@@ -5,3 +5,4 @@
 2026-10-07T22:12:31Z | T02: review round 1
 2026-10-07T22:13:16Z | T03: offline test runner, re-captured fixtures, self-contained foopee/citylights tests
 2026-10-07T22:13:21Z | T02: fix review round 2 doc truth and check grep
+2026-10-07T22:14:06Z | T02: review round 2
