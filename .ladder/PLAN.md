@@ -35,9 +35,9 @@ Branch: ladder/scraper-hardening (baseline on `main`, tag `prod-baseline-2026100
 ## Tasks
 | id | title | tier | deps | files | acceptance | status |
 |---|---|---|---|---|---|---|
-| T01 | Repo, exact prod snapshot, remote, plan | lead | – | whole repo | `git log --oneline` shows baseline + plan; md5 manifest matched 26/26 | in-progress |
-| T02 | Docs: ARCHITECTURE.md, README, .gitignore (C1), correct VPS AGENTS.md | haiku | T01 | docs/, README.md, .gitignore | `bash tests/check-docs.sh` | todo |
-| T03 | Self-contained offline test runner; fix `/tmp/lvtest` fixtures | sonnet | T01 | tests/run-all.sh, tests/fixtures/, build/test-*.mjs | `bash tests/run-all.sh` exits 0 on node 22 | todo |
+| T01 | Repo, exact prod snapshot, remote, plan | lead | – | whole repo | `git log --oneline` shows baseline + plan; md5 manifest matched 26/26 | done |
+| T02 | Docs: ARCHITECTURE.md, README, .gitignore (C1), correct VPS AGENTS.md | haiku | T01 | docs/, README.md, .gitignore | `bash tests/check-docs.sh` | in-progress |
+| T03 | Self-contained offline test runner; fix `/tmp/lvtest` fixtures | sonnet | T01 | tests/run-all.sh, tests/fixtures/, build/test-*.mjs | `bash tests/run-all.sh` exits 0 on node 22 | in-progress |
 | T04 | Replay harness + frozen time + golden (C10) | opus | T03 | tests/replay/*, tests/golden/ | `bash tests/replay/run.sh` exits 0; run twice = identical | todo |
 | T05 | `http.mjs` + migrate every fetch site (C7) | opus | T04 | build/http.mjs, build/*.mjs, tests/http.test.mjs | `bash tests/run-all.sh && bash tests/replay/run.sh` | todo |
 | T06 | Source report sidecar + honest final message (C2) | sonnet | T05 | build/fetch.mjs, build/dc-fetch.mjs | replay run.sh passes AND `build/.source-report.json` validates | todo |
