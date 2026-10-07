@@ -26,3 +26,4 @@
 2026-10-07T22:35:59Z | T05: http.mjs + migrate every fetch call site (replay identical)
 2026-10-07T22:37:45Z | T08: record-run.mjs + 30-check unit tests
 2026-10-07T22:38:46Z | T05: http tests (45 checks, node 18+22), deadline exit path, Result
+2026-10-07T22:42:27Z | T05: review round 1
