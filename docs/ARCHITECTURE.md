@@ -30,7 +30,7 @@ Verified against the header and stage comments in build-site.sh.
 
 - The Mac holds this repo. It cannot reach DreamHost directly.
 - Mac -> `ssh hermes` (VPS) -> `ssh dh-backup` (DreamHost).
-- Production is DreamHost, user `indigokarasu`, tree `~/whattodo72.com/`. The test tree is `~/whattodo72.com/test/`.
+- Production is DreamHost, user `indigokarasu`, tree `~/whattodo72.com/`. The test tree is `~/whattodo72.com/test/`. build-site.sh sets BUILD to `$ROOT/test/build`, so the build directory on DreamHost is `~/whattodo72.com/test/build`.
 - Cron on DreamHost (per PLAN.md, read 2026-10-07): `12 0,7,13,19 * * *` in America/Los_Angeles, running `build-site.sh` and logging to `test/logs/build.log`.
 - The runtime is DreamHost's system node 18 (v18.19.1). Node 22 is not used there because it crashes with SIGTRAP on this kernel (see the header of build-site.sh).
 - Headless Chrome does not run on DreamHost. City Lights is fetched and parsed in plain node (sucuri.mjs, citylights-parse.mjs).
