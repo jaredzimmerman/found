@@ -27,3 +27,4 @@
 2026-10-07T22:37:45Z | T08: record-run.mjs + 30-check unit tests
 2026-10-07T22:38:46Z | T05: http tests (45 checks, node 18+22), deadline exit path, Result
 2026-10-07T22:42:27Z | T05: review round 1
+2026-10-07T22:42:49Z | T08: build-site.sh lock/timeouts/modes/history + 14-case sandbox test (mac green)
