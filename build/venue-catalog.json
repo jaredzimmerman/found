@@ -1,0 +1,286 @@
+{
+  "de Young Museum": {
+    "address": "50 Hagiwara Tea Garden Drive",
+    "url": "https://www.famsf.org/visit/free-reduced-admission"
+  },
+  "Legion of Honor": {
+    "address": "100 34th Avenue",
+    "url": "https://legionofhonor.famsf.org/free-reduced-admission"
+  },
+  "Conservatory of Flowers": {
+    "address": "100 John F Kennedy Dr",
+    "url": "https://conservatoryofflowers.org/visit/"
+  },
+  "Cartoon Art Museum": {
+    "address": "781 Beach Street",
+    "url": "https://www.cartoonart.org/visit"
+  },
+  "The Detour SF": {
+    "address": "2200 Market St #A",
+    "url": "https://www.detoursf.com/event/free-play-tuesday/"
+  },
+  "Woods Yard Park": {
+    "address": "915 22nd Street",
+    "url": "https://on.sfpl.org/Made-in-SF-26"
+  },
+  "Noe Valley Town Square": {
+    "address": "3861 24th Street",
+    "url": "https://sffirecu.org/75years"
+  },
+  "Great American Music Hall": {
+    "address": "859 O'Farrell Street",
+    "url": "https://www.gamh.com/calendar/"
+  },
+  "Japanese Tea Garden": {
+    "address": "75 Hagiwara Tea Garden Dr",
+    "url": "https://www.japaneseteagardensf.com/vist"
+  },
+  "San Francisco Zoo": {
+    "address": "Sloat Blvd & The Great Highway",
+    "url": "https://www.sfzoo.org/calendar-of-events/"
+  },
+  "San Francisco Arts Commission Gallery": {
+    "address": "401 Van Ness Ave",
+    "url": "https://dothebay.com/events/2026/10/7/advisory-committee-of-street-artists-and-c"
+  },
+  "GLBT Historical Society Museum": {
+    "address": "4127 18th St",
+    "url": "https://www.glbthistory.org/museum-about-visitor-info"
+  },
+  "Spreckels Temple of Music": {
+    "address": "Music Concourse Dr",
+    "url": "https://illuminate.org/venues/golden-gate-bandshell/"
+  },
+  "The Lone Star Saloon": {
+    "address": "1354 Harrison St",
+    "url": "https://www.lonestarsf.com/new-events-1/2026/6/3/bark-cade-sklkp-9zcah"
+  },
+  "Union Square Park": {
+    "address": "Geary and Powell",
+    "url": "https://visitunionsquaresf.com/park-programs"
+  },
+  "Bill Graham Civic Auditorium": {
+    "address": "99 Grove Street",
+    "url": "https://www.billgrahamcivicauditorium.com/events/"
+  },
+  "Eagle Tavern": {
+    "address": "398 12th St",
+    "url": "https://www.kollinholtz.com/shows/"
+  },
+  "Rye Bar": {
+    "address": "688 Geary St",
+    "url": "https://www.instagram.com/p/CZLoFlPrx8T/"
+  },
+  "The Knockout": {
+    "address": "3223 Mission St",
+    "url": "https://www.theknockout.com/events/"
+  },
+  "Triple Voodoo Brewery": {
+    "address": "2245 3rd St",
+    "url": "https://www.triplevoodoobrewing.com/events/"
+  },
+  "Black Hammer Brewing": {
+    "address": "544 Bryant St",
+    "url": "https://bhb.beer/trivia"
+  },
+  "August Hall": {
+    "address": "420 Mason St",
+    "url": "https://www.augusthall.com/calendar/"
+  },
+  "El Rio": {
+    "address": "3158 Mission St",
+    "url": "https://elriosf.com/calendar/"
+  },
+  "Verdi Club": {
+    "address": "2424 Mariposa Street",
+    "url": "https://www.verdiclub.com/calendar/"
+  },
+  "Cat Club": {
+    "address": "1190 Folsom Street",
+    "url": "https://www.sfcatclub.com/calendar/"
+  },
+  "Great Lawn, Yerba Buena Gardens": {
+    "address": "Mission St between 3rd & 4th Sts",
+    "url": "https://ybgfestival.org/"
+  },
+  "SF LGBT Center": {
+    "address": "1800 Market St",
+    "url": "https://sfcenter.org/"
+  },
+  "San Francisco Botanical Garden": {
+    "address": "9th Ave & Lincoln Way",
+    "url": "https://www.gggp.org/"
+  },
+  "Woods Polk Station": {
+    "address": "2255 Polk St",
+    "url": "https://www.mobilize.us/civicjoyfund/event/757709/"
+  },
+  "California Academy of Sciences": {
+    "address": "55 Music Concourse Drive",
+    "url": "https://www.calacademy.org/nightlife/"
+  },
+  "Internet Archive": {
+    "address": "300 Funston Avenue",
+    "url": "https://archive.org/events/"
+  },
+  "Mission Bowling Club": {
+    "address": "3176 17th Street",
+    "url": "https://www.missionbowlingclub.com/"
+  },
+  "San Francisco Main Public Library": {
+    "address": "100 Larkin St",
+    "url": "https://sfpl.org/"
+  },
+  "OASIS": {
+    "address": "298 11th Street",
+    "url": "https://www.oasisclub.com/events/"
+  },
+  "Brava Theater": {
+    "address": "2781 24th St",
+    "url": "https://www.bravatheater.org/events/"
+  },
+  "City Lights Booksellers": {
+    "address": "261 Columbus Ave",
+    "url": "https://citylights.com/events/"
+  },
+  "House of Air": {
+    "address": "926 Old Mason Street",
+    "url": "https://houseofair.com/san-francisco/programs/adults/"
+  },
+  "San Francisco County Fair Building": {
+    "address": "1119 9th Ave",
+    "url": "https://sfcountyfairbuilding.org/events/"
+  },
+  "San Francisco Playhouse": {
+    "address": "450 Post St",
+    "url": "https://sfplayhouse.org/"
+  },
+  "Gray Area": {
+    "address": "2665 Mission Street",
+    "url": "https://grayarea.org/"
+  },
+  "Herbst Theatre": {
+    "address": "401 Van Ness Ave",
+    "url": "https://sfperformances.org/"
+  },
+  "SF Eagle": {
+    "address": "398 12th St",
+    "url": "https://www.sfeagle.com/events/"
+  },
+  "Balboa Theater": {
+    "address": "3630 Balboa St",
+    "url": "https://balboatheater.com/events/"
+  },
+  "Chase Center": {
+    "address": "300 South Street",
+    "url": "https://www.chasecenter.com/events/"
+  },
+  "Make-Out Room": {
+    "address": "3225 22nd St",
+    "url": "https://makeoutroom.com/"
+  },
+  "The Independent": {
+    "address": "628 Divisadero Street",
+    "url": "https://www.theindependentsf.com/"
+  },
+  "Alamo Drafthouse Cinema": {
+    "address": "2550 Mission St",
+    "url": "https://drafthouse.com/sf/"
+  },
+  "Bottom of the Hill": {
+    "address": "1233 17th Street",
+    "url": "https://www.bottomofthehill.com/calendar.html"
+  },
+  "Brick & Mortar Music Hall": {
+    "address": "1710 Mission Street",
+    "url": "https://brickandmortarmusic.com/"
+  },
+  "Cafe du Nord": {
+    "address": "2170 Market St",
+    "url": "https://cafedu nord.com/"
+  },
+  "Rickshaw Stop": {
+    "address": "155 Fell Street",
+    "url": "https://rickshawstop.com/calendar/"
+  },
+  "The Chapel": {
+    "address": "777 Valencia Street",
+    "url": "https://thechapelsf.com/"
+  },
+  "Roxie Theater": {
+    "address": "3117 16th Street",
+    "url": "https://roxie.com/calendar/"
+  },
+  "Fulton Plaza": {
+    "address": "Fulton and Larkin",
+    "url": "https://illuminate.org/venues/fulton-street-plaza/"
+  },
+  "DNA Lounge": {
+    "address": "375 Eleventh Street",
+    "url": "https://www.dnalounge.com/calendar/"
+  },
+  "Cobb's Comedy Club": {
+    "address": "915 Columbus Ave",
+    "url": "https://cobbscomedyclub.com/"
+  },
+  "Kilowatt": {
+    "address": "3160 16th St",
+    "url": "https://kilowattsf.com/"
+  },
+  "KQED LIVE": {
+    "address": "2601 Mariposa Street",
+    "url": "https://www.kqed.org/events/"
+  },
+  "The Castro": {
+    "address": "429 Castro St",
+    "url": "https://thecastrotheatre.com/"
+  },
+  "Punch Line San Francisco": {
+    "address": "444 Battery St",
+    "url": "https://punchlinesf.com/"
+  },
+  "The Fillmore": {
+    "address": "1805 Geary Boulevard",
+    "url": "https://thefillmore.com/calendar/"
+  },
+  "The Warfield": {
+    "address": "982 Market St",
+    "url": "https://thewarfieldtheatre.com/"
+  },
+  "Pier 39": {
+    "address": "Pier 39, The Embarcadero",
+    "url": "https://www.pier39.com/events/"
+  },
+  "Yerba Buena Center for the Arts": {
+    "address": "701 Mission St",
+    "url": "https://ybca.org/"
+  },
+  "Ferry Building": {
+    "address": "One Ferry Marketplace",
+    "url": "https://www.ferrybuildingmarketplace.com/events/"
+  },
+  "Cigar Bar & Grill": {
+    "address": "850 Montgomery St",
+    "url": "https://www.cigarbarandgrill.com/"
+  },
+  "4 Star Theater": {
+    "address": "2200 Clement St",
+    "url": "https://www.4startheater.com/"
+  },
+  "The Lost Church San Francisco": {
+    "address": "988 Columbus Avenue",
+    "url": "https://thelostchurch.com/"
+  },
+  "Exploratorium": {
+    "address": "Pier 15",
+    "url": "https://www.exploratorium.edu/visit/calendar/"
+  },
+  "Workshop SF": {
+    "address": "1310 Haight St",
+    "url": "https://workshopsf.org/classes/"
+  },
+  "SF Station": {
+    "address": "425 Mission St",
+    "url": "https://www.sfstation.com/calendar/"
+  }
+}

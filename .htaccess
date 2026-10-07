@@ -1,0 +1,43 @@
+# WhatToDo72 test tree — hide build inputs and logs from the web.
+#
+# This directory is a self-contained, DreamHost-only build of the site. It
+# carries the scraper source, the pipeline scripts and the run log, none of
+# which should be readable by a visitor. Without these rules every one of them
+# is served with HTTP 200: fetch.mjs alone leaks the full list of source URLs,
+# the parse heuristics, and the rate-limit pacing.
+#
+# mod_alias / FilesMatch: 403 rather than a rewrite, so the file is never read
+# into a response. AddType application/octet-stream on .mjs/.sh would still
+# display it as text; denying the request is the point.
+
+# ---- build inputs and logs -------------------------------------------------
+RedirectMatch 404 ^/test/build/
+RedirectMatch 404 ^/test/logs/
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Belt and braces for hosts that honour .htaccess but not RedirectMatch.
+  RewriteRule ^build/ - [R=404,L]
+  RewriteRule ^logs/  - [R=404,L]
+</IfModule>
+
+# ---- non-web file types anywhere under /test --------------------------------
+<FilesMatch "\.(mjs|sh|log|orig|py|jsonl)$">
+  Require all denied
+</FilesMatch>
+
+# Dotfiles (.fetch.log, .levels.log) are served by some configs.
+RedirectMatch 404 ^/test/\.
+
+<IfModule mod_headers.c>
+  # The feed is fetched no-store by the page; make that explicit at the origin
+  # so a proxy cannot hand a stale window back to a visitor.
+  <FilesMatch "^events\.json$">
+    Header set Cache-Control "no-store, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "^image-levels\.json$">
+    Header set Cache-Control "no-store, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+Options -Indexes

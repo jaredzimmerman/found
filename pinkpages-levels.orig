@@ -1,0 +1,124 @@
+#!/root/hermes-agent/.venv/bin/python
+"""Per-image tonal levels for the Fog & Found halftone.  No LLM, no network
+beyond fetching the artwork the page already shows.
+
+The halftone prints dot SIZE from tone, so a dark photograph (the feed's median
+artwork has a mean luma around 0.19) comes out as a few ink blobs.  The fix is
+the darkroom one: greyscale, then LEVELS — stretch the photograph so its darkest
+real tone is black and its lightest real tone is white — and only then screen it.
+The browser cannot do the measuring (the artwork host sends no CORS headers, so a
+canvas cannot read the pixels), so it is done here, once per image, and the page
+applies the result as a CSS contrast+brightness pair.
+
+Reads  <docroot>/events.json
+Writes <docroot>/image-levels.json   {"<image url>": [black_point, white_point]}
+Cache  /var/cache/pinkpages-levels/levels-v2.json  (image URLs are immutable uuids,
+       so a measured image is never fetched again; entries for images no longer
+       in the feed are dropped)
+Safe to run as often as you like: only NEW images cost anything.
+"""
+import json, os, sys, io, tempfile, time, urllib.request
+from concurrent.futures import ThreadPoolExecutor
+from PIL import Image
+
+DOC = os.environ.get("PINKPAGES_DOCROOT", "/var/www/pinkpages.indigokarasu.com")
+EVENTS = os.path.join(DOC, "events.json")
+OUT = os.path.join(DOC, "image-levels.json")
+CACHE_DIR = "/var/cache/pinkpages-levels"
+CACHE = os.path.join(CACHE_DIR, "levels-v2.json")   # bump when the percentiles change
+UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/128.0 Safari/537.36"
+MAX_BYTES = 8 * 1024 * 1024
+
+LO_PCT, HI_PCT = 0.01, 0.92     # black point = darkest 1%, white point = lightest 8% clipped
+                                # (0.92 not 0.97: side-by-side on the darkest artwork it lifts
+                                # midtones a little further without blowing out detail)
+MAX_LO = 0.40                   # never call a mid-grey "black"
+MIN_SPAN = 0.30                 # never stretch more than ~3.3x (noise, not tone)
+
+
+def log(msg):
+    print(f"{time.strftime('%Y-%m-%dT%H:%M:%S%z')} {msg}", flush=True)
+
+
+def percentile(hist, total, q):
+    """q in 0..1 -> luminance 0..1 from a 256-bin histogram."""
+    target, run = q * total, 0
+    for i, n in enumerate(hist):
+        run += n
+        if run >= target:
+            return i / 255.0
+    return 1.0
+
+
+def measure(url):
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        data = r.read(MAX_BYTES + 1)
+    if len(data) > MAX_BYTES:
+        raise ValueError("image too large")
+    im = Image.open(io.BytesIO(data))
+    im.thumbnail((200, 200))
+    # Transparent artwork prints on white paper, like the page's own halftone.
+    rgba = im.convert("RGBA")
+    page = Image.new("RGBA", rgba.size, (255, 255, 255, 255))
+    page.alpha_composite(rgba)
+    grey = page.convert("L")
+    hist = grey.histogram()
+    total = sum(hist)
+    lo = percentile(hist, total, LO_PCT)
+    hi = percentile(hist, total, HI_PCT)
+    lo = min(lo, MAX_LO)
+    hi = max(hi, lo + MIN_SPAN)
+    hi = min(hi, 1.0)
+    return [round(lo, 3), round(hi, 3)]
+
+
+def main():
+    try:
+        feed = json.load(open(EVENTS, encoding="utf-8"))
+    except Exception as e:
+        log(f"ABORT: cannot read {EVENTS}: {e}")
+        return 1
+    urls = sorted({e["image"] for e in feed.get("events", []) if e.get("image")})
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    try:
+        cache = json.load(open(CACHE, encoding="utf-8"))
+    except Exception:
+        cache = {}
+    todo = [u for u in urls if u not in cache]
+
+    def one(u):
+        try:
+            return u, measure(u), None
+        except Exception as e:  # one bad image must not stop the rest
+            return u, None, f"{type(e).__name__}: {e}"
+
+    failed = 0
+    if todo:
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            for u, lv, err in pool.map(one, todo):
+                if lv is None:
+                    failed += 1
+                    log(f"skip {u[-40:]}: {err}")
+                else:
+                    cache[u] = lv
+
+    levels = {u: cache[u] for u in urls if u in cache}
+    # Keep the cache bounded to what the feed currently carries.
+    cache = {u: cache[u] for u in urls if u in cache}
+
+    def atomic_write(path, obj):
+        fd, tmp = tempfile.mkstemp(dir=os.path.dirname(path), prefix=".lv.")
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            json.dump(obj, f, separators=(",", ":"))
+        os.chmod(tmp, 0o644)
+        os.replace(tmp, path)
+
+    atomic_write(CACHE, cache)
+    atomic_write(OUT, levels)
+    log(f"levels: {len(levels)}/{len(urls)} images ({len(todo)} new, {failed} failed)")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
