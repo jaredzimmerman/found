@@ -66,13 +66,9 @@ export function startDeadline(ms, { onExpire } = {}) {
   if (!(Number.isFinite(ms) && ms > 0)) return;
   const ctl = new AbortController();
   setMaxListeners(0, ctl.signal); // one listener per in-flight request
-  const state = { endsAt: performance.now() + ms, ctl, timer: null, expired: false, ms };
+  const state = { endsAt: performance.now() + ms, ctl, timer: null, expired: false, ms, onExpire: onExpire || defaultOnExpire };
   dl = state;
-  state.timer = setTimeout(() => {
-    state.expired = true;
-    ctl.abort(new DeadlineError());
-    (onExpire || defaultOnExpire)(ms);
-  }, ms);
+  state.timer = setTimeout(() => expire(state), ms);
   if (state.timer && typeof state.timer.unref === "function") state.timer.unref();
 }
 
@@ -82,12 +78,23 @@ export function stopDeadline() {
   dl = null;
 }
 
+// Runs once, from the timer or from the first call that finds the time already
+// spent (synchronous work, e.g. a curl HEAD, can hold the timer back), so the
+// run always ends the same way: exit 124, one line, nothing written.
+function expire(state) {
+  if (state.expired) return;
+  state.expired = true;
+  clearTimeout(state.timer);
+  state.ctl.abort(new DeadlineError());
+  state.onExpire(state.ms);
+}
+
 function defaultOnExpire(ms) {
   // One line, then out: the output file is written only at the very end of
   // main(), after stopDeadline(), so exiting here can never publish a partial
   // feed. 124 is what coreutils `timeout` uses, so build-site.sh reads both
   // the same way.
-  process.stderr.write(`FATAL: global fetch deadline of ${Math.round(ms / 1000)}s exceeded (FETCH_DEADLINE_MS); exiting 124 without writing output\n`);
+  process.stderr.write(`FATAL: global fetch deadline of ${ms} ms exceeded (FETCH_DEADLINE_MS); exiting 124 without writing output\n`);
   process.exit(124);
 }
 
@@ -98,7 +105,9 @@ function deadlineLeft() {
 }
 
 function checkDeadline() {
-  if (dl && (dl.expired || deadlineLeft() <= 0)) throw new DeadlineError();
+  if (!dl) return;
+  if (!dl.expired && deadlineLeft() <= 0) expire(dl);
+  if (dl && dl.expired) throw new DeadlineError();
 }
 
 // ---- retry accounting --------------------------------------------------------
@@ -206,7 +215,8 @@ async function request(url, opts, defaultTimeoutMs) {
       wait = Math.max(0, Math.round(base * (1 + (random() * 2 - 1) * o.jitter)));
     }
     // Waiting past the deadline is pointless: fail now, not in 3 s.
-    if (wait >= deadlineLeft()) throw new DeadlineError();
+    // (This one call fails; the run itself still ends at the deadline.)
+    if (wait >= deadlineLeft()) throw new DeadlineError("retry backoff would outlast the global fetch deadline");
     await sleep(wait);
   }
 }

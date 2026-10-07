@@ -2302,7 +2302,7 @@ async function luma(days) {
       // description; the per-event page's JSON-LD does.
       let description = "";
       try {
-        {
+        { // a non-2xx now throws and lands in the silent catch: skipped, as before
           const evHtml = await getText(url, { headers: { "User-Agent": UA } });
           const evLdMatch = evHtml.match(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i);
           if (evLdMatch) {

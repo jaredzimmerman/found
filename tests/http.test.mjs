@@ -156,6 +156,17 @@ const ed3 = await err(() => getJson(u("/503"), { ...fast, sleep: (ms) => new Pro
 check("backoff longer than the deadline left -> DeadlineError without sleeping", ed3 instanceof DeadlineError && delays.length === 0);
 stopDeadline();
 
+// time spent in synchronous work (the timer could not run yet): the next call
+// takes the same expire path, so the process still exits 124, not 1
+let early = 0;
+startDeadline(30, { onExpire: () => { early++; } });
+const spinUntil = Date.now() + 60; while (Date.now() < spinUntil) { /* block the loop */ }
+const ed4 = await err(() => getJson(u("/ok"), fast));
+check("deadline passed during sync work: call throws DeadlineError and onExpire runs once", ed4 instanceof DeadlineError && early === 1 && deadline.expired);
+await new Promise((r) => setTimeout(r, 40));
+check("timer firing afterwards does not run onExpire twice", early === 1);
+stopDeadline();
+
 // real default: the process exits 124 with one stderr line and writes nothing
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "http-test-"));
 const outFile = path.join(tmp, "events.json");
