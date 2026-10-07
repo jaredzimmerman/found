@@ -1,0 +1,1303 @@
+{
+ "generatedAt": "2026-10-07T21:46:20.807Z",
+ "days": [
+  "2026-10-07",
+  "2026-10-08",
+  "2026-10-09"
+ ],
+ "counts": {
+  "total": 60,
+  "free": 15,
+  "directLinks": 36,
+  "boxOfficeLinks": 11,
+  "aggregatorLinks": 6
+ },
+ "neighborhoods": [
+  {
+   "name": "Financial District",
+   "count": 2
+  },
+  {
+   "name": "San Francisco",
+   "count": 34
+  },
+  {
+   "name": "SoMa",
+   "count": 2
+  },
+  {
+   "name": "Inner Sunset",
+   "count": 4
+  },
+  {
+   "name": "Mission",
+   "count": 7
+  },
+  {
+   "name": "North Beach",
+   "count": 3
+  },
+  {
+   "name": "Downtown",
+   "count": 3
+  },
+  {
+   "name": "Richmond",
+   "count": 1
+  },
+  {
+   "name": "Russian Hill",
+   "count": 1
+  },
+  {
+   "name": "Union Square",
+   "count": 2
+  },
+  {
+   "name": "NoPa",
+   "count": 1
+  }
+ ],
+ "events": [
+  {
+   "id": "fc-39-2026-10-07",
+   "title": "Fleet Week at PIER 39 (Oct. 7-11)",
+   "venue": "Pier 39",
+   "neighborhood": "Financial District",
+   "address": "Pier 39, The Embarcadero",
+   "date": "2026-10-07",
+   "startMinutes": 600,
+   "endMinutes": 1260,
+   "timeLabel": "10 AM -- 9 PM",
+   "priceLabel": "Free",
+   "priceTier": "free",
+   "categories": [
+    "Community"
+   ],
+   "url": "https://www.pier39.com/fleetweek/",
+   "linkTier": "venue"
+  },
+  {
+   "id": "fc-47-2026-10-07",
+   "title": "SF’s GLBT History Museum: Free First Wednesday",
+   "venue": "GLBT Historical Society Museum",
+   "neighborhood": "San Francisco",
+   "address": "4127 18th St.",
+   "date": "2026-10-07",
+   "startMinutes": 660,
+   "endMinutes": 1020,
+   "timeLabel": "11 AM -- 5 PM",
+   "priceLabel": null,
+   "priceTier": "unknown",
+   "categories": [
+    "Art & Exhibits"
+   ],
+   "url": "https://www.glbthistory.org/museum-about-visitor-info",
+   "linkTier": "venue"
+  },
+  {
+   "id": "17551152",
+   "title": "Transformaciones",
+   "venue": "AIDS Foundation",
+   "neighborhood": "San Francisco",
+   "address": "",
+   "description": "Grupo de Apoyo para TGNCI (Transgénero, Género No Conforme, No Binario e Intersex) Latine inmigrantes EL GRUPO SE FACILITA EN ESPAÑOL Con Dr. Silvia Sandoval",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33050803/af98ff13-50b1-4f09-bbca-980039e845ad.png",
+   "date": "2026-10-07",
+   "startMinutes": 900,
+   "endMinutes": 1020,
+   "timeLabel": "3 PM -- 5 PM",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Community"
+   ],
+   "url": "https://www.sfaf.org/event/transformaciones/2026-10-07/",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17425482",
+   "title": "Bark-Cade",
+   "venue": "The Lone Star Saloon",
+   "neighborhood": "SoMa",
+   "address": "1354 Harrison St",
+   "description": "Have you been craving a casual weeknight hangout with friends, gear optional, where you can sprawl out on the mats, play some video games, or curl up under blankets with popcorn and cartoons? Then come check out BarkCade at Lone Star Saloon. Think of it as a low-effort, low-intensity midweek reset. Mark your calendars and hope to see you at BarkCade from 5-9 PM. No cover, come hang out and play",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32438743/986f1efa-bb73-405e-8724-0355be99afe1.png",
+   "date": "2026-10-07",
+   "startMinutes": 1020,
+   "endMinutes": -1,
+   "timeLabel": "5 PM",
+   "priceLabel": "Free",
+   "priceTier": "free",
+   "categories": [
+    "Community"
+   ],
+   "url": "https://www.lonestarsf.com/new-events-1/2026/6/3/bark-cade-sklkp-9zcah",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "foopee-2026-10-07-neighbourhood-civicauditoriumsf",
+   "title": "Neighbourhood",
+   "venue": "Civic Auditorium, S.F.",
+   "neighborhood": "San Francisco",
+   "address": "",
+   "description": "",
+   "image": "",
+   "date": "2026-10-07",
+   "startMinutes": 1080,
+   "endMinutes": 1170,
+   "timeLabel": "6 PM -- 7:30 PM",
+   "priceLabel": null,
+   "priceTier": "unknown",
+   "categories": [
+    "Community"
+   ],
+   "url": "http://www.foopee.com/punk/the-list/by-date.0.html",
+   "linkTier": "aggregator"
+  },
+  {
+   "id": "17772766",
+   "title": "Zoé Presents: Memorex + Rexsexex y Más",
+   "venue": "Roxie Theater",
+   "neighborhood": "Inner Sunset",
+   "address": "3117 16th Street",
+   "description": "6 GNP Stadiums in Mexico City. Over 380,000 souls. What happened across those six nights was far more than an unprecedented record for Mexican rock; it was a historic and intimate gathering between a band that has soundtracked entire universes and a multigenerational fanbase that is more devoted than ever. This is the story of what vibrated on stage and what was kept in the hearts of the fans: an unfiltered breakdown of the absolute magnetism, nostalgia, and enduring relevance of Zoé. Runtime 3h 2m Year 2026 Director Rodrigo Guardiola Format DCP Country Mexico Language Spanish with English Subtitles First Showing October 7, 2026 Categories RoxCine, Featured",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34095071/8388112b-9ddc-4284-815d-b7248a55eb89.jpg",
+   "date": "2026-10-07",
+   "startMinutes": 1080,
+   "endMinutes": 120,
+   "timeLabel": "6 PM -- 2 AM +1",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Film & Movies"
+   ],
+   "url": "https://ticketing.uswest.veezi.com/purchase/21946?siteToken=4m48btf3yavn7xjk5yxk6nc40c",
+   "linkTier": "boxoffice",
+   "soldOut": false
+  },
+  {
+   "id": "fc-146-2026-10-07",
+   "title": "Drink & Draw Art Event & Raffle | The Knockout",
+   "venue": "The Knockout",
+   "neighborhood": "Mission",
+   "address": "3223 Mission St",
+   "date": "2026-10-07",
+   "startMinutes": 1110,
+   "endMinutes": 1260,
+   "timeLabel": "6:30 PM -- 9 PM",
+   "priceLabel": "Free",
+   "priceTier": "free",
+   "categories": [
+    "Food & Drink"
+   ],
+   "url": "https://www.facebook.com/events/740800926278361/?event_time_id=740800936278360",
+   "linkTier": "listing"
+  },
+  {
+   "id": "17829784",
+   "title": "Queen Budapest",
+   "venue": "Balboa Theater",
+   "neighborhood": "San Francisco",
+   "address": "3630 Balboa St",
+   "description": "On July 27, 1986, Queen performed the largest-ever stadium concert at the Népstadion in Budapest in front of 80,000 ecstatic fans. The concert was part of the famed Magic Tour, which was the last time the band toured with lead singer Freddie Mercury. Now, this original concert film has been beautifully rescanned and remastered in 4K alongside a dynamic new audio mix, featuring many of Queen's favorite tracks— \"Bohemian Rhapsody,” \"Crazy Little Thing Called Love,\" \"I Want To Break Free” and \"We Are The Champions.\" With three years to go before the fall of the Berlin Wall, this was the first Western rock concert performed in a stadium behind the then Iron Curtain. It was of such significance to the Hungarian authorities and film industry that",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34363035/d7773d68-b17f-4c79-9df1-3d803ecd10f4.jpg",
+   "date": "2026-10-07",
+   "startMinutes": 1140,
+   "endMinutes": 120,
+   "timeLabel": "7 PM -- 2 AM +1",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Concerts & Music",
+    "Film & Movies"
+   ],
+   "url": "https://ticketing.uswest.veezi.com/purchase/19774?siteToken=52wkfzmjpwjjfpz3ye7tz8wscg",
+   "linkTier": "boxoffice",
+   "soldOut": false
+  },
+  {
+   "id": "17343664",
+   "title": "The Dresden Dolls",
+   "venue": "Great American Music Hall",
+   "neighborhood": "San Francisco",
+   "address": "859 O'farrell Street",
+   "description": "The Dresden Dolls",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32051934/5fe8d3a5-357a-40a5-85b5-fc36f4c82024.jpg",
+   "date": "2026-10-07",
+   "startMinutes": 1140,
+   "endMinutes": -1,
+   "timeLabel": "7 PM",
+   "priceLabel": "$59",
+   "priceTier": "paid",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://www.eventim.us/event/tickets/706906",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17766753",
+   "title": "Traveling Shoes",
+   "venue": "Yerba Buena Center for the Arts",
+   "neighborhood": "Mission",
+   "address": "701 Mission St",
+   "description": "Join DVT—the trio of composer Damani Rhodes, vocalist VADIA, and poet Tongo Eisen-Martin—for a live performance of their album “Traveling Shoes” inside the exhibition “Dread Scott: The Body Politic.” Melding jazz, poetry, and soulful sounds “Traveling Shoes” explores Black life, political consciousness, community resistance, and liberation. Music begins promptly at 7pm. Seating limited, RSVP recommended. Bar in the lobby, through no drinks allowed in the gallery.",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34067417/8171a302-d72a-4472-abbb-85b8ff932029.jpg",
+   "date": "2026-10-07",
+   "startMinutes": 1140,
+   "endMinutes": 1200,
+   "timeLabel": "7 PM -- 8 PM",
+   "priceLabel": "Free",
+   "priceTier": "free",
+   "categories": [
+    "Art & Exhibits",
+    "Concerts & Music"
+   ],
+   "url": "https://ybca.org/event/traveling-shoes-in-gallery-performance-10-7-26/?utm_medium=event-listing&utm_content=2026-10-07_traveling-shoes&utm_campaign=dread-scott",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17749108",
+   "title": "The Spiral Electric, Fake Your Own Death, Silent Pictures",
+   "venue": "Bottom of the Hill",
+   "neighborhood": "San Francisco",
+   "address": "1233 17th Street",
+   "description": "Wednes day October 7 2026 7:30PM doors -- music at 8:00PM 21 AND OVER $15 $19.81 in advance [15 face value +4.81 service fee] The Spiral Electric neo-psychedelic rock Fake Your Own Death (record release) post punk Silent Pictures post-punk psychedelic rock shoegaze",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33988141/ad854153-c204-4c4d-affc-c2fd16ddab59.jpg",
+   "date": "2026-10-07",
+   "startMinutes": 1170,
+   "endMinutes": -1,
+   "timeLabel": "7:30 PM",
+   "priceLabel": "$15",
+   "priceTier": "paid",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://www.bottomofthehill.com/dice/event20261007.html",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17764639",
+   "title": "Benny Feldman (2 shows)",
+   "venue": "The Lost Church",
+   "neighborhood": "North Beach",
+   "address": "988 Columbus Avenue",
+   "description": "",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34061859/8b16e59e-d7bf-49a5-904a-b0a6c4f13694.jpg",
+   "date": "2026-10-07",
+   "startMinutes": 1170,
+   "endMinutes": 120,
+   "timeLabel": "7:30 PM -- 2 AM +1",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://thelostchurch.my.salesforce-sites.com/ticket#/instances/a0FUh00000Ai9g9MAB",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17434358",
+   "title": "Jacob Alon",
+   "venue": "Cafe du Nord",
+   "neighborhood": "Downtown",
+   "address": "2170 Market St",
+   "description": "Jacob Alon? Damn. Theyve got the voice of a tortured angel, and the darkest of lyricists. One of the funniest too. Has lived a life, and puts its all into song, every last drop. Bleakly beautiful bittersweet symphonies. Undresses themselves completely in telling those stories (metaphorically speaking), and its visceral stuff. The real deal. Scotlands young Makar in waiting. That voice.. Artist Presale:",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32478798/d61d7699-0776-44a4-ad77-909260ad1ce8.jpg",
+   "date": "2026-10-07",
+   "startMinutes": 1200,
+   "endMinutes": 120,
+   "timeLabel": "8 PM -- 2 AM +1",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://www.ticketweb.com/event/jacob-alon-swedish-american-hall-tickets/14956393?pl=cafedunord&REFID=clientsitewp",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17642637",
+   "title": "Ray Lau",
+   "venue": "Punch Line San Francisco",
+   "neighborhood": "San Francisco",
+   "address": "444 Battery St",
+   "description": "Ray Lau",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33481036/c796aac9-0b5f-4f8b-b417-f3a39e4f5a85.png",
+   "date": "2026-10-07",
+   "startMinutes": 1200,
+   "endMinutes": -1,
+   "timeLabel": "8 PM",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Comedy"
+   ],
+   "url": "https://www.ticketmaster.com/ray-lau-san-francisco-california-10-07-2026/event/1C0064864F2388F1?_gl=1*1r2scft*_ga*MjEwMjM0ODgwNi4xNzc5NDk1NTg0*_ga_C1T806G4DF*czE3ODQ4MzUyNTMkbzgkZzAkdDE3ODQ4MzUyNTMkajYwJGwwJGgw",
+   "linkTier": "boxoffice",
+   "soldOut": true
+  },
+  {
+   "id": "17138345",
+   "title": "My Morning Jacket",
+   "venue": "The Fillmore",
+   "neighborhood": "Richmond",
+   "address": "1805 Geary Boulevard",
+   "description": "My Morning Jacket",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/31094097/a098e460-d83e-421a-ba74-3b3ba1f396c9.png",
+   "date": "2026-10-07",
+   "startMinutes": 1200,
+   "endMinutes": -1,
+   "timeLabel": "8 PM",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://www.ticketmaster.com/my-morning-jacket-san-francisco-california-10-07-2026/event/1C0064761A4B8034",
+   "linkTier": "boxoffice",
+   "soldOut": true
+  },
+  {
+   "id": "17511113",
+   "title": "Rod Wave: Don't Look Down Tour",
+   "venue": "Chase Center",
+   "neighborhood": "San Francisco",
+   "address": "300 South Street",
+   "description": "Rod Wave: Don't Look Down Tour",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32854805/4240be49-2388-4bf9-9275-3351136ce2ee.png",
+   "date": "2026-10-07",
+   "startMinutes": 1230,
+   "endMinutes": -1,
+   "timeLabel": "8:30 PM",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://www.ticketmaster.com/rod-wave-dont-look-down-tour-san-francisco-california-10-07-2026/event/1C0064D09CBD9C82",
+   "linkTier": "boxoffice",
+   "soldOut": false
+  },
+  {
+   "id": "17699156",
+   "title": "Play X Land",
+   "venue": "Cat Club",
+   "neighborhood": "SoMa",
+   "address": "1190 Folsom Street",
+   "description": "Hello Pervy Players! PlayXLand is a BDSM/Kink/Fetish night hosted by Cat Club in partnership with the Leather Alliance in San Francisco. —— Go-Go's live and onstage! Don't forget to bring your tip money One of a kind dungeon featuring guest hosts and performances, as well as furniture and suspension hooks, and toys that you are more than welcome to play with! —— 9pm-2am $10 in Fetishwear / $20 in Street Clothes —— THE CAT CLUB 1190 Folsom, SF 21+ (wednesdays) (more info) NO PHOTOS - No photos are allowed to be taken inside the club during this event. No photos may be taken of patrons at any time without consent. NO TOUCHING WITHOUT CONSENT - This is a general rule for all events at Cat Club and this event is no exception. DO NOT TOUCH ANY",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33742825/dde3f012-408b-4d29-b994-078806cdd8e7.jpg",
+   "date": "2026-10-07",
+   "startMinutes": 1260,
+   "endMinutes": 120,
+   "timeLabel": "9 PM -- 2 AM +1",
+   "priceLabel": "$10",
+   "priceTier": "paid",
+   "categories": [
+    "Theater & Dance"
+   ],
+   "url": "https://www.sfcatclub.com/calendar/sgzbsw3ltzjngjx-8yj6x-hzsr2-8tx5a-bh2wx-jppm3-d23d2-rg96m",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "fc-51-2026-10-08",
+   "title": "SF’s Free Concerts & Food Trucks: “Civic Center Soundtrack”",
+   "venue": "Fulton Plaza",
+   "neighborhood": "San Francisco",
+   "address": "Fulton and Larkin",
+   "date": "2026-10-08",
+   "startMinutes": 720,
+   "endMinutes": 900,
+   "timeLabel": "12 PM -- 3 PM",
+   "priceLabel": "Free",
+   "priceTier": "free",
+   "categories": [
+    "Concerts & Music",
+    "Food & Drink"
+   ],
+   "url": "https://illuminate.org/venues/fulton-street-plaza/",
+   "linkTier": "venue"
+  },
+  {
+   "id": "luma-1791492300000",
+   "title": "Claude Founder Salon",
+   "venue": "",
+   "neighborhood": "San Francisco",
+   "address": null,
+   "description": "The Claude Founder Salon closes out Claude Founder House SF during SF Tech Week. Join founders, investors and the Anthropic team for an afternoon of talks from Anthropic leadership and top investors, followed by live demos from curated builders on Claude, with winners voted on by the room. It's built for founders and startup leaders building on Claude, and for the investors backing them. Stay after the demos for drinks, passed appetizers and time with the community. What to Expect A fireside chat with Mike Krieger and David Rosenthal, plus talks from the Anthropic team Live founder demos, audience-voted winners and a closing happy hour Agenda (Thursday, Oct 8; subject to change) 1:45 PM – Welcome keynote 2:00 PM – Fireside chat: Mike Krieger x David Rosenthal 2:30 PM – Anthropic research fireside 3:00 PM – Building AI-native companies, with Factory and Genspark 4:00 PM – Founder Showcase: live demos and winners 4:45 PM – Happy hour Want to demo? Showcase slots are open to founders building on Claude. When you register, share a short demo video (2 minutes max, any link works) and a line about what you built. It's optional and quick. We'll reach out directly if you're selected to present.",
+   "date": "2026-10-08",
+   "startMinutes": 825,
+   "endMinutes": 1200,
+   "timeLabel": "1:45 PM -- 8 PM",
+   "venue_url": null,
+   "url": "https://luma.com/claude-founder-salon",
+   "linkTier": "listing",
+   "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/0f/b9a51139-f417-4bb7-b413-19eab6ef4425.png",
+   "categories": [
+    "Talks & Workshops"
+   ],
+   "soldOut": true,
+   "priceLabel": "Free",
+   "priceTier": "free"
+  },
+  {
+   "id": "17616675",
+   "title": "Gender Youthphoria Support Group (For LGBTQ+ Youth Ages 16-24)",
+   "venue": "SF LGBT Center",
+   "neighborhood": "Downtown",
+   "address": "1800 Market St",
+   "description": "Where: In-Person, SF LGBT Center Hosted By: Youth Services Mental Health Specialists About: This weekly group is for trans, gender non-conforming, and questioning youth ages 16-24 looking for an affirming space to learn coping skills, discuss shared and individual challenges, and build community with each other. And did we mention we’ll have snacks?!",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33361707/2a3dc55d-763d-46c2-b06a-4c97547b0008.jpg",
+   "date": "2026-10-08",
+   "startMinutes": 960,
+   "endMinutes": -1,
+   "timeLabel": "4 PM",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Community"
+   ],
+   "url": "https://sfcenter.org/",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17764320",
+   "title": "Music on the Plaza",
+   "venue": "Ferry Building",
+   "neighborhood": "San Francisco",
+   "address": "One Ferry Marketplace",
+   "description": "Kick back and enjoy your Thursday afternoon, accompanied by live performances from our favorite Bay Area musicians.",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34055868/196bb429-ef3e-4b1f-b700-00d636de0f22.png",
+   "date": "2026-10-08",
+   "startMinutes": 1020,
+   "endMinutes": 1140,
+   "timeLabel": "5 PM -- 7 PM",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Theater & Dance"
+   ],
+   "url": "https://www.ferrybuildingmarketplace.com/events/music-on-the-plaza/var/ri-6.l-L1",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17222550",
+   "title": "Valencia LIVE! 2026 Season Finale",
+   "venue": "Valencia St",
+   "neighborhood": "San Francisco",
+   "address": null,
+   "description": "Into the Streets, Carnaval SF, Valencia Corridor Merchants Association + Civic Joy Fund Present Valencia LIVE! 2026 Season Finale",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/31489872/9f8cfc31-9b5f-4cde-a70a-b68df6fc0df6.jpg",
+   "date": "2026-10-08",
+   "startMinutes": 1020,
+   "endMinutes": 1320,
+   "timeLabel": "5 PM -- 10 PM",
+   "priceLabel": "Free",
+   "priceTier": "free",
+   "categories": [
+    "Community",
+    "Theater & Dance"
+   ],
+   "url": "https://www.visitvalenciastreet.com/live",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "fc-2-2026-10-08",
+   "title": "Upper Polk Cleanup w/ Free Drink For Volunteers",
+   "venue": "Woods Polk Station",
+   "neighborhood": "Russian Hill",
+   "address": "2255 Polk St",
+   "date": "2026-10-08",
+   "startMinutes": 1020,
+   "endMinutes": 1080,
+   "timeLabel": "5 PM -- 6 PM",
+   "priceLabel": null,
+   "priceTier": "unknown",
+   "categories": [
+    "Community",
+    "Food & Drink"
+   ],
+   "url": "https://www.mobilize.us/civicjoyfund/event/757709/",
+   "linkTier": "venue"
+  },
+  {
+   "id": "luma-1791421200000",
+   "title": "Open-weight models and sovereign AI, a Compute Connect Fireside Chat",
+   "venue": "",
+   "neighborhood": "San Francisco",
+   "address": null,
+   "description": "Who this is for ML and inference engineers, heads of compute and AI infrastructure leads at AI labs and teams running training or inference at scale. GPU and data center operators, compute buyers and capacity partners are part of the same conversation. The conversation What does sovereignty in AI really mean, and does it mean the same thing in San Francisco, Brussels and Beijing? Where should teams insist on control in their stack, from the GPUs to model serving, and what's a distraction? When does running your own open-weight model beat calling an API? And as open-weight adoption takes off, what is the next source of lock-in? Our guest panelists NIKTA KHANI is Head of Compute Deals at San Francisco Compute, where she leads SFC's global GPU supply procurement, serving leading neolabs, technology companies, and governments. Previously, Nikta was a geopolitical risk consultant to leading technology companies navigating U.S.-China and U.S.-Middle East relations. Nikta was a GTM lead at Z.AI while living in Beijing, China. Nikta spent several years as an advisor to the U.S. Congress, including to the Senate Homeland Security Committee. Nikta was a Schwarzman Scholar at Tsinghua University where she received a Master's in Business. Nikta is also a writer, with essays published in I-D Magazine and other publications. UMAR ARSHAD is Minister for the Future at Provocative, where he helps expand its data center footprint and bring GPU compute online for AI customers. Previously, he led AI inference and model serving at Capital One across enterprise GenAI and ML platforms serving more than 80% of the company's AI/ML models, from open-weight LLMs to fraud and underwriting models. His experience spans the full stack of AI sovereignty: compute, inference, and governance. ANDREAS BLOOMQUIST spent more than nine years building infrastructure and observability products at Amazon and AWS. He launched CloudWatch Application Signals, AWS's native application performance monitoring service, and led the launch of Amazon's central GPU orchestration service, which centralized GPU access and improved utilization across Amazon's science and AI teams. He co-founded Chamber, which builds MLOps agents to monitor and self-heal GPU workloads. Moderated by RYAN MILLER, Head of Marketing at Impossible Cloud. Please note We expect a full house. Entry is first come, first served, even with an approved ticket, so please arrive early. No plus ones can be accommodated, and everyone needs their own approved ticket. The evening 6:00pm: Doors open, drinks, and networking. 6:30pm: Fireside chat and open discussion with audience. 8:00pm: Food, drinks + networking with fellow compute buyers/sellers. 9:00pm: Event ends. Presented by Impossible Cloud is a neocloud for sovereign enterprise inference: bare metal GPUs, object storage, and serverless inference in early access.",
+   "date": "2026-10-08",
+   "startMinutes": 1080,
+   "endMinutes": 1260,
+   "timeLabel": "6 PM -- 9 PM",
+   "venue_url": null,
+   "url": "https://luma.com/jvzztdz5",
+   "linkTier": "listing",
+   "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/zq/5e475040-3d58-4a53-9a66-aaa060392565.png",
+   "categories": [
+    "Talks & Workshops",
+    "Food & Drink"
+   ],
+   "soldOut": true,
+   "priceLabel": "Free",
+   "priceTier": "free"
+  },
+  {
+   "id": "17797855",
+   "title": "After Dark: Unplug and Play",
+   "venue": "Exploratorium",
+   "neighborhood": "San Francisco",
+   "address": "Pier 15",
+   "description": "Your monthly invitation to hang out and try something new—play science trivia, find your community, and connect deeply.",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34217276/1801ba78-dae6-4714-b74d-a31a83505cb9.jpg",
+   "date": "2026-10-08",
+   "startMinutes": 1080,
+   "endMinutes": 1320,
+   "timeLabel": "6 PM -- 10 PM",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Theater & Dance"
+   ],
+   "url": "https://www.exploratorium.edu/visit/calendar/after-dark-unplug-play-oct2026",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17839258",
+   "title": "SpookFest 2026",
+   "venue": "Roxie Theater",
+   "neighborhood": "Inner Sunset",
+   "address": "3117 16th Street",
+   "description": "Now in its tenth year, SpookFest is the film festival that goes bump in the night! We scavenged the crypts, summoned the demons, and took all the candy from the “Take 1” bowls to bring you a night of homegrown short films and Halloweeny spookiness. There’s also a costume contest, so dress to impress! Get your tickets early – this event sells out every year! 2026 Lineup: KNITTING CLUB by Diogo Abrantes and João Rito THE MAN THAT I WAVE AT by Ben S. Hyland LOUD by Adam Azimov PARTY ANIMAL by Ali Gill BREEDER by Sapphire Sandalo THE FLING by Jemma Cotter FLESH & BLOOD by Nathan Presley SKIN FLICK by Louise Bailly, Daniela Del Castello, Alice Levy, Bruno De Mendonça, Elifsu Eriç, and Joey Quoc Tran MASKS by Andre LeBlanc BABY RAY 2: DADDY CON CA",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34406030/f01f8a1d-dc47-447f-adb4-b5405ddb19c9.jpg",
+   "date": "2026-10-08",
+   "startMinutes": 1080,
+   "endMinutes": 120,
+   "timeLabel": "6 PM -- 2 AM +1",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Film & Movies",
+    "Festivals & Fairs"
+   ],
+   "url": "https://ticketing.uswest.veezi.com/purchase/21601?siteToken=4m48btf3yavn7xjk5yxk6nc40c",
+   "linkTier": "boxoffice",
+   "soldOut": false
+  },
+  {
+   "id": "foopee-2026-10-08-rasmussaintagnesdeathvalley-augusthallsf",
+   "title": "Rasmus, Saint Agnes, Death Valley",
+   "venue": "August Hall, S.F.",
+   "neighborhood": "San Francisco",
+   "address": "",
+   "description": "",
+   "image": "",
+   "date": "2026-10-08",
+   "startMinutes": 1110,
+   "endMinutes": 1170,
+   "timeLabel": "6:30 PM -- 7:30 PM",
+   "priceLabel": "$45",
+   "priceTier": "unknown",
+   "categories": [
+    "Community"
+   ],
+   "url": "http://www.foopee.com/punk/the-list/by-date.0.html",
+   "linkTier": "aggregator"
+  },
+  {
+   "id": "foopee-2026-10-08-ylabambavanessazamora-chapelsf",
+   "title": "Y La Bamba, Vanessa Zamora",
+   "venue": "Chapel, S.F.",
+   "neighborhood": "San Francisco",
+   "address": "",
+   "description": "",
+   "image": "",
+   "date": "2026-10-08",
+   "startMinutes": 1140,
+   "endMinutes": 1200,
+   "timeLabel": "7 PM -- 8 PM",
+   "priceLabel": "$30",
+   "priceTier": "unknown",
+   "categories": [
+    "Community"
+   ],
+   "url": "http://www.foopee.com/punk/the-list/by-date.0.html",
+   "linkTier": "aggregator"
+  },
+  {
+   "id": "17607166",
+   "title": "Parrotfish",
+   "venue": "DNA Lounge",
+   "neighborhood": "San Francisco",
+   "address": "375 Eleventh Street",
+   "description": "Parrotfish: With tens of millions of streams, hundreds of thousands of monthly listeners, and a rapidly growing online following, Parrotfish is quickly becoming one of the most lovable oddballs in alternative rock. They cross genres, proudly defying labels and expectations. They believe the best music is made without rules and they hope that their music allows others to feel free and be themselves. Their high-octane live show blends funk- rock riffs, three-part harmonies, and infectious on-stage chemistry that turns first-time listeners into full-blown lifers.",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34706957/2cf8578d-be99-42a8-adc5-1ababa02a1aa.jpg",
+   "date": "2026-10-08",
+   "startMinutes": 1140,
+   "endMinutes": 1170,
+   "timeLabel": "7 PM -- 7:30 PM",
+   "priceLabel": "$16",
+   "priceTier": "paid",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://www.dnalounge.com/calendar/2026/10-08d.html",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17830568",
+   "title": "Shrøud, Young Lovers and Held",
+   "venue": "Kilowatt",
+   "neighborhood": "Inner Sunset",
+   "address": "3160 16th St",
+   "description": "Shrøud: https://www.instagram.com/s_ntwrk/ Young Lovers: https://www.instagram.com/youngloversla/ Held: https://www.instagram.com/held_band/?hl=en Presented by Kilowatt. This is a 21+ event",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34367017/24cacf5d-22dc-4883-92e6-dfe395de0df1.jpg",
+   "date": "2026-10-08",
+   "startMinutes": 1140,
+   "endMinutes": 120,
+   "timeLabel": "7 PM -- 2 AM +1",
+   "priceLabel": "Free",
+   "priceTier": "free",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://link.dice.fm/Z73659eec658?pid=717f1d8a",
+   "linkTier": "boxoffice",
+   "soldOut": false
+  },
+  {
+   "id": "fc-28-2026-10-08",
+   "title": "$5 Off Tix: San Francisco Playhouse’s “Peter Pan Goes Wrong” (Sept. 26-Nov. 28)",
+   "venue": "San Francisco Playhouse",
+   "neighborhood": "Union Square",
+   "address": "450 Post St.",
+   "date": "2026-10-08",
+   "startMinutes": 1140,
+   "endMinutes": -1,
+   "timeLabel": "7 PM",
+   "priceLabel": null,
+   "priceTier": "unknown",
+   "categories": [
+    "Community"
+   ],
+   "url": "https://sfplayhouse.org/2026-2027-season/peter-pan-goes-wrong/?utm_source=funcheap&utm_medium=partner&utm_campaign=ppgwfuncheap",
+   "linkTier": "venue"
+  },
+  {
+   "id": "17830868",
+   "title": "Beetlejuice",
+   "venue": "Alamo Drafthouse Cinema",
+   "neighborhood": "Mission",
+   "address": "2550 Mission St",
+   "description": "Tim Burton had made a name for himself with PEE-WEE'S BIG ADVENTURE, but he really captured everyone's attention with the surprise smash BEETLEJUICE in 1988. The movie was so weird Warner Bros. was almost afraid to spring it on an unsuspecting public. But when they did, audiences went wild for it. The film also gave substantial boosts to the careers of Alec Baldwin (so young!), Geena Davis, teenage idol Winona Ryder, and of course, Michael Keaton, playing the utterly unpredictable title character. After perishing in a car accident, Barbara (Davis) and Adam (Baldwin) find themselves stuck in their country home, unable to leave as it is invaded by the insufferable Deetze family. When Barbara and Adam are unable to frighten the Deetzes away, th",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34368055/9712d84f-4f2a-48ff-be6e-3613f60d6784.jpg",
+   "date": "2026-10-08",
+   "startMinutes": 1170,
+   "endMinutes": 120,
+   "timeLabel": "7:30 PM -- 2 AM +1",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Film & Movies",
+    "Family & Kids"
+   ],
+   "url": "https://drafthouse.com/sf/show/beetlejuice?cinemaId=0802&sessionId=21337",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17422835",
+   "title": "Eraserhead Xiu Xiu",
+   "venue": "Gray Area",
+   "neighborhood": "Mission",
+   "address": "2665 Mission Street",
+   "description": "Xiu Xiu Eraserhead Xiu Xiu Polyvinyl Record Co.",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32426375/73526c87-a395-4d3c-9889-8cc6f8daf96e.jpg",
+   "date": "2026-10-08",
+   "startMinutes": 1170,
+   "endMinutes": 120,
+   "timeLabel": "7:30 PM -- 2 AM +1",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Community"
+   ],
+   "url": "https://grayarea.org/",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17774600",
+   "title": "You’re Going to Die",
+   "venue": "The Lost Church",
+   "neighborhood": "North Beach",
+   "address": "988 Columbus Avenue",
+   "description": "",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34108532/1fc346f2-883a-40eb-9f66-d349aa4f3044.jpg",
+   "date": "2026-10-08",
+   "startMinutes": 1170,
+   "endMinutes": 120,
+   "timeLabel": "7:30 PM -- 2 AM +1",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://thelostchurch.my.salesforce-sites.com/ticket#/instances/a0FUh00000C4WDhMAN",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17505058",
+   "title": "Casa Sueo, (mike baggetta :: john herndon :: mike watt), Ray Yeh, Rituals of Mine",
+   "venue": "Bottom of the Hill",
+   "neighborhood": "San Francisco",
+   "address": "1233 17th Street",
+   "description": "Tues day October 8 2026 8:00PM doors -- music at 8:30PM 21 AND OVER $20 $25.31 in advance [20 face value +5.31 service fee] Casa Sueo (mike baggetta:: john herndon:: mike watt) post-punk, psychedelic Ray Yeh punk rock, indie pop Rituals of Mine electronic/R&B/hip-hop",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32827881/e5e30bfa-0f0d-4e3b-b635-4959db995d7b.jpg",
+   "date": "2026-10-08",
+   "startMinutes": 1200,
+   "endMinutes": -1,
+   "timeLabel": "8 PM",
+   "priceLabel": "$20",
+   "priceTier": "paid",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://www.bottomofthehill.com/stubmatic/event20261008.html",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17434359",
+   "title": "Evangelia, STOLAR",
+   "venue": "Cafe du Nord",
+   "neighborhood": "Downtown",
+   "address": "2170 Market St",
+   "description": "Evangelia is a multi-platinum Greek-American artist blending modern pop with traditional Greek sounds. In just two years, shes become one of Greeces most-streamed artists, with viral hits like Vle, Vradia, and Foti, and over 16 million Spotify streams. VIP: - signed item - acoustic performance - early access merch - Parea flower clip - exclusive listening to unreleased music VIP Package is subject to change For any event that is listed as 18 or 21 and over, ANY ticket holder unable to present valid identification indicating that they are of age will not be admitted to this event, and will not be eligible for a refund. Any event listed as All Ages, means 6 years of age or older. ALL tickets are standing room only unless otherwise specified. I",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32478801/ec07790e-c0d1-4e7a-bd18-859b2653525b.jpg",
+   "date": "2026-10-08",
+   "startMinutes": 1200,
+   "endMinutes": 120,
+   "timeLabel": "8 PM -- 2 AM +1",
+   "priceLabel": "$90",
+   "priceTier": "paid",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://www.ticketweb.com/event/evangelia-the-para-tour-with-cafe-du-nord-tickets/14949023?pl=cafedunord&REFID=clientsitewp",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17724293",
+   "title": "LIVE MUSIC, THURSDAYS",
+   "venue": "SF Eagle",
+   "neighborhood": "San Francisco",
+   "address": "398 12th St.",
+   "description": "Blunt Force Karma - 11:15 pm - 12 am Run Your Pockets - 10:15-11 pm Man the Gallows - 915 - 10:00 Televised Corruption - 830-900 pm SF Eagle Thursday 10/8/26 Doors 8 pm Music 830 pm $10 - 21+",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33865743/29adbc8d-9b94-47c3-88ba-920d8cf4f040.jpg",
+   "date": "2026-10-08",
+   "startMinutes": 1200,
+   "endMinutes": 120,
+   "timeLabel": "8 PM -- 2 AM +1",
+   "priceLabel": "$10–$21",
+   "priceTier": "paid",
+   "categories": [
+    "Sports & Fitness",
+    "Concerts & Music"
+   ],
+   "url": "https://dothebay.com/events/2026/10/8/live-music-thursdays-tickets",
+   "linkTier": "listing",
+   "soldOut": false
+  },
+  {
+   "id": "17671596",
+   "title": "The Breaks",
+   "venue": "The Independent",
+   "neighborhood": "NoPa",
+   "address": "628 Divisadero Street",
+   "description": "The Breaks",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33614661/0104bfbd-9cc9-42f3-98fe-be80181a00ad.jpg",
+   "date": "2026-10-08",
+   "startMinutes": 1200,
+   "endMinutes": -1,
+   "timeLabel": "8 PM",
+   "priceLabel": "$42",
+   "priceTier": "paid",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://www.theindependentsf.com/tm-event/the-breaks/",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "fc-300-2026-10-09",
+   "title": "“Pay-What-You-Can” Taco Day at SF’s Tato",
+   "venue": "Tato",
+   "neighborhood": "Mission",
+   "address": "4608 3rd St.",
+   "date": "2026-10-09",
+   "startMinutes": 660,
+   "endMinutes": 1020,
+   "timeLabel": "11 AM -- 5 PM",
+   "priceLabel": null,
+   "priceTier": "unknown",
+   "categories": [
+    "Community"
+   ],
+   "url": "https://www.facebook.com/tatosf/",
+   "linkTier": "listing"
+  },
+  {
+   "id": "foopee-2026-10-09-wonderbread5haulinoatstribut-240frontstreetsf",
+   "title": "Wonder Bread 5, Haulin' Oats (tribute)",
+   "venue": "240 Front Street, S.F.",
+   "neighborhood": "San Francisco",
+   "address": "",
+   "description": "",
+   "image": "",
+   "date": "2026-10-09",
+   "startMinutes": 960,
+   "endMinutes": -1,
+   "timeLabel": "4 PM",
+   "priceLabel": "Free",
+   "priceTier": "free",
+   "categories": [
+    "Community"
+   ],
+   "url": "http://www.foopee.com/punk/the-list/by-date.0.html",
+   "linkTier": "aggregator"
+  },
+  {
+   "id": "17574001",
+   "title": "Chinatown Night Market 2026",
+   "venue": "Chinatown",
+   "neighborhood": "North Beach",
+   "address": "Grant Ave and Bush St.",
+   "description": "Night",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33155256/76e767f6-c010-460b-8661-d962ed3399ac.jpg",
+   "date": "2026-10-09",
+   "startMinutes": 1020,
+   "endMinutes": 1260,
+   "timeLabel": "5 PM -- 9 PM",
+   "priceLabel": "Free",
+   "priceTier": "free",
+   "categories": [
+    "Festivals & Fairs",
+    "Theater & Dance"
+   ],
+   "url": "https://bechinatown.weebly.com/",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "fc-39-2026-10-09",
+   "title": "SF’s Fleet Fest 2026: Navy Band SW Destroyers (Pier 39)",
+   "venue": "Pier 39",
+   "neighborhood": "Financial District",
+   "address": "Pier 39, The Embarcadero",
+   "date": "2026-10-09",
+   "startMinutes": 1020,
+   "endMinutes": -1,
+   "timeLabel": "5 PM",
+   "priceLabel": "Free",
+   "priceTier": "free",
+   "categories": [
+    "Community"
+   ],
+   "url": "https://fleetweeksf.org/",
+   "linkTier": "venue"
+  },
+  {
+   "id": "17897897",
+   "title": "Dead Reckoning",
+   "venue": "Paxton Gate",
+   "neighborhood": "Mission",
+   "address": "824 Valencia Street",
+   "description": "Are you into spooky ghost stories, learning that your neighborhood is most likely haunted, and hanging out with other fans of the paranormal? We are too, which is why we’re super excited to announce that the Dead Reckoning Podcast is coming to Paxton Gate San Francisco for a live show. Historian Elizabeth Creely and Dead Reckoning will be at the store for a live exploration of the neighborhood’s deadly past, featuring stories of death, phantoms in the night, and the dark history lurking right here in our own neighborhood. If you’re looking to learn more about San Francisco’s spooky side, or just want to be creeped out the next time you’re walking down Valencia at night, then this is definitely for you.",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34698142/27cb22a7-3a96-489e-8d60-8cb04434adf8.jpg",
+   "date": "2026-10-09",
+   "startMinutes": 1050,
+   "endMinutes": 1140,
+   "timeLabel": "5:30 PM -- 7 PM",
+   "priceLabel": "Free",
+   "priceTier": "free",
+   "categories": [
+    "Community"
+   ],
+   "url": "https://dothebay.com/events/2026/10/9/dead-reckoning-tickets",
+   "linkTier": "listing",
+   "soldOut": false
+  },
+  {
+   "id": "17431804",
+   "title": "COOL as FUCK!",
+   "venue": "Make-Out Room",
+   "neighborhood": "San Francisco",
+   "address": "3225 22nd St.",
+   "description": "",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32478912/b5d361ad-fdcf-447d-a98a-6aa6db954f9e.jpg",
+   "date": "2026-10-09",
+   "startMinutes": 1080,
+   "endMinutes": 120,
+   "timeLabel": "6 PM -- 2 AM +1",
+   "priceLabel": "Free",
+   "priceTier": "free",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://makeoutroom.com/",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17911988",
+   "title": "Mission Rock Fall Friday Night Movies - Inside Out",
+   "venue": "China Basin Park",
+   "neighborhood": "San Francisco",
+   "address": "1 China Basin Park",
+   "description": "Mission Rock Fall Friday Night Movies Movie nights are back at China Basin Park! Gather your friends and family and join us Friday nights this October for four cozy evenings of movies under the stars. Bring a blanket to the Great Lawn, grab your favorite movie-night snacks, and settle in for a fun night at the park! October 9 — Inside Out October 16 — Ratatouille October 23 — Fantastic Mr. Fox October 30 — Coco Make a night of it at Mission Rock! Come early to grab dinner or drinks from our retailers, enjoy the movie under the stars, and stick around afterward to keep the evening going. See you Friday nights at the park!",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34752297/c4f26172-9a4e-44fd-9e58-ba50a2ba799c.jpg",
+   "date": "2026-10-09",
+   "startMinutes": 1110,
+   "endMinutes": 1290,
+   "timeLabel": "6:30 PM -- 9:30 PM",
+   "priceLabel": "Free",
+   "priceTier": "free",
+   "categories": [
+    "Film & Movies"
+   ],
+   "url": "https://dothebay.com/events/2026/10/9/mission-rock-fall-friday-night-movies-inside-out-tickets",
+   "linkTier": "listing",
+   "soldOut": false
+  },
+  {
+   "id": "17475308",
+   "title": "CALVIN LOVE (Canadian Singer/Songwriter) + DONALD BEAMAN (NorCal Singer/Songwriter)",
+   "venue": "Make-Out Room",
+   "neighborhood": "San Francisco",
+   "address": "3225 22nd St.",
+   "description": "",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32685029/d71150a9-56b5-4adf-9da0-85825c1ea031.jpg",
+   "date": "2026-10-09",
+   "startMinutes": 1110,
+   "endMinutes": 120,
+   "timeLabel": "6:30 PM -- 2 AM +1",
+   "priceLabel": "$15",
+   "priceTier": "paid",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://makeoutroom.com/",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17585409",
+   "title": "Holy Priest",
+   "venue": "Bill Graham Civic Auditorium",
+   "neighborhood": "San Francisco",
+   "address": "99 Grove Street",
+   "description": "",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33215701/46bc6c34-4dbc-4ba9-b901-b2b41938c938.jpg",
+   "date": "2026-10-09",
+   "startMinutes": 1140,
+   "endMinutes": 120,
+   "timeLabel": "7 PM -- 2 AM +1",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://www.ticketmaster.com/holy-priest-18-san-francisco-california-10-09-2026/event/1C0064E6B2F0D195?camefrom=CFC_ANOTHERPLANET_web&brand=anotherplanet",
+   "linkTier": "boxoffice",
+   "soldOut": false
+  },
+  {
+   "id": "17819039",
+   "title": "Salsa Lessons with Ava & Rodolfo",
+   "venue": "Cigar Bar & Grill",
+   "neighborhood": "San Francisco",
+   "address": "850 Montgomery St.",
+   "description": "Join us every Friday for Salsa Lessons and Social Dancing with San Francisco-based, award-winning instructors Ava Apple and Rodolfo Guzman. Advanced online registration for the class is $14 plus processing fee. Walk-ins are $20. Students can stay for the live band performance at 9:30 PM. Agenda: 7:00-7:30 PM - Check-in, mingle, practice, and ask questions. 7:30-8:30 PM - Salsa class with Ava & Rodolfo. Mixed levels, no partner needed, and beginners welcome. 8:30-9:00 PM - Practice time with Ava & Rodolfo. 9:30 PM - Live salsa band. NO REFUNDS - Must be 21+",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34311062/01d0b6f4-1424-4535-b705-3b5904c8e1eb.jpg",
+   "date": "2026-10-09",
+   "startMinutes": 1140,
+   "endMinutes": 1260,
+   "timeLabel": "7 PM -- 9 PM",
+   "priceLabel": "$14",
+   "priceTier": "paid",
+   "categories": [
+    "Community"
+   ],
+   "url": "https://www.cigarbarandgrill.com/index.php/entertainment",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17859457",
+   "title": "Weekly Trivia @ MBC!",
+   "venue": "Mission Bowling Club",
+   "neighborhood": "San Francisco",
+   "address": "3176 17th Street",
+   "description": "C ome on down for some weekly trivia at MBC! There will be lots of laughs, PRIZES, and hopefully some fierce competition. Seating starts at 6:45PM. R SVP encouraged but not required. We often have room for walk-ins, but we cannot guarantee a seat if you do not RSVP and/or arrive after 7pm. We have space for 10 teams of 4. Every Friday at 7pm! Hope to see you here!",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34503213/5cf5ec93-8aa7-4833-8609-ba06a446bbaf.png",
+   "date": "2026-10-09",
+   "startMinutes": 1140,
+   "endMinutes": 1290,
+   "timeLabel": "7 PM -- 9:30 PM",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Theater & Dance"
+   ],
+   "url": "https://www.missionbowlingclub.com/",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17757303",
+   "title": "Floating Features: Top Gun",
+   "venue": "Roxie Theater",
+   "neighborhood": "Inner Sunset",
+   "address": "3117 16th Street",
+   "description": "Two rising but reckless Naval officers – Pete “Maverick” Mitchell and Nick “Goose” Bradshaw – are recruited for Top Gun; an elite US Flying school for advanced fighter pilots. There, the macho classmates engage in a dangerous competition to outdo their rivals and Maverick begins a relationship with a civilian instructor. About Floating Features San Francisco Legacy Businesses Red and White Fleet and The Roxie are partnering to turn the hybrid electric vessel Enhydra into a sailing cinema for a limited run of nighttime film cruises on the Bay. Join us this autumn for a 2-hour twilight cruise and a feature film handpicked by the Roxie. Our electric vessel means no engine noise and a totally unique al fresco movie experience. Full schedule avai",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34022717/19de1e16-3487-4bc1-af1c-16da48abdef9.jpg",
+   "date": "2026-10-09",
+   "startMinutes": 1140,
+   "endMinutes": 120,
+   "timeLabel": "7 PM -- 2 AM +1",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Film & Movies"
+   ],
+   "url": "https://www.redandwhite.com/floating-features",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "17842014",
+   "title": "Larry Vann Quartet",
+   "venue": "Bird & Beckett Books & Records",
+   "neighborhood": "San Francisco",
+   "address": "653 Chenery St.",
+   "description": "Richard Cruz, piano; Tim Landis, guitar; A. J. Joyce, bass; Larry Vann, drums The Bird & Beckett Cultural Legacy Project, a 501(c)3 non-profit organization presents live music at least 3 times a week at Bird & Beckett Books & Records in San Francisco's Glen Park village: 2 blocks from the Glen Park BART station, Muni lines J, 23, 35, 36, 44, and 52, and on- and off-ramps for I-580. Seating is limited, so call ahead to reserve: (415) 586-3733. No advance ticket sales. Please bring cash. Venmo ok, if necessary. BYOB. Can't make the show in person? Stream it live at https://www.youtube.com/@bird_beckett, and throw in some money for the band via venmo: @birdandbeckett",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34417222/ba7e982e-46c8-46da-a511-b28af74d0907.jpg",
+   "date": "2026-10-09",
+   "startMinutes": 1170,
+   "endMinutes": 120,
+   "timeLabel": "7:30 PM -- 2 AM +1",
+   "priceLabel": "$20",
+   "priceTier": "paid",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://birdbeckett.com/",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "fc-6-2026-10-09",
+   "title": "“Mortified Live” Embarrassing Teen Diary Storytelling",
+   "venue": "DNA Lounge",
+   "neighborhood": "San Francisco",
+   "address": "375 11th St.",
+   "date": "2026-10-09",
+   "startMinutes": 1170,
+   "endMinutes": 1290,
+   "timeLabel": "7:30 PM -- 9:30 PM",
+   "priceLabel": null,
+   "priceTier": "unknown",
+   "categories": [
+    "Community"
+   ],
+   "url": "https://getmortified.com/",
+   "linkTier": "venue"
+  },
+  {
+   "id": "17688604",
+   "title": "Dead Kennedys",
+   "venue": "The Regency Ballroom",
+   "neighborhood": "Union Square",
+   "address": "1290 Sutter Street",
+   "description": "Dead Kennedys are an American hardcore punk band formed in San Francisco, California in 1978. The band became part of the American hardcore punk movement of the early 1980s. They gained a large underground fanbase in the international punk rock community, and were one of the first American hardcore bands to make a significant impact in the United Kingdom. Their eclectic music encompassed their trademark loud and fast hardcore, but also spaghetti western, psychedelic, garage rock and rockabilly. Jello Biafra's biting lyrics tackled the sociopolitical concerns of the Reagan era with a distinct sense of morbid humor and satire, following in the footsteps of such earlier rock satirists as Frank Zappa and non-musical countercultural figures like",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/33688265/71b86c16-c709-4eff-bc54-fb5ed8a5162b.png",
+   "date": "2026-10-09",
+   "startMinutes": 1170,
+   "endMinutes": 120,
+   "timeLabel": "7:30 PM -- 2 AM +1",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Theater & Dance",
+    "Community"
+   ],
+   "url": "https://shop.axs.com/?c=axs&e=30567424546669865",
+   "linkTier": "boxoffice",
+   "soldOut": false
+  },
+  {
+   "id": "17921174",
+   "title": "YappiScope",
+   "venue": "Artists' Television Access",
+   "neighborhood": "Mission",
+   "address": "992 Valencia St.",
+   "description": "Dutch avant-garde composer and performance artist Jaap Blonk presents his absurd performance YappiScope. It is Jaap Blonk’s show with visual projections. It is in ongoing progress, new inventions being added frequently. It contains short videos, scores he wanders through, interactive animations, live soundtracks to silent films and other new multi-media work, with a lot of extended voice work as well as live electronics. “Blonk’s avant-garde performances channel the provocatively pioneering nonsense of Dadaism. His work is tremendously complex, but his brilliance makes it easy to think the opposite.” San Francisco Weekly Jaap Blonk (born 1953 in Woerden, Netherlands) is a self-taught composer, vocalist, poet and visual artist. His unfini",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34792573/bfac77bf-1978-478b-92a4-cccef9cf7fef.jpg",
+   "date": "2026-10-09",
+   "startMinutes": 1200,
+   "endMinutes": 120,
+   "timeLabel": "8 PM -- 2 AM +1",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Theater & Dance"
+   ],
+   "url": "http://jaapblonk.com/",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "foopee-2026-10-09-holypriest-civicauditoriumsf",
+   "title": "Holy Priest",
+   "venue": "Civic Auditorium, S.F.",
+   "neighborhood": "San Francisco",
+   "address": "",
+   "description": "",
+   "image": "",
+   "date": "2026-10-09",
+   "startMinutes": 1200,
+   "endMinutes": -1,
+   "timeLabel": "8 PM",
+   "priceLabel": "$74",
+   "priceTier": "unknown",
+   "categories": [
+    "Community"
+   ],
+   "url": "http://www.foopee.com/punk/the-list/by-date.0.html",
+   "linkTier": "aggregator"
+  },
+  {
+   "id": "17531108",
+   "title": "Phillip Phillips",
+   "venue": "Great American Music Hall",
+   "neighborhood": "San Francisco",
+   "address": "859 O'farrell Street",
+   "description": "",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32975366/463eb24b-8f0e-4322-880c-d8bf8395a501.jpg",
+   "date": "2026-10-09",
+   "startMinutes": 1200,
+   "endMinutes": 120,
+   "timeLabel": "8 PM -- 2 AM +1",
+   "priceLabel": "$35–$135",
+   "priceTier": "paid",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://wl.seetickets.us/event/phillip-phillips/695127?afflky=GreatAmericanMusicHall",
+   "linkTier": "boxoffice",
+   "soldOut": false
+  },
+  {
+   "id": "17452199",
+   "title": "Tim Atlas",
+   "venue": "Rickshaw Stop",
+   "neighborhood": "San Francisco",
+   "address": "155 Fell Street",
+   "description": "",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32572962/774d64d5-7820-4f71-bc76-362b6239c174.png",
+   "date": "2026-10-09",
+   "startMinutes": 1260,
+   "endMinutes": 120,
+   "timeLabel": "9 PM -- 2 AM +1",
+   "priceLabel": "$20–$25",
+   "priceTier": "paid",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://wl.seetickets.us/event/tim-atlas/692999?afflky=RickshawStop",
+   "linkTier": "boxoffice",
+   "soldOut": false
+  },
+  {
+   "id": "17897262",
+   "title": "Audien",
+   "venue": "The Midway",
+   "neighborhood": "San Francisco",
+   "address": "900 Marin St.",
+   "description": "",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/34682143/f1b4df08-2e88-4959-b3bc-d3ad5da49530.jpg",
+   "date": "2026-10-09",
+   "startMinutes": 1260,
+   "endMinutes": 120,
+   "timeLabel": "9 PM -- 2 AM +1",
+   "priceLabel": "Ticketed",
+   "priceTier": "ticketed",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://www.tixr.com/groups/midwaysf/events/audien-199818",
+   "linkTier": "venue",
+   "soldOut": false
+  },
+  {
+   "id": "foopee-2026-10-09-wooyork-greatnorthernsf",
+   "title": "Woo York",
+   "venue": "Great Northern, S.F.",
+   "neighborhood": "San Francisco",
+   "address": "",
+   "description": "",
+   "image": "",
+   "date": "2026-10-09",
+   "startMinutes": 1290,
+   "endMinutes": 120,
+   "timeLabel": "9:30 PM -- 2 AM +1",
+   "priceLabel": "$13-$37",
+   "priceTier": "unknown",
+   "categories": [
+    "Community"
+   ],
+   "url": "http://www.foopee.com/punk/the-list/by-date.0.html",
+   "linkTier": "aggregator"
+  },
+  {
+   "id": "17431805",
+   "title": "Vinylissimo",
+   "venue": "Make-Out Room",
+   "neighborhood": "San Francisco",
+   "address": "3225 22nd St.",
+   "description": "",
+   "image": "https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/32478921/3f88b062-cb16-4258-a8ed-f427017949ca.jpg",
+   "date": "2026-10-09",
+   "startMinutes": 1320,
+   "endMinutes": 120,
+   "timeLabel": "10 PM -- 2 AM +1",
+   "priceLabel": "$10",
+   "priceTier": "paid",
+   "categories": [
+    "Concerts & Music"
+   ],
+   "url": "https://makeoutroom.com/",
+   "linkTier": "venue",
+   "soldOut": false
+  }
+ ]
+}

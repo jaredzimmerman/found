@@ -133,7 +133,8 @@ export function validateFeed(feed, ctx = {}) {
     if (!isDate(e.date)) add(idLabel, "date", `${JSON.stringify(e.date)} is not a YYYY-MM-DD date`);
     else if (dayset.size && !dayset.has(e.date)) add(idLabel, "date", `${e.date} is not in feed.days`);
     for (const k of ["startMinutes", "endMinutes"]) {
-      if (!Number.isInteger(e[k]) || e[k] < 0) add(idLabel, k, `expected a non-negative integer, got ${JSON.stringify(e[k])}`);
+      // -1 is the real "unknown" sentinel in published feeds (endMinutes especially).
+      if (!Number.isInteger(e[k]) || e[k] < -1) add(idLabel, k, `expected an integer >= -1, got ${JSON.stringify(e[k])}`);
     }
     if (typeof e.timeLabel !== "string") add(idLabel, "timeLabel", `expected a string, got ${kind(e.timeLabel)}`);
     for (const k of ["venue", "address"]) {
