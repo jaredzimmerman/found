@@ -63,6 +63,7 @@ remote() {
     printf 'DEPLOY_SITE_URL=%q\n' "$DEPLOY_SITE_URL"
     printf 'DEPLOY_KEEP_STAGE=%q\n' "$DEPLOY_KEEP_STAGE"
     printf 'DEPLOY_FAULT=%q\n' "$DEPLOY_FAULT"
+    printf 'DEPLOY_RETRY_SLEEP=%q\n' "${DEPLOY_RETRY_SLEEP:-15}"
     # shellcheck disable=SC2046
     declare -f $(compgen -A function rf_)
     # The call is the last line, so bash has read the whole script before it runs;
@@ -89,26 +90,27 @@ rf_init() {
 rf_say() { printf '%s\n' "$*" 2>/dev/null || true; }
 
 # DreamHost's node 18 now and then fails to create a thread at startup
-# (`pthread_create: Resource temporarily unavailable`, then SIGABRT; seen in
-# tests and probes, more often with several node processes at once). That says
-# nothing about the code, so a step that failed THAT way is retried once, saying
-# so. A real failure fails the same way twice.
+# (`pthread_create: Resource temporarily unavailable`, then SIGABRT or a hang;
+# seen 2026-10-07 in tests and probes, in bursts). That says nothing about the
+# code, so a step that failed THAT way is retried (twice, 15 s apart), saying so.
+# A real failure fails the same way every time.
 rf_node_aborted() { grep -qE 'Aborted|core dumped|uv_thread_create|pthread_create' "$1" 2>/dev/null; }
 
 # rf_run <log> <bound-secs> <cmd...>: cmd > log, bounded by timeout(1) when present;
-# retried once when node aborted. Returns cmd's status (124 = bound hit).
+# retried when node aborted at startup. Returns cmd's status (124 = bound hit).
 rf_run() {
-  local log="$1" bound="$2" rc=0 try
+  local log="$1" bound="$2" rc=0 try=1
   shift 2
-  for try in 1 2; do
+  while :; do
     rc=0
     if command -v timeout >/dev/null 2>&1; then timeout -k 30 "$bound" "$@" > "$log" 2>&1 || rc=$?
     else "$@" > "$log" 2>&1 || rc=$?; fi
     [ "$rc" -eq 0 ] && return 0
-    [ "$try" = 1 ] && rf_node_aborted "$log" || return "$rc"
-    rf_say "  node aborted at startup (thread creation failed on this host); retrying once"
+    if [ "$try" -ge 3 ] || ! rf_node_aborted "$log"; then return "$rc"; fi
+    rf_say "  node aborted at startup (thread creation failed on this host); retry $try of 2 in ${DEPLOY_RETRY_SLEEP:-15}s"
+    sleep "${DEPLOY_RETRY_SLEEP:-15}"
+    try=$((try + 1))
   done
-  return "$rc"
 }
 
 # rf_discard <sha>: remove the staging dir (and .deploy/ when it is left empty).
@@ -157,6 +159,9 @@ rf_preflight() {
   rf_say "  bash -n: $n script(s)"
   if [ "$bad" -ne 0 ]; then rf_discard "$1"; return 3; fi
   if [ ! -f tests/run-all.sh ]; then rf_say "  FAIL no tests/run-all.sh in the commit"; rf_discard "$1"; return 3; fi
+  # tests/deploy.test.sh skips itself here (W72_DEPLOY_PREFLIGHT): the deploy
+  # selftest simulates this very host and has nothing to say about the commit.
+  export W72_DEPLOY_PREFLIGHT=1
   if ! rf_run "$log" "${DEPLOY_PREFLIGHT_BOUND:-1200}" bash tests/run-all.sh; then
     rf_say "  FAIL tests/run-all.sh (bound ${DEPLOY_PREFLIGHT_BOUND:-1200}s):"; grep -v '^PASS ' "$log" | tail -40 | sed 's/^/    /'
     rf_discard "$1"; return 3

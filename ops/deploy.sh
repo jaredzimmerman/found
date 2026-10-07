@@ -212,7 +212,8 @@ selftest() {
     local label="$1"; shift
     (cd "$R" && env DEPLOY_TRANSPORT=local DEPLOY_REMOTE_HOME="$H" DEPLOY_REPO="$R" \
         DEPLOY_SITE_URL="http://127.0.0.1:9" DEPLOY_LOCK_WAIT="$LW" DEPLOY_FAULT="${FAULT:-}" \
-        STUB_FEED="$R/tests/fixtures/feed-good.json" bash "$HERE/deploy.sh" "$@") > "$ST/$label.out" 2>&1
+        STUB_FEED="$R/tests/fixtures/feed-good.json" FETCH_TIMEOUT=60s BUILD_TIMEOUT=5m \
+        bash "$HERE/deploy.sh" "$@") > "$ST/$label.out" 2>&1
     RC=$?
   }
   hold_lock() {                       # hold_lock <secs>: one process holds T/.build.lock; sets HOLDER
@@ -396,13 +397,13 @@ OLD
   check "exit 0, CHECK OK, prod byte-identical" "$O" sh -c "[ $RC = 0 ] && grep -q '^CHECK OK' '$O' && [ \"\$1\" = \"\$2\" ] && [ ! -e '$T/.deploy' ]" sh "$(manifest full)" "$before"
 
   # ---- 13 node-abort retry (rf_run, used by preflight and the dry run) ----
-  case_start "a step that died of a node startup abort is retried once; a real failure is not"
+  case_start "a step that died of a node startup abort is retried; a real failure is not"
   local flaky="$ST/flaky.sh"
   printf 'n=$(cat "$1" 2>/dev/null || echo 0); echo $((n + 1)) > "$1"\n[ "$n" -ge 1 ] && exit 0\necho "bash: line 1: 123 Aborted  node x"; exit 134\n' > "$flaky"
-  (rf_init; rf_run "$ST/flaky.log" 30 bash "$flaky" "$ST/flaky.n") > "$ST/flaky.out" 2>&1; n=$?
-  check "aborted once -> retried, then ok" "$ST/flaky.out" sh -c "[ $n = 0 ] && [ \"\$(cat '$ST/flaky.n')\" = 2 ] && grep -q 'retrying once' '$ST/flaky.out'"
+  (rf_init; DEPLOY_RETRY_SLEEP=0; rf_run "$ST/flaky.log" 30 bash "$flaky" "$ST/flaky.n") > "$ST/flaky.out" 2>&1; n=$?
+  check "aborted once -> retried, then ok" "$ST/flaky.out" sh -c "[ $n = 0 ] && [ \"\$(cat '$ST/flaky.n')\" = 2 ] && grep -q 'retry 1 of 2' '$ST/flaky.out'"
   printf 'echo "SyntaxError: x"; exit 1\n' > "$flaky"
-  (rf_init; rf_run "$ST/flaky.log" 30 bash "$flaky") > "$ST/flaky.out" 2>&1; n=$?
+  (rf_init; DEPLOY_RETRY_SLEEP=0; rf_run "$ST/flaky.log" 30 bash "$flaky") > "$ST/flaky.out" 2>&1; n=$?
   check "plain failure -> not retried, status kept" "$ST/flaky.out" sh -c "[ $n = 1 ] && ! grep -q retrying '$ST/flaky.out'"
 
   say "$PASS passed, $FAIL failed ($CASES cases, $(secs "$T0"))"
