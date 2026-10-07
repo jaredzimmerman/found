@@ -10,3 +10,4 @@
 2026-10-07T22:15:39Z | T02: review round 3
 2026-10-07T22:15:43Z | T03: review round 1
 2026-10-07T22:16:58Z | T02,T03 done; run-all auto-discovers .test.py; prices correction; Phase 1 starting
+2026-10-07T22:17:16Z | workflow started: Phase 1 runId=wf_9cdd1b6d-ac3 (T04 opus, T07 T10 T11 sonnet)
