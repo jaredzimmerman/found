@@ -10,7 +10,7 @@
 
 ## How to change and deploy
 
-- Make changes in this repo. Run the offline tests before anything else. `bash tests/run-all.sh` is not in the tree yet; `bash tests/check-docs.sh` is the only test runner at HEAD.
+- Make changes in this repo. Run the offline tests before anything else. `bash tests/run-all.sh` is the offline runner (`node --check`, `bash -n`, `build/test-*.mjs`, import-completeness gate). `bash tests/check-docs.sh` is the docs check.
 - Deploy script: `ops/deploy.sh` does not exist yet. Until it does, do not copy files to DreamHost by hand.
 - What happens today: `build-site.sh` publishes to `/test/` and then promotes to the live site in the same run, with no check in between. Nothing is verified on `/test/` before it goes live. A check-before-promote step (`STAGE_ONLY`) is planned in `.ladder/PLAN.md` (C8).
 - Never edit generated files such as `build/events.json` by hand. They are rebuilt on every run and are not in git.

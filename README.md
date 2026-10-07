@@ -8,9 +8,8 @@ There is no GitHub in the deploy loop. The canonical remote is a bare repo on th
 
 ## Tests
 
-To run the offline tests, use `bash tests/run-all.sh`.
-That file does not exist yet. It is not in the repo, so the command will fail until it is added.
-Until then, `bash tests/check-docs.sh` checks that the docs exist and state the required facts.
+To run the offline tests, use `bash tests/run-all.sh`. It runs `node --check` on every build/*.mjs, `bash -n` on every shell script, the build/test-*.mjs tests, and the import-completeness gate.
+To check the docs, use `bash tests/check-docs.sh`. It checks that the docs exist and state the required facts.
 
 ## Where to read more
 
