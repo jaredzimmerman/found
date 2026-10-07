@@ -6,7 +6,8 @@
 # (c) every offline test file, (d) import-completeness gate (test-imports).
 #
 # Offline test files run: build/test-*.mjs (except test-imports, which is stage d)
-# plus any tests/*.test.mjs and tests/*.test.sh that exist.
+# plus any tests/*.test.mjs, tests/*.test.sh and tests/*.test.py that exist (auto-discovered:
+# new tests need no edit to this file).
 #
 # EXCLUDED (network or live-state), by design:
 #   tests/replay/run.sh  - replays recorded fixtures through the full scraper
@@ -78,6 +79,10 @@ done
 for f in tests/*.test.sh; do
   [ -f "$f" ] || continue
   run_test "$f" bash "$f"
+done
+for f in tests/*.test.py; do
+  [ -f "$f" ] || continue
+  run_test "$f" python3 "$f"
 done
 
 # (d) import-completeness gate

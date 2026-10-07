@@ -9,3 +9,4 @@
 2026-10-07T22:14:29Z | T02: fix run-all.sh docs claim
 2026-10-07T22:15:39Z | T02: review round 3
 2026-10-07T22:15:43Z | T03: review round 1
+2026-10-07T22:16:58Z | T02,T03 done; run-all auto-discovers .test.py; prices correction; Phase 1 starting

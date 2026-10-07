@@ -59,7 +59,7 @@ Verified against the header and stage comments in build-site.sh.
 - bats_parse.py: Python helper with its own usage line. No .mjs or .sh file in the tree references it.
 - test-*.mjs: fixture tests for individual parsers. test-imports.mjs is the import-completeness gate.
 - index.html: the public page.
-- prices-resolved.json: price overrides read by fetch.mjs (path issue tracked in PLAN.md).
+- prices-resolved.json: table of box-office links a browser confirmed dead; read by fetch.mjs (line 293) from build/. A second copy sits at the repo root (the old test/ root). fetch.mjs also reads build/prices.json (price overrides, line 279); that file is not in the tree, and the read is guarded, so the feed builds without it.
 
 Outside build/, at the repo root: build-site.sh, run-levels.sh, pinkpages-levels.orig, prices-resolved.json, .htaccess.
 

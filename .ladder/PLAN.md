@@ -36,23 +36,23 @@ Branch: ladder/scraper-hardening (baseline on `main`, tag `prod-baseline-2026100
 | id | title | tier | deps | files | acceptance | status |
 |---|---|---|---|---|---|---|
 | T01 | Repo, exact prod snapshot, remote, plan | lead | – | whole repo | `git log --oneline` shows baseline + plan; md5 manifest matched 26/26 | done |
-| T02 | Docs: ARCHITECTURE.md, README, .gitignore (C1), correct VPS AGENTS.md | haiku | T01 | docs/, README.md, .gitignore | `bash tests/check-docs.sh` | in-progress |
-| T03 | Self-contained offline test runner; fix `/tmp/lvtest` fixtures | sonnet | T01 | tests/run-all.sh, tests/fixtures/, build/test-*.mjs | `bash tests/run-all.sh` exits 0 on node 22 | in-progress |
-| T04 | Replay harness + frozen time + golden (C10) | opus | T03 | tests/replay/*, tests/golden/ | `bash tests/replay/run.sh` exits 0; run twice = identical | todo |
+| T02 | Docs: ARCHITECTURE.md, README, .gitignore (C1), correct VPS AGENTS.md | haiku | T01 | docs/, README.md, .gitignore | `bash tests/check-docs.sh` | done |
+| T03 | Self-contained offline test runner; fix `/tmp/lvtest` fixtures | sonnet | T01 | tests/run-all.sh, tests/fixtures/, build/test-*.mjs | `bash tests/run-all.sh` exits 0 on node 22 | done |
+| T04 | Replay harness + frozen time + golden (C10) | opus | T03 | tests/replay/*, tests/golden/ | `bash tests/replay/run.sh` exits 0; run twice = identical | in-progress |
 | T05 | `http.mjs` + migrate every fetch site (C7) | opus | T04 | build/http.mjs, build/*.mjs, tests/http.test.mjs | `bash tests/run-all.sh && bash tests/replay/run.sh` | todo |
 | T06 | Source report sidecar + honest final message (C2) | sonnet | T05 | build/fetch.mjs, build/dc-fetch.mjs | replay run.sh passes AND `build/.source-report.json` validates | todo |
-| T07 | `validate-feed.mjs`, `source-floors.json`, tests (C3, C4) | sonnet | T03 | build/validate-feed.mjs, build/source-floors.json, tests/validate.test.mjs | `node tests/validate.test.mjs` | todo |
+| T07 | `validate-feed.mjs`, `source-floors.json`, tests (C3, C4) | sonnet | T03 | build/validate-feed.mjs, build/source-floors.json, tests/validate.test.mjs | `node tests/validate.test.mjs` | in-progress |
 | T08 | build-site.sh: lock, timeouts, modes, history/status, validator (C5, C6, C8) | opus | T06, T07 | build-site.sh, tests/build-site.test.sh | `bash tests/build-site.test.sh` (sandboxed, stubbed fetch) | todo |
 | T09 | `ops/deploy.sh` deploy + rollback (C9) | opus | T08 | ops/deploy.sh, ops/lib.sh | `bash ops/deploy.sh --selftest` | todo |
-| T10 | VPS watchdog + alert state + installer (C11) | sonnet | T08 (C5 only) | ops/watchdog.py, ops/install-watchdog.sh, tests/watchdog.test.py | `python3 tests/watchdog.test.py` | todo |
-| T11 | test-imports: warn on data files read from build/ that do not exist | sonnet | T03 | build/test-imports.mjs | `bash tests/run-all.sh` | todo |
+| T10 | VPS watchdog + alert state + installer (C11) | sonnet | T08 (C5 only) | ops/watchdog.py, ops/install-watchdog.sh, tests/watchdog.test.py | `python3 tests/watchdog.test.py` | in-progress |
+| T11 | test-imports: warn on data files read from build/ that do not exist | sonnet | T03 | build/test-imports.mjs | `bash tests/run-all.sh` | in-progress |
 | T12 | Rollout: archive stale dups on DH, deploy dry-run -> stage-only -> full, install watchdog, send one test alert | lead | T09, T10 | prod | see HANDOFF | todo |
 | T13 | Final integration review of branch diff (fable) and fixes | fable | T12 | – | reviewer verdict approve | todo |
 
 Status values: todo · in-progress · review · done · blocked:human · escalated
 
 ## Findings to report (not fixed here)
-- `fetch.mjs` reads `./prices.json` and `./prices-resolved.json` relative to `build/`, but only `test/prices-resolved.json` exists (in test/ root): dead-link table and price overrides are silently empty. Shipping them changes output, so this is Jared's call (T11 only makes it visible).
+- `fetch.mjs` reads `./prices.json` (price overrides) relative to `build/`, but that file is not in the tree: the read is guarded, so price overrides are silently empty. `prices-resolved.json` IS present in `build/` (corrected 2026-10-07 after T02 review; I first mis-read a truncated listing). Shipping `prices.json` could change output, so that is Jared's call (T11 only makes it visible).
 - `decentered()` calls `categorize(title, desc, cats)` but the signature is `(rawCategory, title, description, venueName)`.
 - ~15 stale duplicate source files sit in `test/` root next to `test/build/`.
 - Whole feed rests on unofficial dothebay.com JSON (~406 requests/run) with a browser User-Agent; City Lights works by solving its Sucuri bot challenge in code.
