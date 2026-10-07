@@ -1448,7 +1448,7 @@ async function citywide() {
       console.log(`  ${band}: +${raw.length} raw`);
     } catch (err) {
       console.log(`  ${band}: ${err.message}`);
-      markFailed(err);
+      noteFailure(`dothebay citywide ${band}`, err);
     }
   }
 }
@@ -2627,7 +2627,7 @@ async function main() {
   const names = (st) => Object.keys(sources).filter((n) => sources[n].status === st);
   const skipped = names("skipped"), failed = names("failed");
   if (!fails && !skipped.length && !failed.length) console.log(`  every source fetch succeeded`);
-  else console.log(`  sources: ${names("ok").length} ok, ${skipped.length} skipped (${skipped.join(", ")}), ${failed.length} failed (${failed.join(", ")})`);
+  else console.log(`  sources: ${names("ok").length} ok, ${skipped.length} skipped${skipped.length ? ` (${skipped.join(", ")})` : ""}, ${failed.length} failed${failed.length ? ` (${failed.join(", ")})` : ""}`);
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });

@@ -32,3 +32,4 @@
 2026-10-07T22:45:26Z | T06: source report sidecar, honest final line, replay check
 2026-10-07T22:46:56Z | T06: fix citylights test harness stubs
 2026-10-07T22:49:28Z | T06: review round 1
+2026-10-07T22:50:33Z | T06: citywide band failure uses ledger, tidy last line
