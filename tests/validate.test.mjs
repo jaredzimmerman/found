@@ -187,7 +187,6 @@ r = cli(["--bogus"]);
 check("CLI: unknown flag exits 2", r.status === 2);
 r = cli(base(["--history", path.join(tmp, "missing.jsonl")]));
 check("CLI: missing history file is treated as empty (exit 0)", r.status === 0);
-check("no stray report written into build/ by the tests", !fs.existsSync(path.join(ROOT, "build", ".validate-report.json")) || true);
 
 fs.rmSync(tmp, { recursive: true, force: true });
 console.log(`\n${pass} passed, ${fail} failed`);
