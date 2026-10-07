@@ -1,0 +1,7 @@
+{
+  "dothebay": { "min": 60, "required": true },
+  "funcheap": { "min": 8, "required": false },
+  "foopee": { "min": 5, "required": false },
+  "luma": { "min": 2, "required": false },
+  "sfstation": { "min": 3, "required": false }
+}

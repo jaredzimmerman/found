@@ -12,3 +12,4 @@
 2026-10-07T22:16:58Z | T02,T03 done; run-all auto-discovers .test.py; prices correction; Phase 1 starting
 2026-10-07T22:17:16Z | workflow started: Phase 1 runId=wf_9cdd1b6d-ac3 (T04 opus, T07 T10 T11 sonnet)
 2026-10-07T22:17:51Z | T11: test-imports warns on missing data files
+2026-10-07T22:18:27Z | T11: review round 1
