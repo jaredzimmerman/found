@@ -30,3 +30,4 @@
 2026-10-07T22:42:49Z | T08: build-site.sh lock/timeouts/modes/history + 14-case sandbox test (mac green)
 2026-10-07T22:44:03Z | T08: DH run 14 cases 41 passed; Result written
 2026-10-07T22:45:26Z | T06: source report sidecar, honest final line, replay check
+2026-10-07T22:46:56Z | T06: fix citylights test harness stubs

@@ -101,6 +101,8 @@ if ((timeFns.match(/\{/g) || []).length !== (timeFns.match(/\}/g) || []).length)
 const harness = `
 const out = [];
 const seen = new Set();
+const pushRow = (r) => out.push(r);
+const markSkipped = () => {};
 ${timeFns}
 const cleanTitle = (t) => t;
 function categorize() { return ["Talks & Workshops"]; }
