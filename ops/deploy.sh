@@ -404,7 +404,13 @@ OLD
   check "aborted once -> retried, then ok" "$ST/flaky.out" sh -c "[ $n = 0 ] && [ \"\$(cat '$ST/flaky.n')\" = 2 ] && grep -q 'retry 1 of 2' '$ST/flaky.out'"
   printf 'echo "SyntaxError: x"; exit 1\n' > "$flaky"
   (rf_init; DEPLOY_RETRY_SLEEP=0; rf_run "$ST/flaky.log" 30 bash "$flaky") > "$ST/flaky.out" 2>&1; n=$?
-  check "plain failure -> not retried, status kept" "$ST/flaky.out" sh -c "[ $n = 1 ] && ! grep -q retrying '$ST/flaky.out'"
+  check "plain failure -> not retried, status kept" "$ST/flaky.out" sh -c "[ $n = 1 ] && ! grep -q retry '$ST/flaky.out'"
+  if command -v timeout >/dev/null; then
+    rm -f "$ST/flaky.n"
+    printf 'n=$(cat "$1" 2>/dev/null || echo 0); echo $((n + 1)) > "$1"\n[ "$n" -ge 1 ] && exit 0\nexec sleep 30\n' > "$flaky"
+    (rf_init; DEPLOY_RETRY_SLEEP=0; rf_quick "$ST/flaky.log" 1 bash "$flaky" "$ST/flaky.n") > "$ST/flaky.out" 2>&1; n=$?
+    check "a quick step that hung -> retried, then ok" "$ST/flaky.out" sh -c "[ $n = 0 ] && grep -q 'hung' '$ST/flaky.out'"
+  fi
 
   say "$PASS passed, $FAIL failed ($CASES cases, $(secs "$T0"))"
   [ "$FAIL" -eq 0 ]

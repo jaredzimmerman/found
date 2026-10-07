@@ -38,3 +38,4 @@
 2026-10-07T23:04:44Z | T09: ops/deploy.sh + lib.sh + selftest (12 cases, 45 checks green on Mac)
 2026-10-07T23:15:30Z | T09: node-abort retry + bounds, deterministic lock-wait case (13 cases green on Mac)
 2026-10-07T23:27:43Z | T09: retry node startup aborts with delay; deploy.test.sh skips inside remote preflight
+2026-10-07T23:40:38Z | T09: retry node startup hangs on quick preflight steps; docs Deploying + ops line

@@ -69,6 +69,28 @@ Deployed from git: build/* source, build-site.sh, run-levels.sh, pinkpages-level
 
 Never in git and never overwritten by a deploy: build/events.json, build/dc-events.json, build/image-levels.json, build/.* (dotfiles), logs/, .build.lock, build.prev-*. .gitignore encodes this. Do not edit generated files by hand.
 
+## Deploying
+
+`ops/deploy.sh` (with `ops/lib.sh`) is the only way code reaches DreamHost. It runs on the Mac and reaches DreamHost through `ssh hermes` then `ssh dh-backup`; no GitHub, and no password is read or printed.
+
+    bash ops/deploy.sh             stage, preflight, dry run, swap
+    bash ops/deploy.sh --check     stage, preflight, dry run; never swaps
+    bash ops/deploy.sh --rollback  swap build/ with the newest build.prev-*
+    bash ops/deploy.sh --status    deployed sha vs HEAD, last 3 history lines
+    bash ops/deploy.sh --selftest  offline proof against a simulated remote
+
+Steps of a deploy:
+
+- 0. Refuse (exit 2) unless the git tree is clean and HEAD is on a remote branch (`git branch -r --contains HEAD`).
+- 1. Stage: `git archive HEAD` is unpacked into `~/whattodo72.com/test/.deploy/<sha>/`.
+- 2. Preflight (exit 3), with DreamHost's node 18: `node --check` every `build/**/*.mjs`, `bash -n` every `*.sh`, `bash tests/run-all.sh`.
+- 3. Dry run (exit 4): a sandbox ROOT under `.deploy/<sha>/sandbox` gets the staged tree plus a copy of the live generated state and `logs/history.jsonl`, then `DRY_RUN=1 ROOT=<sandbox> SITE_URL=https://whattodo72.com bash build-site.sh` runs against the real sources (about 4 minutes). `--skip-dry-run` is refused unless `--i-know` is also given.
+- 4. Swap (exit 5), holding the build lock (`flock -w 900 test/.build.lock`, the lock build-site.sh takes): `build` becomes `build.prev-<utc>` with the old top-level scripts saved in `build.prev-<utc>/_scripts/`; the staged `build` moves in; generated state is copied across (events.json, dc-events.json, image-levels.json and every `build/.*` dotfile except `.deployed-sha`); build-site.sh, run-levels.sh, pinkpages-levels.orig, prices-resolved.json and .htaccess are installed by write-temp-then-`mv`, so a running build-site.sh keeps reading its old file; `build/.deployed-sha` is written; the newest 5 `build.prev-*` are kept; the staging dir is removed. If any part of the swap fails it is undone in reverse order and the output says whether that completed.
+
+Any failure before step 4 leaves prod exactly as it was: the staging dir is removed and nothing else is written. `--rollback` uses the same lock and swaps `build` with the newest `build.prev-*`, restoring that tree's saved scripts and carrying the current generated state; running it again swaps forward. Files in the live `build/` that are neither in the commit nor generated state are not carried; the deploy names them, and they stay in `build.prev-<utc>`.
+
+DreamHost's node 18 sometimes fails to start a thread (`pthread_create: Resource temporarily unavailable`) and then aborts or hangs. A preflight or dry-run step that failed that way is retried twice, 15 s apart, and the output says so.
+
 ## Planned in this branch
 
 Contracts C2 to C11, by name only. See .ladder/PLAN.md for the full text.

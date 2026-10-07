@@ -98,6 +98,9 @@ rf_node_aborted() { grep -qE 'Aborted|core dumped|uv_thread_create|pthread_creat
 
 # rf_run <log> <bound-secs> <cmd...>: cmd > log, bounded by timeout(1) when present;
 # retried when node aborted at startup. Returns cmd's status (124 = bound hit).
+# rf_quick: the same, for steps that take about a second (node --check, bash -n),
+# where hitting the bound can only mean a hang, so that is retried too.
+rf_quick() { local rf_hang_retry=1; rf_run "$@"; }
 rf_run() {
   local log="$1" bound="$2" rc=0 try=1
   shift 2
@@ -106,8 +109,14 @@ rf_run() {
     if command -v timeout >/dev/null 2>&1; then timeout -k 30 "$bound" "$@" > "$log" 2>&1 || rc=$?
     else "$@" > "$log" 2>&1 || rc=$?; fi
     [ "$rc" -eq 0 ] && return 0
-    if [ "$try" -ge 3 ] || ! rf_node_aborted "$log"; then return "$rc"; fi
-    rf_say "  node aborted at startup (thread creation failed on this host); retry $try of 2 in ${DEPLOY_RETRY_SLEEP:-15}s"
+    [ "$try" -ge 3 ] && return "$rc"
+    if rf_node_aborted "$log"; then
+      rf_say "  node aborted at startup (thread creation failed on this host); retry $try of 2 in ${DEPLOY_RETRY_SLEEP:-15}s"
+    elif [ "$rc" -eq 124 ] && [ "${rf_hang_retry:-0}" = 1 ]; then
+      rf_say "  a ${bound}s step hung (node stuck at startup on this host); retry $try of 2 in ${DEPLOY_RETRY_SLEEP:-15}s"
+    else
+      return "$rc"
+    fi
     sleep "${DEPLOY_RETRY_SLEEP:-15}"
     try=$((try + 1))
   done
@@ -144,7 +153,7 @@ rf_preflight() {
   rf_say "  node $(node -v), bash $BASH_VERSION"
   for f in $(find build -name '*.mjs' -type f ! -name '._*' | LC_ALL=C sort); do
     n=$((n + 1))
-    if ! rf_run "$log" 60 node --check "$f"; then
+    if ! rf_quick "$log" 30 node --check "$f"; then
       bad=$((bad + 1)); rf_say "  FAIL node --check $f"; sed 's/^/      /' "$log" | head -15
     fi
   done
@@ -152,7 +161,7 @@ rf_preflight() {
   n=0
   for f in $(find . \( -name .git -o -name node_modules -o -name fixtures -o -name sandbox \) -prune -o -name '*.sh' ! -name '._*' -type f -print | LC_ALL=C sort); do
     n=$((n + 1))
-    if ! rf_run "$log" 60 bash -n "$f"; then
+    if ! rf_quick "$log" 30 bash -n "$f"; then
       bad=$((bad + 1)); rf_say "  FAIL bash -n $f"; sed 's/^/      /' "$log" | head -15
     fi
   done

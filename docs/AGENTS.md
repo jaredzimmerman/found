@@ -11,7 +11,7 @@
 ## How to change and deploy
 
 - Make changes in this repo. Run the offline tests before anything else. `bash tests/run-all.sh` is the offline runner (`node --check`, `bash -n`, `build/test-*.mjs`, import-completeness gate). `bash tests/check-docs.sh` is the docs check.
-- Deploy script: `ops/deploy.sh` does not exist yet. Until it does, do not copy files to DreamHost by hand.
+- `ops/`: `ops/deploy.sh` is the only way to put code on DreamHost: commit, push, then `bash ops/deploy.sh` (preflight with node 18, dry run against the live sources, swap under the build lock; `--rollback` undoes it, `--status` shows what is live). Never copy or edit files on DreamHost by hand. `ops/watchdog.py` runs on the VPS and alerts on failed or stale builds.
 - What happens today: `build-site.sh` publishes to `/test/` and then promotes to the live site in the same run, with no check in between. Nothing is verified on `/test/` before it goes live. A check-before-promote step (`STAGE_ONLY`) is planned in `.ladder/PLAN.md` (C8).
 - Never edit generated files such as `build/events.json` by hand. They are rebuilt on every run and are not in git.
 - Do not put any password or key in this repo, in a log, or in a chat message.
