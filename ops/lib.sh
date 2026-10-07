@@ -88,6 +88,29 @@ rf_init() {
 
 rf_say() { printf '%s\n' "$*" 2>/dev/null || true; }
 
+# DreamHost's node 18 now and then fails to create a thread at startup
+# (`pthread_create: Resource temporarily unavailable`, then SIGABRT; seen in
+# tests and probes, more often with several node processes at once). That says
+# nothing about the code, so a step that failed THAT way is retried once, saying
+# so. A real failure fails the same way twice.
+rf_node_aborted() { grep -qE 'Aborted|core dumped|uv_thread_create|pthread_create' "$1" 2>/dev/null; }
+
+# rf_run <log> <bound-secs> <cmd...>: cmd > log, bounded by timeout(1) when present;
+# retried once when node aborted. Returns cmd's status (124 = bound hit).
+rf_run() {
+  local log="$1" bound="$2" rc=0 try
+  shift 2
+  for try in 1 2; do
+    rc=0
+    if command -v timeout >/dev/null 2>&1; then timeout -k 30 "$bound" "$@" > "$log" 2>&1 || rc=$?
+    else "$@" > "$log" 2>&1 || rc=$?; fi
+    [ "$rc" -eq 0 ] && return 0
+    [ "$try" = 1 ] && rf_node_aborted "$log" || return "$rc"
+    rf_say "  node aborted at startup (thread creation failed on this host); retrying once"
+  done
+  return "$rc"
+}
+
 # rf_discard <sha>: remove the staging dir (and .deploy/ when it is left empty).
 rf_discard() {
   [ -n "${T:-}" ] || rf_init
@@ -119,7 +142,7 @@ rf_preflight() {
   rf_say "  node $(node -v), bash $BASH_VERSION"
   for f in $(find build -name '*.mjs' -type f ! -name '._*' | LC_ALL=C sort); do
     n=$((n + 1))
-    if ! node --check "$f" > "$log" 2>&1; then
+    if ! rf_run "$log" 60 node --check "$f"; then
       bad=$((bad + 1)); rf_say "  FAIL node --check $f"; sed 's/^/      /' "$log" | head -15
     fi
   done
@@ -127,15 +150,15 @@ rf_preflight() {
   n=0
   for f in $(find . \( -name .git -o -name node_modules -o -name fixtures -o -name sandbox \) -prune -o -name '*.sh' ! -name '._*' -type f -print | LC_ALL=C sort); do
     n=$((n + 1))
-    if ! bash -n "$f" > "$log" 2>&1; then
+    if ! rf_run "$log" 60 bash -n "$f"; then
       bad=$((bad + 1)); rf_say "  FAIL bash -n $f"; sed 's/^/      /' "$log" | head -15
     fi
   done
   rf_say "  bash -n: $n script(s)"
   if [ "$bad" -ne 0 ]; then rf_discard "$1"; return 3; fi
   if [ ! -f tests/run-all.sh ]; then rf_say "  FAIL no tests/run-all.sh in the commit"; rf_discard "$1"; return 3; fi
-  if ! bash tests/run-all.sh > "$log" 2>&1; then
-    rf_say "  FAIL tests/run-all.sh:"; grep -v '^PASS ' "$log" | tail -40 | sed 's/^/    /'
+  if ! rf_run "$log" "${DEPLOY_PREFLIGHT_BOUND:-1200}" bash tests/run-all.sh; then
+    rf_say "  FAIL tests/run-all.sh (bound ${DEPLOY_PREFLIGHT_BOUND:-1200}s):"; grep -v '^PASS ' "$log" | tail -40 | sed 's/^/    /'
     rf_discard "$1"; return 3
   fi
   rf_say "  tests/run-all.sh: $(tail -1 "$log")"
@@ -175,9 +198,9 @@ rf_dryrun() {
   done
   if [ -f "$T/logs/history.jsonl" ]; then cp -p "$T/logs/history.jsonl" "$SB/test/logs/history.jsonl"; fi
   rf_say "  DRY_RUN=1 ROOT=<sandbox> SITE_URL=$DEPLOY_SITE_URL bash build-site.sh"
-  (cd "$SB/test" && env -u W72_UNDER_TIMEOUT -u W72_STARTED DRY_RUN=1 STAGE_ONLY=0 \
+  rf_run "$S/.dryrun.log" 1800 env -u W72_UNDER_TIMEOUT -u W72_STARTED DRY_RUN=1 STAGE_ONLY=0 \
       ROOT="$SB" SITE_URL="$DEPLOY_SITE_URL" RUN_ID="deploy-dryrun-$(printf '%.12s' "$1")" \
-      bash "$SB/test/build-site.sh") > "$S/.dryrun.log" 2>&1 || rc=$?
+      bash "$SB/test/build-site.sh" || rc=$?
   if [ "$rc" -ne 0 ]; then
     rf_say "  FAIL dry run exited $rc:"; tail -30 "$S/.dryrun.log" | sed 's/^/    /'
     rf_discard "$1"; return 4
@@ -283,7 +306,7 @@ rf_exchange() {
     # Files in the live build that are neither in the commit nor generated state.
     p=$( (cd "$T/build" && find . -type f) | LC_ALL=C sort > "$save/.old-list"
          (cd "$nb" && find . -type f) | LC_ALL=C sort > "$save/.new-list"
-         LC_ALL=C comm -23 "$save/.old-list" "$save/.new-list" | sed 's#^\./##')
+         LC_ALL=C comm -23 "$save/.old-list" "$save/.new-list" | sed 's#^\./##' | grep -vx '\.deployed-sha')
     if [ -n "$p" ]; then
       rf_say "  not in the commit, left in $prev: $(printf '%s\n' "$p" | head -8 | tr '\n' ' ')$( [ "$(printf '%s\n' "$p" | wc -l)" -gt 8 ] && echo '...')"
     fi

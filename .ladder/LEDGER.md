@@ -36,3 +36,4 @@
 2026-10-07T22:51:46Z | T06: review round 2
 2026-10-07T22:52:15Z | T08: review round 1
 2026-10-07T23:04:44Z | T09: ops/deploy.sh + lib.sh + selftest (12 cases, 45 checks green on Mac)
+2026-10-07T23:15:30Z | T09: node-abort retry + bounds, deterministic lock-wait case (13 cases green on Mac)

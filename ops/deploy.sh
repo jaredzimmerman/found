@@ -361,8 +361,12 @@ OLD
   # ---- 11 lock released while waiting ----
   case_start "lock held briefly -> deploy waits, then swaps"
   echo v2 > "$R/build/version.txt"; commit_push v2
-  hold_lock 3 || ok "lock holder started" 1
-  run waited; O="$ST/waited.out"; wait "$HOLDER" 2>/dev/null; HOLDER=""
+  hold_lock 600 || ok "lock holder started" 1
+  (run waited; echo "$RC" > "$ST/waited.rc") &
+  n=$!
+  for i in $(seq 1 1200); do grep -q 'waiting up to' "$ST/waited.out" 2>/dev/null && break; sleep 0.1; done
+  sleep 1; kill "$HOLDER" 2>/dev/null; wait "$HOLDER" 2>/dev/null; HOLDER=""
+  wait "$n"; RC=$(cat "$ST/waited.rc" 2>/dev/null || echo none); O="$ST/waited.out"
   check "exit 0 after waiting for the lock" "$O" sh -c "[ $RC = 0 ] && grep -q 'build lock taken after' '$O'"
   check "v2 live" "$O" [ "$(cat "$T/build/version.txt")" = v2 ]
 
@@ -390,6 +394,16 @@ OLD
   echo v7 > "$R/build/version.txt"; commit_push v7; before="$(manifest full)"
   run check --check; O="$ST/check.out"
   check "exit 0, CHECK OK, prod byte-identical" "$O" sh -c "[ $RC = 0 ] && grep -q '^CHECK OK' '$O' && [ \"\$1\" = \"\$2\" ] && [ ! -e '$T/.deploy' ]" sh "$(manifest full)" "$before"
+
+  # ---- 13 node-abort retry (rf_run, used by preflight and the dry run) ----
+  case_start "a step that died of a node startup abort is retried once; a real failure is not"
+  local flaky="$ST/flaky.sh"
+  printf 'n=$(cat "$1" 2>/dev/null || echo 0); echo $((n + 1)) > "$1"\n[ "$n" -ge 1 ] && exit 0\necho "bash: line 1: 123 Aborted  node x"; exit 134\n' > "$flaky"
+  (rf_init; rf_run "$ST/flaky.log" 30 bash "$flaky" "$ST/flaky.n") > "$ST/flaky.out" 2>&1; n=$?
+  check "aborted once -> retried, then ok" "$ST/flaky.out" sh -c "[ $n = 0 ] && [ \"\$(cat '$ST/flaky.n')\" = 2 ] && grep -q 'retrying once' '$ST/flaky.out'"
+  printf 'echo "SyntaxError: x"; exit 1\n' > "$flaky"
+  (rf_init; rf_run "$ST/flaky.log" 30 bash "$flaky") > "$ST/flaky.out" 2>&1; n=$?
+  check "plain failure -> not retried, status kept" "$ST/flaky.out" sh -c "[ $n = 1 ] && ! grep -q retrying '$ST/flaky.out'"
 
   say "$PASS passed, $FAIL failed ($CASES cases, $(secs "$T0"))"
   [ "$FAIL" -eq 0 ]
