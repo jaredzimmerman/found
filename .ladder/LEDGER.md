@@ -28,3 +28,4 @@
 2026-10-07T22:38:46Z | T05: http tests (45 checks, node 18+22), deadline exit path, Result
 2026-10-07T22:42:27Z | T05: review round 1
 2026-10-07T22:42:49Z | T08: build-site.sh lock/timeouts/modes/history + 14-case sandbox test (mac green)
+2026-10-07T22:44:03Z | T08: DH run 14 cases 41 passed; Result written

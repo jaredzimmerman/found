@@ -133,7 +133,33 @@ const noteFailure = (url, err) => {
   const prev = fetchFailures.get(url);
   if (prev) prev.n++;
   else fetchFailures.set(url, { n: 1, why });
+  const rep = reportOf(currentSource);
+  if (!rep.failWhy) rep.failWhy = why;
 };
+
+// Per-source accounting for build/.source-report.json (PLAN C2). `currentSource`
+// is the source main() is running; sources run one after another, so it is
+// enough to attribute a ledger entry, a registered row or a skip to it.
+let currentSource = "dothebay";
+const sourceReport = new Map();
+const reportOf = (name) => {
+  if (!sourceReport.has(name)) sourceReport.set(name, { registered: 0, skipped: null, failWhy: null });
+  return sourceReport.get(name);
+};
+const SOURCE_ALIAS = { centerforthebook: "sfcb" };
+// Stable lower-case name on the row; rows with none belong to the running source.
+function srcName(row) {
+  const k = String(row.source || currentSource).toLowerCase().replace(/[^a-z0-9]+/g, "");
+  row.source = SOURCE_ALIAS[k] || k;
+  return row.source;
+}
+// Every row entering `out` goes through here.
+function pushRow(row) {
+  reportOf(srcName(row)).registered++;
+  out.push(row);
+}
+const markSkipped = (e) => { reportOf(currentSource).skipped = String((e && e.message) || e).split("\n")[0]; };
+const markFailed = (e) => { const r = reportOf(currentSource); if (!r.failWhy) r.failWhy = String((e && e.message) || e).split("\n")[0]; r.threw = true; };
 
 export function fetchFailureReport() {
   if (!fetchFailures.size) return "";
@@ -1295,6 +1321,7 @@ function add(e, venue) {
     dupesCollapsed++;
     const at = out.findIndex((r) => contentKey(r) === key);
     if (at >= 0 && richer(n, out[at])) {
+      srcName(n);
       out[at] = n;        // the new row supersedes the old
       seen.add(n.id);
     }
@@ -1302,7 +1329,7 @@ function add(e, venue) {
   }
   seenContent.add(key);
   seen.add(n.id);
-  out.push(n);
+  pushRow(n);
 }
 
 // Register a row built by a hand-kept venue module. Those modules assemble the
@@ -1333,6 +1360,7 @@ function register(row) {
     dupesCollapsed++;
     const at = out.findIndex((r) => contentKey(r) === key);
     if (at >= 0 && richer(row, out[at])) {
+      srcName(row);
       out[at] = row;
       seen.add(row.id);
     }
@@ -1340,7 +1368,7 @@ function register(row) {
   }
   seenContent.add(key);
   seen.add(row.id);
-  out.push(row);
+  pushRow(row);
   return true;
 }
 
@@ -1420,6 +1448,7 @@ async function citywide() {
       console.log(`  ${band}: +${raw.length} raw`);
     } catch (err) {
       console.log(`  ${band}: ${err.message}`);
+      markFailed(err);
     }
   }
 }
@@ -1457,6 +1486,7 @@ async function venues() {
       // A mid-walk failure is not a reason to throw away the venues already
       // read — losing page 1 must not cost pages 2..20.
       console.log(`  venue index page ${page} failed: ${String(err).slice(0, 80)}`);
+      noteFailure(`https://dothebay.com/venues.json (page ${page})`, err);
       break;
     }
     const batch = d.venues || [];
@@ -1793,7 +1823,7 @@ async function funcheap(days) {
       const resolved = isSecretLocation
         ? { venue: null, address: null, url: null }
         : resolveVenue(venue, address);
-      out.push({
+      pushRow({
         id,
         // Same reason as the DoTheBay normalizer: every source has to go
         // through the one cleaner, or the copies drift and a title keeps its
@@ -1915,7 +1945,7 @@ async function cityLights(days) {
       if (seen.has(id)) continue;
       seen.add(id);
 
-      out.push({
+      pushRow({
         id,
         title: cleanTitle(r.title),
         venue: VENUE,
@@ -1955,6 +1985,7 @@ async function cityLights(days) {
     // One source failing must not take the whole build down. A challenge change
     // costs City Lights' listings and nothing else.
     console.log(`  city lights: unavailable (${String(e.message).split("\n")[0]}) — skipped`);
+    markSkipped(e);
   }
 }
 
@@ -2056,7 +2087,7 @@ async function omnivore(days) {
       const id = `omni-${slug.slice(0, 40)}-${iso}`;
       if (seen.has(id)) continue;
       seen.add(id);
-      out.push({
+      pushRow({
         id,
         title: CLEAN.cleanTitle(title),
         // An off-site event is not at the bookshop; do not send the reader to
@@ -2086,6 +2117,7 @@ async function omnivore(days) {
     console.log(`  omnivore: ${added} in-window events (${listings.length} listed)`);
   } catch (e) {
     console.log(`  omnivore: unavailable (${String(e.message).split("\n")[0]}) — skipped`);
+    markSkipped(e);
   } finally {
     if (browser) await browser.close().catch(() => {});
   }
@@ -2209,7 +2241,7 @@ async function decentered(days) {
       };
       register(row);
     }
-  } catch (e) { console.log(`  decentered: ${e.message}`); }
+  } catch (e) { console.log(`  decentered: ${e.message}`); markFailed(e); }
 }
 
 
@@ -2359,6 +2391,7 @@ async function luma(days) {
     console.log("  luma: " + added + " events parsed from JSON-LD");
   } catch (e) {
     console.log("  luma: Error: " + e.message);
+    markFailed(e);
   }
 }
 
@@ -2434,27 +2467,34 @@ async function main() {
   const days = windowDays();
   console.log(`SF Pink Pages — ${days[0]} through ${days[days.length - 1]}`);
 
-  await citywide();
-  await venues();
-  await funcheap(days);
-  await cityLights(days);
-  await omnivore(days);
-  await foopee(days);
-  await decentered(days);
-  await luma(days);
+  // Each source runs under its own name so the C2 report can say which one
+  // failed or was skipped. A throw is recorded and the build carries on.
+  const run = async (name, fn) => {
+    currentSource = name;
+    reportOf(name);
+    try { await fn(); } catch (e) { console.log(`  ${name}: ${e && e.message}`); markFailed(e); }
+  };
+  await run("dothebay", citywide);
+  await run("dothebay", venues);
+  await run("funcheap", () => funcheap(days));
+  await run("citylights", () => cityLights(days));
+  await run("omnivore", () => omnivore(days));
+  await run("foopee", () => foopee(days));
+  await run("decentered", () => decentered(days));
+  await run("luma", () => luma(days));
 
   // SF Station's own calendar. Parsed from its schema.org microdata, so it needs
   // no browser — which is the only reason it is here rather than in the browser
   // path: the DreamHost build cannot run Chrome at all.
-  await sfStation(days);
-  await valkyries(days);
+  await run("sfstation", () => sfStation(days));
+  await run("espn", () => valkyries(days));
 
   // Hand-kept venues from the brief. Each is a different stack, so each has
   // its own source rather than a generic extractor pretending to cover them.
-  await centerForTheBook(days);
-  await workshopSF(days);
-  await clayroom(days);
-  await scrap(days);
+  await run("sfcb", () => centerForTheBook(days));
+  await run("workshopsf", () => workshopSF(days));
+  await run("clayroom", () => clayroom(days));
+  await run("scrap", () => scrap(days));
 
   // A row whose TITLE says it is not happening is not a listing. Sources
   // publish these by prepending to the title ("CANCELLED Sofar Sounds —
@@ -2522,6 +2562,9 @@ async function main() {
   // feed an event came from — and publishing it would leak the
   // scrape topology. Compute any source-derived counts FIRST,
   // then strip.
+  // The same pass feeds build/.source-report.json (PLAN C2).
+  const keptBy = new Map();
+  for (const e of events) keptBy.set(srcName(e), (keptBy.get(srcName(e)) || 0) + 1);
   for (const e of events) delete e.source;
 
   const payload = {
@@ -2545,6 +2588,21 @@ async function main() {
 
   // Every fetch is done; the deadline must not be able to cut the write short.
   stopDeadline();
+  // "failed" = it threw, or every request it made failed (nothing registered
+  // and the ledger holds a failure for it). A source that registers nothing
+  // without failing is ok with kept: 0.
+  const sources = {};
+  for (const [name, r] of sourceReport) {
+    const failed = !r.skipped && r.failWhy && (r.threw || r.registered === 0);
+    sources[name] = {
+      status: r.skipped ? "skipped" : failed ? "failed" : "ok",
+      reason: r.skipped || (failed ? r.failWhy : null),
+      registered: r.registered,
+      kept: keptBy.get(name) || 0,
+    };
+  }
+  await writeFile(new URL("./.source-report.json", import.meta.url),
+    JSON.stringify({ generatedAt: payload.generatedAt, sources, totals: { kept: events.length } }, null, 2));
   await writeFile(OUT, JSON.stringify(payload, null, 2));
   const c = payload.counts;
   console.log(`\nWrote ${events.length} events to events.json`);
@@ -2566,7 +2624,10 @@ async function main() {
   if (retries) console.log(retries);
   const fails = fetchFailureReport();
   if (fails) console.log(fails);
-  else console.log(`  every source fetch succeeded`);
+  const names = (st) => Object.keys(sources).filter((n) => sources[n].status === st);
+  const skipped = names("skipped"), failed = names("failed");
+  if (!fails && !skipped.length && !failed.length) console.log(`  every source fetch succeeded`);
+  else console.log(`  sources: ${names("ok").length} ok, ${skipped.length} skipped (${skipped.join(", ")}), ${failed.length} failed (${failed.join(", ")})`);
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });
