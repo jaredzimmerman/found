@@ -1,0 +1,2 @@
+# the repo-level "fixtures/" rule is for replay recordings; these are the committed offline fixtures
+!fixtures/

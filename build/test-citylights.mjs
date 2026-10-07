@@ -10,15 +10,36 @@
 // A parser that returns 0 for everything would pass a smoke test, so the last
 // case is a negative control: break the window and confirm the count falls.
 
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+//
+// OFFLINE. The page is a saved copy (tests/fixtures/citylights-solved.html),
+// RE-CAPTURED on 2026-10-07 through the real fetchThroughSucuri() on the
+// DreamHost host; the original /tmp/lvtest copy was lost. It holds 34 event
+// blocks dated 2026-10-08 .. 2026-12-19, so the default window is 2026-10-13
+// .. 2026-10-15 (3 events). The harness runs the REAL cityLights() text from
+// fetch.mjs and the REAL citylights-parse.mjs; only the transport is replaced:
+// a stub sucuri.mjs hands back the saved page instead of touching the network.
 
-const FIXTURE = "/tmp/lvtest/citylights-solved.html";
+import { readFileSync, writeFileSync, existsSync, mkdtempSync, copyFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const BUILD_DIR = fileURLToPath(new URL(".", import.meta.url));
+const FIXTURE = fileURLToPath(new URL("../tests/fixtures/citylights-solved.html", import.meta.url));
 if (!existsSync(FIXTURE)) {
-  console.log("FAIL  fixture missing — capture it with sucuri.mjs before trusting this suite");
+  console.log("FAIL  fixture missing: tests/fixtures/citylights-solved.html");
   process.exit(1);
 }
+const SANDBOX = mkdtempSync(join(tmpdir(), "cl-test-"));
+process.on("exit", () => { try { rmSync(SANDBOX, { recursive: true, force: true }); } catch {} });
+copyFileSync(join(BUILD_DIR, "citylights-parse.mjs"), join(SANDBOX, "citylights-parse.mjs"));
+copyFileSync(FIXTURE, join(SANDBOX, "page.html"));
+writeFileSync(join(SANDBOX, "sucuri.mjs"),
+  'import { readFileSync } from "node:fs";\n' +
+  'export async function fetchThroughSucuri() {\n' +
+  '  return { html: readFileSync(new URL("./page.html", import.meta.url), "utf8") };\n}\n');
 
-const src = readFileSync("./fetch.mjs", "utf8");
+const src = readFileSync(join(BUILD_DIR, "fetch.mjs"), "utf8");
 const start = src.indexOf("async function cityLights");
 const end = src.indexOf("\n// ---------------------------------------------------------------------------\n// Omnivore", start);
 if (start < 0 || end < 0) {
@@ -65,11 +86,11 @@ const grab = (needle) => {
   }
   return null;
 };
-const timeFns = [grab("const clock ="), grab("function timeRangeLabel")]
+const timeFns = [grab("const clock ="), grab("function timeRangeLabel"), grab("function streetOnly")]
   .filter(Boolean)
   .join("\n");
-if (!/const clock\s*=/.test(timeFns) || !/function timeRangeLabel/.test(timeFns)) {
-  console.log("FAIL  could not extract clock()/timeRangeLabel() from fetch.mjs");
+if (!/const clock\s*=/.test(timeFns) || !/function timeRangeLabel/.test(timeFns) || !/function streetOnly/.test(timeFns)) {
+  console.log("FAIL  could not extract clock()/timeRangeLabel()/streetOnly() from fetch.mjs");
   process.exit(1);
 }
 if ((timeFns.match(/\{/g) || []).length !== (timeFns.match(/\}/g) || []).length) {
@@ -95,17 +116,16 @@ ${fnSrc}
 })();
 `;
 
-const WINDOW = (process.env.DAYS || "2026-10-03,2026-10-04,2026-10-05").split(",");
-writeFileSync("./.cl-harness.mjs", harness);
-const { writeFileSync: wf } = await import("node:fs");
-wf("/tmp/lvtest/cl-days.json", JSON.stringify(WINDOW));
+const WINDOW = (process.env.DAYS || "2026-10-13,2026-10-14,2026-10-15").split(",");
+const HARNESS = join(SANDBOX, "harness.mjs");
+writeFileSync(HARNESS, harness);
 
 // Run the harness as a subprocess so an exception inside cityLights cannot be
 // swallowed by this process's try/catch and read as "0 events, fine".
 const { execFileSync } = await import("node:child_process");
 const run = (daysEnv) => {
   try {
-    return execFileSync(process.execPath, ["./.cl-harness.mjs"], {
+    return execFileSync(process.execPath, [HARNESS], {
       encoding: "utf8",
       env: { ...process.env, DAYS: JSON.stringify(daysEnv) },
       stdio: ["ignore", "pipe", "pipe"],
