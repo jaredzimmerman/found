@@ -24,3 +24,4 @@
 2026-10-07T22:32:19Z | Phase 1 done (T04,T07,T10,T11); briefs T05 T06 T08 T09 written; Phase 2 starting
 2026-10-07T22:32:35Z | workflow started: Phase 2 runId=wf_a323bce7-ef8 (chains T05>T06, T08>T09)
 2026-10-07T22:35:59Z | T05: http.mjs + migrate every fetch call site (replay identical)
+2026-10-07T22:37:45Z | T08: record-run.mjs + 30-check unit tests
