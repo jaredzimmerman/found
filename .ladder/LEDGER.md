@@ -20,3 +20,4 @@
 2026-10-07T22:22:17Z | T10: fix cooldown loss on flapping, remove-only-entry, recovery text
 2026-10-07T22:23:07Z | T10: review round 2
 2026-10-07T22:27:30Z | T04: replay harness, frozen time, golden (613 fixtures, run x2 identical)
+2026-10-07T22:30:42Z | T04: review round 1
