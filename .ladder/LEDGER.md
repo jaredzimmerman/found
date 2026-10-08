@@ -43,3 +43,4 @@
 2026-10-08T00:01:47Z | T09: review round 1
 2026-10-08T00:04:29Z | Phase 2 done (T05,T06,T08,T09); D4 validator empty-categories warning; T14 brief (DH node flakes)
 2026-10-08T00:04:52Z | workflow started: T14 runId=wf_2d8fc73f-368
+2026-10-08T00:06:16Z | T12 prep: archived leaked backups + 12 stale root dups on DH (private ~/archive/whattodo72-20261007); .htaccess blocks build.prev/_/.bak; tools/test-dead-links.mjs captured

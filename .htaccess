@@ -13,6 +13,9 @@
 # ---- build inputs and logs -------------------------------------------------
 RedirectMatch 404 ^/test/build/
 RedirectMatch 404 ^/test/logs/
+# Rollback copies, staged deploys and archives live next to build/ (build.prev-*, .deploy/, _archive*).
+RedirectMatch 404 ^/test/build[.-]
+RedirectMatch 404 ^/test/_
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -22,7 +25,8 @@ RedirectMatch 404 ^/test/logs/
 </IfModule>
 
 # ---- non-web file types anywhere under /test --------------------------------
-<FilesMatch "\.(mjs|sh|log|orig|py|jsonl)$">
+# Also catches backup suffixes such as fetch.mjs.pre-x or build-site.sh.bak-2026 (they were served as 200).
+<FilesMatch "\.(mjs|sh|log|orig|py|jsonl|bak|tmp)([.-].*)?$">
   Require all denied
 </FilesMatch>
 
