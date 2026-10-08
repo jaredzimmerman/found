@@ -231,6 +231,95 @@ head -c 1100000 /dev/zero | tr '\0' 'x' > "$R/test/logs/build.log"
 run_build rotate; rc=$?; O="$SB/rotate.out"
 check "build.log.1 holds the old 1.1 MB, build.log truncated" "$O" [ "$rc" = 0 -a "$(wc -c < "$R/test/logs/build.log.1" | tr -d ' ')" = 1100000 -a "$(wc -c < "$R/test/logs/build.log" | tr -d ' ')" = 0 ]
 
+# ---- node launch flakes (T14) ----------------------------------------------------
+# A stub node (tests/fixtures/stub-node.sh, via W72_NODE) fails chosen launches
+# the way DreamHost's node 18 does, then runs the real node.
+STUB_NODE="$SB/.stub-node.sh"
+cp "$REPO/tests/fixtures/stub-node.sh" "$STUB_NODE"; chmod +x "$STUB_NODE"
+REAL_NODE="$(command -v node)"
+# flaky <name> [VAR=value...]: run_build with the stub node; launches counted in $SB/<name>.calls
+flaky() { local name="$1"; shift; run_build "$name" W72_NODE="$STUB_NODE" STUB_NODE_REAL="$REAL_NODE" STUB_NODE_STATE="$SB/$name.calls" "$@"; }
+calls() { if [ -f "$SB/$1.calls" ]; then wc -l < "$SB/$1.calls" | tr -d ' '; else echo 0; fi; }
+
+case_start "quick step: one launch flake (SIGABRT) then success -> published, node_retries 1"
+R=$(mk_case flake1); s=$(date +%s)
+flaky flake1 STUB_NODE_MATCH='validate-feed\.mjs' STUB_NODE_FAILS=1 STUB_NODE_MODE=abort; rc=$?; took=$(( $(date +%s) - s )); O="$SB/flake1.out"
+check "exit 0, history published with node_retries 1" "$O" [ "$rc" = 0 -a "$(last "$R" 'r.outcome+" "+r.node_retries')" = "published 1" ]
+check "status.json: published, node_retries 1" "$O" [ "$(json "$R/test/logs/status.json" 'j.last_attempt.outcome+" "+j.node_retries+" "+j.consecutive_failures')" = "published 1 0" ]
+rid="$(last "$R" r.run_id)"
+check "validator launched twice; run log has the retry line; waited >= 3 s (took ${took}s)" "$O" sh -c "[ $(calls flake1) = 2 ] && [ $took -ge 3 ] && grep -q 'retry node validate (attempt 2/3, SIGABRT, exit 134)' '$R/test/logs/runs/$rid.log'"
+
+case_start "quick step: three launch flakes -> fatal at that stage, backoff 3 s + 8 s"
+R=$(mk_case flake3); before=$(md5of "$R/events.json"); s=$(date +%s)
+flaky flake3 STUB_NODE_MATCH='validate-feed\.mjs' STUB_NODE_FAILS=9 STUB_NODE_MODE=abort; rc=$?; took=$(( $(date +%s) - s )); O="$SB/flake3.out"
+check "exit non-zero, history fatal at validate naming exit 134" "$O" [ "$rc" != 0 -a "$(last "$R" 'r.outcome+" "+r.stage+" "+r.fatal.some(f=>f.includes("validate-feed.mjs failed to run (exit 134)"))+" "+r.node_retries')" = "fatal validate true 2" ]
+check "exactly 3 launches, >= 11 s of backoff (took ${took}s), live unchanged" "$O" [ "$(calls flake3)" = 3 -a "$took" -ge 11 -a "$(md5of "$R/events.json")" = "$before" ]
+check "two retry lines, attempts 2/3 and 3/3" "$O" sh -c "grep -q 'retry node validate (attempt 2/3' '$O' && grep -q 'retry node validate (attempt 3/3' '$O'"
+
+case_start "quick step: exit 1 + pthread_create x3 is fatal, never read as a rejection"
+R=$(mk_case eagain3)
+flaky eagain3 W72_NODE_BACKOFF="0 0" STUB_NODE_MATCH='validate-feed\.mjs' STUB_NODE_FAILS=9 STUB_NODE_MODE=eagain; rc=$?; O="$SB/eagain3.out"
+check "exit non-zero, fatal (not rejected) at validate, exit 75, 3 launches" "$O" [ "$rc" != 0 -a "$(last "$R" 'r.outcome+" "+r.stage+" "+r.fatal.some(f=>f.includes("exit 75"))')" = "fatal validate true" -a "$(calls eagain3)" = 3 ]
+check "retry reason names thread creation" "$O" grep -q 'retry node validate (attempt 2/3, could not create a thread, exit 1)' "$O"
+
+case_start "real validator rejection is NOT retried"
+R=$(mk_case noretry)
+flaky noretry STUB_MODE=bad STUB_NODE_MATCH='validate-feed\.mjs' STUB_NODE_FAILS=0; rc=$?; O="$SB/noretry.out"
+check "exit non-zero, outcome rejected, validator launched once" "$O" [ "$rc" != 0 -a "$(last "$R" r.outcome)" = rejected -a "$(calls noretry)" = 1 ]
+check "no retry line, no node_retries in history, status node_retries 0" "$O" [ "$(grep -c 'retry node' "$O")" = 0 -a "$(last "$R" 'String(r.node_retries)')" = undefined -a "$(json "$R/test/logs/status.json" j.node_retries)" = 0 ]
+
+case_start "quick step: a startup hang is killed by the bound and retried"
+R=$(mk_case qhang); s=$(date +%s)
+flaky qhang W72_NODE_QUICK_BOUND=2s W72_NODE_BACKOFF="0 0" STUB_NODE_MATCH='test-imports\.mjs' STUB_NODE_FAILS=1 STUB_NODE_MODE=hang; rc=$?; took=$(( $(date +%s) - s )); O="$SB/qhang.out"
+check "exit 0, published, node_retries 1, within 30 s (took ${took}s)" "$O" [ "$rc" = 0 -a "$(last "$R" 'r.outcome+" "+r.node_retries')" = "published 1" -a "$took" -lt 30 ]
+check "retry reason says hung" "$O" grep -q 'retry node imports (attempt 2/3, no exit within the bound, hung)' "$O"
+
+case_start "dc-fetch: launch flake (SIGTRAP) within the window is retried once"
+R=$(mk_case dcflake)
+flaky dcflake W72_NODE_BACKOFF="0 0" STUB_NODE_MATCH='dc-fetch\.mjs' STUB_NODE_FAILS=1 STUB_NODE_MODE=trap; rc=$?; O="$SB/dcflake.out"
+check "exit 0, published, dc-events.json promoted, 2 launches" "$O" [ "$rc" = 0 -a "$(last "$R" r.outcome)" = published -a -f "$R/dc-events.json" -a "$(calls dcflake)" = 2 ]
+check "retry line for dc-fetch (attempt 2/2, SIGTRAP)" "$O" grep -q 'retry node dc-fetch (attempt 2/2, SIGTRAP, exit 133' "$O"
+
+case_start "fetch: launch flake within the window is retried once"
+R=$(mk_case fflake)
+flaky fflake W72_NODE_BACKOFF="0 0" STUB_NODE_MATCH='^fetch\.mjs' STUB_NODE_FAILS=1 STUB_NODE_MODE=abort; rc=$?; O="$SB/fflake.out"
+check "exit 0, published with node_retries 1, 2 launches" "$O" [ "$rc" = 0 -a "$(last "$R" 'r.outcome+" "+r.total+" "+r.node_retries')" = "published 60 1" -a "$(calls fflake)" = 2 ]
+check "retry line and the first attempt's log kept as .fetch.log.flaked" "$O" sh -c "grep -q 'retry node fetch (attempt 2/2, SIGABRT, exit 134 after' '$O' && grep -q pthread_create '$R/test/build/.fetch.log.flaked'"
+R=$(mk_case fflake2)
+flaky fflake2 W72_NODE_BACKOFF="0 0" STUB_NODE_MATCH='^fetch\.mjs' STUB_NODE_FAILS=5 STUB_NODE_MODE=abort; rc=$?; O="$SB/fflake2.out"
+check "two flakes in a row: fatal at fetch after exactly 2 launches (retry once only)" "$O" [ "$rc" != 0 -a "$(last "$R" 'r.outcome+" "+r.stage')" = "fatal fetch" -a "$(calls fflake2)" = 2 ]
+
+case_start "fetch: a death after the window is NOT retried"
+R=$(mk_case flate)
+flaky flate W72_NODE_FLAKE_WINDOW=1 STUB_NODE_DELAY=2 STUB_NODE_MATCH='^fetch\.mjs' STUB_NODE_FAILS=1 STUB_NODE_MODE=abort; rc=$?; O="$SB/flate.out"
+check "fatal at fetch (exit 134), one launch, no retry line" "$O" [ "$rc" != 0 -a "$(last "$R" 'r.outcome+" "+r.stage+" "+r.fatal.some(f=>f.includes("exit 134"))')" = "fatal fetch true" -a "$(calls flate)" = 1 -a "$(grep -c 'retry node' "$O")" = 0 ]
+
+case_start "fetch: a normal failure (exit 1, no thread message) is NOT retried"
+R=$(mk_case fnorm)
+flaky fnorm STUB_MODE=fail STUB_NODE_MATCH='^fetch\.mjs' STUB_NODE_FAILS=0; rc=$?; O="$SB/fnorm.out"
+check "fatal at fetch, one launch, no retry line" "$O" [ "$rc" != 0 -a "$(last "$R" 'r.outcome+" "+r.stage')" = "fatal fetch" -a "$(calls fnorm)" = 1 -a "$(grep -c 'retry node' "$O")" = 0 ]
+
+case_start "record-run.mjs cannot start: bash fallback writes valid history + status"
+R=$(mk_case rrfb); H="$R/test/logs/history.jsonl"; ST="$R/test/logs/status.json"
+run_build rrfb RUN_ID=rrfb-1; rc1=$?
+flaky rrfb RUN_ID=rrfb-2 STUB_MODE=fail W72_NODE_BACKOFF="0 0" STUB_NODE_MATCH='record-run\.mjs' STUB_NODE_FAILS=99 STUB_NODE_MODE=eagain; rc2=$?; O="$SB/rrfb.out"
+allparse() { node -e 'const fs=require("fs");for(const l of fs.readFileSync(process.argv[1],"utf8").split("\n"))if(l.trim())JSON.parse(l);JSON.parse(fs.readFileSync(process.argv[2],"utf8"))' "$H" "$ST"; }
+check "seed run published; failed run exits non-zero" "$O" [ "$rc1" = 0 -a "$rc2" != 0 ]
+check "every history line and status.json parse" "$O" allparse
+check "fallback line: fatal at fetch, message kept, node_retries 2, recorded_by bash-fallback" "$O" [ "$(last "$R" 'r.run_id+" "+r.outcome+" "+r.stage+" "+r.fatal.some(f=>f.includes("fetch.mjs failed"))+" "+r.node_retries+" "+r.recorded_by+" "+r.total')" = "rrfb-2 fatal fetch true 2 bash-fallback null" ]
+check "fallback status: last_attempt fatal, last_success = seed run (60), 1 failure, sources carried" "$O" [ "$(json "$ST" 'j.last_attempt.run_id+" "+j.last_attempt.outcome+" "+j.last_success.run_id+" "+j.last_success.total+" "+j.consecutive_failures+" "+j.sources.dothebay.kept+" "+j.node_retries+" "+j.recorded_by')" = "rrfb-2 fatal rrfb-1 60 1 60 2 bash-fallback" ]
+check "fallback status: feed_generatedAt = the live feed; python3 parses it too" "$O" sh -c "[ \"$(json "$ST" j.feed_generatedAt)\" = \"$(json "$R/events.json" j.generatedAt)\" ] && python3 -c 'import json,sys; json.load(open(sys.argv[1]))' '$ST'"
+flaky rrfb RUN_ID=rrfb-3 W72_NODE_BACKOFF="0 0" STUB_NODE_MATCH='record-run\.mjs' STUB_NODE_FAILS=99 STUB_NODE_MODE=abort; rc3=$?
+check "published run via fallback: exit 0, total 60, last_success = it, 0 failures, sources still carried" "$O" [ "$rc3" = 0 -a "$(last "$R" 'r.outcome+" "+r.total')" = "published 60" -a "$(json "$ST" 'j.last_success.run_id+" "+j.last_success.total+" "+j.consecutive_failures+" "+j.sources.dothebay.kept')" = "rrfb-3 60 0 60" ]
+run_build rrfb RUN_ID=rrfb-4; rc4=$?
+check "record-run.mjs reads fallback-written files: next run published, 4 lines" "$O" [ "$rc4" = 0 -a "$(wc -l < "$H" | tr -d ' ')" = 4 -a "$(json "$ST" 'j.last_success.run_id+" "+j.recorded_by+" "+j.sources.dothebay.zero_streak')" = "rrfb-4 undefined 0" ]
+check "all lines and status.json still parse" "$O" allparse
+
+case_start "json_str escapes quotes, backslashes and control characters"
+eval "$(sed -n '/^json_str() {/,/^}/p' "$REPO/build-site.sh")"
+js="$(json_str "$(printf 'a"b\\c\td\ne\001f')")"
+check "JSON.parse(json_str(x)) round-trips the printable text" "$SB/jsonstr.out" [ "$(node -e 'console.log(JSON.parse(process.argv[1]))' "$js" 2>"$SB/jsonstr.out")" = 'a"b\c def' ]
+
 echo
 echo "$CASES cases, $PASS passed, $FAIL failed, $SKIP skipped ($(( $(date +%s) - T0 ))s)"
 [ "$FAIL" = 0 ]
