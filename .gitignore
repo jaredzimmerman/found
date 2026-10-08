@@ -12,3 +12,4 @@ fixtures/
 tests/replay/fixtures/
 node_modules/
 .DS_Store
+.ladder/logs/

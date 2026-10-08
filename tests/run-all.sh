@@ -31,13 +31,34 @@ sleep 1; touch "$STAMP"
 
 echo "node $(node -v)  root $ROOT"
 
+# DreamHost's shared host sometimes fails to LAUNCH node (SIGABRT/SIGTRAP, or a hang at
+# startup: seen in the first real deploy preflight, 2026-10-07). A launch flake gets one
+# retry; a real test failure (any other exit status) is never retried. Where `timeout`
+# exists each attempt is bounded (TEST_TIMEOUT seconds, default 180) and the whole process
+# group is signalled, so a hung grandchild cannot linger.
+with_retry() { # runs "$@" with output in $STAMP.out; returns its status
+  local attempt rc=0
+  for attempt in 1 2; do
+    if command -v timeout >/dev/null 2>&1; then
+      timeout -k 5 "${TEST_TIMEOUT:-180}" "$@" >"$STAMP.out" 2>&1; rc=$?
+    else
+      "$@" >"$STAMP.out" 2>&1; rc=$?
+    fi
+    case "$rc" in
+      124|133|134|139) echo "  (retry: '$*' exited $rc, a node launch flake; attempt $attempt/2)"; continue ;;
+    esac
+    return "$rc"
+  done
+  return "$rc"
+}
+
 # (a) syntax-check every build module
 for f in build/*.mjs; do
   TOTAL=$((TOTAL + 1))
-  if err="$(node --check "$f" 2>&1)"; then
+  if with_retry node --check "$f"; then
     :
   else
-    FAILED=$((FAILED + 1)); echo "FAIL node --check $f"; echo "$err" | sed 's/^/    /'
+    FAILED=$((FAILED + 1)); echo "FAIL node --check $f"; sed 's/^/    /' "$STAMP.out"
   fi
 done
 echo "done  node --check build/*.mjs"
@@ -63,7 +84,7 @@ count_checks() { # $1 = output file
 run_test() { # $1 = file, $2... = command
   local file="$1"; shift
   TOTAL=$((TOTAL + 1))
-  if "$@" >"$STAMP.out" 2>&1; then
+  if with_retry "$@"; then
     echo "PASS $file ($(count_checks "$STAMP.out") checks)"
   else
     FAILED=$((FAILED + 1))
@@ -87,7 +108,7 @@ done
 
 # (d) import-completeness gate
 TOTAL=$((TOTAL + 1))
-if node build/test-imports.mjs build >"$STAMP.out" 2>&1; then
+if with_retry node build/test-imports.mjs build; then
   echo "PASS build/test-imports.mjs ($(grep -c ' -> ' "$STAMP.out") imports)"
 else
   FAILED=$((FAILED + 1)); echo "FAIL build/test-imports.mjs"; sed 's/^/    /' "$STAMP.out" | tail -40
