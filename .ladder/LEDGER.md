@@ -49,3 +49,4 @@
 2026-10-08T00:32:42Z | T14: Result written (Mac 25 cases 63 passed; DH 25 cases 69 passed; root cause pids.max=25; flags verified)
 2026-10-08T00:38:03Z | T14: review round 1
 2026-10-08T00:50:49Z | T12: first deploy stalled in DH preflight (node hang, load avg 25); nothing swapped; run-all.sh now bounds each test and retries a launch flake once
+2026-10-08T00:50:59Z | T12: deploy #2 started
