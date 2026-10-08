@@ -40,3 +40,4 @@
 2026-10-07T23:27:43Z | T09: retry node startup aborts with delay; deploy.test.sh skips inside remote preflight
 2026-10-07T23:40:38Z | T09: retry node startup hangs on quick preflight steps; docs Deploying + ops line
 2026-10-07T23:57:32Z | T09: Result written (selftest 13 cases 47 passed; run-all ALL PASS 44)
+2026-10-08T00:01:47Z | T09: review round 1
