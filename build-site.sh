@@ -51,6 +51,25 @@
 #   BUILD_TIMEOUT  bound on the whole run          (default 25m)
 #   FETCH_TIMEOUT  bound on `node fetch.mjs`       (default 15m)
 #   FETCH_DEADLINE_MS  global deadline inside fetch.mjs (default 12 min)
+#   W72_NODE       node command for every node step (default node; tests stub it)
+#   W72_NODE_QUICK_BOUND  per-attempt bound on quick node steps (default 60s)
+#   W72_NODE_BACKOFF      waits before retries 2 and 3 (default "3 8")
+#   W72_NODE_FLAKE_WINDOW fetch/dc-fetch are retried only if they died of a
+#                  launch flake within this many seconds (default 90)
+#
+# Node launch flakes (T14, decision D5). This account sits in a cgroup with
+# pids.max=25 (threads count; seen 2026-10-07: pids.events "max 91"). A plain
+# node 18 start is 7 tasks and 11 once the libuv pool spins up, so with cron,
+# ssh and tee running node sometimes cannot create a thread: it aborts at
+# launch (pthread_create EAGAIN -> exit 134, sometimes 133) or hangs. Two
+# defences:
+#   - fewer threads: --v8-pool-size=1 and UV_THREADPOOL_SIZE=2 (verified on DH
+#     node 18.19.1: replay output identical, peak 7 tasks instead of 12);
+#   - run_node / run_node_long below retry ONLY launch flakes (exit 133, 134,
+#     139, a hang, or exit 1 saying pthread_create / EAGAIN / fork: retry). A
+#     script's own failure is never retried. Each retry prints
+#     "retry node <step> (attempt n/N, reason)" and is counted as node_retries
+#     in history.jsonl (when > 0) and status.json.
 #
 # Every run, whatever happens, ends in the EXIT trap, which calls
 # build/record-run.mjs: one line appended to logs/history.jsonl and
@@ -79,6 +98,15 @@ LOGS="$TEST/logs"
 export PATH="/usr/bin:/bin:/usr/local/bin:$PATH"   # system node 18; see header
 export CHROME_BIN="$HOME/.cache/ms-playwright/chromium-1223/chrome-linux64/chrome"
 export FETCH_DEADLINE_MS="${FETCH_DEADLINE_MS:-720000}"
+export UV_THREADPOOL_SIZE="${UV_THREADPOOL_SIZE:-2}"
+case " ${NODE_OPTIONS:-} " in
+  *" --v8-pool-size="*) ;;
+  *) export NODE_OPTIONS="${NODE_OPTIONS:+$NODE_OPTIONS }--v8-pool-size=1" ;;
+esac
+W72_NODE="${W72_NODE:-node}"
+NODE_QUICK_BOUND="${W72_NODE_QUICK_BOUND:-60s}"
+NODE_BACKOFF="${W72_NODE_BACKOFF:-3 8}"
+NODE_FLAKE_WINDOW="${W72_NODE_FLAKE_WINDOW:-90}"
 
 # Fixed before the re-exec below, so both processes agree on them.
 export RUN_ID="${RUN_ID:-$(date -u +%Y%m%dT%H%M%SZ)-$$}"
@@ -100,7 +128,7 @@ if [ -z "${W72_UNDER_TIMEOUT:-}" ]; then
 fi
 
 [ -d "$BUILD" ] || { echo "FATAL: no build dir at $BUILD" >&2; exit 1; }
-command -v node >/dev/null || { echo "FATAL: node missing" >&2; exit 1; }
+command -v "$W72_NODE" >/dev/null || { echo "FATAL: node missing" >&2; exit 1; }
 mkdir -p "$LOGS/runs"
 
 # ---- outcome bookkeeping ------------------------------------------------------
@@ -137,6 +165,208 @@ on_signal() {
   exit 143
 }
 
+# run_bounded <duration> <cmd...>: run cmd in the background under a time bound
+# and wait for it (a background child + wait lets the TERM trap fire at once).
+# Returns cmd's status, or 124 when the bound was hit. cmd reads the caller's
+# stdin (<&0: a bare `&` would give it /dev/null).
+dur_secs() {                          # 15m -> 900; accepts s/m/h/d suffixes
+  local n="${1%[smhd]}"
+  case "$1" in
+    *m) echo $((n * 60)) ;; *h) echo $((n * 3600)) ;; *d) echo $((n * 86400)) ;; *) echo "$n" ;;
+  esac
+}
+run_bounded() {
+  local limit="$1" rc=0 marker="$LOGS/.timed-out-$RUN_ID"
+  shift
+  rm -f "$marker"
+  if [ -n "$TIMEOUT_BIN" ]; then
+    "$TIMEOUT_BIN" -k 10s "$limit" "$@" <&0 &
+    CHILD_PID=$!
+  else
+    "$@" <&0 &
+    CHILD_PID=$!
+    ( exec >/dev/null 2>&1 9>&-; sleep "$(dur_secs "$limit")"; : > "$marker"; kill -TERM "$CHILD_PID" ) &
+    WATCHER_PID=$!
+  fi
+  wait "$CHILD_PID" || rc=$?
+  CHILD_PID=""
+  if [ -n "$WATCHER_PID" ]; then kill "$WATCHER_PID" 2>/dev/null || true; WATCHER_PID=""; fi
+  if [ -f "$marker" ]; then rm -f "$marker"; rc=124; fi
+  return "$rc"
+}
+
+# ---- node launch flakes (see header) ---------------------------------------------
+NODE_RETRY_LOG="$LOGS/.node-retries-$RUN_ID"   # one line per retry (survives $(...))
+rm -f "$NODE_RETRY_LOG"
+RUNLOG_FD=0                                     # 1 once fd 7 is the run log (tee)
+
+node_retries() { if [ -f "$NODE_RETRY_LOG" ]; then wc -l < "$NODE_RETRY_LOG" | tr -d ' '; else echo 0; fi; }
+
+note_node_retry() {                   # note_node_retry <step> <n/N> <reason>
+  local line="retry node $1 (attempt $2, $3)"
+  echo "$line" >> "$NODE_RETRY_LOG" 2>/dev/null || true
+  if [ "$RUNLOG_FD" = 1 ]; then log "$line" >&7; else log "$line" >&2; fi
+}
+
+# node_flake <rc> <file>: when rc is a launch flake, print why and return 0.
+node_flake() {
+  case "$1" in
+    134) echo "SIGABRT, exit 134" ;;
+    133) echo "SIGTRAP, exit 133" ;;
+    139) echo "SIGSEGV, exit 139" ;;
+    124) echo "no exit within the bound, hung" ;;
+    1) grep -qE 'pthread_create|Resource temporarily unavailable|fork: retry' "$2" 2>/dev/null || return 1
+       echo "could not create a thread, exit 1" ;;
+    *) return 1 ;;
+  esac
+}
+
+# run_node <step> <node args...>: every node step except fetch.mjs/dc-fetch.mjs.
+# Each attempt is bounded by NODE_QUICK_BOUND (NODE_BOUND overrides); up to 3
+# attempts, retrying only a launch flake. Only the last attempt's stdout and
+# stderr reach the caller. NODE_STDIN=<file> feeds stdin (re-read per attempt).
+# A thread-creation exit 1 that survives all 3 attempts returns 75, so a caller
+# that reads exit 1 as the script's verdict (validate-feed) never sees one.
+run_node() {
+  local step="$1" n=1 rc=0 out err reason delay tag="$LOGS/.node-$RUN_ID"
+  shift
+  out=$(mktemp "$tag.XXXXXX" 2>/dev/null) && err=$(mktemp "$tag.XXXXXX" 2>/dev/null) || {
+    "$W72_NODE" "$@"; return $?; }
+  while :; do
+    rc=0
+    run_bounded "${NODE_BOUND:-$NODE_QUICK_BOUND}" "$W72_NODE" "$@" \
+      < "${NODE_STDIN:-/dev/null}" > "$out" 2> "$err" || rc=$?
+    [ "$rc" -eq 0 ] && break
+    reason=$(node_flake "$rc" "$err") || break
+    if [ "$n" -ge 3 ]; then
+      [ "$rc" -eq 1 ] && rc=75
+      echo "node $step: still failing to start after 3 attempts ($reason)" >> "$err"
+      break
+    fi
+    if [ "$n" = 1 ]; then delay="${NODE_BACKOFF%% *}"; else delay="${NODE_BACKOFF##* }"; fi
+    n=$((n + 1))
+    note_node_retry "$step" "$n/3" "$reason"
+    sleep "$delay"
+  done
+  cat "$out"; cat "$err" >&2
+  rm -f "$out" "$err"
+  return "$rc"
+}
+
+# run_node_stdin <step> <node args...>: run_node fed from this function's stdin.
+run_node_stdin() {
+  local NODE_STDIN rc=0
+  NODE_STDIN=$(mktemp "$LOGS/.node-$RUN_ID.XXXXXX") || return 1
+  cat > "$NODE_STDIN"
+  run_node "$@" || rc=$?
+  rm -f "$NODE_STDIN"
+  return "$rc"
+}
+
+# run_node_long <step> <bound> <log> <node args...>: fetch.mjs / dc-fetch.mjs,
+# output to <log>. Retried ONCE, and only when node died of a launch flake within
+# NODE_FLAKE_WINDOW s (later deaths and every normal exit are real: a rerun
+# would double the load on the sources). The retry gets what is left of <bound>;
+# the first attempt's log is kept as <log>.flaked.
+run_node_long() {
+  local step="$1" bound="$2" logf="$3" rc=0 t0 el left reason delay="${NODE_BACKOFF%% *}"
+  shift 3
+  t0=$(date +%s)
+  run_bounded "$bound" "$W72_NODE" "$@" < /dev/null > "$logf" 2>&1 || rc=$?
+  [ "$rc" -eq 0 ] && return 0
+  el=$(( $(date +%s) - t0 ))
+  [ "$rc" -ne 124 ] && [ "$el" -lt "$NODE_FLAKE_WINDOW" ] || return "$rc"
+  reason=$(node_flake "$rc" "$logf") || return "$rc"
+  left=$(( $(dur_secs "$bound") - el - delay ))
+  [ "$left" -gt 0 ] || return "$rc"
+  mv -f "$logf" "$logf.flaked" 2>/dev/null || true
+  note_node_retry "$step" "2/2" "$reason after ${el}s"
+  sleep "$delay"
+  rc=0
+  run_bounded "${left}s" "$W72_NODE" "$@" < /dev/null > "$logf" 2>&1 || rc=$?
+  return "$rc"
+}
+
+# ---- recording without node --------------------------------------------------------
+# json_str <text>: a JSON string literal; drops control characters.
+json_str() {
+  local s="$1"
+  s="${s//\\/\\\\}"; s="${s//\"/\\\"}"; s="${s//$'\t'/ }"
+  s="$(printf '%s' "$s" | LC_ALL=C tr -d '\000-\037')"
+  printf '"%s"' "$s"
+}
+
+# record_fallback <outcome> <why>: when record-run.mjs cannot run, append a
+# minimal history line (printf, no node) and rewrite status.json from what
+# history and the previous status.json say, so the watchdog never loses a run.
+record_fallback() {
+  local outcome="$1" why="$2" h="$LOGS/history.jsonl" s="$LOGS/status.json"
+  local now ts sha="null" fatal="" l total="null" retries lp ls_ts ls_id ls_tot ls="null"
+  local cons src gen tmp
+  now=$(date +%s); ts=$(date -u +%Y-%m-%dT%H:%M:%SZ); retries=$(node_retries)
+  if [ -s "$BUILD/.deployed-sha" ]; then sha=$(json_str "$(head -c 200 "$BUILD/.deployed-sha" | tr -d ' \r\n')"); fi
+  if [ -s "$FATAL_FILE" ]; then
+    while IFS= read -r l || [ -n "$l" ]; do
+      [ -n "$l" ] && fatal="$fatal${fatal:+,}$(json_str "$l")"
+    done < "$FATAL_FILE"
+  fi
+  case "${built:-}" in ''|*[!0-9]*) ;; *) total="$built" ;; esac
+  mkdir -p "$LOGS" 2>/dev/null
+  if [ -s "$h" ] && tail -n 1 "$h" | grep -q "\"run_id\":\"$RUN_ID\""; then
+    :   # record-run got as far as appending; do not add a second line
+  else
+    l=""; if [ -s "$h" ] && [ "$(tail -c 1 "$h" | wc -l | tr -d ' ')" = 0 ]; then l=$'\n'; fi
+    printf '%s{"ts":"%s","run_id":%s,"outcome":"%s","stage":%s,"total":%s,"sources":{},"duration_s":%s,"sha":%s,"warnings":0,"fatal":[%s],"node_retries":%s,"recorded_by":"bash-fallback","note":%s}\n' \
+      "$l" "$ts" "$(json_str "$RUN_ID")" "$outcome" "$(json_str "$STAGE")" "$total" \
+      "$(( now - W72_STARTED ))" "$sha" "$fatal" "$retries" "$(json_str "$why")" >> "$h" || return 1
+  fi
+  [ "$outcome" = "locked-skip" ] && return 0   # the lock holder owns status.json
+  lp=$(grep '"outcome":"published"' "$h" 2>/dev/null | tail -n 1)
+  if [ -n "$lp" ]; then
+    ls_ts=$(printf '%s' "$lp" | sed -n 's/^{"ts":"\([^"]*\)".*/\1/p')
+    ls_id=$(printf '%s' "$lp" | sed -n 's/^{"ts":"[^"]*","run_id":"\([^"]*\)".*/\1/p')
+    ls_tot=$(printf '%s' "$lp" | sed -n 's/.*"stage":"[^"]*","total":\([0-9][0-9]*\),.*/\1/p')
+    ls="{\"ts\":$(json_str "$ls_ts"),\"run_id\":$(json_str "$ls_id"),\"total\":${ls_tot:-null}}"
+  elif [ -s "$s" ] && grep -q '^  "last_success": {' "$s"; then
+    ls=$(awk '/^  "last_success": \{/{f=1; sub(/^  "last_success": /, "")} f{printf "%s", $0} f&&/^  \},?$/{exit}' "$s" | sed 's/,$//')
+  fi
+  cons=$(grep -o '"outcome":"[a-z-]*"' "$h" 2>/dev/null | awk -F'"' '{o[NR]=$4} END{c=0; for(i=NR;i>0;i--){if(o[i]=="published")break; if(o[i]=="rejected"||o[i]=="fatal")c++} print c}')
+  src="{}"
+  if [ -s "$s" ]; then
+    l=$(awk '/^  "sources": \{\},?$/{exit} /^  "sources": \{/{f=1; print "{"; next} f&&/^  \},?$/{print "  }"; exit} f{print}' "$s")
+    case "$l" in "{"*"  }") src="$l" ;; esac
+  fi
+  gen=$(grep -o '"generatedAt": *"[^"]*"' "$ROOT/events.json" 2>/dev/null | head -n 1 | sed 's/.*"\([^"]*\)"$/\1/')
+  if [ -n "$gen" ]; then gen=$(json_str "$gen"); else gen="null"; fi
+  tmp="$s.tmp-$$"
+  printf '{\n  "last_attempt": {"ts":"%s","run_id":%s,"outcome":"%s","stage":%s},\n  "last_success": %s,\n  "consecutive_failures": %s,\n  "sources": %s,\n  "deployed_sha": %s,\n  "feed_generatedAt": %s,\n  "node_retries": %s,\n  "recorded_by": "bash-fallback"\n}\n' \
+    "$ts" "$(json_str "$RUN_ID")" "$outcome" "$(json_str "$STAGE")" "$ls" "${cons:-0}" "$src" "$sha" "$gen" "$retries" > "$tmp" \
+    && mv -f "$tmp" "$s" || { rm -f "$tmp"; return 1; }
+}
+
+# annotate_node_retries <outcome>: after record-run.mjs, add node_retries to this
+# run's history line (only when > 0, and only if that line is still the last)
+# and to status.json (which record-run just rewrote; locked-skip leaves it alone).
+annotate_node_retries() {
+  local n h="$LOGS/history.jsonl" s="$LOGS/status.json" tmp
+  n=$(node_retries)
+  if [ "$n" -gt 0 ] && [ -s "$h" ] && tail -n 1 "$h" | grep -q "\"run_id\":\"$RUN_ID\""; then
+    tmp="$h.tmp-$$"
+    awk -v n="$n" '{ if (NR > 1) print prev; prev = $0 } END { if (NR) { sub(/}[ \t\r]*$/, ",\"node_retries\":" n "}", prev); print prev } }' "$h" > "$tmp" \
+      && mv -f "$tmp" "$h" || rm -f "$tmp"
+  fi
+  [ "$1" = "locked-skip" ] && return 0
+  if [ -s "$s" ]; then
+    tmp="$s.tmp-$$"
+    awk -v n="$n" '{ l[NR] = $0 } END {
+        last = NR; while (last > 1 && l[last] !~ /^}/) last--
+        if (last < 3) { for (i = 1; i <= NR; i++) print l[i]; exit }
+        for (i = 1; i < last - 1; i++) print l[i]
+        print l[last - 1] ","; print "  \"node_retries\": " n
+        for (i = last; i <= NR; i++) print l[i] }' "$s" > "$tmp" && mv -f "$tmp" "$s" || rm -f "$tmp"
+  fi
+}
+
 on_exit() {
   local rc=$? outcome final
   set +e
@@ -167,15 +397,25 @@ on_exit() {
       args+=(--events "$BUILD/events.json" --report "$BUILD/.source-report.json")
     fi
     [ "$VALIDATED" = 1 ] && args+=(--validate-report "$BUILD/.validate-report.json")
-    node "$BUILD/record-run.mjs" "${args[@]}" \
-      || echo "WARNING: could not record this run in $LOGS/history.jsonl" >&2
+    # 3 x 15 s + backoff stays inside the 60 s the overall bound's KILL allows.
+    local NODE_BOUND=15s rrc=0
+    run_node record-run "$BUILD/record-run.mjs" "${args[@]}" || rrc=$?
+    if [ "$rrc" -eq 0 ]; then
+      annotate_node_retries "$outcome"
+    else
+      echo "WARNING: record-run.mjs failed (exit $rrc); recording this run without node" >&2
+      record_fallback "$outcome" "record-run.mjs failed (exit $rrc)" \
+        || echo "WARNING: could not record this run in $LOGS/history.jsonl" >&2
+    fi
   else
-    echo "WARNING: no build/record-run.mjs; this run is not recorded in history" >&2
+    echo "WARNING: no build/record-run.mjs; recording this run without node" >&2
+    record_fallback "$outcome" "no build/record-run.mjs" \
+      || echo "WARNING: could not record this run in $LOGS/history.jsonl" >&2
   fi
-  rm -f "$FATAL_FILE"
+  rm -f "$FATAL_FILE" "$NODE_RETRY_LOG" "$LOGS/.node-$RUN_ID".*
   log "outcome: $outcome (stage $STAGE, exit $final)"
   # Close our end of the tee so it flushes and exits with us.
-  exec >&- 2>&-
+  exec 7>&- >&- 2>&-
   exit "$final"
 }
 
@@ -207,6 +447,7 @@ RUN_LOG="$LOGS/runs/$RUN_ID.log"
 : >> "$RUN_LOG"
 # tee ignores TERM/INT so the trap's last lines still reach both logs on a kill.
 exec > >(exec 9>&-; trap '' TERM INT; exec tee -a "$RUN_LOG") 2>&1
+exec 7>&2; RUNLOG_FD=1          # node retry lines reach the run log from any step
 # Keep the newest 30 run logs.
 { ls -1t "$LOGS/runs/" 2>/dev/null | grep '\.log$' | tail -n +31 | while IFS= read -r old; do
   rm -f "$LOGS/runs/$old"
@@ -217,37 +458,8 @@ mode="production"
 [ "$DRY_RUN" = 1 ] && mode="dry-run"
 log "run $RUN_ID ($mode) root=$ROOT site=$SITE_URL"
 
-# run_bounded <duration> <cmd...>: run cmd in the background under a time bound
-# and wait for it (a background child + wait lets the TERM trap fire at once).
-# Returns cmd's status, or 124 when the bound was hit.
-dur_secs() {                          # 15m -> 900; accepts s/m/h/d suffixes
-  local n="${1%[smhd]}"
-  case "$1" in
-    *m) echo $((n * 60)) ;; *h) echo $((n * 3600)) ;; *d) echo $((n * 86400)) ;; *) echo "$n" ;;
-  esac
-}
-run_bounded() {
-  local limit="$1" rc=0 marker="$LOGS/.timed-out-$RUN_ID"
-  shift
-  rm -f "$marker"
-  if [ -n "$TIMEOUT_BIN" ]; then
-    "$TIMEOUT_BIN" -k 10s "$limit" "$@" &
-    CHILD_PID=$!
-  else
-    "$@" &
-    CHILD_PID=$!
-    ( exec >/dev/null 2>&1 9>&-; sleep "$(dur_secs "$limit")"; : > "$marker"; kill -TERM "$CHILD_PID" ) &
-    WATCHER_PID=$!
-  fi
-  wait "$CHILD_PID" || rc=$?
-  CHILD_PID=""
-  if [ -n "$WATCHER_PID" ]; then kill "$WATCHER_PID" 2>/dev/null || true; WATCHER_PID=""; fi
-  if [ -f "$marker" ]; then rm -f "$marker"; rc=124; fi
-  return "$rc"
-}
-
 cd "$BUILD"
-log "node $(node -v)"
+log "node $(run_node version -v)"
 
 # ---- 0. import completeness -------------------------------------------------
 # fetch.mjs wraps every source in a try/catch that logs "unavailable — skipped",
@@ -258,7 +470,7 @@ log "node $(node -v)"
 # tree. Negative-tested: removing one core module exits 1 naming it.
 STAGE="imports"
 if [ -f test-imports.mjs ]; then
-  if ! node test-imports.mjs . > "$BUILD/.imports.log" 2>&1; then
+  if ! run_node imports test-imports.mjs . > "$BUILD/.imports.log" 2>&1; then
     cat "$BUILD/.imports.log" >&2
     die "build tree has unresolved imports; live feed left untouched"
   fi
@@ -271,7 +483,7 @@ STAGE="fetch"
 rm -f "$BUILD/.source-report.json" "$BUILD/.validate-report.json"
 log "fetching feed (bound $FETCH_TIMEOUT)..."
 frc=0
-run_bounded "$FETCH_TIMEOUT" node fetch.mjs > "$BUILD/.fetch.log" 2>&1 || frc=$?
+run_node_long fetch "$FETCH_TIMEOUT" "$BUILD/.fetch.log" fetch.mjs || frc=$?
 if [ "$frc" -ne 0 ]; then
   tail -20 "$BUILD/.fetch.log" >&2
   if [ "$frc" -eq 124 ]; then
@@ -326,9 +538,9 @@ if [ -f "$BUILD/dc-fetch.mjs" ]; then
   # side-channel name that only a passing validation creates.
   dc_candidate="$BUILD/.dc-events.candidate.json"
   rm -f "$dc_candidate"
-  if node "$BUILD/dc-fetch.mjs" > "$BUILD/.dc-fetch.log" 2>&1 \
+  if run_node_long dc-fetch "$FETCH_TIMEOUT" "$BUILD/.dc-fetch.log" "$BUILD/dc-fetch.mjs" \
      && cp "$BUILD/dc-events.json" "$dc_candidate" \
-     && node -e '
+     && run_node dc-check -e '
 const fs=require("fs");
 const j=JSON.parse(fs.readFileSync(process.argv[1],"utf8"));
 if(!Array.isArray(j.events)||!j.events.length){console.error("dc feed empty");process.exit(1)}
@@ -363,7 +575,7 @@ fi
 # A dry run must not consume the one-shot build/.accept-delta meant for the real run.
 if [ "$DRY_RUN" = 1 ] && [ -f "$BUILD/.accept-delta" ]; then vargs+=(--accept-delta); fi
 vrc=0
-node "$BUILD/validate-feed.mjs" "${vargs[@]}" || vrc=$?
+run_node validate "$BUILD/validate-feed.mjs" "${vargs[@]}" || vrc=$?
 [ -f "$BUILD/.validate-report.json" ] && VALIDATED=1
 if [ "$vrc" -eq 1 ]; then
   echo "REJECTED: the validator refused this feed; /test and live left untouched" >&2
@@ -374,7 +586,7 @@ elif [ "$vrc" -ne 0 ]; then
 fi
 
 if [ "$DRY_RUN" = 1 ]; then
-  node -e '
+  run_node summary -e '
 const fs=require("fs");
 const j=JSON.parse(fs.readFileSync(process.argv[1],"utf8"));
 let r=null; try{r=JSON.parse(fs.readFileSync(process.argv[2],"utf8"))}catch{}
@@ -456,7 +668,7 @@ served_summary() {
   url="${SITE_URL}${path}/events.json"
   code=$("${CURL[@]}" -o /dev/null -w '%{http_code}' "$url" || true)
   [ "$code" = "200" ] || die "${path:-/}/events.json serves HTTP $code"
-  served=$("${CURL[@]}" "$url" | node -e '
+  served=$("${CURL[@]}" "$url" | run_node_stdin served -e '
 let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{
   const a=JSON.parse(s);
   console.log(`${(a.events||[]).length} ${a.days.join(",")}`);
@@ -472,7 +684,7 @@ let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{
 # gets checked automatically, with no edit to this script required.
 check_assets() {                     # check_assets <path-prefix> <label>
   local prefix="$1" label="$2" misses bad c
-  misses=$("${CURL[@]}" "${SITE_URL}${prefix}/" | node -e '
+  misses=$("${CURL[@]}" "${SITE_URL}${prefix}/" | run_node_stdin assets -e '
 let h="";process.stdin.on("data",d=>h+=d).on("end",()=>{
   const urls=new Set();
   for (const m of h.matchAll(/<(?:link|script|img)\b[^>]*?\b(?:href|src)="([^"]+)"/gi)) {
@@ -507,7 +719,7 @@ let h="";process.stdin.on("data",d=>h+=d).on("end",()=>{
   log "all referenced assets serve 200 [$label]"
 }
 
-built=$(node -e 'console.log(JSON.parse(require("fs").readFileSync("events.json","utf8")).events.length)')
+built=$(run_node count -e 'console.log(JSON.parse(require("fs").readFileSync("events.json","utf8")).events.length)')
 
 if [ "$STAGE_ONLY" = 1 ]; then
   STAGE="verify-test"
@@ -549,7 +761,7 @@ log "promoting to live docroot..."
 # must not leave the switcher with nothing: on fetch failure stage 2b leaves the
 # build copy absent/unchanged, and the file below is only replaced when a NEW
 # validated one exists.
-if [ -n "$dc_candidate" ] && [ -f "$dc_candidate" ] && node -e '
+if [ -n "$dc_candidate" ] && [ -f "$dc_candidate" ] && run_node dc-recheck -e '
 const fs=require("fs");const j=JSON.parse(fs.readFileSync(process.argv[1],"utf8"));
 process.exit(Array.isArray(j.events)&&j.events.length?0:1)' "$dc_candidate" 2>/dev/null; then
   if [ -f "$ROOT/dc-events.json" ]; then cp -p "$ROOT/dc-events.json" "$ROOT/.dc-events.json.prev"; fi
@@ -567,7 +779,7 @@ fi
 # How stale is the live DC window, in days? Printed every run. The failure this
 # guards against is not "the build broke" — it is "the build quietly stopped
 # building DC weeks ago and every log line still said done".
-dc_age=$(node -e '
+dc_age=$(run_node dc-age -e '
 const fs=require("fs");
 try{
   const j=JSON.parse(fs.readFileSync(process.argv[1],"utf8"));
