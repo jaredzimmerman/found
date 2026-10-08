@@ -121,6 +121,7 @@ export function validateFeed(feed, ctx = {}) {
   const dayset = new Set(Array.isArray(days) ? days : []);
   const seenIds = new Map();
   const problems = []; // [id, field, message]
+  const emptyCatIds = [];
   const bad = new Set();
   const add = (id, field, msg) => { problems.push([id, field, msg]); bad.add(id); };
   events.forEach((e, i) => {
@@ -143,7 +144,10 @@ export function validateFeed(feed, ctx = {}) {
     if (!Array.isArray(e.categories)) {
       add(idLabel, "categories", `expected a non-empty array of strings, got ${kind(e.categories)} ${JSON.stringify(e.categories)}`);
     } else if (!e.categories.length) {
-      add(idLabel, "categories", "empty array");
+      // SF Station rows are left uncategorised ON PURPOSE (sfstation.mjs: "an empty
+      // list renders no category chips instead of a wrong one"), so an empty list is a
+      // warning, never a reason to refuse the feed. A non-array or a string IS fatal.
+      emptyCatIds.push(idLabel);
     } else {
       for (const c of e.categories) {
         if (typeof c !== "string") add(idLabel, "categories", `non-string entry ${JSON.stringify(c)}`);
@@ -156,6 +160,8 @@ export function validateFeed(feed, ctx = {}) {
     if (Object.prototype.hasOwnProperty.call(e, "source")) add(idLabel, "source", "internal `source` key must be stripped before publishing");
   });
   stats.badEvents = bad.size;
+  stats.emptyCategories = emptyCatIds.length;
+  if (emptyCatIds.length) warnings.push(`categories: ${emptyCatIds.length} event(s) have an empty categories list (left uncategorised by design): ${emptyCatIds.slice(0, 5).join(", ")}${emptyCatIds.length > 5 ? ", ..." : ""}`);
   for (const [id, field, msg] of problems.slice(0, MAX_LISTED)) fatal.push(`event ${id}: ${field}: ${msg}`);
   if (problems.length > MAX_LISTED) {
     fatal.push(`... and ${problems.length - MAX_LISTED} more event problems (${bad.size} events affected in total)`);

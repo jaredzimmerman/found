@@ -41,3 +41,4 @@
 2026-10-07T23:40:38Z | T09: retry node startup hangs on quick preflight steps; docs Deploying + ops line
 2026-10-07T23:57:32Z | T09: Result written (selftest 13 cases 47 passed; run-all ALL PASS 44)
 2026-10-08T00:01:47Z | T09: review round 1
+2026-10-08T00:04:29Z | Phase 2 done (T05,T06,T08,T09); D4 validator empty-categories warning; T14 brief (DH node flakes)

@@ -75,7 +75,11 @@ check("impossible calendar date is fatal", !run(impossible).ok);
 const outDay = clone(GOOD); outDay.events[1].date = "2026-11-01";
 check("event date outside `days` is fatal", !run(outDay).ok && has(run(outDay).fatal, "not in feed.days"));
 const emptyCats = clone(GOOD); emptyCats.events[9].categories = [];
-check("empty categories is fatal", !run(emptyCats).ok && has(run(emptyCats).fatal, `event ${emptyCats.events[9].id}`, "empty array"));
+{ const r = run(emptyCats);
+  check("empty categories is only a warning (SF Station rows are uncategorised by design)", r.ok && r.fatal.length === 0 && r.warnings.some((w) => w.includes("empty categories list") && w.includes(emptyCats.events[9].id)));
+  check("empty categories is counted in stats", r.stats.emptyCategories === 1); }
+const nonArrCats = clone(GOOD); nonArrCats.events[9].categories = "Comedy";
+check("string categories is still fatal", !run(nonArrCats).ok && has(run(nonArrCats).fatal, `event ${nonArrCats.events[9].id}`, "categories"));
 const unk = clone(GOOD); unk.events[9].categories = ["Community", "Underwater Basket Weaving"];
 check("unknown category is fatal and names it", !run(unk).ok && has(run(unk).fatal, "unknown category", "Underwater Basket Weaving"));
 const nonStrCat = clone(GOOD); nonStrCat.events[9].categories = [7];
