@@ -47,3 +47,4 @@
 2026-10-08T00:13:16Z | T14: run_node/run_node_long wrappers, record-run bash fallback, v8-pool-size=1 + UV_THREADPOOL_SIZE=2; existing 14 cases green on Mac
 2026-10-08T00:15:21Z | T14: stub node + 11 flake cases; build-site.test.sh 25 cases 63 passed on Mac
 2026-10-08T00:32:42Z | T14: Result written (Mac 25 cases 63 passed; DH 25 cases 69 passed; root cause pids.max=25; flags verified)
+2026-10-08T00:38:03Z | T14: review round 1
