@@ -15,6 +15,7 @@ import { readFileSync } from "node:fs";
 import * as CLEAN from "./title-clean.mjs";
 import { isCancelledTitle, roundPriceLabel } from "./shared.mjs";
 import { hoodsOf } from "./hoods.mjs";
+import { hoodsOf as ebHoodsOf } from "./eb-hoods.mjs";
 import { centerForTheBook, workshopSF, clayroom, scrap } from "./manual-venues.mjs";
 import { sfStation } from "./sfstation.mjs";
 import { foopee } from "./foopee.mjs";
@@ -35,11 +36,15 @@ const venueCatalog = (() => {
     const raw = JSON.parse(readFileSync(new URL("./venue-catalog.json", import.meta.url), "utf8"));
     const map = {};
     for (const [name, info] of Object.entries(raw)) {
-      map[name.toLowerCase().replace(/\s+/g, " ").trim()] = {
-        name,
-        address: info.address || null,
-        url: info.url || null,
-      };
+      // Store under multiple keys: original, "the"-stripped, and suffix-stripped
+      const baseKey = name.toLowerCase().replace(/^the\s+/i, "").replace(/\s+/g, " ").trim();
+      const suffixKey = baseKey
+        .replace(/,\s*s\.?f\.?\b/i, "")
+        .replace(/,\s*san francisco\b/i, "");
+      map[baseKey] = { name, address: info.address || null, url: info.url || null };
+      if (suffixKey !== baseKey) {
+        map[suffixKey] = { name, address: info.address || null, url: info.url || null };
+      }
     }
     return map;
   } catch {
@@ -48,10 +53,16 @@ const venueCatalog = (() => {
 })();
 
 // Look up a venue in the catalog by name (fuzzy: case-insensitive,
-// ignores leading "the", collapses whitespace).
-function catalogLookup(venueName) {
+// ignores leading "the", collapses whitespace, strips ", S.F." suffix).
+export function catalogLookup(venueName) {
   if (!venueName) return null;
-  const key = String(venueName).toLowerCase().replace(/^the\s+/i, "").replace(/\s+/g, " ").trim();
+  const key = String(venueName)
+    .toLowerCase()
+    .replace(/^the\s+/i, "")
+    .replace(/,\s*s\.?f\.?\b/i, "")      // strip ", S.F." / ", SF"
+    .replace(/,\s*san francisco\b/i, "") // strip ", San Francisco"
+    .replace(/\s+/g, " ")
+    .trim();
   return venueCatalog[key] || null;
 }
 
@@ -154,7 +165,27 @@ function srcName(row) {
   return row.source;
 }
 // Every row entering `out` goes through here.
+function computeBorough(row) {
+  // Already set?
+  if (row.borough) return row.borough;
+  // From venue's city field
+  if (row.venue) {
+    const c = row.venue.toLowerCase();
+    if (/\b(berkeley|oakland|alameda|piedmont|emeryville)\b/.test(c)) return "East Bay";
+    if (/\bsan francisco\b/.test(c)) return "San Francisco";
+  }
+  // From address/city
+  const addr = `${row.address || ""} ${row.city || ""} ${row.full_address || ""}`.toLowerCase();
+  if (/\b(berkeley|oakland|alameda|piedmont|emeryville)\b/.test(addr)) return "East Bay";
+  if (/\bsan francisco\b/.test(addr)) return "San Francisco";
+  // From neighborhood (if it's SF-specific)
+  if (row.neighborhood && row.neighborhood.toLowerCase() === "san francisco") return "San Francisco";
+  // Default
+  return "San Francisco";
+}
+
 function pushRow(row) {
+  if (!row.borough) row.borough = computeBorough(row);
   reportOf(srcName(row)).registered++;
   out.push(row);
 }
@@ -377,16 +408,19 @@ const slug = (s) => String(s ?? "").toLowerCase().replace(/[^a-z0-9]+/g, " ").tr
 // ---------------------------------------------------------------------------
 // Where San Francisco is
 // ---------------------------------------------------------------------------
-// Venue selection is by geography, not by the `city` field: only 9 of DoTheBay's
-// 447 listings carry one (the featured set), while 204 carry coordinates.
-// The box is tightened against real SF city limits so Oakland across the Bay
-// (Yoshi's, the Fox) and the Napa listings fall out.
+// Venue selection is by geography, not by the `city` field.
+// Two boxes: SF city limits + East Bay (Oakland, Berkeley, Alameda, Piedmont, Emeryville).
 const SF_BOX = { lat: [37.708, 37.812], lon: [-122.514, -122.357] };
+const EB_BOX = { lat: [37.76, 37.92], lon: [-122.35, -122.10] };  // covers Oakland, Berkeley, Alameda, Piedmont, Emeryville
 const SF_CITY = /^san francisco$/i;
-const inSF = (v) =>
-  v.latitude && v.longitude &&
-  SF_BOX.lat[0] <= v.latitude && v.latitude <= SF_BOX.lat[1] &&
-  SF_BOX.lon[0] <= v.longitude && v.longitude <= SF_BOX.lon[1];
+
+function inServiceArea(v) {
+  if (!v.latitude || !v.longitude) return false;
+  const lat = v.latitude, lon = v.longitude;
+  const inSF = SF_BOX.lat[0] <= lat && lat <= SF_BOX.lat[1] && SF_BOX.lon[0] <= lon && lon <= SF_BOX.lon[1];
+  const inEB = EB_BOX.lat[0] <= lat && lat <= EB_BOX.lat[1] && EB_BOX.lon[0] <= lon && lon <= EB_BOX.lon[1];
+  return inSF || inEB;
+}
 
 // ---------------------------------------------------------------------------
 // Categories
@@ -740,10 +774,14 @@ export function priceOf(e) {
 // place is admitted, and the event's OWN venue record — which the calendar
 // response carries with a real city — decides in `add()`. Nothing is admitted
 // that its own record places outside the box.
+const EB_CITIES = /^(berkeley|oakland|alameda|piedmont|emeryville)$/i;
 function venueInSF(v) {
   if (!v) return true; // no venue data — citywide feed already filtered by date
-  if (v.city) return SF_CITY.test(v.city.trim());
-  if (v.latitude != null && v.longitude != null) return inSF(v);
+  if (v.city) {
+    const c = v.city.trim();
+    return SF_CITY.test(c) || EB_CITIES.test(c);
+  }
+  if (v.latitude != null && v.longitude != null) return inServiceArea(v);
   const a = `${v.address || ""} ${v.full_address || ""}`;
   if (!a.trim()) return true;
   // Positive evidence only. A city named in the address is authoritative either
@@ -751,7 +789,8 @@ function venueInSF(v) {
   const named = /\b(san francisco|oakland|berkeley|napa|sausalito|daly city|san jose|alameda|san mateo|palo alto|santa clara|walnut creek|marin|sonoma|napa valley|san rafael|fremont|sunnyvale|santa cruz|petaluma|novato|concord|antioch|vallejo|fairfield|richmond|hayward|union city)\b/i;
   const m = a.match(named);
   if (!m) return true; // no city named — undecided, not excluded
-  return SF_CITY.test(m[1]);
+  const c = m[1].toLowerCase();
+  return SF_CITY.test(c) || EB_CITIES.test(c);
 }
 
 // ---------------------------------------------------------------------------
@@ -1162,7 +1201,14 @@ function soldOut(e, raw = "") {
 }
 
 function normalize(e, venue) {
-  if (!venueInSF(venue || e.venue)) return null;
+  // Accept events in San Francisco or East Bay (Berkeley, Oakland, Alameda, Piedmont, Emeryville)
+  const v = venue || e.venue;
+  if (!v) return null; // no venue data — citywide feed already filtered by date
+  // Check if venue is in SF or EB
+  const lat = v.latitude, lon = v.longitude;
+  const inSF = lat && SF_BOX.lat[0] <= lat && lat <= SF_BOX.lat[1] && SF_BOX.lon[0] <= lon && lon <= SF_BOX.lon[1];
+  const inEB = lat && EB_BOX.lat[0] <= lat && lat <= EB_BOX.lat[1] && EB_BOX.lon[0] <= lon && lon <= EB_BOX.lon[1];
+  if (!inSF && !inEB) return null;
   const t = laTime(e.tz_adjusted_begin_date || e.begin_time);
   if (!t) return null;
 
@@ -1194,6 +1240,21 @@ function normalize(e, venue) {
 
   if (e.past) return null;
   if (/private|buyout|closed for/i.test(e.title || "")) return null;
+
+  // Fun Cheap also syndicates promotional listings (internet providers, classes
+  // masquerading as events) whose link is a `?source=FunCheap*` outlink rather
+  // than a real event or venue page. Drop those — they read as ads. Also reject
+  // any event whose resolved title/venue matched broad sponsored categories or
+  // "All Over the Bay Area" style venues.
+  // Ad/promo filter — Fun Cheap syndicates promotional entries whose URL is
+  // a `?source=FunCheap*` outlink (e.g. internet providers advertised as events)
+  // rather than a real event page. Drop those aggressively.
+  const _url = String(e.url || "");
+  const _venue = String(e.venue || (typeof venue === "string" ? venue : (venue?.title || "")));
+  const _title = String(e.title || "");
+  if (/\?source=/i.test(_url)) return null;
+  if (/(All Over (the )?Bay Area|All Over San Francisco)/i.test(_venue)) return null;
+  if (/Independent Internet Service/i.test(_title)) return null;
 
   const price = priceOf(e);
   const venueName = venue?.title || e.venue?.title || null;
@@ -1243,6 +1304,14 @@ function normalize(e, venue) {
   // so a tag can never be justified by a word the reader does not see.
   const desc = cleanDescription(e.excerpt || e.description, venueName);
 
+  // A borough derived from city/address. "San Francisco" by default unless
+  // the venue's own record puts it in the East Bay.
+  const isInEastBay = (e, v) => {
+    const whole = `${v?.city || ""} ${v?.address || ""} ${v?.full_address || ""} ${venueName || ""}`.toLowerCase();
+    return /\b(berkeley|oakland|alameda|piedmont|emeryville)\b/.test(whole) && !/\bsan francisco\b/.test(whole);
+  };
+  const bor = isInEastBay(e, venue) ? "East Bay" : "San Francisco";
+
   return {
     id: String(e.id),
     // The title MUST go through the cleaner here. `cleanTitle` was written and
@@ -1251,12 +1320,14 @@ function normalize(e, venue) {
     // raw strings, and 7 listings still read "(SF)" or "(Santa Rosa)".
     title: cleanTitle(e.title),
     venue: resolved.venue || venueName || "San Francisco",
+    borough: bor,
     // NOT venue.city. That is the CITY, and putting it here made 106 of 110
-    // rows read "San Francisco" — a neighborhood filter over it would offer one
-    // chip and filter nothing. Derive the hood from the street address instead;
-    // hoodsOf() runs over the whole set just before the write and fills this in
-    // properly. Left as a placeholder here so the shape stays obvious.
-    neighborhood: "San Francisco",
+    // Derive the hood from the street address instead of hardcoding "San Francisco".
+    // The neighborhood filter should not include "San Francisco" as a neighborhood option;
+    // the new filter above (San Francisco vs East Bay) handles the city-level selection.
+    // hoodsOf() runs over the whole set just before the write and fills this in properly.
+    // Left as a placeholder here so the shape stays obvious; set to the borough for now.
+    neighborhood: bor,
     address: resolved.address,
     // The SAME string that renders. Computing the description once and using
     // it for both the card and the tags is what makes the two impossible to
@@ -1278,7 +1349,8 @@ function normalize(e, venue) {
     url,
     linkTier: linkTier(outbound, venueName),
     soldOut: soldOut(e, [e.title, e.excerpt, e.description].join(" ")),
-    source: "DoTheBay"
+    source: "DoTheBay",
+    venue_url: resolved.url,
   };
 }
 // ---------------------------------------------------------------------------
@@ -1355,6 +1427,14 @@ function register(row) {
       .replace(/,?\s*san francisco\b/i, "")
       .trim();
   }
+  // Ad/promo filter (same logic as normalize): drop sponsored outlink entries.
+  const ru = String(row.url || "");
+  const rt = String(row.title || "");
+  const rv = String(row.venue || "");
+  if (/\?source=/i.test(ru)) return false;
+  if (/(All Over (the )?Bay Area|All Over San Francisco)/i.test(rv)) return false;
+  if (/Independent Internet Service/i.test(rt)) return false;
+
   const key = contentKey(row);
   if (seenContent.has(key)) {
     dupesCollapsed++;
@@ -1508,11 +1588,14 @@ async function venues() {
   // because its own record says so, and the count below reports how many of
   // the unplaced calendars turned out to matter.
   const definitelyOut = (v) => {
-    if (v.city) return !SF_CITY.test(v.city.trim());
-    if (v.latitude != null && v.longitude != null) return !inSF(v);
+    if (v.city) {
+      const c = v.city.trim();
+      return !SF_CITY.test(c) && !EB_CITIES.test(c);
+    }
+    if (v.latitude != null && v.longitude != null) return !inServiceArea(v);
     const a = `${v.address || ""} ${v.full_address || ""}`;
-    const m = /san francisco|oakland|berkeley|napa|sausalito|daly city|san jose|alameda|san mateo|palo alto|santa clara|walnut creek|marin|sonoma|san rafael|fremont|sunnyvale|santa cruz|petaluma|novato|concord|antioch|vallejo|fairfield|richmond|hayward|union city/i.exec(a);
-    return m ? !SF_CITY.test(m[0]) : false; // no city named → undecided, keep
+    const m = /san francisco|oakland|berkeley|napa|sausalito|daly city|san jose|alameda|san mateo|palo alto|santa clara|walnut creek|marin|sonoma|napa valley|san rafael|fremont|sunnyvale|santa cruz|petaluma|novato|concord|antioch|vallejo|fairfield|richmond|hayward|union city/i.exec(a);
+    return m ? (!SF_CITY.test(m[0]) && !EB_CITIES.test(m[0])) : false; // no city named → undecided, keep
   };
   const sf = [...all.values()].filter((v) => !definitelyOut(v));
   console.log(`  ${sf.length} candidate venues of ${all.size} scanned (${totalPages} pages)`);
@@ -1730,6 +1813,12 @@ async function funcheap(days) {
       // real venue pages.
       const organizer = mu ? unwrapTracker(mu[1]) : null;
       if (!organizer || AGGREGATOR_HOSTS.test(organizer.hostname)) continue;
+      // Fun Cheap syndicates some listings that aren't events at all — the
+      // organizer's URL carries `?source=FunCheap*` (sponsored/affiliate
+      // entries such as an internet-provider ad posing as an event) rather than
+      // a real organizer page. Drop those.
+      const orgHref = organizer && (organizer.href || organizer.toString());
+      if (orgHref && /\?source=/i.test(orgHref)) continue;
 
       // The title is the page's <h1>. There is no "event-headline" block —
       // matching one cost every listing its title and silently dropped the lot.
@@ -1849,7 +1938,8 @@ async function funcheap(days) {
         // A venue we have verified a real site for is always better.
         url: verifiedVenueUrl(venue) || organizer.toString(),
         linkTier: verifiedVenueUrl(venue) ? "venue" : linkTier(organizer, venue),
-        source: "Funcheap"
+        source: "Funcheap",
+        venue_url: resolved.url,
       });
     }
   }
@@ -1972,7 +2062,8 @@ async function cityLights(days) {
         // event, so this is a first-party link, not an aggregator fallback.
         url: r.url,
         linkTier: "venue",
-        source: "City Lights"
+        source: "City Lights",
+        venue_url: catalogLookup(VENUE)?.url || null,
       });
       added++;
     }
@@ -2088,30 +2179,31 @@ async function omnivore(days) {
       if (seen.has(id)) continue;
       seen.add(id);
       pushRow({
-        id,
-        title: CLEAN.cleanTitle(title),
-        // An off-site event is not at the bookshop; do not send the reader to
-        // the shop's door with a ticket for someone else's evening.
-        venue: offSite && d.venueHint ? d.venueHint : SHOP,
-        // Both the shop and Reem's are on Mission Street, so the neighborhood
-        // is the same either way — but saying so once is honest, whereas the
-        // ternary this replaced had two identical arms and read as a decision.
-        neighborhood: "Mission",
-        address: offSite && d.venueHint
-          ? streetOnly("Reem's Mission, 2801 23rd St")
-          : streetOnly("3198 Mission St"),
-        description: blurb,
-        date: iso,
-        startMinutes,
-        endMinutes,
-        timeLabel,
-        priceLabel: d.free ? "Free" : null,
-        priceTier: d.free ? "free" : "unknown",
-        categories: categorize(null, `${title} ${SHOP}`, blurb, SHOP),
-        url: ev.href,
-        linkTier: "venue",
-        source: "Omnivore"
-      });
+              id,
+              title: CLEAN.cleanTitle(title),
+              // An off-site event is not at the bookshop; do not send the reader to
+              // the shop's door with a ticket for someone else's evening.
+              venue: offSite && d.venueHint ? d.venueHint : SHOP,
+              // Both the shop and Reem's are on Mission Street, so the neighborhood
+              // is the same either way — but saying so once is honest, whereas the
+              // ternary this replaced had two identical arms and read as a decision.
+              neighborhood: "Mission",
+              address: offSite && d.venueHint
+                ? streetOnly("Reem's Mission, 2801 23rd St")
+                : streetOnly("3198 Mission St"),
+              description: blurb,
+              date: iso,
+              startMinutes,
+              endMinutes,
+              timeLabel,
+              priceLabel: d.free ? "Free" : null,
+              priceTier: d.free ? "free" : "unknown",
+              categories: categorize(null, `${title} ${SHOP}`, blurb, SHOP),
+              url: ev.href,
+              linkTier: "venue",
+              source: "Omnivore",
+              venue_url: catalogLookup(offSite && d.venueHint ? d.venueHint : SHOP)?.url || null,
+            });
       added++;
     }
     console.log(`  omnivore: ${added} in-window events (${listings.length} listed)`);
@@ -2457,6 +2549,7 @@ async function valkyries(days) {
       categories: ["Sports & Fitness"],
       source: "ESPN",
       address: resolved.address || null,
+      venue_url: resolved.url,
     };
     if (register(row)) added++;
   }
@@ -2553,7 +2646,14 @@ async function main() {
   // see what else is on that block, and the fallback is "the value already on
   // the row", which is only known once every row exists. Runs after the sort so
   // the counts below describe exactly what is published.
-  const hoods = hoodsOf(events);
+  // Dispatch hood resolution per borough
+const sfEvents = events.filter((e) => e.borough === "San Francisco");
+const ebEvents = events.filter((e) => e.borough === "East Bay");
+// Clear any pre-existing neighborhood so each engine computes fresh from address
+for (const e of ebEvents) e.neighborhood = undefined;
+const sfHoods = sfEvents.length ? hoodsOf(sfEvents) : [];
+const ebHoods = ebEvents.length ? ebHoodsOf(ebEvents) : [];
+const hoods = [...sfHoods, ...ebHoods];
   const generic = hoods.filter((h) => h.hood === "San Francisco").reduce((s, h) => s + h.n, 0);
   console.log(`  neighborhoods: ${hoods.length} (${events.length - generic}/${events.length} resolved to a specific hood)`);
 

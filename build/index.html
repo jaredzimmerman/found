@@ -1681,6 +1681,10 @@
         <span class="flabel">Type</span>
         <div class="chips" id="f-type"></div>
       </div>
+      <div class="fgroup fgroup--location">
+        <span class="flabel">Location</span>
+        <div class="chips" id="f-location"></div>
+      </div>
       <div class="fgroup fgroup--hood">
         <span class="flabel">Neighborhood</span>
         <div class="chips" id="f-hood"></div>
@@ -1749,7 +1753,7 @@ const TODAY = (() => {
   return `${o.year}-${o.month}-${o.day}`;
 })();
 
-const state = { day: "", type: new Set(), price: new Set(), link: new Set(), hood: new Set(), venue: "", q: "", hideSold: true, onlyFree: false };
+const state = { day: "", type: new Set(), price: new Set(), link: new Set(), hood: new Set(), location: new Set(["San Francisco"]), venue: "", q: "", hideSold: true, onlyFree: false };
 let ALL = [];
 // image URL -> [black point, white point], written by the server-side
 // pinkpages-levels job. Empty when the file is missing or malformed: every image
@@ -1892,8 +1896,23 @@ function laEpoch(y, m, d, hh, mm) {
   }
 }
 
+// Today's Pacific calendar date, as YYYY-MM-DD. The feed's days are Pacific
+// dates, so "is this event's day already over?" must be asked in the same
+// zone — a visitor in Tokyo must not see yesterday's SF listing linger.
+function pacificToday() {
+  const p = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit",
+  }).format(new Date());
+  return p; // en-CA yields YYYY-MM-DD
+}
+
 function hasPassed(e) {
-  if (e.startMinutes < 0) return false; // all-day: still ahead of us today
+  // A row dated before today is over regardless of its time fields. This is
+  // what catches the all-day listing (startMinutes < 0), which has no clock
+  // to compare and used to survive into the next day: a Sunday festival with
+  // no start time was still on the page on Monday morning.
+  if (e.date && e.date < pacificToday()) return true;
+  if (e.startMinutes < 0) return false; // all-day, but today: still ahead of us
   const [y, m, d] = e.date.split("-").map(Number);
   const start = laEpoch(y, m, d, 0, e.startMinutes);
   return start <= Date.now();
@@ -2101,6 +2120,7 @@ function visible(e) {
     if (state.type.size && !e.categories.some((c) => state.type.has(c))) return false;
     if (state.price.size && !state.price.has(e.priceTier)) return false;
     if (state.link.size && !state.link.has(e.linkTier || "listing")) return false;
+    if (state.location.size && !state.location.has(e.borough)) return false;
     if (state.hood.size && !state.hood.has(e.neighborhood)) return false;
     if (state.venue && e.venue !== state.venue) return false;
     if (state.onlyFree && e.priceTier !== "free") return false;
@@ -2131,6 +2151,7 @@ function visibleExcept(e, skip) {
     case "type":   return visibleWith({ type: new Set() }, e);
     case "price":  return visibleWith({ price: new Set() }, e);
     case "link":   return visibleWith({ link: new Set() }, e);
+    case "location": return visibleWith({ location: new Set() }, e);
     case "hood":   return visibleWith({ hood: new Set() }, e);
     case "venue":  return visibleWith({ venue: null }, e);
     default:       return visible(e);
@@ -2272,6 +2293,12 @@ function pushURL() {
     for (const c of state.price) p.append("p", c);
     for (const c of state.link) p.append("l", c);
     for (const h of state.hood) p.append("n", h);
+    // A location set that is empty on purpose (the reader turned every side of
+    // the Bay off to see everything) must survive a reload, so it is written as
+    // the sentinel `loc=none` rather than as nothing at all — nothing at all is
+    // indistinguishable from "the reader never chose", which defaults to SF.
+    if (state.location.size) { for (const b of state.location) p.append("loc", b); }
+    else p.set("loc", "none");
     if (!state.hideSold) p.set("sold", "1");
     if (state.onlyFree) p.set("free", "1");
     const s = p.toString();
@@ -2287,6 +2314,11 @@ function readURL() {
     state.price = new Set(p.getAll("p"));
     state.link = new Set(p.getAll("l"));
     state.hood = new Set(p.getAll("n"));
+    const locs = p.getAll("loc");
+    // No `loc` at all means the reader never chose: default to San Francisco,
+    // which is what the site has always shown. `loc=none` means they cleared it
+    // on purpose and want both sides of the Bay.
+    state.location = locs.includes("none") ? new Set() : (locs.length ? new Set(locs) : new Set(["San Francisco"]));
     state.hideSold = !p.has("sold");
     state.onlyFree = p.has("free");
     const q = $("#f-q");
@@ -2301,7 +2333,7 @@ function readURL() {
 // explanation for it.
 function activeCount() {
   return (state.day ? 1 : 0) + state.type.size + state.price.size + state.link.size + state.hood.size +
-    (state.venue ? 1 : 0) + (state.q ? 1 : 0) + (state.hideSold ? 0 : 1);
+    state.location.size + (state.venue ? 1 : 0) + (state.q ? 1 : 0) + (state.hideSold ? 0 : 1);
 }
 
 // ---------------------------------------------------------------- render
@@ -2754,9 +2786,12 @@ function refreshChips() {
         for (const e of ALL) c.set(e.neighborhood, (c.get(e.neighborhood) || 0) + 1);
         return [...c].map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
       })();
+  // Filter out city-level names from neighborhood chips — they're locations now.
+  const CITY_NAMES = new Set(["San Francisco", "East Bay", "Oakland", "Berkeley", "Alameda", "Piedmont", "Emeryville"]);
+  const filteredHoodList = hoodList.filter((h) => !CITY_NAMES.has(h.name));
   chipRow(
     $("#f-hood"),
-    hoodList.map((h) => h.name),
+    filteredHoodList.map((h) => h.name),
     (h) => ALL.filter((e) => visibleExcept(e, "hood") && e.neighborhood === h).length,
     {
       isOn: (h) => state.hood.has(h),
@@ -2776,6 +2811,23 @@ function refreshChips() {
     },
     undefined,
     (e, c) => e.categories.includes(c)
+  );
+
+  // Location chips (San Francisco, East Bay). Above Neighborhood in the DOM,
+  // and its own facet: a reader picks a side of the Bay, then narrows further
+  // by neighborhood. Both are empty by default, so the first paint is
+  // everything the feed carries.
+  const locationList = [...new Set(ALL.map((e) => e.borough).filter(Boolean))].sort();
+  chipRow(
+    $("#f-location"),
+    locationList,
+    (b) => ALL.filter((e) => visibleExcept(e, "location") && e.borough === b).length,
+    {
+      isOn: (b) => state.location.has(b),
+      toggle: (b) => { state.location.has(b) ? state.location.delete(b) : state.location.add(b); },
+    },
+    undefined,
+    (e, b) => e.borough === b
   );
 
   // Chip counts must be the number of rows the reader will SEE, not the size
@@ -3287,7 +3339,7 @@ function rebuildDayChips() {
 }
 
 $("#reset").onclick = () => {
-  state.day = ""; state.type.clear(); state.price.clear(); state.link.clear(); state.hood.clear(); state.venue = ""; state.q = "";
+  state.day = ""; state.type.clear(); state.price.clear(); state.link.clear(); state.hood.clear(); state.location = new Set(["San Francisco"]); state.venue = ""; state.q = "";
   state.hideSold = true;
   $("#f-q").value = "";
   rebuildDayChips();
